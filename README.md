@@ -20,7 +20,7 @@ templates의 html file과 연결하는 방법은 아래와 같습니다!
 {% load sass_tags %}
 <html>
 <head>
-	<title>Like Lion Ideathon</title>
+  <title>Like Lion Ideathon</title>
   <link href="{% sass_src 'style/about.scss' %}" rel="stylesheet" type="text/css"/> 
 </head>
 <body>
