@@ -40,9 +40,10 @@ html, body{
 }
 
 .mypage{
-    padding: 80px 160px;
+    padding: 4% 8%;
     &__top{
         flex-direction: row;
+        //flex-flow: row wrap;
     }
     &__bottom{
         flex-direction: column;
@@ -69,6 +70,8 @@ html, body{
     .ideatitle{
         font-weight: bold;
         margin-bottom: 12px;
+        max-height: 40px;
+        overflow: hidden;
     }
     .idea_description{
         color:gray;
@@ -110,9 +113,12 @@ html, body{
 
 .myidea{
     @include box;
+    overflow: hidden;
     flex: 1;
     margin-left: 40px;
     &__item{
+        max-height: 200px;
+        overflow: scroll;
         background-color: #e5e5e5;
         padding: 20px;
         padding-bottom: 5px;
@@ -199,3 +205,5 @@ html, body{
         margin: auto;
     }
 }
+
+@import './mypage_mobile'
