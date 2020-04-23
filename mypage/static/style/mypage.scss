@@ -125,6 +125,11 @@ html, body{
     &__comments{
         flex-direction: row;
         margin: 12px 0;
+        .fa-circle{
+            position: relative;
+            margin-left: -10px;
+            color: rgb(255, 1, 86);
+        }
         .num{
             margin: auto 0;
             margin-left: 5px;
@@ -141,13 +146,55 @@ html, body{
     background-color: white;
     border-radius: 10px;
     margin-top: 60px;
+    @include box;
+    &__itemwrap{
+        flex-direction: row;
+        overflow-x: scroll;
+    }
+}
+
+.ideaitem{
+    width: 300px;
+    height: 350px;
+    border: 1px solid black;
+    border-radius: 35px;
+    margin-right: 40px;
+    &__title{
+        flex-direction: row;
+        height: 50px;
+        border-bottom: 1px solid black;
+        padding-left: 20px;
+        .profile{
+            width: 40px;
+            height: 40px;
+            margin: auto 0;
+            margin-right: 10px;
+        }
+        .text{
+            margin: auto 0;
+        }
+    }
+    &__thumnail{
+        display: block;
+        width: 300px;
+        height: 225px;
+        img{
+            width: 300px;
+            height: 100%;
+        }
+    }
+    &__description{
+        margin: auto 0;
+        padding: 5px 10px;
+        line-height: 24px;
+    }
 }
 
 .footer{
     background-color: #302C28;
     color: white;
     text-align: center;
-    height: 300px;
+    height: 250px;
     h2{
         margin: auto;
     }

@@ -152,6 +152,10 @@ html, body {
   .myidea__comments {
     flex-direction: row;
     margin: 12px 0; }
+    .myidea__comments .fa-circle {
+      position: relative;
+      margin-left: -10px;
+      color: #ff0156; }
     .myidea__comments .num {
       margin: auto 0;
       margin-left: 5px;
@@ -164,13 +168,64 @@ html, body {
   padding: 24px 40px;
   background-color: white;
   border-radius: 10px;
-  margin-top: 60px; }
+  margin-top: 60px;
+  flex-direction: column;
+  padding: 24px 40px;
+  background-color: white;
+  border-radius: 10px; }
+  .basket .title {
+    margin-left: -8px;
+    margin-bottom: 16px; }
+  .basket .subtitle {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: gray; }
+  .basket .contents {
+    margin-bottom: 12px; }
+  .basket .ideatitle {
+    font-weight: bold;
+    margin-bottom: 12px; }
+  .basket .idea_description {
+    color: gray; }
+  .basket__itemwrap {
+    flex-direction: row;
+    overflow-x: scroll; }
+
+.ideaitem {
+  width: 300px;
+  height: 350px;
+  border: 1px solid black;
+  border-radius: 35px;
+  margin-right: 40px; }
+  .ideaitem__title {
+    flex-direction: row;
+    height: 50px;
+    border-bottom: 1px solid black;
+    padding-left: 20px; }
+    .ideaitem__title .profile {
+      width: 40px;
+      height: 40px;
+      margin: auto 0;
+      margin-right: 10px; }
+    .ideaitem__title .text {
+      margin: auto 0; }
+  .ideaitem__thumnail {
+    display: block;
+    width: 300px;
+    height: 225px; }
+    .ideaitem__thumnail img {
+      width: 300px;
+      height: 100%; }
+  .ideaitem__description {
+    margin: auto 0;
+    padding: 5px 10px;
+    line-height: 24px; }
 
 .footer {
   background-color: #302C28;
   color: white;
   text-align: center;
-  height: 300px; }
+  height: 250px; }
   .footer h2 {
     margin: auto; }
 
