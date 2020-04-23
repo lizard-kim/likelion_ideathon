@@ -1,0 +1,119 @@
+.container{
+    display : grid;
+    grid-template-areas: 'header'
+                         'content'
+                         'comment'
+                         'footer';
+    grid-template-rows: 50px 6fr 4fr 100px;
+    height : 100%;
+    max-height : 2200px;
+}
+
+p{
+    all : unset;
+    margin : 0px 10px 0px 10px;
+}
+// 여기부터 헤더
+.header{
+    grid-area : 'header';
+    background-color: white;
+    font-size : 40px;
+    padding-left: 10px;
+}
+
+//여기부터 content
+.content{
+    display : grid;
+    grid-template-areas: 'no' 'idea' 'no';
+    grid-template-columns: 1.5fr 7fr 1.5fr;
+    grid-area : 'content';
+    z-index : -1;
+}
+
+.idea{
+    grid-area : 'idea';
+    background-color: white;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.idea_container{
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title{
+    height : 50px;
+    margin : 10px 30px 0px 30px;
+    font-size : 30px;
+}
+
+.sub_title{
+    height : 20px;
+    border-bottom : 1px solid rgb(206, 206, 206);
+    margin : 0px 30px 10px 30px;
+    padding-bottom: 10px;
+    font-size : 15px;
+    color : rgb(126, 126, 126);
+}
+
+.image{
+    height : 400px;
+    width : 700px;
+    border : 1px solid rgb(197, 197, 197); 
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.description{
+    height : 200px;
+    width : 700px;
+    margin : 10px 0px 10px 20px; 
+    font-size : 10px;
+    margin: 0 auto;
+    padding : 20px 0px 0px 10px;
+}
+
+.bottom{
+    margin : 0 auto;
+    height : 30px;
+    width : 700px;
+    border-bottom : solid 1px rgb(161, 161, 161);
+    margin-bottom : 30px;
+}
+// 여기부터 comment
+.comment{
+    display : grid;
+    grid-template-areas: 'no' 'comments' 'no';
+    grid-template-columns: 1.5fr 7fr 1.5fr;
+    grid-area : 'comment';
+}
+
+.comments{
+    grid-area : 'comments';
+    background-color: white;
+    border-top : solid 1px rgb(161, 161, 161);
+}
+
+.comment_input{
+    height : 100px;
+    width : 800px;
+    border : solid 1px rgb(161, 161, 161);
+    margin : 0 auto;
+    margin-top : 30px;
+}
+
+.comment_list{
+    height : 100px;
+    width : 800px;
+    border : solid 1px rgb(161, 161, 161);
+    margin : 0 auto;
+    margin-top : 30px;
+}
+
+// 여기부터 footer
+.footer{
+    background-color: rgb(56, 56, 56);
+
+}
