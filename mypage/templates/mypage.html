@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 {% load sass_tags %}
+{% load static %}
 <html>
 <head>
-	<title>Like Lion Ideathon</title>
+    <title>Like Lion Ideathon</title>
     <link href="{% sass_src 'style/mypage.scss' %}" rel="stylesheet" type="text/css"/> 
 </head>
 <body>
-    <h1> this is mypage </h1>
+    <div class="header">
+        <div class="header__logo">
+            <img class="logo" src="{% static 'image/basiclogo_E_H.png' %}"/>
+            <logotag class="logotext">IDEATHON</logotag>
+        </div>
+    </div>
+    <div class="mypage">
+        <div class="mypage__top">
+            <div class="userinfo">
+                <div class="userinfo__namebox">
+                    <img class="userinfo__namebox__profile" src="{% static 'image/iron.png' %}"/>
+                    <div class="userinfo__namebox__name">
+                        <p class="name"> 곽철용 </p>
+                        <p class="email"> iamdragon@likelion.org </p>
+                    </div>
+                </div>
+                <div class="userinfo__infobox">
+                    <h4 class="title"> Info </h4>
+                    <h6 class="subtitle"> School </h6>
+                    <h6 class="contents"> DGIST </h6>
+                    <h6 class="subtitle"> About </h6>
+                    <h6 class="contents"> 어이 젊은 친구, 신사답게 행동해  </h6>
+                    <h6 class="subtitle"> Contact </h6>
+                    <h6 class="contents"> https://github.com/iron-dragon </h6>
+                </div>
+            </div>
+            <div class="myidea">
+                <h4 class="title"> My Idea </h4>
+                <div class="myidea__item">
+                    <h3 class="ideatitle"> 마포대교는 무너졌냐? </h3>
+                    <h6 class="idea_description"> 내가 달건이 생활을 열일곱에 시작했다. 그 나이 때 달건이 시작한... </h6>
+                    <div class="myidea__comments">
+                        <i class="far fa-comment-dots fa-2x" style="color: black"></i>
+                        <h6 class="num"> 12 </h6>
+                    </div>
+                </div>
+                <h4 class="title"> My Comments </h4>
+                <h6 class="contents"> 어이 젊은 친구, 신사답게 행동해 </h6>
+                <h6 class="contents"> 묻고 더블로 가! </h6>
+            </div>
+        </div>
+        <div class="mypage__bottom">
+            <div class="basket">
+                <h4> basket </h4>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <h2> footer </h2>
+    </div>
 </body>
 </html>
+
+<script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>

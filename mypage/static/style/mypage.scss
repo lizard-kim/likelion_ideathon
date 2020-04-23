@@ -1,0 +1,154 @@
+@import './typography';
+
+div{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+}
+
+html, body{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    background-color: #e5e5e5;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    border-bottom: 1px black solid;
+    &__logo{
+        flex-direction: row;
+        margin: auto 0;
+        margin-left: 20px;
+        .logo{
+            margin: auto 0;
+            width: 200px;
+        }
+        .logotext{
+            margin-top: auto;
+            margin-left: 4px;
+            font-size: 24px;
+            font-weight: semibold;
+        }
+    }
+}
+
+.mypage{
+    padding: 80px 160px;
+    &__top{
+        flex-direction: row;
+    }
+    &__bottom{
+        flex-direction: column;
+    }
+}
+
+@mixin box {
+    flex-direction: column;
+    padding: 24px 40px;
+    background-color: white;
+    border-radius: 10px;
+    .title{
+        margin-left: -8px;
+        margin-bottom: 16px;
+    }
+    .subtitle{
+        margin-bottom: 8px;
+        font-weight: 600;
+        color:gray;
+    }
+    .contents{
+        margin-bottom: 12px;
+    }
+    .ideatitle{
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+    .idea_description{
+        color:gray;
+    }
+}
+
+.userinfo{
+    flex: 1;
+    &__namebox{
+        flex-direction: row;
+        padding: 24px 40px;
+        background-color: white;
+        border-radius: 10px;
+        &__profile{
+            width: 140px;
+            margin-right: 40px;
+        }
+        &__name{
+            margin: auto 0;
+            .name{
+                font-size: 44px;
+                font-weight: 500;
+                margin: 0;
+            }
+            .email{
+                font-size: 16px;
+                font-weight: 400;
+                margin: 0;
+                margin-top: 5px;
+                color: gray;
+            }
+        }
+    }
+    &__infobox{
+        @include box;
+        margin-top: 40px;
+    }
+}
+
+.myidea{
+    @include box;
+    flex: 1;
+    margin-left: 40px;
+    &__item{
+        background-color: #e5e5e5;
+        padding: 20px;
+        padding-bottom: 5px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    &__item:hover{
+        background-color: #F39925;
+    }
+    &__comments{
+        flex-direction: row;
+        margin: 12px 0;
+        .num{
+            margin: auto 0;
+            margin-left: 5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    }
+}
+
+.basket{
+    flex-direction: column;
+    flex: 1;
+    padding: 24px 40px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 60px;
+}
+
+.footer{
+    background-color: #302C28;
+    color: white;
+    text-align: center;
+    height: 300px;
+    h2{
+        margin: auto;
+    }
+}
