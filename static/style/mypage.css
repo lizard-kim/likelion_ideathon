@@ -71,7 +71,7 @@ html, body {
       font-weight: semibold; }
 
 .mypage {
-  padding: 80px 160px; }
+  padding: 4% 8%; }
   .mypage__top {
     flex-direction: row; }
   .mypage__bottom {
@@ -116,7 +116,9 @@ html, body {
       margin-bottom: 12px; }
     .userinfo__infobox .ideatitle {
       font-weight: bold;
-      margin-bottom: 12px; }
+      margin-bottom: 12px;
+      max-height: 40px;
+      overflow: hidden; }
     .userinfo__infobox .idea_description {
       color: gray; }
 
@@ -125,6 +127,7 @@ html, body {
   padding: 24px 40px;
   background-color: white;
   border-radius: 10px;
+  overflow: hidden;
   flex: 1;
   margin-left: 40px; }
   .myidea .title {
@@ -138,10 +141,14 @@ html, body {
     margin-bottom: 12px; }
   .myidea .ideatitle {
     font-weight: bold;
-    margin-bottom: 12px; }
+    margin-bottom: 12px;
+    max-height: 40px;
+    overflow: hidden; }
   .myidea .idea_description {
     color: gray; }
   .myidea__item {
+    max-height: 200px;
+    overflow: scroll;
     background-color: #e5e5e5;
     padding: 20px;
     padding-bottom: 5px;
@@ -184,7 +191,9 @@ html, body {
     margin-bottom: 12px; }
   .basket .ideatitle {
     font-weight: bold;
-    margin-bottom: 12px; }
+    margin-bottom: 12px;
+    max-height: 40px;
+    overflow: hidden; }
   .basket .idea_description {
     color: gray; }
   .basket__itemwrap {
@@ -228,5 +237,12 @@ html, body {
   height: 250px; }
   .footer h2 {
     margin: auto; }
+
+@media (max-width: 1023px) {
+  .mypage__top {
+    flex-direction: column; }
+  .myidea {
+    margin-top: 40px;
+    margin-left: 0; } }
 
 /*# sourceMappingURL=mypage.css.map */
