@@ -43,13 +43,14 @@ div {
   display: flex;
   flex-direction: column; }
 
-html, body {
+body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   flex-direction: column;
   flex: 1;
   margin: 0;
+  height: 100%;
   background-color: #e5e5e5; }
 
 .header {
@@ -231,6 +232,7 @@ html, body {
     line-height: 24px; }
 
 .footer {
+  margin-top: auto;
   background-color: #302C28;
   color: white;
   text-align: center;
