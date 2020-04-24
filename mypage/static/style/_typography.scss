@@ -1,0 +1,52 @@
+$thin: 100;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semibold:600;
+$bold: 700;
+
+body{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h1{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 72px;
+    font-weight: $bold;
+    margin: 0;
+}
+
+h2{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 56px;
+    font-weight: $semibold;
+    margin: 0;
+}
+
+h3{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 40px;
+    font-weight: $medium;
+    margin: 0;
+}
+
+h4{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 32px;
+    font-weight: $medium;
+    margin: 0;
+}
+
+h5{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 24px;
+    font-weight: $regular;
+    margin: 0;
+}
+
+h6{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 16px;
+    font-weight: $regular;
+    margin: 0;
+}
