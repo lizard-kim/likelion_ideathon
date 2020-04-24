@@ -1,1 +1,99 @@
-<h1> submit </h1>
+<!DOCTYPE html>
+{% load sass_tags %}
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>Submit Idea Page</title>
+        <link rel="stylesheet" href="{% sass_src 'style/submit.scss' %}" type="text/css" />
+    </head>
+    <body id="submit_body">
+        <!-- submit idea page header -->
+        <header id="submit_idea_header">
+            <a href="main.html"><img class="logo" src="img/basiclogo_E_H.png">&nbsp;<b>IDEATHON</b></a>
+            <span class="menu">
+                <a href="#">Log out</a>
+                |
+                <a href="#">My Page</a>
+            </span>
+        </header>
+
+        <!-- submit form -->
+        <form active="#" method="POST" id="submit_form">
+            <!-- 왼쪽 섹션 -->
+            <section id="submit_left">
+                <div>
+                    <label for="IdeaName">제목</label>
+                </div>
+                <div class="InputBox">
+                    <input type="text" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요."/>
+                </div>
+                <div>
+                    <label for="IdeaContent">설명</label>
+                </div>
+                <div class="InputBox">
+                    <input type="textarea" class="InputTextArea" name="IdeaContent" placeholder="본인의 아이디어를 뽐내주세요!" />
+                </div>
+                <div>
+                    <label for="IdeaHashTag">해시태그</label>
+                </div>
+                <div class="InputBox">
+                    <input type="text" class="InputText" name="IdeaHashTag" placeholder="#교육, #문화" />
+                </div>
+
+            </section>
+            <!-- 오른쪽 섹션 -->
+            <section id="submit_right">
+                <div>
+                    <label for="IdeaImage">이미지</label>
+                    <input type="file" multiple id="IdeaImage" name="IdeaImage" accept="image/gif, image/jpeg, image/jpg, image/png" />
+                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="tri"><button class="triB">◀</button></td>
+                            <td id="IdeaPreview"></td>
+                            <td class="tri"><button class="triB">▶</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <button type="submit" id="submitB">등록</button>
+                </div>
+            </section>
+        </form>
+
+    <!-- image 업로드할 때, 바로 미리보기 뜨게 하기 위한 script 코드 -->
+    <script>
+        var upload = document.querySelector('#IdeaImage');
+        var preview = document.querySelector('#IdeaPreview');
+        /* FileReader 객체 생성 */
+        var reader = new FileReader();
+
+        /* reader 시작 시 함수 구현 */
+        reader.onload = (function(){
+
+            this.image = document.createElement('img');
+            var vm = this;
+
+            return function(e){
+                vm.image.src = e.target.result
+            }
+        })()
+
+        upload.addEventListener('change', function(e){
+            var get_file = e.target.files;
+
+            
+            if(get_file){
+                reader.readAsDataURL(get_file[0]);
+            }
+
+            preview.appendChild(image);
+        })
+        
+    </script>
+    </body>
+    <footer>
+        
+    </footer>
+</html>
