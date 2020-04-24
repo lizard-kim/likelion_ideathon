@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
-
 html{
     margin: 0;
     height: 100%;
@@ -33,7 +32,7 @@ header{
 /* Main Page */
 #main_body{
     height: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(img/hackerthon.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../img/hackerthon.jpg);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
