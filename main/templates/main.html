@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 {% load sass_tags %}
-<html>
-<head>
-	<title>Like Lion Ideathon</title>
-    <link href="{% sass_src 'style/main.scss' %}" rel="stylesheet" type="text/css"/> 
-</head>
-<body>
-    <h1> this is main page </h1>
-    <h2> hihi </h2>
-</body>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>Main Page</title> 
+        <link rel="stylesheet" href="{% sass_src 'style/main.scss' %}" type="text/css" />
+    </head>
+    <body id="main_body">
+        <!-- main page header -->
+        <header id="mainpage_header">
+            <a href="main.html"><img class='logo' src="img/basiclogo_E_H_W.png">&nbsp;<b>IDEATHON</b></a>
+            <span class="menu">
+                <a href="#" title="누가 만들었을까요?">About</a>
+                <a href="sign_in.html" title="로그인하기">Sign in</a>
+            </span>
+        </header>
+        <!-- main page 중앙 부분 -->
+        <section class="main_section">
+            <h1>당신의 아이디어가
+                <br/>세상을 바꿉니다
+            </h1>
+            <h4>05.23~ 아이디어 제출 및 피드백</h4>
+            <a>
+                <button id="idea_button" onclick="location.href='#'">아이디어 보러가기</button>
+            </a>
+        </section>
+        
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <script>
+            $("#idea_button").mouseover(function(){$(this).css("background-color","#f39926").css("color","white");});
+            $("#idea_button").mouseleave(function(){$(this).css("background","rgba(255,255,255,0.7)").css("color","black");});
+        </script>
+    </body>
+    <footer>
+
+    </footer>
 </html>
