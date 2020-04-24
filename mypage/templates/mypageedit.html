@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load sass_tags %}
+{% load static %}
+<html>
+<head>
+    <title>Like Lion Ideathon</title>
+    <link href="{% sass_src 'style/mypageedit.scss' %}" rel="stylesheet" type="text/css"/> 
+</head>
+<body>
+    <div class="header">
+        <div class="header__logo">
+            <img class="logo" src="{% static 'image/basiclogo_E_H.png' %}"/>
+            <logotag class="logotext">IDEATHON</logotag>
+        </div>
+    </div>
+
+    <div class="myInfoEdit">
+        <div class="myInfoEdit__photo">
+            <img src="{% static 'image/iron.png' %}" />
+            <button class="edit"> Edit </button>
+        </div>
+        <div class="myInfoEdit__info">
+            <div class="subtitle">
+                <h6> Name </h6>
+            </div>
+            <input type="text" placeholder="이름을 적어주세요"/>
+            <div class="subtitle">
+                <h6> School </h6>
+            </div>
+            <input type="text" placeholder="소속 학교를 적어주세요"/>
+            <div class="subtitle">
+                <h6> About </h6>
+            </div>
+            <input type="text" placeholder="소개글을 적어주세요"/>
+            <div class="subtitle">
+                <h6> Contact </h6>
+            </div>
+            <input type="text" placeholder="연락처(이메일, 전화번호, github 주소 등)를 적어주세요"/>
+            <div class="btnbox">
+                <button class="init"> Initialize </button>
+                <button class="confirm"> Confirm </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3> footer </h3>
+    </div>
+</body>
+</html>
+
+<script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>

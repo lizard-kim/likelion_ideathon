@@ -71,6 +71,17 @@ body {
       font-size: 24px;
       font-weight: semibold; }
 
+.footer {
+  margin-top: auto;
+  background-color: #302C28;
+  color: white;
+  text-align: center;
+  height: 250px; }
+  .footer h2 {
+    margin: auto; }
+
+/* ============ box layout ============== */
+/* ============ button layout ============== */
 .mypage {
   padding: 4% 8%; }
   .mypage__top {
@@ -122,6 +133,15 @@ body {
       overflow: hidden; }
     .userinfo__infobox .idea_description {
       color: gray; }
+    .userinfo__infobox input {
+      border: 1px solid #d8d8d8;
+      border-radius: 10px;
+      height: 40px;
+      padding: 0 10px;
+      font-size: 16px;
+      margin-bottom: 16px; }
+    .userinfo__infobox input:hover {
+      border: 1px solid gray; }
 
 .myidea {
   flex-direction: column;
@@ -147,6 +167,15 @@ body {
     overflow: hidden; }
   .myidea .idea_description {
     color: gray; }
+  .myidea input {
+    border: 1px solid #d8d8d8;
+    border-radius: 10px;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 16px;
+    margin-bottom: 16px; }
+  .myidea input:hover {
+    border: 1px solid gray; }
   .myidea__item {
     max-height: 200px;
     overflow: scroll;
@@ -197,6 +226,15 @@ body {
     overflow: hidden; }
   .basket .idea_description {
     color: gray; }
+  .basket input {
+    border: 1px solid #d8d8d8;
+    border-radius: 10px;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 16px;
+    margin-bottom: 16px; }
+  .basket input:hover {
+    border: 1px solid gray; }
   .basket__itemwrap {
     flex-direction: row;
     overflow-x: scroll; }
@@ -230,15 +268,6 @@ body {
     margin: auto 0;
     padding: 5px 10px;
     line-height: 24px; }
-
-.footer {
-  margin-top: auto;
-  background-color: #302C28;
-  color: white;
-  text-align: center;
-  height: 250px; }
-  .footer h2 {
-    margin: auto; }
 
 @media (max-width: 1023px) {
   .mypage__top {
