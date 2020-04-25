@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load sass_tags %}
+{% load static%}
 <html lang="ko">
     <head>
         <meta charset="utf-8">
@@ -10,7 +11,7 @@
         <!-- Sign in Page logo section -->
         <section class="signin_section">
             <a href=" " title="메인 페이지로 돌아가기">
-                <img id="signin_logo" src="img/basiclogo_E_H.png" />
+                <img id="signin_logo" src="{% static 'img/basiclogo_E_H.png' %}" />
                 <b>IDEATHON</b>
             </a>
         
