@@ -1,0 +1,211 @@
+@import './typography';
+
+div{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+}
+
+body{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    height: 100%;
+    background-color: #e5e5e5;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    border-bottom: 1px black solid;
+    &__logo{
+        flex-direction: row;
+        margin: auto 0;
+        margin-left: 20px;
+        .logo{
+            margin: auto 0;
+            width: 200px;
+        }
+        .logotext{
+            margin-top: auto;
+            margin-left: 4px;
+            font-size: 24px;
+            font-weight: semibold;
+        }
+    }
+}
+
+.mypage{
+    padding: 4% 8%;
+    &__top{
+        flex-direction: row;
+        //flex-flow: row wrap;
+    }
+    &__bottom{
+        flex-direction: column;
+    }
+}
+
+@mixin box {
+    flex-direction: column;
+    padding: 24px 40px;
+    background-color: white;
+    border-radius: 10px;
+    .title{
+        margin-left: -8px;
+        margin-bottom: 16px;
+    }
+    .subtitle{
+        margin-bottom: 8px;
+        font-weight: 600;
+        color:gray;
+    }
+    .contents{
+        margin-bottom: 12px;
+    }
+    .ideatitle{
+        font-weight: bold;
+        margin-bottom: 12px;
+        max-height: 40px;
+        overflow: hidden;
+    }
+    .idea_description{
+        color:gray;
+    }
+}
+
+.userinfo{
+    flex: 1;
+    &__namebox{
+        flex-direction: row;
+        padding: 24px 40px;
+        background-color: white;
+        border-radius: 10px;
+        &__profile{
+            width: 140px;
+            margin-right: 40px;
+        }
+        &__name{
+            margin: auto 0;
+            .name{
+                font-size: 44px;
+                font-weight: 500;
+                margin: 0;
+            }
+            .email{
+                font-size: 16px;
+                font-weight: 400;
+                margin: 0;
+                margin-top: 5px;
+                color: gray;
+            }
+        }
+    }
+    &__infobox{
+        @include box;
+        margin-top: 40px;
+    }
+}
+
+.myidea{
+    @include box;
+    overflow: hidden;
+    flex: 1;
+    margin-left: 40px;
+    &__item{
+        max-height: 200px;
+        overflow: scroll;
+        background-color: #e5e5e5;
+        padding: 20px;
+        padding-bottom: 5px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    &__item:hover{
+        background-color: #F39925;
+    }
+    &__comments{
+        flex-direction: row;
+        margin: 12px 0;
+        .fa-circle{
+            position: relative;
+            margin-left: -10px;
+            color: rgb(255, 1, 86);
+        }
+        .num{
+            margin: auto 0;
+            margin-left: 5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    }
+}
+
+.basket{
+    flex-direction: column;
+    flex: 1;
+    padding: 24px 40px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 60px;
+    @include box;
+    &__itemwrap{
+        flex-direction: row;
+        overflow-x: scroll;
+    }
+}
+
+.ideaitem{
+    width: 300px;
+    height: 350px;
+    border: 1px solid black;
+    border-radius: 35px;
+    margin-right: 40px;
+    &__title{
+        flex-direction: row;
+        height: 50px;
+        border-bottom: 1px solid black;
+        padding-left: 20px;
+        .profile{
+            width: 40px;
+            height: 40px;
+            margin: auto 0;
+            margin-right: 10px;
+        }
+        .text{
+            margin: auto 0;
+        }
+    }
+    &__thumnail{
+        display: block;
+        width: 300px;
+        height: 225px;
+        img{
+            width: 300px;
+            height: 100%;
+        }
+    }
+    &__description{
+        margin: auto 0;
+        padding: 5px 10px;
+        line-height: 24px;
+    }
+}
+
+.footer{
+    margin-top: auto;
+    background-color: #302C28;
+    color: white;
+    text-align: center;
+    height: 250px;
+    h2{
+        margin: auto;
+    }
+}
+
+@import './mypage_mobile'
