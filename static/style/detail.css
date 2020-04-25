@@ -41,8 +41,7 @@ p {
   display: grid;
   grid-template-areas: 'no' 'idea' 'no';
   grid-template-columns: 1.5fr 7fr 1.5fr;
-  grid-area: 'content';
-  z-index: -1; }
+  grid-area: 'content'; }
 
 .idea {
   grid-area: 'idea';
@@ -75,6 +74,11 @@ p {
   color: #7e7e7e;
   margin-right: auto; }
 
+.sub_title_author {
+  color: black;
+  font-size: 15px;
+  padding: 0px 0px 0px 0px; }
+
 .sub_title_school {
   color: black;
   font-size: 15px;
@@ -90,7 +94,47 @@ p {
   width: 700px;
   border: 1px solid #c5c5c5;
   margin: 0 auto;
-  margin-top: 20px; }
+  margin-top: 20px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: row; }
+
+.image_box {
+  width: 400px;
+  height: 400px;
+  margin: auto; }
+
+.slide {
+  display: none;
+  margin: auto; }
+
+.prev {
+  cursor: pointer;
+  position: absolute;
+  height: 398px;
+  width: 100px;
+  margin-right: auto;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  background-color: #dddcdc; }
+
+.next {
+  cursor: pointer;
+  position: absolute;
+  width: 100px;
+  margin-left: auto;
+  height: 398px;
+  color: black;
+  background-color: #eeeeee;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease; }
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(104, 104, 104, 0.8); }
 
 .description {
   height: 200px;

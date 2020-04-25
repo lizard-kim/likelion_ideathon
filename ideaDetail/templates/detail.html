@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 {% load sass_tags %}
+{% load static %}
 <html>
 <head>
   <title>Like Lion Ideathon</title>
   <link href="{% sass_src 'style/detail.scss' %}" rel="stylesheet" type="text/css"/> 
+  <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css"/> 
 </head>
+
+<script type = "text/javascript">
+    var slideIndex = 1;
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slide");
+
+        if (n > slides.length){ // 첫번째 사진 보여줘라
+            slideIndex = 1
+        }    
+
+        if (n < 1){ // 맨 오른쪽 사진 보여줘라
+            slideIndex = slides.length
+        }
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+
+        slides[slideIndex - 1].style.display = "block";  
+    }
+</script>
+
 <body>
 
 <div class = "container">
@@ -28,8 +62,8 @@
     </div>
     <div class = "content">
         <div class = "no">
-
         </div>
+
         <div class = "idea">
             <div class = "idea_container">
                 
@@ -47,14 +81,38 @@
                         <p>멋사대학교</p>
                     </div>
 
+                    <div class = "sub_title_author">
+                        <p>홍길동</p>
+                    </div>
+
                     <div class = "sub_title_time">
                         <p>작성시간</p>
                     </div>
 
                 </div>
+
                 <div class = "image">
-    
+                    
+                        <a onclick="plusSlides(-1)">
+                            <div class = "prev">
+                                왼쪽
+                            </div>
+                        </a>
+                        
+                        <div class = "image_box">
+                            <img class = "slide" src = "{% static 'img/1.png' %}" width = "400px" height = "400px">
+                            <img class = "slide" src = "{% static 'img/2.JPG' %}" width = "400px" height = "400px">
+                            <img class = "slide" src = "{% static 'img/3.JPG' %}" width = "400px" height = "400px">
+                        </div>
+                        
+                        <a onclick="plusSlides(1)">
+                            <div class = "next">
+                                오른쪽
+                            </div>
+                        </a>
+                        
                 </div>
+
                 <div class = "description">
                     <p>이렇고 저렇고</p><br>
                     <p>이렇고 저렇고</p><br>
@@ -191,52 +249,7 @@
                             <p>삭제</p>
                         </div>
                     </div>
-                    <div class = "comment_list_author">
-                        <div class = "comment_author">
-                            아기사자
-                        </div>
-                        <div class = "comment_school">
-                            멋사대
-                        </div>
-                        <div class = "comment_time">
-                            작성시간
-                        </div>
-                    </div>
-    
-                    <div class = "comment_list_content">
-                        <div class = "comment_content">
-                            <p>이 아이디어 어쩌고 저쩌고....</p>
-                        </div>
-                        <div class = "comment_edit">
-                            <p>수정</p>
-                        </div>
-                        <div class = "comment_delete">
-                            <p>삭제</p>
-                        </div>
-                    </div>
-                    <div class = "comment_list_author">
-                        <div class = "comment_author">
-                            아기사자
-                        </div>
-                        <div class = "comment_school">
-                            멋사대
-                        </div>
-                        <div class = "comment_time">
-                            작성시간
-                        </div>
-                    </div>
-    
-                    <div class = "comment_list_content">
-                        <div class = "comment_content">
-                            <p>이 아이디어 어쩌고 저쩌고....</p>
-                        </div>
-                        <div class = "comment_edit">
-                            <p>수정</p>
-                        </div>
-                        <div class = "comment_delete">
-                            <p>삭제</p>
-                        </div>
-                    </div>
+                  
                 </div>
                 
 
@@ -251,6 +264,6 @@
     </div>
 
 </div>
-
 </body>
+
 </html>
