@@ -13,7 +13,7 @@ body{
     flex: 1;
     margin: 0;
     height: 100%;
-    background-color: #e5e5e5;
+    background-color: rgba($color: #2c2c2c, $alpha: 1.0);
 }
 
 .header{
@@ -21,6 +21,7 @@ body{
     flex-direction: row;
     height: 60px;
     border-bottom: 1px black solid;
+    //background-color: rgba($color: #ffffff, $alpha: 0.4);
     &__logo{
         flex-direction: row;
         margin: auto 0;
