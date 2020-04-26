@@ -271,6 +271,13 @@ p {
   margin-top: auto; }
 
 .footer {
-  background-color: #383838; }
+  background-color: #8f6767; }
+
+input {
+  width: 500px;
+  border-radius: 3px; }
+
+.comment_input_box {
+  border-radius: 3px; }
 
 /*# sourceMappingURL=detail.css.map */
