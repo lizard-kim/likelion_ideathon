@@ -171,12 +171,11 @@ p{
 }
 
 .bottom{
+    flex : none;
     display : flex;
-    margin : 0 auto;
     height : 70px;
-    width : 700px;
-    border-bottom : solid 1px rgb(161, 161, 161);
-    margin-bottom : 10px;
+    width : 800px;
+    margin-left : 100px;
     flex-wrap : wrap-reverse;
 }
 
@@ -194,26 +193,35 @@ p{
 }
 
 .edit{
-    display : flex;
-    justify-content: flex-end;
-    margin : 0 auto;
-    height : 50px;
-    width : 700px;
+    flex : none;
+    height : 100px;
+    width : 150px;
+    margin-left : auto;
 }
 
 .edit_box1{
-    background-color: #F39925;
+    flex : 1;
+    border : 1px solid rgb(180, 180, 180);
+    border-radius : 3px;
+    color : black;
     width : 70px;
-    height : 40px;
-    margin : 0px 10px 0px 0px;
-    color : white;
+    height : 30px;
+    text-align : center;
 }
 
 .edit_box2{
-    background-color: #F39925;
+    flex : 1;
+    border : 1px solid rgb(180, 180, 180);
+    border-radius : 3px;
     width : 70px;
-    height : 40px;
+    color : black;
+    height : 30px;
+    text-align : center;
+}
+
+.edit_box1:hover, .edit_box2:hover{
     color : white;
+    background-color: #F39925;
 }
 // 여기부터 comment
 .comment{
@@ -242,9 +250,8 @@ p{
 }
 
 .comment_input_box1{
-    width : 700px;
+    width : 800px;
     height : 100px;
-    border : 1px solid black;
 }
 
 .comment_input_box2{
@@ -255,9 +262,11 @@ p{
     color : white;
     margin-top : auto;
     margin-left : auto;
+    text-align: center;
 }
 
-.commend_list{
+.comment_list{
+    margin-top : 50px;
     display : flex;
     flex-direction: column;
 }
@@ -294,7 +303,7 @@ p{
     height : 100px;
     width : 800px;
     margin : 0 auto;
-    border : solid 1px rgb(161, 161, 161);
+    border-bottom : solid 1px rgb(161, 161, 161);
 }
 
 .comment_content{
@@ -319,5 +328,20 @@ p{
 // 여기부터 footer
 .footer{
     background-color: rgb(56, 56, 56);
+}
 
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border : none;
+}
+
+input[type=text]{
+    border-radius: 10px;
+    width : 700px;
+    height : 100px;
+    border : 1px solid black;
+    padding : 10px;
+    text-align : center;
 }
