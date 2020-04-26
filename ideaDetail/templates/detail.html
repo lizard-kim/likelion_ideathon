@@ -61,25 +61,11 @@
                 </div>
 
                 <div class = "image">
-                    
-                        <a onclick="plusSlides(-1)">
-                            <div class = "prev">
-                                왼쪽
-                            </div>
-                        </a>
-                        
-                        <div class = "image_box">
-                            <img class = "slide" src = "{% static 'img/1.png' %}" width = "400px" height = "400px">
-                            <img class = "slide" src = "{% static 'img/2.JPG' %}" width = "400px" height = "400px">
-                            <img class = "slide" src = "{% static 'img/3.JPG' %}" width = "400px" height = "400px">
-                        </div>
-                        
-                        <a onclick="plusSlides(1)">
-                            <div class = "next">
-                                오른쪽
-                            </div>
-                        </a>
-                        
+                    <div class = "image_box">
+                        <img class = "slide" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
+                    </div>
+                    <img class = "slide" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
+                    <img class = "slide" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
                 </div>
 
                 <div class = "description">
@@ -87,51 +73,55 @@
                     <p>이렇고 저렇고</p><br>
                     <p>이렇고 저렇고</p>
                 </div>
-                <div class = "bottom">
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #영상
-                    </div>
-                    <div class = "bottom_item">
-                        #플랫폼
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #가나다라마바사아자차카타파하
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                </div>
 
-                <div class = "edit">
-                    <div class = "edit_box1">
-                        <p>수정</p>
+                <div class = "bot">
+                    <div class = "bottom">
+                        <div class = "bottom_item">
+                            #북 트레일러
+                        </div>
+                        <div class = "bottom_item">
+                            #영상
+                        </div>
+                        <div class = "bottom_item">
+                            #플랫폼
+                        </div>
+                        <div class = "bottom_item">
+                            #북 트레일러
+                        </div>
+                        <div class = "bottom_item">
+                            #가나다라마바사아자차카타파하
+                        </div>
+                        <div class = "bottom_item">
+                            #북 트레일러
+                        </div>
+                        <div class = "bottom_item">
+                            #북 트레일러
+                        </div>
+                        <div class = "bottom_item">
+                            #북 트레일러
+                        </div>
+                        <div class = "bottom_item">
+                            #북 트레일러
+                        </div>
+                        <div class = "bottom_item">
+                            #북 트레일러
+                        </div>
+                        <div class = "bottom_item">
+                            #북 트레일러
+                        </div>
                     </div>
-                    <div class = "edit_box2">
-                        <p>삭제</p>
+    
+                    <div class = "edit">
+                        <div class = "edit_box1">
+                            <p>수정</p>
+                        </div>
+                        <div class = "edit_box2">
+                            <p>삭제</p>
+                        </div>
                     </div>
                 </div>
-                
+        
+
             </div>
         </div>
     </div>
@@ -149,7 +139,7 @@
                         </form>
                     </div>
                     <div class = "comment_input_box2">
-                        등록
+                        <button type = "submit">등록</button>
                     </div>
                 </div>
 
@@ -232,6 +222,7 @@
     const CommentInput = CommentForm.querySelector("input");
     const Commentsubmit = CommentForm.querySelector("Button");
     const Comments = document.querySelector(".comment_list2");
+    let index = 0;
 
     console.log(CommentForm);
     console.log(CommentInput);
@@ -286,6 +277,7 @@
 
         CommentArray.push(CommentObj);
         SaveComments();
+        index ++;
     }
 
     function something(Comment){
@@ -299,12 +291,15 @@
         CommentInput.value = ""; // submit 시 댓글 창 초기화
     }
 
-    function ShowComment(){
+    function ShowComment(index){
         const list = localStorage.getItem(list_comments); // 로컬에 set 한 것들을 getItem
+        console.log(list);
         
         if (list !== null){
             const parsedCommentList = JSON.parse(list);
-            parsedCommentList.forEach(something);
+            console.log(parsedCommentList);
+            console.log(parsedCommentList[index]);
+            something(parsedCommentList[index]);
         }
     }
 
