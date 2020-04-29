@@ -2,7 +2,12 @@ div{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     flex-direction: column;
+}
+div::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 body{
@@ -17,6 +22,29 @@ body{
 }
 
 .header{
+    display: block;
+    flex-direction: row;
+    margin: 20px;
+    color: white;
+    .logo{
+        width: 260px;
+        height: 31px;
+        left: 26px;
+        top: 30px;
+    }
+    a{  
+        color: white;
+        font-size: 20px;
+        margin: 10px;
+        text-decoration: none;
+    }
+    b{
+        color: white;
+    }
+    .menu{
+        float: right;
+    }
+    /*
     display: flex;
     flex-direction: row;
     height: 60px;
@@ -37,6 +65,7 @@ body{
             font-weight: semibold;
         }
     }
+    */
 }
 
 .footer{
@@ -53,6 +82,7 @@ body{
 /* ============ box layout ============== */
 
 @mixin box {
+    position: relative;
     flex-direction: column;
     padding: 24px 40px;
     background-color: white;
@@ -88,6 +118,10 @@ body{
     }
     input:hover{
         border: 1px solid rgb(128, 128, 128);
+    }
+    .fa-edit{
+        position: absolute;
+        right: 32px;
     }
 }
 

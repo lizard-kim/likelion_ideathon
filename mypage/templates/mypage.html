@@ -4,14 +4,40 @@
 <html>
 <head>
     <title>Like Lion Ideathon</title>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
     <link href="{% sass_src 'style/mypage.scss' %}" rel="stylesheet" type="text/css"/> 
 </head>
 <body>
+    <script>
+        $(document).ready(function() {
+            console.log("hihi")
+            $(".basket__itemwrap").on('mousewheel DOMMouseScroll', function(e) {
+                e.preventDefault(); 
+                var E = e.originalEvent;
+                if (E.detail) {
+                    // for firefox
+                    scroll = E.wheelDelta * -40;
+                    //console.log(scroll)
+                    $(this).scrollLeft(-scroll + $(this).scrollLeft());
+                }else{
+                    // wheelDelta
+                    scroll = E.wheelDelta;
+                    $(this).scrollLeft(-scroll + $(this).scrollLeft());
+                    $("body").scroll(0)
+                };
+            })
+        })
+    </script>
     <div class="header">
-        <div class="header__logo">
-            <img class="logo" src="{% static 'image/basiclogo_E_H.png' %}"/>
-            <logotag class="logotext">IDEATHON</logotag>
-        </div>
+        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
+        <span class="menu">
+            <a href="#">Log out</a>
+            |
+            <a href="#">My Page</a>
+        </span>
     </div>
     <div class="mypage">
         <div class="mypage__top">
@@ -22,8 +48,10 @@
                         <p class="name"> 곽철용 </p>
                         <p class="email"> iamdragon@likelion.org </p>
                     </div>
+                    <i class="far fa-edit fa-2x"></i>
                 </div>
                 <div class="userinfo__infobox">
+                    <i class="far fa-edit fa-2x"></i>
                     <h4 class="title"> Info </h4>
                     <h6 class="subtitle"> School </h6>
                     <h6 class="contents"> DGIST </h6>
@@ -54,6 +82,7 @@
         </div>
         <div class="mypage__bottom">
             <div class="basket">
+                <i class="far fa-edit fa-2x"></i>
                 <h4 class="title"> Basket </h4>
                 <div class="basket__itemwrap">
                     <div class="ideaitem">
@@ -113,5 +142,3 @@
     </div>
 </body>
 </html>
-
-<script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>
