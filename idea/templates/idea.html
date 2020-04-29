@@ -2,7 +2,12 @@
 {% load static %}
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IDEATHON</title>
     <script src="https://kit.fontawesome.com/76c68926ea.js" crossorigin="anonymous"></script>
+
     <style>
         body{
             background-color:antiquewhite;
@@ -13,33 +18,27 @@
             height: 100%;
             height:auto;
         }
-        .randImg{
-            width:auto;   
+        .randImg_bg{
+            background-color: rgb(68, 67, 67);
+            width: 100%;
             height:100%;
-        }
-        .navbar{
-            background-color: rgba(255,255,255,0.6);
-            position:absolute;
-            top:0;
-            width:98%;
-            margin-top:0px;
-            margin-bottom: 0px;
-            padding:1%;
+            padding-top:0.1%;
         }
         .logo{
-            float: left;
-            width: 37%; 
-            vertical-align: middle;
+            display: block;
+            margin: -10px auto 17px auto;
+            width: 50%;
         }
         .nav_cnts{
-            font-size: 20px;
+            font-size: 16;
             vertical-align: center;
             float:right;
             margin-top:14px;
         }  
         .search_div{
-            height:200px;
-            background-image: linear-gradient(to bottom, white, antiquewhite);
+            height:100px;
+            background-color: antiquewhite;
+            margin-top: 50px;
         }
         .ideacards{
             padding-top:5%;
@@ -53,7 +52,7 @@
             height:390px;
             padding: 1% 1% 2% 1%;
             margin:2%;
-            border:1px solid rgb(139, 138, 138);
+            border:1px solid rgb(53, 52, 52);
             background-color: #ffffff;
             position:relative;
         }
@@ -80,7 +79,7 @@
             line-height: 190px;
         }
         .card_image{
-            vertical-align:middle;
+            vertical-align: middle;
             max-width: 100%;
             max-height: 100%;
         }
@@ -94,42 +93,321 @@
             text-decoration: none;
             color:black;
             box-shadow: 0px 0px 0px grey;
-            -webkit-transition:  box-shadow .6s ease-out;
+            -webkit-transition: box-shadow .6s ease-out;
             box-shadow: .8px .9px 3px grey;
         }
         .card_href:hover{
             text-decoration: none;
             box-shadow: 1px 8px 20px grey;
-            -webkit-transition:  box-shadow .5s ease-in;
+            -webkit-transition: box-shadow .5s ease-in;
+        }
+        hr {
+            color:darkgrey;
+            opacity: 0.8;
+        }
+        
+        *, *:before, *:after { 
+            box-sizing: inherit; 
+        }
+        /* container - body */
+        #container { 
+            width: 1000px; 
+            margin: auto; 
+            margin-top: 100px;
+        }
+        .slide_wrap { 
+            position: relative; 
+            width: 700px;
+            margin: auto; 
+            padding-bottom: 30px; 
+        }
+        .slide_box { 
+            width: 100%; 
+            margin: auto; 
+            overflow-x: hidden; 
+        }
+        .slide_content { 
+            display: table; 
+            float: left; 
+            width: 700px; 
+            height: 400px; 
+        }
+        .slide_content > a { 
+            display: table-cell; 
+            vertical-align: bottom; 
+            text-align: center; 
+            font-size: 30px; 
+            font-weight: bold; 
+            color: rgb(0, 0, 0); 
+            text-decoration: none;
+            text-shadow: 2px 2px 5px rgb(255, 255, 255);
+        }
+        .slide_content > a:hover{
+            text-decoration: none;
+            font-size: 30.5px;
+        }
+        .slide_content.slide01 { 
+            background-image:url("{% static 'image/bg4.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: auto 400px;
+            background-position: center;
+        }
+        .slide_content.slide02 { 
+            background-image:url("{% static 'image/bg2.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: auto 400px; 
+            background-position: center;
+        }
+        .slide_content.slide03 { 
+            background-image:url("{% static 'image/bg8.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: auto 400px; 
+            background-position: center;
+        }
+        .slide_content.slide04 { 
+            background-image:url("{% static 'image/bg6.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: auto 400px; 
+            background-position: center;
+        }
+        .slide_content.slide05 { 
+            background-image:url("{% static 'image/bg9.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: auto 400px; 
+            background-position: center;
+        }
+        .slide_btn_box > button { 
+            position: absolute; 
+            top: 50%;
+            margin-top: -45px; 
+            width: 60px; 
+            height: 60px; 
+            font-size: 46px; 
+            background: none; 
+            border: none;
+            cursor: pointer; 
+        }
+        .slide_btn_box > .slide_btn_prev { 
+            left: -100px; 
+        }
+        .slide_btn_box > .slide_btn_next { 
+            right: -100px; 
+        }
+        .slide_pagination { 
+            position: absolute; 
+            left: 50%; 
+            bottom: 0; 
+            list-style: none; 
+            margin: 0; 
+            padding: 0; 
+            transform: translateX(-50%); 
+        }
+        .slide_pagination .dot { 
+            display: inline-block; 
+            width: 15px; 
+            height: 15px; 
+            margin: 0 5px; 
+            overflow: hidden; 
+            background: #ddd; 
+            border-radius: 50%; 
+            transition: 0.3s; 
+        }
+        .slide_pagination .dot.dot_active { 
+            background: rgb(243,153,37); 
+        }
+        .slide_pagination .dot a { 
+            display: block; 
+            width: 100%;
+            height: 100%; 
+        }
+        .fa-angle-left, .fa-angle-right{
+            color:rgb(243,153,37);
+        }
+        .fa-angle-left, .fa-angle-right:hover{
+            font-size:50px;
+        }
+        .search_btn{
+            font-size: 33px;
+            cursor: pointer; 
+            background-color:transparent;  
+            border:0px transparent solid;
+        }
+        .fa-search{
+            vertical-align: middle;
+        }
+        .footer{
+            background-color: rgb(230, 170, 42);
+            margin-top: 5%;
+        }
+        .footer_cnts{
+            display: inline-block;
+            margin-left: 9%;
+            padding:30px 0px 60px 0px
         }
     </style>
 </head>
-<body>
-    <img class="randImg" src="{% static 'image/bg5.jpg' %}">
+<body>  
+    <div class="randImg_bg">
     <div class="navbar">
-        <a href="/"><img class="logo" src="{% static 'image/headlogo.png' %}"></a>
         <div class="nav_cnts">
-            <span>user name님</span>
-            <span><a href="">Sign in</a></span>
+            <span>효경님</span>
+            <span><a href="">Sign out /</a></span>
             <span><a href="">My page</a></span>
             <span>submit your idea!</span>
         </div>
-        <div class="randImg_desc">
-            <img scr="{% static 'image/lion.png' %}">
-            <span></span>
+    </div>
+    <div id="container">
+        <a href="/"><img class="logo" src="{% static 'image/headlogo.png' %}"></a>
+        <div class="slide_wrap">
+        <div class="slide_box">
+            <div class="slide_list clearfix">
+            <div class="slide_content slide01">
+                <a href="/">아이디어 이름 by..짱구님</a>
+            </div>
+            <div class="slide_content slide02">
+                <a href="/">아이디어 이름 by..악어님</a>
+            </div>
+            <div class="slide_content slide03">
+                <a href="/">아이디어 이름 by..펭귄님</a>
+            </div>
+            <div class="slide_content slide04">
+                <a href="/">아이디어 이름 by..사자님</a>
+            </div>
+            <div class="slide_content slide05">
+                <a href="/">아이디어 이름 by..미키마우스님</a>
+            </div>
+            </div>
+            <!-- // .slide_list -->
         </div>
+        <!-- // .slide_box -->
+        <div class="slide_btn_box">
+            <button type="button" class="slide_btn_prev"><i class="fas fa-angle-left"></i></button>
+            <button type="button" class="slide_btn_next"><i class="fas fa-angle-right"></i></button>
+        </div>
+        <!-- // .slide_btn_box -->
+        <ul class="slide_pagination"></ul>
+        <!-- // .slide_pagination -->
+        </div>
+        <!-- // .slide_wrap -->
+    </div>
+    <!-- // .container -->
+    <script>
+        (function () {
+        const slideList = document.querySelector('.slide_list');  // Slide parent dom
+        const slideContents = document.querySelectorAll('.slide_content');  // each slide dom
+        const slideBtnNext = document.querySelector('.slide_btn_next'); // next button
+        const slideBtnPrev = document.querySelector('.slide_btn_prev'); // prev button
+        const pagination = document.querySelector('.slide_pagination');
+        const slideLen = slideContents.length;  // slide length
+        const slideWidth = 700; // slide width
+        const slideSpeed = 300; // slide speed
+        const startNum = 0; // initial slide index (0 ~ 4)
+        
+        slideList.style.width = slideWidth * (slideLen + 2) + "px";
+        
+        // Copy first and last slide
+        let firstChild = slideList.firstElementChild;
+        let lastChild = slideList.lastElementChild;
+        let clonedFirst = firstChild.cloneNode(true);
+        let clonedLast = lastChild.cloneNode(true);
+  
+        // Add copied Slides
+        slideList.appendChild(clonedFirst);
+        slideList.insertBefore(clonedLast, slideList.firstElementChild);
+  
+        // Add pagination dynamically
+        let pageChild = '';
+        for (var i = 0; i < slideLen; i++) {
+          pageChild += '<li class="dot';
+          pageChild += (i === startNum) ? ' dot_active' : '';
+          pageChild += '" data-index="' + i + '"><a href="#"></a></li>';
+        }
+        pagination.innerHTML = pageChild;
+        const pageDots = document.querySelectorAll('.dot'); // each dot from pagination
+  
+        slideList.style.transform = "translate3d(-" + (slideWidth * (startNum + 1)) + "px, 0px, 0px)";
+  
+        let curIndex = startNum; // current slide index (except copied slide)
+        let curSlide = slideContents[curIndex]; // current slide dom
+        curSlide.classList.add('slide_active');
+  
+        /** Next Button Event */
+        slideBtnNext.addEventListener('click', function() {
+          if (curIndex <= slideLen - 1) {
+            slideList.style.transition = slideSpeed + "ms";
+            slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
+          }
+          if (curIndex === slideLen - 1) {
+            setTimeout(function() {
+              slideList.style.transition = "0ms";
+              slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
+            }, slideSpeed);
+            curIndex = -1;
+          }
+          curSlide.classList.remove('slide_active');
+          pageDots[(curIndex === -1) ? slideLen - 1 : curIndex].classList.remove('dot_active');
+          curSlide = slideContents[++curIndex];
+          curSlide.classList.add('slide_active');
+          pageDots[curIndex].classList.add('dot_active');
+        });
+  
+        /** Prev Button Event */
+        slideBtnPrev.addEventListener('click', function() {
+          if (curIndex >= 0) {
+            slideList.style.transition = slideSpeed + "ms";
+            slideList.style.transform = "translate3d(-" + (slideWidth * curIndex) + "px, 0px, 0px)";
+          }
+          if (curIndex === 0) {
+            setTimeout(function() {
+              slideList.style.transition = "0ms";
+              slideList.style.transform = "translate3d(-" + (slideWidth * slideLen) + "px, 0px, 0px)";
+            }, slideSpeed);
+            curIndex = slideLen;
+          }
+          curSlide.classList.remove('slide_active');
+          pageDots[(curIndex === slideLen) ? 0 : curIndex].classList.remove('dot_active');
+          curSlide = slideContents[--curIndex];
+          curSlide.classList.add('slide_active');
+          pageDots[curIndex].classList.add('dot_active');
+        });
+  
+        /** Pagination Button Event */
+        let curDot;
+        Array.prototype.forEach.call(pageDots, function (dot, i) {
+          dot.addEventListener('click', function (e) {
+            e.preventDefault();
+            curDot = document.querySelector('.dot_active');
+            curDot.classList.remove('dot_active');
+            
+            curDot = this;
+            this.classList.add('dot_active');
+  
+            curSlide.classList.remove('slide_active');
+            curIndex = Number(this.getAttribute('data-index'));
+            curSlide = slideContents[curIndex];
+            curSlide.classList.add('slide_active');
+            slideList.style.transition = slideSpeed + "ms";
+            slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 1)) + "px, 0px, 0px)";
+          });
+        });
+      })();
+    </script>
     </div>
     <div class="search_div">
-        ggg
+        <form class="" style='display:inline'>
+            <input class="" style="width:600px; height:48px; margin-left:100px; border-radius:15px;" type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
+            <button class="search_btn" type="submit"><i class="fas fa-search"></i></button>
+        </form>
     </div>
+    <hr style="width:90%; border: 1px solid lightgray;">
     <div class="ideacards">
         <a href="/">
         <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg1.jpg' %}"></div> <!--16:9-->
+            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div> <!--16:9-->
             <span class="idea_name">hack your id</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">신밧드의모험<i class="far fa-comment">3</i>
+            <img class="cardprofile" src="{% static 'image/lion.png'%}">신밧드의모험<i class="far fa-comment">&nbsp;3</i>
             </div>
         </div>   
         </a>
@@ -139,7 +417,7 @@
             <span class="idea_name">I have a dream</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">달려라하니<i class="far fa-comment">12</i>
+            <img class="cardprofile" src="{% static 'image/lion.png'%}">달려라하니<i class="far fa-comment">&nbsp;12</i>
             </div>
         </div>
         </a> 
@@ -149,7 +427,7 @@
             <span class="idea_name">자몽허니블랙티</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">톰과제리<i class="far fa-comment">0</i>
+            <img class="cardprofile" src="{% static 'image/lion.png'%}">톰과제리<i class="far fa-comment">&nbsp;0</i>
             </div>
         </div> 
         </a>
@@ -159,7 +437,7 @@
             <span class="idea_name">민초에미초</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">짱구<i class="far fa-comment">3</i>
+            <img class="cardprofile" src="{% static 'image/lion.png'%}">짱구<i class="far fa-comment">&nbsp;3</i>
             </div>
         </div> 
         </a>
@@ -169,7 +447,7 @@
             <span class="idea_name">toAnyone</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">오즈의마법사<i class="far fa-comment">6</i>
+            <img class="cardprofile" src="{% static 'image/lion.png'%}">오즈의마법사<i class="far fa-comment">&nbsp;6</i>
             </div>
         </div> 
         </a>
@@ -179,13 +457,56 @@
             <span class="idea_name">생각이안나</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">1</i>
+            <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
             </div>
         </div> 
-        </a> 
+        </a>
+        <a href="/">
+            <div class="card ideacard card_href" style="display: inline;">
+                <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg9.jpg' %}"></div> <!--16:9-->
+                <span class="idea_name">생각이안나</span>
+                <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
+                <div class="user_div"><hr>
+                <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
+                </div>
+            </div> 
+            </a> 
     </div> 
 </body>
-<footer>
-
+<footer class="footer">
+    <div class="">
+      <div class="footer_cnts">
+        <h5>김태영</h5>
+        <ul class="">
+          <li><span class="" href="#">전 6,7기멤버</a></li>
+          <li><span class="" href="#">DIGIST 운영진</a></li>
+          <li><span class="" href="#">뭐 이런거 쓰자ㅏㅏ</a></li>
+        </ul>
+      </div>
+      <div class="footer_cnts">
+        <h5>박지형</h5>
+        <ul class="">
+          <li><span class="" href="#">전 7기멤버</span></li>
+          <li><span class="" href="#">서울여대 운영진</span></li>
+          <li><span class="" href="#">가나다순이야</span></li>
+        </ul>
+      </div>
+      <div class="footer_cnts">
+        <h5>신효경</h5>
+        <ul class="">
+          <li><span class="" href="#">전 7기멤버</span></li>
+          <li><span class="" href="#">동덕여대 운영진</span></li>
+          <li><span class="" href="#">어쩌구</span></li>
+        </ul>
+      </div>
+      <div class="footer_cnts">
+        <h5>최광일</h5>
+        <ul class="">
+          <li><span class="" href="#">전 7기멤버</span></li>
+          <li><span class="" href="#">아주대 운영진</span></li>
+          <li><span class="" href="#">Privacy</span></li>
+        </ul>
+      </div>
+    </div>
 </footer>
 </html>
