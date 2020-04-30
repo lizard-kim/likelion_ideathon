@@ -14,11 +14,13 @@
 
 .userinfo{
     flex: 1;
+    max-height: 500px;
     &__namebox{
         position: relative;
         flex-direction: row;
         padding: 24px 40px;
         background-color: white;
+        border: 1px solid #dadada;
         border-radius: 10px;
         &__profile{
             width: 140px;
@@ -40,9 +42,17 @@
                 color: gray;
             }
         }
+        .edit{
+            display: none;
+            text-decoration: none;
+            color: black;
+        }
         .fa-edit{
             position: absolute;
             right: 32px;
+        }
+        &:hover .edit{
+            display: block;
         }
     }
     &__infobox{
@@ -56,9 +66,10 @@
     overflow: hidden;
     flex: 1;
     margin-left: 40px;
+    max-height: 500px;
     &__item{
         max-height: 200px;
-        overflow: scroll;
+        overflow: hidden;
         background-color: #e5e5e5;
         padding: 20px;
         padding-bottom: 5px;
@@ -82,6 +93,10 @@
             font-size: 20px;
             font-weight: bold;
         }
+    }
+    .comment_box{
+        max-height: 150px;
+        overflow-y: scroll;
     }
 }
 
