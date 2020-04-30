@@ -8,10 +8,12 @@
 </head>
 <body>
     <div class="header">
-        <div class="header__logo">
-            <img class="logo" src="{% static 'image/basiclogo_E_H.png' %}"/>
-            <logotag class="logotext">IDEATHON</logotag>
-        </div>
+        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
+        <span class="menu">
+            <a href="#">Log out</a>
+            |
+            <a href="#">My Page</a>
+        </span>
     </div>
 
     <div class="myInfoEdit">
@@ -20,6 +22,18 @@
             <button class="edit"> Edit </button>
         </div>
         <div class="myInfoEdit__info">
+            <div class="subtitle">
+                <h6> Email </h6>
+            </div>
+            <h5 class="email"> irondragon@likelion.org </h5>
+            <div class="subtitle">
+                <h6> Password </h6>
+            </div>
+            <input type="text" placeholder="비밀번호를 입력해주세요"/>
+            <div class="subtitle">
+                <h6> Confirm Password </h6>
+            </div>
+            <input type="text" placeholder="비밀번호 확인을 위해 한 번 더 입력해주세요"/>
             <div class="subtitle">
                 <h6> Name </h6>
             </div>
@@ -42,10 +56,11 @@
             </div>
         </div>
     </div>
-
+<!--
     <div class="footer">
         <h3> footer </h3>
     </div>
+-->
 </body>
 </html>
 
