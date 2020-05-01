@@ -220,9 +220,7 @@
 
     const CommentForm = document.querySelector(".comment_form");
     const CommentInput = CommentForm.querySelector("input");
-    const Commentsubmit = CommentForm.querySelector("Button");
     const Comments = document.querySelector(".comment_list2");
-    let index = 0;
 
     console.log(CommentForm);
     console.log(CommentInput);
@@ -277,7 +275,6 @@
 
         CommentArray.push(CommentObj);
         SaveComments();
-        index ++;
     }
 
     function something(Comment){
@@ -293,13 +290,10 @@
 
     function ShowComment(index){
         const list = localStorage.getItem(list_comments); // 로컬에 set 한 것들을 getItem
-        console.log(list);
         
         if (list !== null){
             const parsedCommentList = JSON.parse(list);
-            console.log(parsedCommentList);
-            console.log(parsedCommentList[index]);
-            something(parsedCommentList[index]);
+            something(parsedCommentList);
         }
     }
 
