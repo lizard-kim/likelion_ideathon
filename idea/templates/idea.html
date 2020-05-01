@@ -1,405 +1,146 @@
-
+{% load sass_tags %}
 {% load static %}
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{% sass_src 'style/idea.scss' %}" rel="stylesheet" type="text/css"/> 
+    <link href="{% static 'style/idea.scss' %}" rel="stylesheet" type="text/css"/> 
     <title>IDEATHON</title>
     <script src="https://kit.fontawesome.com/76c68926ea.js" crossorigin="anonymous"></script>
 
     <style>
-        body{
-            background-color:antiquewhite;
-        }
-        body, html { 
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            height:auto;
-        }
-        .randImg_bg{
-            background-color: rgb(68, 67, 67);
-            width: 100%;
-            height:100%;
-            padding-top:0.1%;
-        }
-        .logo{
-            display: block;
-            margin: -10px auto 17px auto;
-            width: 50%;
-        }
-        .nav_cnts{
-            font-size: 16;
-            vertical-align: center;
-            float:right;
-            margin-top:14px;
-        }  
-        .search_div{
-            height:100px;
-            background-color: antiquewhite;
-            margin-top: 50px;
-        }
-        .ideacards{
-            padding-top:5%;
-            padding-left:9%;
-            padding-right:4.5%;
-            display: inline-block;
-        }
-        .ideacard{
-            float:left;
-            width:25%;
-            height:390px;
-            padding: 1% 1% 2% 1%;
-            margin:2%;
-            border:1px solid rgb(53, 52, 52);
-            background-color: #ffffff;
-            position:relative;
-        }
-        .cardprofile{
-            width: 33px;
-            height:33px;
-            vertical-align: middle;
-            margin: 3px 5px 0px -1px;
-        }
-        .fa-comment{
-            float:right;
-            margin: 9px 2px 0px 0px;
-        }
-        .idea_name{
-            vertical-align: top;
-            font-size: 20px;
-            margin-bottom:10px;
-        }
-        .cardImg_board{
-            background-color: #ffffff;
-            text-align: center;
-            background-position: center;
-            height: 200px;
-            line-height: 190px;
-        }
-        .card_image{
-            vertical-align: middle;
-            max-width: 100%;
-            max-height: 100%;
-        }
-        .user_div{
-            max-height:5%;
-            width:90%;
-            position:absolute;
-            bottom:40px;
-        }
-        .card_href{
-            text-decoration: none;
-            color:black;
-            box-shadow: 0px 0px 0px grey;
-            -webkit-transition: box-shadow .6s ease-out;
-            box-shadow: .8px .9px 3px grey;
-        }
-        .card_href:hover{
-            text-decoration: none;
-            box-shadow: 1px 8px 20px grey;
-            -webkit-transition: box-shadow .5s ease-in;
-        }
-        hr {
-            color:darkgrey;
-            opacity: 0.8;
-        }
-        
-        *, *:before, *:after { 
-            box-sizing: inherit; 
-        }
-        /* container - body */
-        #container { 
-            width: 1000px; 
-            margin: auto; 
-            margin-top: 100px;
-        }
-        .slide_wrap { 
-            position: relative; 
-            width: 700px;
-            margin: auto; 
-            padding-bottom: 30px; 
-        }
-        .slide_box { 
-            width: 100%; 
-            margin: auto; 
-            overflow-x: hidden; 
-        }
-        .slide_content { 
-            display: table; 
-            float: left; 
-            width: 700px; 
-            height: 400px; 
-        }
-        .slide_content > a { 
-            display: table-cell; 
-            vertical-align: bottom; 
-            text-align: center; 
-            font-size: 30px; 
-            font-weight: bold; 
-            color: rgb(0, 0, 0); 
-            text-decoration: none;
-            text-shadow: 2px 2px 5px rgb(255, 255, 255);
-        }
-        .slide_content > a:hover{
-            text-decoration: none;
-            font-size: 30.5px;
-        }
-        .slide_content.slide01 { 
-            background-image:url("{% static 'image/bg4.jpg' %}");
-            background-repeat: no-repeat;
-            background-size: auto 400px;
-            background-position: center;
-        }
-        .slide_content.slide02 { 
-            background-image:url("{% static 'image/bg2.jpg' %}");
-            background-repeat: no-repeat;
-            background-size: auto 400px; 
-            background-position: center;
-        }
-        .slide_content.slide03 { 
-            background-image:url("{% static 'image/bg8.jpg' %}");
-            background-repeat: no-repeat;
-            background-size: auto 400px; 
-            background-position: center;
-        }
-        .slide_content.slide04 { 
-            background-image:url("{% static 'image/bg6.jpg' %}");
-            background-repeat: no-repeat;
-            background-size: auto 400px; 
-            background-position: center;
-        }
-        .slide_content.slide05 { 
-            background-image:url("{% static 'image/bg9.jpg' %}");
-            background-repeat: no-repeat;
-            background-size: auto 400px; 
-            background-position: center;
-        }
-        .slide_btn_box > button { 
-            position: absolute; 
-            top: 50%;
-            margin-top: -45px; 
-            width: 60px; 
-            height: 60px; 
-            font-size: 46px; 
-            background: none; 
-            border: none;
-            cursor: pointer; 
-        }
-        .slide_btn_box > .slide_btn_prev { 
-            left: -100px; 
-        }
-        .slide_btn_box > .slide_btn_next { 
-            right: -100px; 
-        }
-        .slide_pagination { 
-            position: absolute; 
-            left: 50%; 
-            bottom: 0; 
-            list-style: none; 
-            margin: 0; 
-            padding: 0; 
-            transform: translateX(-50%); 
-        }
-        .slide_pagination .dot { 
-            display: inline-block; 
-            width: 15px; 
-            height: 15px; 
-            margin: 0 5px; 
-            overflow: hidden; 
-            background: #ddd; 
-            border-radius: 50%; 
-            transition: 0.3s; 
-        }
-        .slide_pagination .dot.dot_active { 
-            background: rgb(243,153,37); 
-        }
-        .slide_pagination .dot a { 
-            display: block; 
-            width: 100%;
-            height: 100%; 
-        }
-        .fa-angle-left, .fa-angle-right{
-            color:rgb(243,153,37);
-        }
-        .fa-angle-left, .fa-angle-right:hover{
-            font-size:50px;
-        }
-        .search_btn{
-            font-size: 33px;
-            cursor: pointer; 
-            background-color:transparent;  
-            border:0px transparent solid;
-        }
-        .fa-search{
-            vertical-align: middle;
-        }
-        .footer{
-            background-color: rgb(230, 170, 42);
-            margin-top: 5%;
-        }
-        .footer_cnts{
-            display: inline-block;
-            margin-left: 9%;
-            padding:30px 0px 60px 0px
-        }
+    ul,li{list-style:none;}
+    .slide{height:640px; width:100%;overflow:hidden;position:relative;float:left; border-image-repeat: repeat;}
+    .slide li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;transition:1s;}
+    .slide li:nth-child(1){background-image: url("{% static 'image/bg8.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
+    .slide li:nth-child(2){background-image: url("{% static 'image/bg11.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
+    .slide li:nth-child(3){background-image: url("{% static 'image/bg16.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
+    .slide li:nth-child(4){background-image: url("{% static 'image/bg9.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
+    .slide input{display:none;}
+    .slide .bullet{position:absolute;bottom:35px;left:0;right:0;text-align:center;z-index:10;margin-left:10%;}
+    .slide .bullet label{width:18px;height:12px;border-radius:10px;border:2px solid #000000;display:inline-block;background:#fff;font-size:0;transition:0.5s;cursor:pointer;}
+    /* 슬라이드 조작 */
+    #pos1:checked ~ ul li:nth-child(1),
+    #pos2:checked ~ ul li:nth-child(2),
+    #pos3:checked ~ ul li:nth-child(3),
+    #pos4:checked ~ ul li:nth-child(4){opacity:1;}
+    /* bullet 조작 */
+    #pos1:checked ~ .bullet label:nth-child(1),
+    #pos2:checked ~ .bullet label:nth-child(2),
+    #pos3:checked ~ .bullet label:nth-child(3),
+    #pos4:checked ~ .bullet label:nth-child(4){background:rgb(243,153,37);}
+    
     </style>
 </head>
-<body>  
-    <div class="randImg_bg">
-    <div class="navbar">
-        <div class="nav_cnts">
-            <span>효경님</span>
-            <span><a href="">Sign out /</a></span>
-            <span><a href="">My page</a></span>
-            <span>submit your idea!</span>
+<body>   
+  <div class="slide_div">
+  <div class="slide">
+    <input type="radio" name="pos" id="pos1" checked>
+    <input type="radio" name="pos" id="pos2">
+    <input type="radio" name="pos" id="pos3">
+    <input type="radio" name="pos" id="pos4">
+    <ul>
+      <li style="display: list-item;">
+        <div class="randImg_desc_div">
+          <div class="randImg_desc">
+            <div class="rand_cnts">
+              <img class="rand_prf"src="{% static 'image/lion2.png' %}">
+              <span class="rand_user">신짱구</span>
+            </div>
+            <div class="rnd_ideatitle">아이디어 이름</div>
+            <div class="rnd_detail">아이디어 내용은 이러쿵 저러쿵 가사를 써볼까나...오늘은 가지마라는 노래야 룰루랄라 이젠 아무렇지 않아 너와 눈을 맞춰도 이젠 아무렇지 않아 너와 함께 있는 사진을 봐도 오늘은 가지마 오늘만 가지마 </div>
+            <div class="rnd_fb">
+              <div>Feedback</div><br>
+              <div>짱아 : 안놀아줘서 짜증나</div>
+              <div>미선 : 왜 말을 안듣니</div> 
+            </div>
+          </div> 
         </div>
-    </div>
-    <div id="container">
-        <a href="/"><img class="logo" src="{% static 'image/headlogo.png' %}"></a>
-        <div class="slide_wrap">
-        <div class="slide_box">
-            <div class="slide_list clearfix">
-            <div class="slide_content slide01">
-                <a href="/">아이디어 이름 by..짱구님</a>
+      </li>
+      <li>
+        <div class="randImg_desc_div">
+          <div class="randImg_desc">
+            <div class="rand_cnts">
+              <img class="rand_prf"src="{% static 'image/bg5.jpg' %}">
+              <span class="rand_user">신짱구</span>
             </div>
-            <div class="slide_content slide02">
-                <a href="/">아이디어 이름 by..악어님</a>
+            <div class="rnd_ideatitle">아이디어 이름</div>
+            <div class="rnd_detail">아이디어 내용은 이러쿵 저러쿵 가사를 써볼까나...오늘은 가지마라는 노래야 룰루랄라 이젠 아무렇지 않아 너와 눈을 맞춰도 이젠 아무렇지 않아 너와 함께 있는 사진을 봐도 오늘은 가지마 오늘만 가지마 </div>
+            <div class="rnd_fb">
+              <div>Feedback</div><br>
+              <div>짱아 : 안놀아줘서 짜증나</div>
+              <div>미선 : 왜 말을 안듣니</div> 
             </div>
-            <div class="slide_content slide03">
-                <a href="/">아이디어 이름 by..펭귄님</a>
-            </div>
-            <div class="slide_content slide04">
-                <a href="/">아이디어 이름 by..사자님</a>
-            </div>
-            <div class="slide_content slide05">
-                <a href="/">아이디어 이름 by..미키마우스님</a>
-            </div>
-            </div>
-            <!-- // .slide_list -->
+          </div> 
         </div>
-        <!-- // .slide_box -->
-        <div class="slide_btn_box">
-            <button type="button" class="slide_btn_prev"><i class="fas fa-angle-left"></i></button>
-            <button type="button" class="slide_btn_next"><i class="fas fa-angle-right"></i></button>
+      </li>
+      <li>
+        <div class="randImg_desc_div">
+          <div class="randImg_desc">
+            <div class="rand_cnts">
+              <img class="rand_prf"src="{% static 'image/lion2.png' %}">
+              <span class="rand_user">신짱구</span>
+            </div>
+            <div class="rnd_ideatitle">아이디어 이름</div>
+            <div class="rnd_detail">아이디어 내용은 이러쿵 저러쿵 가사를 써볼까나...오늘은 가지마라는 노래야 룰루랄라 이젠 아무렇지 않아 너와 눈을 맞춰도 이젠 아무렇지 않아 너와 함께 있는 사진을 봐도 오늘은 가지마 오늘만 가지마 </div>
+            <div class="rnd_fb">
+              <div>Feedback</div><br>
+              <div>짱아 : 안놀아줘서 짜증나</div>
+              <div>미선 : 왜 말을 안듣니</div> 
+            </div>
+          </div> 
         </div>
-        <!-- // .slide_btn_box -->
-        <ul class="slide_pagination"></ul>
-        <!-- // .slide_pagination -->
+      </li>
+      <li>
+        <div class="randImg_desc_div">
+          <div class="randImg_desc">
+            <div class="rand_cnts">
+              <img class="rand_prf"src="{% static 'image/bg5.jpg' %}">
+              <span class="rand_user">신짱구</span>
+            </div>
+            <div class="rnd_ideatitle">아이디어 이름</div>
+            <div class="rnd_detail">아이디어 내용은 이러쿵 저러쿵 가사를 써볼까나...오늘은 가지마라는 노래야 룰루랄라 이젠 아무렇지 않아 너와 눈을 맞춰도 이젠 아무렇지 않아 너와 함께 있는 사진을 봐도 오늘은 가지마 오늘만 가지마 </div>
+            <div class="rnd_fb">
+              <div>Feedback</div><br>
+              <div>짱아 : 안놀아줘서 짜증나</div>
+              <div>미선 : 왜 말을 안듣니</div> 
+            </div>
+          </div> 
         </div>
-        <!-- // .slide_wrap -->
-    </div>
-    <!-- // .container -->
-    <script>
-        (function () {
-        const slideList = document.querySelector('.slide_list');  // Slide parent dom
-        const slideContents = document.querySelectorAll('.slide_content');  // each slide dom
-        const slideBtnNext = document.querySelector('.slide_btn_next'); // next button
-        const slideBtnPrev = document.querySelector('.slide_btn_prev'); // prev button
-        const pagination = document.querySelector('.slide_pagination');
-        const slideLen = slideContents.length;  // slide length
-        const slideWidth = 700; // slide width
-        const slideSpeed = 300; // slide speed
-        const startNum = 0; // initial slide index (0 ~ 4)
-        
-        slideList.style.width = slideWidth * (slideLen + 2) + "px";
-        
-        // Copy first and last slide
-        let firstChild = slideList.firstElementChild;
-        let lastChild = slideList.lastElementChild;
-        let clonedFirst = firstChild.cloneNode(true);
-        let clonedLast = lastChild.cloneNode(true);
-  
-        // Add copied Slides
-        slideList.appendChild(clonedFirst);
-        slideList.insertBefore(clonedLast, slideList.firstElementChild);
-  
-        // Add pagination dynamically
-        let pageChild = '';
-        for (var i = 0; i < slideLen; i++) {
-          pageChild += '<li class="dot';
-          pageChild += (i === startNum) ? ' dot_active' : '';
-          pageChild += '" data-index="' + i + '"><a href="#"></a></li>';
-        }
-        pagination.innerHTML = pageChild;
-        const pageDots = document.querySelectorAll('.dot'); // each dot from pagination
-  
-        slideList.style.transform = "translate3d(-" + (slideWidth * (startNum + 1)) + "px, 0px, 0px)";
-  
-        let curIndex = startNum; // current slide index (except copied slide)
-        let curSlide = slideContents[curIndex]; // current slide dom
-        curSlide.classList.add('slide_active');
-  
-        /** Next Button Event */
-        slideBtnNext.addEventListener('click', function() {
-          if (curIndex <= slideLen - 1) {
-            slideList.style.transition = slideSpeed + "ms";
-            slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
-          }
-          if (curIndex === slideLen - 1) {
-            setTimeout(function() {
-              slideList.style.transition = "0ms";
-              slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
-            }, slideSpeed);
-            curIndex = -1;
-          }
-          curSlide.classList.remove('slide_active');
-          pageDots[(curIndex === -1) ? slideLen - 1 : curIndex].classList.remove('dot_active');
-          curSlide = slideContents[++curIndex];
-          curSlide.classList.add('slide_active');
-          pageDots[curIndex].classList.add('dot_active');
-        });
-  
-        /** Prev Button Event */
-        slideBtnPrev.addEventListener('click', function() {
-          if (curIndex >= 0) {
-            slideList.style.transition = slideSpeed + "ms";
-            slideList.style.transform = "translate3d(-" + (slideWidth * curIndex) + "px, 0px, 0px)";
-          }
-          if (curIndex === 0) {
-            setTimeout(function() {
-              slideList.style.transition = "0ms";
-              slideList.style.transform = "translate3d(-" + (slideWidth * slideLen) + "px, 0px, 0px)";
-            }, slideSpeed);
-            curIndex = slideLen;
-          }
-          curSlide.classList.remove('slide_active');
-          pageDots[(curIndex === slideLen) ? 0 : curIndex].classList.remove('dot_active');
-          curSlide = slideContents[--curIndex];
-          curSlide.classList.add('slide_active');
-          pageDots[curIndex].classList.add('dot_active');
-        });
-  
-        /** Pagination Button Event */
-        let curDot;
-        Array.prototype.forEach.call(pageDots, function (dot, i) {
-          dot.addEventListener('click', function (e) {
-            e.preventDefault();
-            curDot = document.querySelector('.dot_active');
-            curDot.classList.remove('dot_active');
-            
-            curDot = this;
-            this.classList.add('dot_active');
-  
-            curSlide.classList.remove('slide_active');
-            curIndex = Number(this.getAttribute('data-index'));
-            curSlide = slideContents[curIndex];
-            curSlide.classList.add('slide_active');
-            slideList.style.transition = slideSpeed + "ms";
-            slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 1)) + "px, 0px, 0px)";
-          });
-        });
-      })();
-    </script>
-    </div>
-    <div class="search_div">
-        <form class="" style='display:inline'>
-            <input class="" style="width:600px; height:48px; margin-left:100px; border-radius:15px;" type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
+      </li>
+    </ul>
+    
+    <p class="bullet">
+      <label for="pos1">1</label>
+      <label for="pos2">2</label>
+      <label for="pos3">3</label>
+      <label for="pos4">4</label>
+    </p>
+  </div>
+  </div>
+    <header id="mainpage_header">
+      <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
+      <span class="menu">
+        <span>효경님</span>
+          <a href="#" title="로그아웃하기">Sign out</a>
+          <a href="signin/" title="로그인하기">Sign in</a>
+          <a href="">My page</a>
+          <span class="inner">
+            <a href="" class="hover-shadow hover-color"><span>s</span><span>u</span><span>b</span><span>m</span><span>i</span><span>t</span>
+              <span>y</span><span>o</span><span>u</span><span>r</span>
+              <span>i</span><span>d</span><span>e</span><span>a</span><span>!</a>
+            </span>
+      </span>
+    </header>
+    <div class="search">
+        <form class="search_form">
+            <input class="search_input" style="width:600px; height:50px; margin:40px 0px 30px 100px; border-radius:15px;"type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
             <button class="search_btn" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
-    <hr style="width:90%; border: 1px solid lightgray;">
+    <hr style="width:90%; border: 1px solid rgb(0, 0, 0, 0.5);">
     <div class="ideacards">
         <a href="/">
         <div class="card ideacard card_href" style="display: inline;">
@@ -427,7 +168,7 @@
             <span class="idea_name">자몽허니블랙티</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">톰과제리<i class="far fa-comment">&nbsp;0</i>
+            <img class="cardprofile" src="{% static 'image/lion2.png'%}">톰과제리<i class="far fa-comment">&nbsp;0</i>
             </div>
         </div> 
         </a>
@@ -453,7 +194,7 @@
         </a>
         <a href="/">
         <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg6.jpg' %}"></div> <!--16:9-->
+            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg11.jpg' %}"></div> <!--16:9-->
             <span class="idea_name">생각이안나</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
