@@ -106,6 +106,13 @@ body{
         width: 300px;
         height: 200px;
     }
+    &__bottom{
+        flex-direction: row;
+        justify-content: space-between;
+        .link{
+            flex-direction: row;
+        }
+    }
 }
 
 /* ============ box layout ============== */
