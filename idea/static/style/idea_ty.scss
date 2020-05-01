@@ -43,7 +43,7 @@ body, html {
     display: flex;
     flex-direction: row;
     height: 100%;
-    background-image: url("../image/img4.png");
+    background-image: url("../image/img5.jpeg");
     background-position: center left;
     background-repeat: repeat-x;
     background-size: contain;
@@ -83,6 +83,9 @@ body, html {
             .title{
                 white-space:nowrap;
                 margin-bottom: 20px;
+            }
+            .subtitle{
+                margin-bottom: 10px;
             }
             .detail{
                 margin-top: auto;
