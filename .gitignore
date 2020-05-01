@@ -3,8 +3,9 @@
 *.pot
 *.pyc
 __pycache__/
-Admin/static
+/static
 local_settings.py
 db.sqlite3
 media
 myvenv
+.DS_Store

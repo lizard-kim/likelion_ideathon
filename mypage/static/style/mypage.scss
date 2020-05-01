@@ -1,44 +1,5 @@
 @import './typography';
-
-div{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-direction: column;
-}
-
-body{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin: 0;
-    height: 100%;
-    background-color: #e5e5e5;
-}
-
-.header{
-    display: flex;
-    flex-direction: row;
-    height: 60px;
-    border-bottom: 1px black solid;
-    &__logo{
-        flex-direction: row;
-        margin: auto 0;
-        margin-left: 20px;
-        .logo{
-            margin: auto 0;
-            width: 200px;
-        }
-        .logotext{
-            margin-top: auto;
-            margin-left: 4px;
-            font-size: 24px;
-            font-weight: semibold;
-        }
-    }
-}
+@import './layout';
 
 .mypage{
     padding: 4% 8%;
@@ -51,43 +12,19 @@ body{
     }
 }
 
-@mixin box {
-    flex-direction: column;
-    padding: 24px 40px;
-    background-color: white;
-    border-radius: 10px;
-    .title{
-        margin-left: -8px;
-        margin-bottom: 16px;
-    }
-    .subtitle{
-        margin-bottom: 8px;
-        font-weight: 600;
-        color:gray;
-    }
-    .contents{
-        margin-bottom: 12px;
-    }
-    .ideatitle{
-        font-weight: bold;
-        margin-bottom: 12px;
-        max-height: 40px;
-        overflow: hidden;
-    }
-    .idea_description{
-        color:gray;
-    }
-}
-
 .userinfo{
     flex: 1;
+    max-height: 500px;
     &__namebox{
+        position: relative;
         flex-direction: row;
         padding: 24px 40px;
         background-color: white;
+        border: 1px solid #dadada;
         border-radius: 10px;
         &__profile{
             width: 140px;
+            height: 140px;
             margin-right: 40px;
         }
         &__name{
@@ -105,6 +42,18 @@ body{
                 color: gray;
             }
         }
+        .edit{
+            display: none;
+            text-decoration: none;
+            color: black;
+        }
+        .fa-edit{
+            position: absolute;
+            right: 32px;
+        }
+        &:hover .edit{
+            display: block;
+        }
     }
     &__infobox{
         @include box;
@@ -117,9 +66,10 @@ body{
     overflow: hidden;
     flex: 1;
     margin-left: 40px;
+    max-height: 500px;
     &__item{
         max-height: 200px;
-        overflow: scroll;
+        overflow: hidden;
         background-color: #e5e5e5;
         padding: 20px;
         padding-bottom: 5px;
@@ -143,6 +93,10 @@ body{
             font-size: 20px;
             font-weight: bold;
         }
+    }
+    .comment_box{
+        max-height: 150px;
+        overflow-y: scroll;
     }
 }
 
@@ -194,17 +148,6 @@ body{
         margin: auto 0;
         padding: 5px 10px;
         line-height: 24px;
-    }
-}
-
-.footer{
-    margin-top: auto;
-    background-color: #302C28;
-    color: white;
-    text-align: center;
-    height: 250px;
-    h2{
-        margin: auto;
     }
 }
 

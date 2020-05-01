@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import mypage
+from .views import mypage, edit
 
 urlpatterns = [
-    path('', mypage, name="mypage")
+    path('', mypage, name="mypage"),
+    path('edit/', edit, name="edit"),
 ]
