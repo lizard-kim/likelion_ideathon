@@ -2,7 +2,12 @@ div{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     flex-direction: column;
+}
+div::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 body{
@@ -13,10 +18,37 @@ body{
     flex: 1;
     margin: 0;
     height: 100%;
-    background-color: rgba($color: #2c2c2c, $alpha: 1.0);
+    background-color: rgba($color: #f5f6f8, $alpha: 1.0);
 }
 
 .header{
+    display: flex;
+    flex-direction: row;
+    background-color: #f5f6f8;
+    padding: 10px;
+    color: black;
+    align-items: center;
+    border-bottom: 2px solid #dadada;
+    .logo{
+        width: 260px;
+        height: 31px;
+        left: 26px;
+        top: 30px;
+    }
+    a{  
+        color: black;
+        font-size: 20px;
+        margin: 10px;
+        text-decoration: none;
+    }
+    b{
+        color: black;
+    }
+    .menu{
+        margin-left: auto;
+        //float: right;
+    }
+    /*
     display: flex;
     flex-direction: row;
     height: 60px;
@@ -37,6 +69,7 @@ body{
             font-weight: semibold;
         }
     }
+    */
 }
 
 .footer{
@@ -53,9 +86,11 @@ body{
 /* ============ box layout ============== */
 
 @mixin box {
+    position: relative;
     flex-direction: column;
     padding: 24px 40px;
     background-color: white;
+    border: 1px solid #dadada;
     border-radius: 10px;
     .title{
         margin-left: -8px;
@@ -89,6 +124,18 @@ body{
     input:hover{
         border: 1px solid rgb(128, 128, 128);
     }
+    .edit{
+        display: none;
+        text-decoration: none;
+        color: black;
+    }
+    .fa-edit{
+        position: absolute;
+        right: 32px;
+    }
+    &:hover .edit{
+        display: block;
+    }
 }
 
 /* ============ button layout ============== */
@@ -97,7 +144,7 @@ body{
     width: $wid;
     height: $hig;
     //background-color: #e5e5e5;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid #dadada;
     border-radius: 5px;
     color: black;
     text-align: center;
