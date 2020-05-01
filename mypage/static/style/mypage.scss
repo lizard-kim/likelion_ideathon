@@ -59,8 +59,13 @@
     }
     &__infobox{
         @include box;
-        height: 300px;
+        min-height: 250px;
+        max-height: 300px;
         margin-top: 40px;
+        .infowrap{
+            display: flex;
+            margin: auto 0;
+        }
     }
 }
 
@@ -98,7 +103,7 @@
         }
     }
     .comment_box{
-        max-height: 150px;
+        max-height: 200px;
         overflow-y: scroll;
     }
 }
