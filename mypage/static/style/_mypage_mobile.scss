@@ -1,9 +1,13 @@
 @media ( max-width: 1023px ){
     .mypage__top{
         flex-direction: column;
+        height: auto;
     }
     .myidea{
         margin-top: 40px;
         margin-left: 0;
+    }
+    .myInfoEdit{
+        flex-direction: column;
     }
 }
