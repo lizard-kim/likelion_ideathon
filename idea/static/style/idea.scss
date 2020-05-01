@@ -107,8 +107,8 @@ header{
     
     &.hover-shadow{
       &:hover{
-        $color: #ddd;
-      text-shadow: 1px 1px 0px $color, 2px 2px 0px $color, 3px 3px 0px $color;
+        $color: $lioncolor;
+        text-shadow: 1px 1px 0px $color, 2px 2px 0px $color, 3px 3px 0px $color;
       }
     }
     &.hover-color{
@@ -123,7 +123,7 @@ a.top {
     margin-left: 50%;
     display: none;
   }
-  div > i {
+  .down > i {
     font-size: 30px;
     color:white;
     &:hover {
@@ -209,26 +209,26 @@ a.top {
 a.top {
     margin-left: 50%;
     display: none;
-  }
-  div > i {
-    font-size: 30px;
-    color:white;
-  }
-  .top_div{
+}
+.top_div{
     padding-bottom: 50px;
-  }
-  .down{
+}
+.down{
     position: absolute;
     top:90%;
     left:50%;
     border-radius: 7px;
     padding:10px;
-  }
-  .down:hover{
-    border-radius: 7px;
-    padding:10px;
-    color:$lioncolor;
-  }
+    .i{
+        font-size: 30px;
+        color:white;
+    }
+    &:hover{
+        border-radius: 7px;
+        padding:10px;
+        color:$lioncolor;
+    }
+}
 
 .randImg_desc_div{
     height:100%;
@@ -276,10 +276,8 @@ a.top {
     margin: -10px auto 17px auto;
     width: 50%;
 }
-.search_div{
-    height:100px;
-    background-color: antiquewhite;
-    margin-top: 50px;
+.search{
+    margin-top: 30px;
 }
 .search_form{
     display:inline;
@@ -287,8 +285,19 @@ a.top {
 .search_input{
     font-size:18px;
 }
+.idea_count{
+    color:rgb(75, 73, 73);
+    font-size: 40px;
+    margin-bottom: 0px;
+    margin-left:100px;
+    &__span{
+        color:$lioncolor;
+        font-weight: bold;
+        font-size: 50px;
+    }
+}
 .ideacards{
-    padding-top:5%;
+    padding-top:4%;
     padding-left:9%;
     padding-right:4.5%;
     display: inline-block;
@@ -298,7 +307,7 @@ a.top {
     @include w_h_size(25%, 390px);
     padding: 1% 1% 2% 1%;
     margin:2%;
-    border:1px solid rgb(53, 52, 52);
+    border:1px solid rgb(41, 40, 40);
     background-color: #ffffff;
     position:relative;
 }
@@ -439,4 +448,18 @@ hr {
     display: inline-block;
     margin-left: 9%;
     padding:30px 0px 60px 0px
+}
+.top_div{
+    position: fixed;
+    bottom:5;
+    right:35;
+    .top > i{
+        font-size: 30px;
+        color:black
+    }   
+    i{
+        &:hover{
+            color:$lioncolor;
+        }
+    } 
 }

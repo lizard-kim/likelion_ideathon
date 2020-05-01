@@ -19,14 +19,14 @@
           }
         } );
         $( '.top' ).click( function() {
-          $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+          $( 'html, body' ).animate( { scrollTop : 0 }, 600 );
           return false;
         } );
       } );
 
       function fnMove(seq){
           var offset = $("#div" + seq).offset();
-          $('html, body').animate({scrollTop : offset.top}, 400);
+          $('html, body').animate({scrollTop : offset.top}, 600);
       }
       
   </script>
@@ -39,7 +39,7 @@
     $(window).scroll(function() {    
         var scroll = $(window).scrollTop();
         //console.log(scroll);
-        if (scroll >= 600) {
+        if (scroll >= 500) {
             //console.log('a');
             $(".header").addClass("change");
         } else {
@@ -82,14 +82,15 @@
         </div>
         <div class="down" onclick="fnMove('1')"><i class="fas fa-arrow-down"></i></div class="down">
     </div>
-
-    <div class="search" id="div1">
+    <div id="div1"></div>
+    <div class="search">
         <form class="search_form">
             <input class="search_input" style="width:600px; height:50px; margin:40px 0px 30px 100px; border-radius:15px;"type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
             <button class="search_btn" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
     <hr style="width:90%; border: 1px solid rgb(0, 0, 0, 0.5);">
+    <p class="idea_count">아이디어 <span class="idea_count__span">7</span>개</p>
     <div class="ideacards">
         <a href="/">
         <div class="card ideacard card_href" style="display: inline;">
