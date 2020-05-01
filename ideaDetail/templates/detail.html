@@ -167,7 +167,15 @@
                                 </div>
 
                                 <div class = "comment_add">
-                                    <button type="menu">답글</button>
+                                    <button type="menu" id = "btn-comment">답글</button>
+                                </div>
+
+                                <div id = "new_comment" class = "new_comment">
+                                    <form action = "" class = "comment_form" method = POST>
+                                        {% csrf_token %}
+                                        <input type = "text" placeholder = "Show me The Opinion" name = "comment">
+                                        <button type=submit >제출</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -194,99 +202,123 @@
 
 <script type = "text/javascript">
 
-    let comment = "{{comment}}";
-    console.log(comment);
+    const add_comment = document.getElementById("new_comment");
+    const btn_comment = document.getElementById('btn-comment');
 
-    let comment_list = "{{comment_list}}"
-    // let parsed_list = JSON.parse(comment_list);
-    console.log(comment_list);
-    // console.log(parsed_list);
+    const NEW_COMMENT_ON = "new_comment_on";
+    const NEW_COMMENT = "new_comment"
 
-    const CommentForm = document.querySelector(".comment_form");
-    // const CommentInput = CommentForm.querySelector("input");
-    const Comments = document.querySelector(".comment_list2");
+    function handleClick(){
+        const currentClass = add_comment.className;
+        console.log(currentClass);
 
-    console.log(CommentForm);
-    console.log(CommentInput);
 
-    const list_comments = "List";
-
-    let CommentArray = [];
-
-    function DeleteComment(event){
-
-        const target = event.target;
-        const Del_li = target.parentNode;
-        Comments.removeChild(Del_li);
-
-        const CleanCommentArray = CommentArray.filter(function(comment){
-            return comment.id !== parseInt(Del_li.id);
-        })  // 선택한 id 빼고 저장해줌
-
-        CommentArray = CleanCommentArray;   // 교체
-        SaveComments;
-    }
-
-    
-
-    function SaveComments(){
-        localStorage.setItem(list_comments, JSON.stringify(CommentArray));
-    }
-
-    function AddComment(comment){
-
-        const li = document.createElement("li");
-
-        // li 에 들어갈 것들
-        const delBtn = document.createElement("button");
-        const span = document.createElement("span");
-        const NewId = CommentArray.length + 1;
-
-        delBtn.innerText = "삭제"; // innertext 는 value 값 지정
-        delBtn.addEventListener("click", DeleteComment);
-        span.innerText = comment;
-        
-        li.appendChild(span);   // li 안에 span 넣고
-        li.appendChild(delBtn);   // li 안에 delBtn 넣고
-        li.id = NewId;  // li에 id 부여
-
-        Comments.appendChild(li);
-
-        const CommentObj = {
-            comment : comment,
-            id : NewId,
-        };
-
-        CommentArray.push(CommentObj);
-        SaveComments();
-    }
-
-    function something(Comment){
-        AddComment(Comment.text);
-    }
-
-    // function handleSubmit(event){   // submit 시 동작어떻게 할지
-    //     event.preventDefault();
-    //     const comment = CommentInput.value;
-    //     AddComment(comment);
-    //     CommentInput.value = ""; // submit 시 댓글 창 초기화
-    // }
-
-    function ShowComment(index){
-        const list = localStorage.getItem(list_comments); // 로컬에 set 한 것들을 getItem
-        
-        if (list !== null){
-            const parsedCommentList = JSON.parse(list);
-            something(parsedCommentList);
+        if (currentClass == NEW_COMMENT){
+            add_comment.classList.add(NEW_COMMENT_ON);
+        } else {
+            add_comment.classList.remove(NEW_COMMENT_ON);
         }
     }
 
     function init(){
-        ShowComment();
-        CommentForm.addEventListener("submit", handleSubmit);
-    }
+        btn_comment.addEventListener("click", handleClick);
+    };
 
-    init();
+    init();    
+
+    // let comment = "{{comment}}";
+    // console.log(comment);
+
+    // let comment_list = "{{comment_list}}"
+    // // let parsed_list = JSON.parse(comment_list);
+    // console.log(comment_list);
+    // // console.log(parsed_list);
+
+    // const CommentForm = document.querySelector(".comment_form");
+    // // const CommentInput = CommentForm.querySelector("input");
+    // const Comments = document.querySelector(".comment_list2");
+
+    // console.log(CommentForm);
+    // console.log(CommentInput);
+
+    // const list_comments = "List";
+
+    // let CommentArray = [];
+
+    // function DeleteComment(event){
+
+    //     const target = event.target;
+    //     const Del_li = target.parentNode;
+    //     Comments.removeChild(Del_li);
+
+    //     const CleanCommentArray = CommentArray.filter(function(comment){
+    //         return comment.id !== parseInt(Del_li.id);
+    //     })  // 선택한 id 빼고 저장해줌
+
+    //     CommentArray = CleanCommentArray;   // 교체
+    //     SaveComments;
+    // }
+
+    
+
+    // function SaveComments(){
+    //     localStorage.setItem(list_comments, JSON.stringify(CommentArray));
+    // }
+
+    // function AddComment(comment){
+
+    //     const li = document.createElement("li");
+
+    //     // li 에 들어갈 것들
+    //     const delBtn = document.createElement("button");
+    //     const span = document.createElement("span");
+    //     const NewId = CommentArray.length + 1;
+
+    //     delBtn.innerText = "삭제"; // innertext 는 value 값 지정
+    //     delBtn.addEventListener("click", DeleteComment);
+    //     span.innerText = comment;
+        
+    //     li.appendChild(span);   // li 안에 span 넣고
+    //     li.appendChild(delBtn);   // li 안에 delBtn 넣고
+    //     li.id = NewId;  // li에 id 부여
+
+    //     Comments.appendChild(li);
+
+    //     const CommentObj = {
+    //         comment : comment,
+    //         id : NewId,
+    //     };
+
+    //     CommentArray.push(CommentObj);
+    //     SaveComments();
+    // }
+
+    // function something(Comment){
+    //     AddComment(Comment.text);
+    // }
+
+    // // function handleSubmit(event){   // submit 시 동작어떻게 할지
+    // //     event.preventDefault();
+    // //     const comment = CommentInput.value;
+    // //     AddComment(comment);
+    // //     CommentInput.value = ""; // submit 시 댓글 창 초기화
+    // // }
+
+    // function ShowComment(index){
+    //     const list = localStorage.getItem(list_comments); // 로컬에 set 한 것들을 getItem
+        
+    //     if (list !== null){
+    //         const parsedCommentList = JSON.parse(list);
+    //         something(parsedCommentList);
+    //     }
+    // }
+
+    // function init(){
+    //     ShowComment();
+    //     CommentForm.addEventListener("submit", handleSubmit);
+    // }
+
+    // init();
 
 </script>
 

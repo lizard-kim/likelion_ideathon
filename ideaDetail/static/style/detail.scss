@@ -330,6 +330,20 @@ p{
     overflow: hidden;
 }
 
+.new_comment{
+    display : none;
+}
+
+.new_comment_on{
+    display : inline-block;
+    width : 700px;
+    height : 50px;
+}
+
+#btn-comment{
+    cursor: pointer;
+}
+
 .comment_add{
     display : inline-block;
     height : 50px;    
