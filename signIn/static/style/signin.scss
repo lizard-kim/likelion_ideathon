@@ -82,19 +82,18 @@ header{
 
 .signin_section{
     text-align: center;
-    margin: 15% 10% 10% 10%;
+    margin: 12% 10% 10% 10%;
     
     a{
         text-decoration: none;
         #signin_logo{
-            width: 382px;
-            height: 45px;
+            height: 60px;
         }
         
         b{
             color: black;
             margin: 10px;
-            font-size: 24px;
+            font-size: 30px;
         }
     }
     #login_form{
@@ -104,19 +103,20 @@ header{
         margin: 30px;
     }
     input{
-        width: 75%;
-        height: 35px;
+        font-size: 20px;
+        width: 65%;
+        height: 50px;
         border: 1px solid #B8B8B8;
         border-radius: 20px;
         padding-left: 20px;
     }
     button{
         @extend input;
-        width: 80%;
+        width: 70%;
         border: #f39926;
         background-color: #f39926;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 25px;
     }
 }
 
