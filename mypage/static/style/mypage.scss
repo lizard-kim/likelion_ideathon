@@ -5,6 +5,7 @@
     padding: 4% 8%;
     &__top{
         flex-direction: row;
+        height: 550px;
         //flex-flow: row wrap;
     }
     &__bottom{
@@ -14,10 +15,11 @@
 
 .userinfo{
     flex: 1;
-    max-height: 500px;
+    //max-height: 550px;
     &__namebox{
         position: relative;
         flex-direction: row;
+        height: 200px;
         padding: 24px 40px;
         background-color: white;
         border: 1px solid #dadada;
@@ -57,6 +59,7 @@
     }
     &__infobox{
         @include box;
+        height: 300px;
         margin-top: 40px;
     }
 }
