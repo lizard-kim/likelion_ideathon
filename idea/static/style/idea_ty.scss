@@ -89,6 +89,17 @@ body, html {
                 margin-left: auto;
                 color: gray;
             }
+            .writer_info{
+                display: flex;
+                flex-direction: row;
+                .profile_img{
+                    margin:auto 0;
+                    margin-right: 4px;
+                    border-radius: 20px;
+                    width: 32px;
+                    height: 32px;
+                }
+            }
         }
     }
 }
