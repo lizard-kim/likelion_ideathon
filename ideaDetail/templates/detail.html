@@ -173,10 +173,17 @@
                                 <div id = "new_comment" class = "new_comment">
                                     <form action = "" class = "comment_form" method = POST>
                                         {% csrf_token %}
-                                        <input type = "text" placeholder = "Show me The Opinion" name = "comment">
+                                        <input type = "text" placeholder = "Show me The Opinion" name = "addcomment">
                                         <button type=submit >제출</button>
                                     </form>
                                 </div>
+
+                                {% for add_comments in addcomment_list %}
+                                <div class = "add_comment_list">    
+                                    {{add_comments.text}}
+                                </div>
+                                {% endfor %}
+                                
                             </div>
                         </div>
 
