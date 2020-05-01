@@ -6,36 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{% sass_src 'style/idea.scss' %}" rel="stylesheet" type="text/css"/> 
-    <link href="{% sass_src 'style/idea_ty.scss' %}" rel="stylesheet" type="text/css"/> 
     <title>IDEATHON</title>
     <script src="https://kit.fontawesome.com/76c68926ea.js" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      $( document ).ready( function() {
+        $( window ).scroll( function() {
+          if ( $( this ).scrollTop() > 200 ) {
+            $( '.top' ).fadeIn();
+          } else {
+            $( '.top' ).fadeOut();
+          }
+        } );
+        $( '.top' ).click( function() {
+          $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+          return false;
+        } );
+      } );
 
-    <style>
-    ul,li{list-style:none;}
-    .slide{height:640px; width:100%;overflow:hidden;position:relative;float:left; border-image-repeat: repeat;}
-    .slide li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;transition:1s;}
-    .slide li:nth-child(1){background-image: url("{% static 'image/bg8.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
-    .slide li:nth-child(2){background-image: url("{% static 'image/bg11.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
-    .slide li:nth-child(3){background-image: url("{% static 'image/bg16.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
-    .slide li:nth-child(4){background-image: url("{% static 'image/bg9.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
-    .slide input{display:none;}
-    .slide .bullet{position:absolute;bottom:35px;left:0;right:0;text-align:center;z-index:10;margin-left:10%;}
-    .slide .bullet label{width:18px;height:12px;border-radius:10px;border:2px solid #000000;display:inline-block;background:#fff;font-size:0;transition:0.5s;cursor:pointer;}
-    /* 슬라이드 조작 */
-    #pos1:checked ~ ul li:nth-child(1),
-    #pos2:checked ~ ul li:nth-child(2),
-    #pos3:checked ~ ul li:nth-child(3),
-    #pos4:checked ~ ul li:nth-child(4){opacity:1;}
-    /* bullet 조작 */
-    #pos1:checked ~ .bullet label:nth-child(1),
-    #pos2:checked ~ .bullet label:nth-child(2),
-    #pos3:checked ~ .bullet label:nth-child(3),
-    #pos4:checked ~ .bullet label:nth-child(4){background:rgb(243,153,37);}
-    
+      function fnMove(seq){
+          var offset = $("#div" + seq).offset();
+          $('html, body').animate({scrollTop : offset.top}, 400);
+      }
+      
+  </script>
+    <style>  
+      
     </style>
 </head>
 <body>   
-    <header id="mainpage_header">
+  <script>
+    $(window).scroll(function() {    
+        var scroll = $(window).scrollTop();
+        //console.log(scroll);
+        if (scroll >= 600) {
+            //console.log('a');
+            $(".header").addClass("change");
+        } else {
+            //console.log('a');
+            $(".header").removeClass("change");
+        }
+    });
+  </script>
+    <header class="header" id="mainpage_header">
       <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
       <span class="menu">
         <span>님</span>
@@ -67,9 +80,10 @@
             </div>
           </div>
         </div>
+        <div class="down" onclick="fnMove('1')"><i class="fas fa-arrow-down"></i></div class="down">
     </div>
 
-    <div class="search">
+    <div class="search" id="div1">
         <form class="search_form">
             <input class="search_input" style="width:600px; height:50px; margin:40px 0px 30px 100px; border-radius:15px;"type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
             <button class="search_btn" type="submit"><i class="fas fa-search"></i></button>
@@ -183,6 +197,9 @@
           <li><span class="" href="#">Privacy</span></li>
         </ul>
       </div>
+    </div>
+    <div class="top_div">
+      <a href="#" class="top"><i class="fas fa-angle-double-up"></i></a>
     </div>
 </footer>
 </html>

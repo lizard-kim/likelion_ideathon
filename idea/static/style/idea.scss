@@ -1,5 +1,13 @@
 $lioncolor : rgb(243,153,37);
+$background-color: none;
 
+@import "./typography";
+
+@mixin background-color($background-color: true) {
+    @if $background-color{
+        background-color: #000000;
+    }
+}
 @mixin w_h_size($w, $h){
     width : $w;
     height: $h;
@@ -26,20 +34,6 @@ $lioncolor : rgb(243,153,37);
     background-size: auto 400px;
     background-position: center;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 body{
     background-color:antiquewhite;
 }
@@ -47,12 +41,13 @@ body, html {
     margin: 0;
     padding: 0;
     @include w_h_size(100%, auto);
+    color: white;
 }
 header{
+    background-color: none;
     z-index: 1;
     width:99%;
-    margin-top:14px;
-    padding:6px 9px 0px 5px;
+    padding:25px 9px 0px 5px;
     position: fixed;
     color:white;
     
@@ -62,6 +57,7 @@ header{
         left: 26px;
         top: 30px;
         float: left;
+        vertical-align: top;
     }
 
     a{  
@@ -74,16 +70,19 @@ header{
     .menu{
         float: right;
     }
+    &:hover{
+        @include background-color($background-color: true);
+    }
 }
+.change{
+    background-color: black;
+  }
 #mainpage_header{
     @extend header;
     a{
         color: white;
     }
 }
-
-
-
 .inner > a{
     color: #000;
     text-decoration: none;
@@ -120,15 +119,116 @@ header{
       }
     }
   }
-
-
-
-
-
-
-
-
-
+a.top {
+    margin-left: 50%;
+    display: none;
+  }
+  div > i {
+    font-size: 30px;
+    color:white;
+    &:hover {
+        color:$lioncolor;
+    }
+  }
+  .top_div{
+    padding-bottom: 50px;
+  }
+  .down{
+    position: absolute;
+    top:90%;
+    left:50%;
+  }
+.randImg{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    background-image: url("../image/img5.jpeg");
+    background-position: center left;
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-color: black;
+    &__left{
+        width: 60%;
+        height: 100%;
+    }
+    &__right{
+        position: relative;
+        width: 50%;
+        height: 100%;
+        background-image: url("../image/gray-bg.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        .deco_box{
+            border: 1px solid rgba(255,255,255,0.25);
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            width: 60%;
+            position: absolute;
+            z-index: 2;
+            bottom: 17%;
+            min-height: 350px;
+            min-width: 300px;
+        }
+        .contents{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            height: 110%;
+            top: -10%;
+            left: -12%;
+            width: 100%;
+            .title{
+                white-space:nowrap;
+                margin-bottom: 20px;
+            }
+            .subtitle{
+                margin-bottom: 10px;
+            }
+            .detail{
+                margin-top: auto;
+                margin-left: auto;
+                color: gray;
+            }
+            .writer_info{
+                display: flex;
+                flex-direction: row;
+                .profile_img{
+                    margin:auto 0;
+                    margin-right: 4px;
+                    border-radius: 20px;
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+        }
+    }
+}
+a.top {
+    margin-left: 50%;
+    display: none;
+  }
+  div > i {
+    font-size: 30px;
+    color:white;
+  }
+  .top_div{
+    padding-bottom: 50px;
+  }
+  .down{
+    position: absolute;
+    top:90%;
+    left:50%;
+    border-radius: 7px;
+    padding:10px;
+  }
+  .down:hover{
+    border-radius: 7px;
+    padding:10px;
+    color:$lioncolor;
+  }
 
 .randImg_desc_div{
     height:100%;
