@@ -5,50 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{% sass_src 'style/idea.scss' %}" rel="stylesheet" type="text/css"/> 
-    <link href="{% sass_src 'style/idea_ty.scss' %}" rel="stylesheet" type="text/css"/> 
     <title>IDEATHON</title>
+    <script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>
+    <link href="{% sass_src 'style/ideapage.scss' %}" rel="stylesheet" type="text/css"/> 
+
     <script src="https://kit.fontawesome.com/76c68926ea.js" crossorigin="anonymous"></script>
 
-    <style>
-    ul,li{list-style:none;}
-    .slide{height:640px; width:100%;overflow:hidden;position:relative;float:left; border-image-repeat: repeat;}
-    .slide li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;transition:1s;}
-    .slide li:nth-child(1){background-image: url("{% static 'image/bg8.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
-    .slide li:nth-child(2){background-image: url("{% static 'image/bg11.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
-    .slide li:nth-child(3){background-image: url("{% static 'image/bg16.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
-    .slide li:nth-child(4){background-image: url("{% static 'image/bg9.jpg' %}"); background-repeat: repeat; background-size:1010px 101%;}
-    .slide input{display:none;}
-    .slide .bullet{position:absolute;bottom:35px;left:0;right:0;text-align:center;z-index:10;margin-left:10%;}
-    .slide .bullet label{width:18px;height:12px;border-radius:10px;border:2px solid #000000;display:inline-block;background:#fff;font-size:0;transition:0.5s;cursor:pointer;}
-    /* 슬라이드 조작 */
-    #pos1:checked ~ ul li:nth-child(1),
-    #pos2:checked ~ ul li:nth-child(2),
-    #pos3:checked ~ ul li:nth-child(3),
-    #pos4:checked ~ ul li:nth-child(4){opacity:1;}
-    /* bullet 조작 */
-    #pos1:checked ~ .bullet label:nth-child(1),
-    #pos2:checked ~ .bullet label:nth-child(2),
-    #pos3:checked ~ .bullet label:nth-child(3),
-    #pos4:checked ~ .bullet label:nth-child(4){background:rgb(243,153,37);}
-    
-    </style>
 </head>
-<body>   
-    <header id="mainpage_header">
-      <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
-      <span class="menu">
-        <span>님</span>
-          <a href="#" title="로그아웃하기">Sign out</a>
-          <a href="signin/" title="로그인하기">Sign in</a>
-          <a href="">My page</a>
-          <span class="inner">
-            <a href="" class="hover-shadow hover-color"><span>s</span><span>u</span><span>b</span><span>m</span><span>i</span><span>t</span>
-              <span>y</span><span>o</span><span>u</span><span>r</span>
-              <span>i</span><span>d</span><span>e</span><span>a</span><span>!</a>
-            </span>
-      </span>
-    </header>
+<body>  
+    <div class="header">
+        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
+        <!---
+        <span class="menu">
+            <a href="#">Log out</a>
+            |
+            <a href="#">My Page</a>
+        </span>
+        -->
+        <i class="fas fa-bars fa-2x" style="color: white;"></i>
+    </div>
     <div class="randImg">
         <div class="randImg__left">
         </div>
@@ -64,14 +39,13 @@
           </div>
         </div>
     </div>
-
-    <div class="search">
-        <form class="search_form">
-            <input class="search_input" style="width:600px; height:50px; margin:40px 0px 30px 100px; border-radius:15px;"type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
+    <div class="search_div">
+        <form class="" style='display:inline'>
+            <input class="" style="width:600px; height:48px; margin-left:100px; border-radius:15px;" type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
             <button class="search_btn" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
-    <hr style="width:90%; border: 1px solid rgb(0, 0, 0, 0.5);">
+    <hr style="width:90%; border: 1px solid lightgray;">
     <div class="ideacards">
         <a href="/">
         <div class="card ideacard card_href" style="display: inline;">
@@ -99,7 +73,7 @@
             <span class="idea_name">자몽허니블랙티</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion2.png'%}">톰과제리<i class="far fa-comment">&nbsp;0</i>
+            <img class="cardprofile" src="{% static 'image/lion.png'%}">톰과제리<i class="far fa-comment">&nbsp;0</i>
             </div>
         </div> 
         </a>
@@ -125,7 +99,7 @@
         </a>
         <a href="/">
         <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg11.jpg' %}"></div> <!--16:9-->
+            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg6.jpg' %}"></div> <!--16:9-->
             <span class="idea_name">생각이안나</span>
             <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
             <div class="user_div"><hr>
