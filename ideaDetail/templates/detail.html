@@ -140,30 +140,41 @@
                 </div>
 
                 <div class = "comment_order">
-                    <button type="menu">최신순</button>
-                    <button type="menu">답글순</button>
+                    <div class = "order_item1">
+                        <h5>" "개의 댓글이 있습니다</h5>
+                    </div>
+                    
+                    <div class = "order_item2">
+                        <button type="menu">최신순</button>
+                        <button type="menu">답글순</button>
+                    </div>
                 </div>
 
                 
                 {% for comment in comment_list %}
                     <div class = "comment_list">
-
-                        <div class = "comment_list_author">
-                            <div class = "comment_author">
-                                아기사자
-                            </div>
-                            <div class = "comment_school">
-                                멋사대
-                            </div>
-                            <div class = "comment_time">
-                                {{comment.create_data}}
+                        <div class = "comment_list_info">
+                            <div class = "comment_list_author">
+                                <div class = "author_image">
+                                </div>
+                                <div class = "comment_author">
+                                    이름
+                                </div>
+                                <div class = "comment_school">
+                                    대학교
+                                </div>
+                                <div class = "comment_time">
+                                    {{comment.create_data}}
+                                </div>
                             </div>
                         </div>
+                        
                     
                         <div class = "comment_list_content">
                             <div class = "comment_content">
                                 <div class = "content_comment">
-                                    {{comment.text}}                                    
+                                    {{comment.text}}         
+                                    {{comment.pk}}                           
                                 </div>
 
                                 <div class = "comment_add">
@@ -171,29 +182,27 @@
                                 </div>
 
                                 <div id = "new_comment" class = "new_comment">
-                                    <form action = "" class = "comment_form" method = POST>
+                                    <form action = "" class = "add_comment_form" method = POST>
                                         {% csrf_token %}
                                         <input type = "text" placeholder = "Show me The Opinion" name = "addcomment">
                                         <button type=submit >제출</button>
                                     </form>
                                 </div>
 
+                                <div id = "add_comment_list" class = "add_comment_list">
                                 {% for add_comments in addcomment_list %}
-                                <div class = "add_comment_list">    
-                                    {{add_comments.text}}
-                                </div>
+                                    <div class = "add_comment">
+                                        {% if comment.comment_pk == 1 %}
+                                        {{add_comments.text}}
+                                        {% endif %}
+                                    </div>
                                 {% endfor %}
+                                </div>
                                 
                             </div>
                         </div>
 
                     </div>
-                                <!-- <div class = "comment_edit">
-                                    <p>수정</p>
-                                </div>
-                                <div class = "comment_delete">
-                                    <p>삭제</p>
-                                </div> -->
                     {% endfor %}
                 
             </div>
@@ -210,20 +219,24 @@
 <script type = "text/javascript">
 
     const add_comment = document.getElementById("new_comment");
+    const add_comment_list = document.getElementById("add_comment_list")
     const btn_comment = document.getElementById('btn-comment');
 
     const NEW_COMMENT_ON = "new_comment_on";
     const NEW_COMMENT = "new_comment"
+    const ADD_COMMENT_LIST = "add_comment_list";
+    const ADD_COMMENT_LIST_ON = "add_comment_list_on";
 
     function handleClick(){
         const currentClass = add_comment.className;
         console.log(currentClass);
 
-
         if (currentClass == NEW_COMMENT){
             add_comment.classList.add(NEW_COMMENT_ON);
+            add_comment_list.classList.add(ADD_COMMENT_LIST_ON);
         } else {
             add_comment.classList.remove(NEW_COMMENT_ON);
+            add_comment_list.classList.remove(ADD_COMMENT_LIST_ON);
         }
     }
 

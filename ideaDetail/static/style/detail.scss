@@ -275,20 +275,49 @@ p{
 .comment_order{
     width : 800px;
     margin : auto;
-    height : 30px;
-    margin-bottom : 30px;
+    height : 50px;
+    margin-bottom : 10px;
+}
+
+.order_item1{
+    max-width : 300px;
+    display : inline-block;
+    color : #F39925;
+}
+
+.order_item2{
+    display : inline-block;
+    margin-left : 350px;
 }
 
 .comment_list{
-    height : 170px;
+    max-height : 500px;
     margin : auto;
+    position : relative;
+}
+
+.comment_list_info{
+    display : inline-block;
+    max-width : 300px;
+    height : 30px;
+    position : relative;
+    border-radius: 7px;
+    margin-left : 12%;
 }
 
 .comment_list_author{
-    display : flex;
+    display : inline-flex;
     width : 800px;
     height : 30px;
-    margin : 0 auto;
+    position : relative;
+}
+
+.author_image{
+    background-color: #F39925;
+    border-radius: 15px;
+    width : 25px;
+    height : 25px;
+    margin-right : 10px;
 }
 
 .comment_author{
@@ -309,15 +338,15 @@ p{
 }
 
 .comment_list_content{
-    display : flex;
-    height : 70px;
+    position : relative;
+    max-height : 400px;
     width : 800px;
     margin : 0 auto;
 }
 
 .comment_content{
     width : 600px;
-    height : 150px;
+    max-height : 400px;
 }
 
 .content_comment{
@@ -336,6 +365,7 @@ p{
 
 .new_comment_on{
     display : inline-block;
+    position : relative;
     width : 700px;
     height : 50px;
 }
@@ -349,12 +379,31 @@ p{
     height : 50px;    
     width : 700px;
     border-bottom : solid 1px rgb(110, 110, 110);
+    position : relative;
+    margin-bottom: 2%;
 }
 
 .add_comment_list{
+    display : none;
+}
+
+.add_comment_list_on{
     display : inline-block;
-    height : 50px;    
+    position : relative;
+    max-height : 500px;
     width : 700px;
+    margin-bottom : 20px;
+}
+
+.add_comment{
+    display : inline-block;
+    position : relative;
+    max-height : 200px;
+    width : 700px
+}
+
+.add_comment_form{
+    margin-top : 20px;
 }
 
 .comment_edit{
