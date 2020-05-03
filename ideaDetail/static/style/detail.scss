@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import '../../../mypage/static/style/typography';
 
+input, button, textarea, menu {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border : none;
+}
+
+p{
+    all: unset;
+}
+
 .container{
     display : grid;
     grid-template-areas: 'header'
@@ -8,12 +19,7 @@
                          'comment'
                          'footer';
     grid-template-rows: 60px 6fr 4fr 100px;
-    max-height : 3500px;
-}
-
-p{
-    all : unset;
-    margin : 0px 10px 0px 10px;
+    max-height : 3000px;
 }
 
 // 여기부터 헤더
@@ -53,179 +59,181 @@ p{
 .idea{
     grid-area : 'idea';
     background-color: white;
+    &_container{
+        display : flex;
+        flex-direction: column;
+        margin-top : 20px;  
+    }
 }
 
-.idea_container{
-    flex-direction: column;
-    margin-top : 20px;
-}
-
+// 아이디어 타이틀 부분
 .title{
-    display : inline-flex;
     height : 50px;
-    margin : 10px 30px 0px 30px;
-    font-size : 30px;
-}
+    margin : 0px 30px 0px 30px;
 
+    &_name{
+        display : inline-block;
+        font-size : 30px;
+        text-shadow: 0px 1px 1px 0px gray;
+    }
+
+    &_basket{
+        float : right;
+        padding-top : 10px;
+        color : rgb(109, 109, 109);
+    }
+}
 
 .sub_title{
     display: flex;
     flex-direction: row;
-    height : 30px;
+    height : 40px;
     border-bottom : 1px solid rgb(206, 206, 206);
+
+    &_name{
+        margin : 0px 30px 10px 30px;
+        padding-bottom: 10px;
+        font-size : 15px;
+        color : rgb(126, 126, 126);
+        margin-right : auto;
+    }
+
+    &_author{
+        color : black;
+        font-size : 15px;
+        padding : 0px 0px 0px 0px;
+        margin-right : 10px;
+    }
+
+    &_school{
+        color : black;
+        font-size : 15px;
+        padding : 0px 0px 0px 0px;
+        margin-right : 10px;
+    }
+
+    &_time{
+        color : rgb(126, 126, 126);
+        font-size : 15px;
+        padding : 0px 10px 10px 0px;
+        margin-right : 10px;
+    }
 }
 
-.sub_title_name{
-    margin : 0px 30px 10px 30px;
-    padding-bottom: 10px;
-    font-size : 15px;
-    color : rgb(126, 126, 126);
-    margin-right : auto;
-}
-
-.sub_title_author{
-    color : black;
-    font-size : 15px;
-    padding : 0px 0px 0px 0px;
-}
-
-.sub_title_school{
-    color : black;
-    font-size : 15px;
-    padding : 0px 0px 0px 0px;
-}
-
-.sub_title_time{
-    color : rgb(126, 126, 126);
-    font-size : 15px;
-    padding : 0px 10px 10px 0px;
-}
-
+// 아이디어 사진 부분
 .image{
-    width : 700px;
-    margin: 0 auto;
     margin-top: 20px;
-    max-width: 1000px;
-    display : block;
+    max-height: 1500px;
+    display : flex;
+    justify-content: center;
+
+    &_box{
+        flex:none;
+        width : 700px;
+        display: flex;
+        flex-direction: column;
+        max-height: 1500px;
+    }
+
+    &_real{
+        margin-bottom : 30px;
+    }
+
 }
 
-.image_box{
-    width : 700px;
-    height : 400px;
-    margin : auto;
-    display : inline-block;
-    margin-bottom : 15px;
-}
-
-.slide{
-    margin: auto;
-}
-
-.prev{
-    cursor: pointer;
-    position: absolute;
-    height : 398px;
-    width: 100px;
-    margin-right: auto;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    background-color: rgb(221, 220, 220);
-  }
-
-.next {
-    cursor: pointer;
-    position: absolute;
-    width: 100px;
-    margin-left : auto;
-    height : 398px;
-    color: black;
-    background-color: rgb(238, 238, 238);
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-}
-  
-  /* On hover, add a black background color with a little bit see-through */
-  .prev:hover, .next:hover {
-    background-color: rgba(104, 104, 104, 0.8);
-  }
-  
+// 아이디어 요약
 .description{
-    display : block;
-    width : 700px;
-    max-height: 500px;
-    margin : 10px 0px 10px 20px; 
-    font-size : 10px;
-    margin: 0 auto;
-    padding : 20px 0px 0px 10px;
-    margin-bottom : 100px;
+    display : flex;
+    justify-content: center;
+
+    &_box{
+        display : block;
+        width : 700px;
+        max-height: 500px;
+        margin : 10px 0px 10px 20px; 
+        font-size : 10px;
+        padding : 20px 0px 0px 10px;
+        margin-bottom : 100px;
+    }
 }
 
 .bot {
-    flex : 1;
-    width : 1100px;
     display : flex;
-    margin-top : auto;
+    justify-content: center;
     max-height: 200px;
     margin-bottom : 40px;
+
+    &_box{
+        width : 900px;
+        
+        &_hashbox{
+            width : 750px;
+            display : inline-block;
+
+            &_hashtag{
+                display : flex;
+                height : 70px;
+                flex-wrap : wrap-reverse;
+
+                &_item{
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                    flex-basis: auto;
+                    max-width : 200px;
+                    text-align : center;
+                    white-space : nowrap;   // 텍스트 길어도 줄바꿈 ㄴㄴ
+                    text-overflow: ellipsis;    // 잘린 텍스트 ...표기
+                    overflow:hidden;    // 잘린거 안보이게 
+                    margin : 0px 10px 0px 10px;
+                }
+            }
+        }
+
+        &_edit{
+            flex : none;
+            display : inline-block;
+            height : 70px;
+            width : 130px;
+        
+            &_box1{
+                display : inline-block;
+                border : 1px solid rgb(180, 180, 180);
+                color : black;
+                width : 60px;
+                height : 30px;
+                text-align : center;
+                margin-top : 30px;
+                margin : right;
+                box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+        
+                &:hover{
+                    color : white;
+                    background-color: #F39925;
+                    transition: 0.3s;
+                }
+        
+            }
+        
+            &_box2{
+                display : inline-block;
+                border : 1px solid rgb(180, 180, 180);
+                width : 60px;
+                color : black;
+                height : 30px;
+                text-align : center;
+                margin : right;
+                box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+                transition: 0.3s;
+        
+                &:hover{
+                    color : white;
+                    background-color: #F39925;        
+                }
+            }
+        }
+    }
 }
 
-.bottom{
-    flex : none;
-    display : flex;
-    height : 70px;
-    width : 750px;
-    margin-left : 100px;
-    flex-wrap : wrap-reverse;
-}
-
-.bottom_item{
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    max-width : 200px;
-    text-align : center;
-    white-space : nowrap;   // 텍스트 길어도 줄바꿈 ㄴㄴ
-    text-overflow: ellipsis;    // 잘린 텍스트 ...표기
-    overflow:hidden;    // 잘린거 안보이게 
-    margin : 0px 10px 0px 10px;
-}
-
-.edit{
-    flex : none;
-    height : 70px;
-    width : 300px;
-}
-
-.edit_box1{
-    display : inline-block;
-    border : 1px solid rgb(180, 180, 180);
-    border-radius : 3px;
-    color : black;
-    width : 60px;
-    height : 30px;
-    text-align : center;
-    margin-top : 30px;
-    margin : right;
-}
-
-.edit_box2{
-    display : inline-block;
-    border : 1px solid rgb(180, 180, 180);
-    border-radius : 3px;
-    width : 60px;
-    color : black;
-    height : 30px;
-    text-align : center;
-    margin : right;
-}
-
-.edit_box1:hover, .edit_box2:hover{
-    color : white;
-    background-color: #F39925;
-}
 // 여기부터 comment
 .comment{
     display : grid;
@@ -236,127 +244,212 @@ p{
 }
 
 .comments{
-    display : inline-block;
-    flex-direction: column;
     grid-area : 'comments';
-    background-color: white;
     border-top : solid 1px rgb(221, 221, 221);
-}
+    display : flex;
+    flex-direction: column;
 
-.comment_start{
-    width : 800px;
-    height : 50px;
-    margin : auto;
-    margin-top : 30px;
-}
+    &_box{
+        display : flex;
+        justify-content: center;
 
-.comment_input{
-    height : 100px;
-    width : 800px;
-    margin : auto;
-}
+        &_input{
+            height : 180px;
+            width : 800px;
+            margin : auto;
+            margin-top : 25px;
+            padding : 10px 0px 0px 10px;
+    
+            &_start{
+                height : 35px;
+                margin-bottom : 5px;
+                display : flex;
+                flex-direction: row;
 
-.comment_input_box1{
-    width : 800px;
-    height : 100px;
-}
+                &_image{
+                    background-color: #F39925;
+                    border-radius: 15px;
+                    width : 25px;
+                    height : 25px;
+                    margin-right : 10px;
+                }
 
-.comment_input_box2{
-    width : 70px;
-    height : 30px;
-    border : 1px solid black;
-    background-color: #F39925;
-    color : white;
-    margin-top : auto;
-    margin-left : auto;
-    text-align: center;
-}
+                &_name{
+                    flex : none;
+                    max-width : 100px;
+                    margin-right : 10px;
+                }
 
-.comment_order{
-    width : 800px;
-    margin : auto;
-    height : 50px;
-    margin-bottom : 10px;
-}
+                &_school{
+                    flex : none;
+                    max-width : 100px;
+                    margin-right : 10px;
+                }
+            }
+        
+            &_form{
+                height : 160px;
+                display : inline-block;
 
-.order_item1{
-    max-width : 300px;
-    display : inline-block;
-    color : #F39925;
-}
+                &_button{
+                    display :block;
+                    border : 1px solid rgb(180, 180, 180);
+                    color : black;
+                    width : 70px;
+                    height : 40px;
+                    text-align : center;
+                    background-color: white;
+                    margin-left : auto;
+                    box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+                    margin-top : 15px;
 
-.order_item2{
-    display : inline-block;
-    margin-left : 350px;
-}
+                    &:hover{
+                        color : white;
+                        background-color: #F39925;
+                        transition: 0.3s;
+                    }
+                }
+        
+            }
+        }
+    }
 
-.comment_list{
-    max-height : 500px;
-    margin : auto;
-    position : relative;
-}
+    &_order_box{
+        display : flex;
+        justify-content: center;
+        margin-top : 15px;
 
-.comment_list_info{
-    display : inline-block;
-    max-width : 300px;
-    height : 30px;
-    position : relative;
-    border-radius: 7px;
-    margin-left : 12%;
-}
+        &_order{
+            display : inline-block;
+            width : 800px;
+            margin-top : 25px;
+            display : flex;
+            flex-direction: row;
 
-.comment_list_author{
-    display : inline-flex;
-    width : 800px;
-    height : 30px;
-    position : relative;
-}
+            &_item1{
+                max-width : 300px;
+                display : inline-block;
+                color : #F39925;
+                margin-left : 30px;
+            }
+    
+            &_item2{
+                flex : none;
+                width : 150px;
+                margin-left : 30px;
+                padding-top : 3px;
 
-.author_image{
-    background-color: #F39925;
-    border-radius: 15px;
-    width : 25px;
-    height : 25px;
-    margin-right : 10px;
-}
+                &_button{
+                    display :inline-block;
+                    border : 1px solid rgb(180, 180, 180);
+                    color : black;
+                    width : 60px;
+                    height : 30px;
+                    text-align : center;
+                    background-color: white;
+                    box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+                
+                    &:hover{
+                        color : white;
+                        background-color: #F39925;
+                        transition: 0.3s;
+                    }
+                }
+            }
+        }
+    }
+    
+    // 여기부터 달린 댓글
+    &_list{
+        margin-top : 25px;
+        display : flex;
+        justify-content: center;
+        max-height: 2000px;
+    }
 
-.comment_author{
-    flex : none;
-    max-width : 100px;
-    margin-right : 10px;
-}
+    &_box{   
+        display : flex;
+        flex-direction: column;
+    }
 
-.comment_school{
-    flex : none;
-    max-width : 100px;
-    margin-right : 10px;
-}
+    &_real{
+        flex : none;
+        width : 700px;
+        height : 200px;
+        margin-bottom: 15px;
+        display : inline-block;
+    }
 
-.comment_time{
-    flex : none;
-    max-width : 200px;
-}
+    &_author_info{
+        display : flex;
+        flex-direction: row;
+        height : 30px;
+        max-width : 300px;
+        padding : 10px 0px 5px 10px;
+            
+        &_image{
+                            flex : none;
+                            border-radius: 15px;
+                            width : 25px;
+                            height : 25px;
+                            margin-right : 10px;
+                        }
+        
+        &_name{
+                            flex : none;
+                            max-width : 100px;
+                            margin-right : 10px;
+                        }
+        
+        &_school{
+                            flex : none;
+                            max-width : 100px;
+                            margin-right : 10px;
+                        }
+        
+        &_time{
+                            flex : none;
+                            max-width : 200px;
+                        }
+    }
 
-.comment_list_content{
-    position : relative;
-    max-height : 400px;
-    width : 800px;
-    margin : 0 auto;
-}
+    &_content_box{
+        max-height : 200px;
+    }
 
-.comment_content{
-    width : 600px;
-    max-height : 400px;
-}
+    &_content{
+        flex : none;
+        padding : 10px 0px 0px 20px;
+        text-overflow: ellipsis;    // 잘린 텍스트 ...표기
+        white-space: normal;
+        overflow: hidden;
+        max-height : 150px;
+        margin-bottom : 10px;
+    }
 
-.content_comment{
-    display : inline-block;
-    padding : 1%;
-    max-height : 200px;
-    width : 700px;
-    text-overflow: ellipsis;    // 잘린 텍스트 ...표기
-    white-space: normal;
-    overflow: hidden;
+    &_add{
+        flex : none;
+        border-bottom: 1px solid rgb(182, 182, 182);
+        
+        &_button{
+            display :block;
+            border : 1px solid rgb(180, 180, 180);
+            color : black;
+            width : 70px;
+            height : 40px;
+            text-align : center;
+            background-color: white;
+            margin-left : auto;
+            box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+            margin-bottom: 15px;
+
+            &:hover{
+                color : white;
+                background-color: #F39925;
+                transition: 0.3s;
+            }
+        }
+    }
 }
 
 .new_comment{
@@ -366,21 +459,44 @@ p{
 .new_comment_on{
     display : inline-block;
     position : relative;
-    width : 700px;
+    width : 600px;
     height : 50px;
+
+    &_input[type=text]{
+        width : 670px;
+        height : 80px;
+        padding : 10px;
+        border : 1px solid rgb(180, 180, 180);
+    
+        &::placeholder{
+            all : unset;
+            color : rgb(90, 90, 90);
+            vertical-align : text-top;
+        }
+    }
+
+    &_button{
+        display :block;
+        border : 1px solid rgb(180, 180, 180);
+        color : black;
+        width : 60px;
+        height : 30px;
+        text-align : center;
+        background-color: white;
+        margin-left : auto;
+        box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+        margin-top : 15px;
+
+        &:hover{
+            color : white;
+            background-color: #F39925;
+            transition: 0.3s;
+        }
+    }
 }
 
 #btn-comment{
     cursor: pointer;
-}
-
-.comment_add{
-    display : inline-block;
-    height : 50px;    
-    width : 700px;
-    border-bottom : solid 1px rgb(110, 110, 110);
-    position : relative;
-    margin-bottom: 2%;
 }
 
 .add_comment_list{
@@ -391,7 +507,7 @@ p{
     display : inline-block;
     position : relative;
     max-height : 500px;
-    width : 700px;
+    width : 600px;
     margin-bottom : 20px;
 }
 
@@ -399,42 +515,61 @@ p{
     display : inline-block;
     position : relative;
     max-height : 200px;
-    width : 700px
+    width : 700px;
+
+    &_author_info{
+        display : flex;
+        flex-direction: row;
+        height : 30px;
+        max-width : 300px;
+        padding : 10px 0px 5px 10px;
+            
+        &_image{
+                            flex : none;
+                            border-radius: 15px;
+                            width : 25px;
+                            height : 25px;
+                            margin-right : 10px;
+                        }
+        
+        &_name{
+                            flex : none;
+                            max-width : 100px;
+                            margin-right : 10px;
+                        }
+        
+        &_school{
+                            flex : none;
+                            max-width : 100px;
+                            margin-right : 10px;
+                        }
+        
+        &_time{
+                            flex : none;
+                            max-width : 200px;
+                        }
+    }
 }
 
 .add_comment_form{
     margin-top : 20px;
+    width : 690px;
 }
 
-.comment_edit{
-    width : 60px;
-    height : 30px;
-    margin-top: auto;
-    margin-left : auto;
-}
-
-.comment_delete{
-    width : 60px;
-    height : 30px;
-    margin-top: auto;
-}
 // 여기부터 footer
 .footer{
     background-color: rgb(56, 56, 56);
 }
 
-input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border : none;
-}
-
 input[type=text]{
-    border-radius: 4px;
-    width : 700px;
-    height : 50px;
-    border : 1px solid black;
+    width : 770px;
+    height : 80px;
     padding : 10px;
-    text-align : center;
+    border : 1px solid rgb(180, 180, 180);
+
+    &::placeholder{
+        all : unset;
+        color : rgb(90, 90, 90);
+        vertical-align : text-top;
+    }
 }

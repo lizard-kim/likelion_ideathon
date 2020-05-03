@@ -29,7 +29,13 @@
             <div class = "idea_container">
                 
                 <div class = "title">
-                    <p>북적북적</p>
+                    <div class = "title_name">
+                        <p>북적북적</p>
+                    </div>
+
+                    <div class = "title_basket">
+                        <p>15명이 찜했습니다</p>
+                    </div>
                 </div>
 
                 <div class = "sub_title">
@@ -54,158 +60,180 @@
 
                 <div class = "image">
                     <div class = "image_box">
-                        <img class = "slide" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
+                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
+                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
                     </div>
-                    <img class = "slide" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
-                    <img class = "slide" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
                 </div>
 
                 <div class = "description">
-                    <p>이렇고 저렇고</p><br>
-                    <p>이렇고 저렇고</p><br>
-                    <p>이렇고 저렇고</p>
+                    <div class = "description_box">
+                        <h5>이렇고 저렇고</h5>
+                        <h5>이렇고 저렇고</h5>
+                        <h5>이렇고 저렇고</h5>
+                    </div>
                 </div>
 
                 <div class = "bot">
-                    <div class = "bottom">
-                        <div class = "bottom_item">
-                            #북 트레일러
-                        </div>
-                        <div class = "bottom_item">
-                            #영상
-                        </div>
-                        <div class = "bottom_item">
-                            #플랫폼
-                        </div>
-                        <div class = "bottom_item">
-                            #북 트레일러
-                        </div>
-                        <div class = "bottom_item">
-                            #가나다라마바사아자차카타파하
-                        </div>
-                        <div class = "bottom_item">
-                            #북 트레일러
-                        </div>
-                        <div class = "bottom_item">
-                            #북 트레일러
-                        </div>
-                        <div class = "bottom_item">
-                            #북 트레일러
-                        </div>
-                        <div class = "bottom_item">
-                            #북 트레일러
-                        </div>
-                        <div class = "bottom_item">
-                            #북 트레일러
-                        </div>
-                        <div class = "bottom_item">
-                            #북 트레일러
-                        </div>
+                    <div class = "bot_box">
+                        <div class = "bot_box_hashbox">
+                            <div class = "bot_box_hashbox_hashtag">
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #북 트레일러
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #영상
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #플랫폼
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #북 트레일러
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #가나다라마바사아자차카타파하
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #북 트레일러
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #북 트레일러
+                                </div>
+                            </div>
                     </div>
     
-                    <div class = "edit">
-                        <div class = "edit_box1">
+                    <div class = "bot_box_edit">
+                        <div class = "bot_box_edit_box1">
                             <p>수정</p>
                         </div>
-                        <div class = "edit_box2">
+                        <div class = "bot_box_edit_box2">
                             <p>삭제</p>
                         </div>
                     </div>
                 </div>
         
-
+            </div>
             </div>
         </div>
     </div>
 
     <div class = "comment">
+        
         <div class = "no">
             
         </div>
 
-            <div class = "comments">
+        <div class = "comments">
                 
-                <div class = "comment_start">
-                    <div>댓글 달기</div>
-                </div>
+                <div class = "comments_box">
+                    <div class = "comments_box_input">
+                        <div class = "comments_box_input_start">
+                            <div class = "comments_box_input_start_image">
+                                <img src = "{% static 'img/1.png' %}" width = "25px" height = "25px">
+                            </div>
+                            <div class = "comments_box_input_start_school">
+                                <p>대학교</p>
+                            </div>
+                            <div class = "comments_box_input_start_name">
+                                <p>이름</p>
+                            </div>
+                        </div>
 
-                <div class = "comment_input">
-                    <div class = "comment_input_box1">
-                        <form action = "" class = "comment_form" method = POST>
+                        <form action = "" class = "comments_box_input_form" method = POST>
                             {% csrf_token %}
-                            <input type = "text" placeholder = "Show me The Opinion" name = "comment">
-                            <button type=submit >제출</button>
+                            <input type = "text" placeholder = "아이디어에 대한 의견을 자유롭게 작성해주세요!" name = "comment">
+                            <button type=submit class = "comments_box_input_form_button"><p>제출</p></button>
                         </form>
+
                     </div>
                 </div>
 
-                <div class = "comment_order">
-                    <div class = "order_item1">
-                        <h5>" "개의 댓글이 있습니다</h5>
-                    </div>
-                    
-                    <div class = "order_item2">
-                        <button type="menu">최신순</button>
-                        <button type="menu">답글순</button>
+                <div class = "comments_order_box">
+                    <div class = "comments_order_box_order">
+                        <div class = "comments_order_box_order_item1">
+                            <h5> 1 개의 댓글이 있습니다</h5>
+                        </div>
+                        
+                        <div class = "comments_order_box_order_item2">
+                            <button type="menu" class = "comments_order_box_order_item2_button">최신순</button>
+                            <button type="menu" class = "comments_order_box_order_item2_button">답글순</button>
+                        </div>
                     </div>
                 </div>
 
+                <div class = "comments_list">
                 
-                {% for comment in comment_list %}
-                    <div class = "comment_list">
-                        <div class = "comment_list_info">
-                            <div class = "comment_list_author">
-                                <div class = "author_image">
+                    <div class = "comments_box">
+                        {% for comment in comment_list %}
+                        <div class = "comments_real">
+                            <div class = "comments_author_info">
+                                <div class = "comments_author_info_image">
+                                    <img src = "{% static 'img/1.png' %}" width = "25px" height = "25px">
                                 </div>
-                                <div class = "comment_author">
+                                <div class = "comments_author_info_name">
                                     이름
                                 </div>
-                                <div class = "comment_school">
+                                <div class = "comments_author_info_school">
                                     대학교
                                 </div>
-                                <div class = "comment_time">
+                                <div class = "comments_author_info_time">
                                     {{comment.create_data}}
                                 </div>
                             </div>
-                        </div>
-                        
-                    
-                        <div class = "comment_list_content">
-                            <div class = "comment_content">
-                                <div class = "content_comment">
+
+                            <div class = "comments_content_box">
+
+                                <div class = "comments_content">
                                     {{comment.text}}         
                                     {{comment.pk}}                           
                                 </div>
-
-                                <div class = "comment_add">
-                                    <button type="menu" id = "btn-comment">답글</button>
+    
+                                <div class = "comments_add">
+                                    <button class = "comments_add_button" type="menu" id = "btn-comment">답글</button>
                                 </div>
-
+    
                                 <div id = "new_comment" class = "new_comment">
                                     <form action = "" class = "add_comment_form" method = POST>
                                         {% csrf_token %}
-                                        <input type = "text" placeholder = "Show me The Opinion" name = "addcomment">
-                                        <button type=submit >제출</button>
+                                        <input type = "text" class = "new_comment_on_input" placeholder = "댓글에 대한 답글을 입력해주세요" name = "addcomment">
+                                        <button type=submit class = "new_comment_on_button">제출</button>
                                     </form>
                                 </div>
-
+    
                                 <div id = "add_comment_list" class = "add_comment_list">
                                 {% for add_comments in addcomment_list %}
                                     <div class = "add_comment">
-                                        {% if comment.comment_pk == 1 %}
-                                        {{add_comments.text}}
-                                        {% endif %}
+                                        
+                                        <div class = "add_comment_author_info">
+                                            <div class = "add_comment_author_info_image">
+                                                <img src = "{% static 'img/2.jpg' %}" width = "25px" height = "25px">
+                                            </div>
+                                            <div class = "add_comment_author_info_name">
+                                                이름
+                                            </div>
+                                            <div class = "add_comment_author_info_school">
+                                                대학교
+                                            </div>
+                                            <div class = "add_comment_author_info_time">
+                                                {{add_comments.create_data}}
+                                            </div>
+                                        </div>
+
+                                        <div class = "add_comment_content">
+                                            {{add_comments.text}}
+                                        </div>
+
                                     </div>
-                                {% endfor %}
+                                {% endfor %}    
                                 </div>
-                                
+
                             </div>
                         </div>
-
-                    </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>                            
+                </div>
                 
-            </div>
+        </div>
+                
             
     </div>
 
