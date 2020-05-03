@@ -3,11 +3,6 @@ $background-color: none;
 
 @import "./typography";
 
-@mixin background-color($background-color: true) {
-    @if $background-color{
-        background-color: #000000;
-    }
-}
 @mixin w_h_size($w, $h){
     width : $w;
     height: $h;
@@ -70,9 +65,6 @@ header{
     .menu{
         float: right;
     }
-    &:hover{
-        @include background-color($background-color: true);
-    }
 }
 .change{
     background-color: black;
@@ -87,9 +79,9 @@ header{
     color: #000;
     text-decoration: none;
     span{
-      font-weight: 100;
+      font-weight: 200;
       transition: all .5s;
-      border-bottom: 1px solid;
+      border-bottom: 1px solid transparent;
     }
     span:nth-child(1){
       transition-delay: .1s;
@@ -97,7 +89,7 @@ header{
     
     &:hover{
       span{
-        font-weight: 700;
+        font-weight: 200;
       }
       span:nth-child(1){
         transition-delay: 0s;
@@ -459,7 +451,7 @@ hr {
     }   
     i{
         &:hover{
-            color:$lioncolor;
+            color:white;
         }
     } 
 }
