@@ -2,6 +2,8 @@
 @import '../../../mypage/static/style/typography';
 
 html{
+    display: flex;
+    flex-direction: column;
     margin: 0;
     height: 100%;
     overflow: auto;
@@ -9,6 +11,33 @@ html{
 }
 /* 앞으로의 모든 header들 */
 header{
+    position: fixed;
+    width: 97%;
+    flex-direction: row;
+    padding: 1%;
+    color: white;
+    align-items: center;
+    .logo{
+        width: 260px;
+        height: 31px;
+        left: 26px;
+        top: 30px;
+    }
+    a{  
+        color: white;
+        font-size: 20px;
+        margin: 10px;
+        text-decoration: none;
+    }
+    b{
+        color: white;
+    }
+    .menu{
+        float: right;
+    }
+    /*
+    position: fixed;
+    display: flex;
     margin: 20px;
     
     .logo{
@@ -28,10 +57,13 @@ header{
     .menu{
         float: right;
     }
+    */
 }
 
 /* Main Page */
 #main_body{
+    display: flex;
+    flex-direction: column;
     height: 100%;
     background-image: url(../img/hackerthon.png);
     background-position: center;
@@ -50,9 +82,10 @@ header{
 }
 
 .main_section{
+    display: flex;
+    flex-direction: column;
     /*height: 100%;*/
-    margin-top: 100px;
-    /*align-self: center;*/
+    margin: auto;
     text-align: center; 
     h1{
         font-weight: 600;
