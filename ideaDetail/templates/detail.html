@@ -8,43 +8,6 @@
   <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css"/> 
 </head>
 
-<<<<<<< HEAD
-=======
-<script type = "text/javascript">
-    var slideIndex = 1;
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-
-    
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("slide");
-
-        if (n > slides.length){ // 첫번째 사진 보여줘라
-            slideIndex = 1
-        }    
-
-        if (n < 1){ // 맨 오른쪽 사진 보여줘라
-            slideIndex = slides.length
-        }
-
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-
-        slides[slideIndex - 1].style.display = "block";  
-    }
-</script>
-
->>>>>>> f5f45de55c74e31cb6e029c1634dc54480b7550f
 <body>
 
 <div class = "container">
