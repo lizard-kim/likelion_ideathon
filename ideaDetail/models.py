@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils import timezone
-# from idea.models import Idea
+from idea.models import Idea
 # Create your models here.
 
 class Comment(models.Model):
-    # idea = models.ForeignKey(Idea, on_delete=models.CASCADE)
+    # idea_title = models.ForeignKey(Idea, on_delete=models.CASCADE, null = True, blank = True)
     comment_pk = models.AutoField(primary_key = True)
     text = models.CharField(max_length = 200)
     create_data = models.DateTimeField(default = timezone.now) # 생성날짜
