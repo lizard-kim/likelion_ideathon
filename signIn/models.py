@@ -11,10 +11,9 @@ from django.contrib.auth.models import User
     # first_name
     # last_name
 
-# Django User model과 onoToono으로 연결해준다
+# Django User model과 onoToone으로 연결해준다
 # 즉 User model 칼럼에 추가해주고 싶은거 추가하면 됨
 class Profile(models.Model):
-    profile_id = models.AutoField(primary_key=True, unique = True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_name = models.CharField(max_length=20 )
     user_school = models.CharField(max_length=20)
