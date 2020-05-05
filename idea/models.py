@@ -1,7 +1,8 @@
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
 
-class Idea (models.Model):
+class Idea(models.Model):
     image = models.ImageField()
     title = models.CharField(max_length = 100)
     sub_title = models.CharField(max_length = 100)
