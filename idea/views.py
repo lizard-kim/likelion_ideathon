@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-from django.shortcuts import render
-
-def idea(request):
-    return render(request, 'idea.html')
-=======
 import math
 from django.shortcuts import render
 from .models import Idea
@@ -16,4 +10,3 @@ def idea(request):
     posts = paginator.get_page(page) 
     page_range = 6
     return render(request, 'idea.html', {'ideas':ideas, 'posts':posts, })
->>>>>>> idea & detail 연결 및 수정

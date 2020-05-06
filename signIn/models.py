@@ -1,8 +1,6 @@
 from django.db import models
 
 # Create your models here.
-<<<<<<< HEAD
-=======
 
 from django.contrib.auth.models import User
 
@@ -25,4 +23,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(str(self.user_id)+ '번 ') + str(self.user_name)
->>>>>>> idea & detail 연결 및 수정

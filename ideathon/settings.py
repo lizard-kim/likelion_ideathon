@@ -113,11 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-<<<<<<< HEAD
-TIME_ZONE = 'UTC'
-=======
 TIME_ZONE = 'Asia/Seoul'
->>>>>>> idea & detail 연결 및 수정
 
 USE_I18N = True
 
