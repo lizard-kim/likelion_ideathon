@@ -92,21 +92,25 @@
     <hr style="width:90%; border: 1px solid rgb(0, 0, 0, 0.5);">
     <p class="idea_count">아이디어 <span class="idea_count__span">7</span>개</p>
     <div class="ideacards">
-        <a href="/">
-        <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div> <!--16:9-->
-            <span class="idea_name">hack your id</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
-            <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">신밧드의모험<i class="far fa-comment">&nbsp;3</i>
-            </div>
-        </div>   
-        </a>
+
+        {% for idea in posts %}
+          <a href="{% url 'detail' idea.id %}">
+          <div class="card ideacard card_href" style="display: inline;">
+              <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div> <!--16:9-->
+              <span class="idea_name">{{idea.idea_title}}</span>
+              <p>{{idea.idea_subtitle}}</p>
+              <div class="user_div"><hr>
+              <img class="cardprofile" src="{% static 'image/lion.png'%}">{{idea.user}}<i class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
+              </div>
+          </div>   
+          </a>
+        {% endfor %}
         <a href="/">
         <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg2.jpg' %}"></div> <!--16:9-->
             <span class="idea_name">I have a dream</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
+
+            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
             <div class="user_div"><hr>
             <img class="cardprofile" src="{% static 'image/lion.png'%}">달려라하니<i class="far fa-comment">&nbsp;12</i>
             </div>
@@ -116,7 +120,7 @@
         <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg3.png' %}"></div> <!--16:9-->
             <span class="idea_name">자몽허니블랙티</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
+            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
             <div class="user_div"><hr>
             <img class="cardprofile" src="{% static 'image/lion2.png'%}">톰과제리<i class="far fa-comment">&nbsp;0</i>
             </div>
@@ -126,7 +130,7 @@
         <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg4.jpg' %}"></div> <!--16:9-->
             <span class="idea_name">민초에미초</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
+            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
             <div class="user_div"><hr>
             <img class="cardprofile" src="{% static 'image/lion.png'%}">짱구<i class="far fa-comment">&nbsp;3</i>
             </div>
@@ -136,7 +140,7 @@
         <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg5.jpg' %}"></div> <!--16:9-->
             <span class="idea_name">toAnyone</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
+            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
             <div class="user_div"><hr>
             <img class="cardprofile" src="{% static 'image/lion.png'%}">오즈의마법사<i class="far fa-comment">&nbsp;6</i>
             </div>
@@ -146,7 +150,7 @@
         <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg11.jpg' %}"></div> <!--16:9-->
             <span class="idea_name">생각이안나</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
+            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
             <div class="user_div"><hr>
             <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
             </div>
@@ -163,6 +167,29 @@
             </div> 
             </a> 
     </div> 
+          <div class="card ideacard card_href" style="display: inline;">
+              <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg9.jpg' %}"></div> <!--16:9-->
+              <span class="idea_name">생각이안나</span>
+              <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
+              <div class="user_div"><hr>
+              <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
+              </div>
+          </div> 
+        </a> 
+    </div> 
+    <div class="pgn_div">
+      {% if posts.has_previous %}
+        <a href="?page=1" class="pgn">First</a>
+        <a href="?page={{posts.previous_page_number}}" class="pgn">Previous</a>
+      {% endif %}
+        <span class="pgn">{{posts.number}}</span>
+        <span class="pgn"> of </span>
+        <span class="pgn">{{posts.paginator.num_pages}}</span>
+      {% if posts.has_next %}
+          <a href="?page={{posts.next_page_number}}" class="pgn">Next</a>
+          <a href="?page={{posts.paginator.num_pages}}" class="pgn">Last</a>
+      {% endif %}
+    </div>
 </body>
 <footer class="footer">
     <div class="">
