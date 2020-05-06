@@ -80,7 +80,7 @@
             </div>
           </div>
         </div>
-        <div class="down" onclick="fnMove('1')"><i class="fas fa-arrow-down"></i></div class="down">
+        <div class="down" onclick="fnMove('1')"><i class="fas fa-arrow-down"></i></div class="down"></div>
     </div>
     <div id="div1"></div>
     <div class="search">
@@ -92,7 +92,6 @@
     <hr style="width:90%; border: 1px solid rgb(0, 0, 0, 0.5);">
     <p class="idea_count">아이디어 <span class="idea_count__span">7</span>개</p>
     <div class="ideacards">
-
         {% for idea in posts %}
           <a href="{% url 'detail' idea.id %}">
           <div class="card ideacard card_href" style="display: inline;">
@@ -157,26 +156,25 @@
         </div> 
         </a>
         <a href="/">
-            <div class="card ideacard card_href" style="display: inline;">
-                <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg9.jpg' %}"></div> <!--16:9-->
-                <span class="idea_name">생각이안나</span>
-                <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
-                <div class="user_div"><hr>
-                <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
-                </div>
-            </div> 
-            </a> 
-    </div> 
           <div class="card ideacard card_href" style="display: inline;">
               <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg9.jpg' %}"></div> <!--16:9-->
               <span class="idea_name">생각이안나</span>
-              <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
+              <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
               <div class="user_div"><hr>
               <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
               </div>
           </div> 
         </a> 
+        <div class="card ideacard card_href" style="display: inline;">
+            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg9.jpg' %}"></div> <!--16:9-->
+            <span class="idea_name">생각이안나</span>
+            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
+            <div class="user_div"><hr>
+            <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
+            </div>
+        </div> 
     </div> 
+  </div> 
     <div class="pgn_div">
       {% if posts.has_previous %}
         <a href="?page=1" class="pgn">First</a>

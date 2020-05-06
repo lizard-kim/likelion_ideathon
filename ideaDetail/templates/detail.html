@@ -8,9 +8,6 @@
   <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css"/> 
 </head>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 <script type = "text/javascript">
     var slideIndex = 1;
 
@@ -45,9 +42,6 @@
     }
 </script>
 
->>>>>>> f5f45de55c74e31cb6e029c1634dc54480b7550f
-=======
->>>>>>> idea & detail 연결 및 수정
 <body>
 
 <div class = "container">
@@ -77,31 +71,12 @@
             <div class = "idea_container">
                 
                 <div class = "title">
-<<<<<<< HEAD
-                    <p>북적북적</p>
-=======
                     <p>{{detail.idea_title}}</p>
->>>>>>> idea & detail 연결 및 수정
                 </div>
 
                 <div class = "sub_title">
 
                     <div class = "sub_title_name">
-<<<<<<< HEAD
-                        <p>북 트레일러 영상 공유 플래폼</p>
-                    </div>
-
-                    <div class = "sub_title_school">
-                        <p>멋사대학교</p>
-                    </div>
-
-                    <div class = "sub_title_author">
-                        <p>홍길동</p>
-                    </div>
-
-                    <div class = "sub_title_time">
-                        <p>작성시간</p>
-=======
                         <p>{{detail.idea_subtitle}}</p>
                     </div>
 
@@ -114,8 +89,7 @@
                     </div>
 
                     <div class = "sub_title_time">
-                        <p>{{detail.idea_create_data}}</p>
->>>>>>> idea & detail 연결 및 수정
+                        <p>{{detail.idea_create_date}}</p>
                     </div>
 
                 </div>
@@ -143,46 +117,6 @@
                 </div>
 
                 <div class = "description">
-<<<<<<< HEAD
-                    <p>이렇고 저렇고</p><br>
-                    <p>이렇고 저렇고</p><br>
-                    <p>이렇고 저렇고</p>
-                </div>
-                <div class = "bottom">
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #영상
-                    </div>
-                    <div class = "bottom_item">
-                        #플랫폼
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #가나다라마바사아자차카타파하
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-=======
                     <p>{{detail.idea_description}}</p>
                 </div>
                 <div class = "bottom">
@@ -191,19 +125,14 @@
                         <span>#{{i}}</span>
                     </div>
                     {% endfor %}
->>>>>>> idea & detail 연결 및 수정
                 </div>
 
                 <div class = "edit">
                     <div class = "edit_box1">
-                        <p>수정</p>
+                        <a href="{% url 'edit' detail.id %}">수정</a>
                     </div>
                     <div class = "edit_box2">
-<<<<<<< HEAD
-                        <p>삭제</p>
-=======
                         <a href="{% url 'delete' detail.id %}">삭제</a><!--글 삭제-->
->>>>>>> idea & detail 연결 및 수정
                     </div>
                 </div>
             </div>
@@ -246,11 +175,7 @@
                             <p>수정</p>
                         </div>
                         <div class = "comment_delete">
-<<<<<<< HEAD
-                            <p>삭제</p>
-=======
                             <a href="/">삭제</a>
->>>>>>> idea & detail 연결 및 수정
                         </div>
                     </div>
 
