@@ -10,7 +10,7 @@ div::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
 
-body{
+html, body{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -116,7 +116,7 @@ body{
 }
 
 /* ============ box layout ============== */
-
+/*
 @mixin box {
     position: relative;
     flex-direction: column;
@@ -169,7 +169,7 @@ body{
         display: block;
     }
 }
-
+*/
 /* ============ button layout ============== */
 
 @mixin clearbtn ($wid : 120px, $hig : 40px) {
