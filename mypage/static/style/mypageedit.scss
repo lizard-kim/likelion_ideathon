@@ -1,66 +1,161 @@
 @import './typography';
 @import './layout';
 
-.myInfoEdit{
+.mypage{
     padding: 4% 8%;
-    flex-direction: row;
-
-    &__photo{
-        justify-content: center;
-        padding: 50px;
+    &__top{
+        flex-direction: row;
+        height: 550px;
+        //flex-flow: row wrap;
+    }
+    &__bottom{
         flex-direction: column;
-        align-items: center;
-        img{
-            width: 300px;
-            margin-bottom: 72px;
+    }
+}
+
+.userinfo{
+    flex: 1;
+    //max-height: 550px;
+    &__namebox{
+        position: relative;
+        flex-direction: row;
+        height: 200px;
+        padding: 24px 40px;
+        background-color: white;
+        border: 1px solid #dadada;
+        border-radius: 10px;
+        &__profile{
+            width: 140px;
+            height: 140px;
+            margin-right: 40px;
+        }
+        &__name{
+            margin: auto 0;
+            .name{
+                font-size: 44px;
+                font-weight: 500;
+                margin: 0;
+            }
+            .email{
+                font-size: 16px;
+                font-weight: 400;
+                margin: 0;
+                margin-top: 5px;
+                color: gray;
+            }
         }
         .edit{
-            @include clearbtn;
+            display: none;
+            text-decoration: none;
+            color: black;
         }
-        .edit:hover{
-            color: white;
-            background-color: #dadada;
+        .fa-edit{
+            position: absolute;
+            right: 32px;
+        }
+        &:hover .edit{
+            display: block;
         }
     }
-
-    &__info{
+    &__infobox{
         @include box;
-        flex: 1;
-        margin-left: 40px;
+        min-height: 250px;
+        max-height: 300px;
+        margin-top: 40px;
+        .infowrap{
+            display: flex;
+            margin: auto 0;
+        }
+    }
+}
 
-        .btnbox{
-            flex: 1;
-            flex-direction: row;
-            .init{
-                @include clearbtn(100px, 30px);
-                font-weight: 300;
-                margin: 10px;
-                margin-left: auto;
-                margin-top: auto;
-            }
-            .init:hover{
-                color: white;
-                background-color: #dadada;
-            }
-            .confirm{
-                @include clearbtn(100px, 30px);
-                background-color: #F39925;
-                border: 1px solid #F39925;
-                font-weight: 300;
-                color: white;
-                margin: 10px;
-                margin-top: auto;
-            }
-            .confirm:hover{
-                color: #F39925;
-                background-color: white;
-            }
+.myidea{
+    @include box;
+    overflow: hidden;
+    flex: 1;
+    margin-left: 40px;
+    max-height: 500px;
+    &__item{
+        max-height: 200px;
+        overflow: hidden;
+        background-color: #e5e5e5;
+        padding: 20px;
+        padding-bottom: 5px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    &__item:hover{
+        background-color: #F39925;
+    }
+    &__comments{
+        flex-direction: row;
+        margin: 12px 0;
+        .fa-circle{
+            position: relative;
+            margin-left: -10px;
+            color: rgb(255, 1, 86);
         }
-        .email{
+        .num{
+            margin: auto 0;
+            margin-left: 5px;
             font-size: 20px;
-            margin: 0 4px;
-            margin-bottom: 8px;
+            font-weight: bold;
         }
+    }
+    .comment_box{
+        max-height: 200px;
+        overflow-y: scroll;
+    }
+}
+
+.basket{
+    flex-direction: column;
+    flex: 1;
+    padding: 24px 40px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 60px;
+    @include box;
+    &__itemwrap{
+        flex-direction: row;
+        overflow-x: scroll;
+    }
+}
+
+.ideaitem{
+    width: 300px;
+    height: 350px;
+    border: 1px solid black;
+    border-radius: 35px;
+    margin-right: 40px;
+    &__title{
+        flex-direction: row;
+        height: 50px;
+        border-bottom: 1px solid black;
+        padding-left: 20px;
+        .profile{
+            width: 40px;
+            height: 40px;
+            margin: auto 0;
+            margin-right: 10px;
+        }
+        .text{
+            margin: auto 0;
+        }
+    }
+    &__thumnail{
+        display: block;
+        width: 300px;
+        height: 225px;
+        img{
+            width: 300px;
+            height: 100%;
+        }
+    }
+    &__description{
+        margin: auto 0;
+        padding: 5px 10px;
+        line-height: 24px;
     }
 }
 
