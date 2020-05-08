@@ -186,7 +186,7 @@
                                 </div>
     
                                 <div class = "comments_add">
-                                    <button class = "comments_add_button" type="menu" id = "btn-comment">답글</button>
+                                    <button class = "comments_add_button" type="menu" name = "btn-comment">답글</button>
                                 </div>
     
                                 <div id = "add_comment_list" class = "add_comment_list">
@@ -249,7 +249,7 @@
 
     const add_comment = document.getElementById("new_comment");
     const add_comment_list = document.getElementById("add_comment_list")
-    const btn_comment = document.getElementById('btn-comment');
+    let btn_comment = document.getElementsByName('btn-comment');
 
     const NEW_COMMENT_ON = "new_comment_on";
     const NEW_COMMENT = "new_comment"
@@ -270,10 +270,14 @@
     }
 
     function init(){
-        btn_comment.addEventListener("click", handleClick);
+        console.log(btn_comment.length);
+        for (let i=0; i<btn_comment.length; i++){
+            btn_comment[i].addEventListener("click", handleClick);
+        }
     };
 
     init();    
+
 </script>
 
 </html>
