@@ -26,42 +26,37 @@
         </div>
 
         <div class = "idea">
-            <div class = "idea_container">
-                
-                <div class = "title">
-                    <div class = "title_name">
-                        <p>북적북적</p>
-                    </div>
 
-                    <div class = "title_basket">
-                        <p>15명이 찜했습니다</p>
-                    </div>
+            <div class = 'idea_container'>
+
+                <div class = "title">
+                        <div class = "title_name">
+                            <p>북적북적</p>
+                        </div>
+
+                        <div class = "title_sub">
+                            <p>북 트레일러 영상 공유 플래폼</p>
+                        </div>
                 </div>
 
-                <div class = "sub_title">
-
-                    <div class = "sub_title_name">
-                        <p>북 트레일러 영상 공유 플래폼</p>
-                    </div>
-
-                    <div class = "sub_title_school">
+                <div class = "author_info">
+                    <div class = "author_info_school">
                         <p>멋사대학교</p>
                     </div>
 
-                    <div class = "sub_title_author">
+                    <div class = "author_info_name">
                         <p>홍길동</p>
                     </div>
 
-                    <div class = "sub_title_time">
+                    <div class = "author_info_time">
                         <p>작성시간</p>
                     </div>
-
                 </div>
 
                 <div class = "image">
                     <div class = "image_box">
-                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
-                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "700px" height = "400px">
+                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "800px" height = "100%">
+                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "800px" height = "100%">
                     </div>
                 </div>
 
@@ -75,6 +70,7 @@
 
                 <div class = "bot">
                     <div class = "bot_box">
+
                         <div class = "bot_box_hashbox">
                             <div class = "bot_box_hashbox_hashtag">
                                 <div class = "bot_box_hashbox_hashtag_item">
@@ -99,20 +95,22 @@
                                     #북 트레일러
                                 </div>
                             </div>
-                    </div>
+                        </div>
     
-                    <div class = "bot_box_edit">
-                        <div class = "bot_box_edit_box1">
-                            <p>수정</p>
+                        <div class = "bot_box_edit">
+                            <div class = "bot_box_edit_box1">
+                                <p>수정</p>
+                            </div>
+                            <div class = "bot_box_edit_box2">
+                                <p>삭제</p>
+                            </div>
                         </div>
-                        <div class = "bot_box_edit_box2">
-                            <p>삭제</p>
-                        </div>
+
                     </div>
                 </div>
-        
+
             </div>
-            </div>
+
         </div>
     </div>
 
@@ -123,7 +121,7 @@
         </div>
 
         <div class = "comments">
-                
+            <div class = "comments_container">
                 <div class = "comments_box">
                     <div class = "comments_box_input">
                         <div class = "comments_box_input_start">
@@ -191,15 +189,12 @@
                                     <button class = "comments_add_button" type="menu" id = "btn-comment">답글</button>
                                 </div>
     
-                                <div id = "new_comment" class = "new_comment">
-                                    <form action = "" class = "add_comment_form" method = POST>
-                                        {% csrf_token %}
-                                        <input type = "text" class = "new_comment_on_input" placeholder = "댓글에 대한 답글을 입력해주세요" name = "addcomment">
-                                        <button type=submit class = "new_comment_on_button">제출</button>
-                                    </form>
-                                </div>
-    
                                 <div id = "add_comment_list" class = "add_comment_list">
+
+                                    <div class = 'add_comment_count'>
+                                        <h5> 1 개의 답글</h5>
+                                    </div>
+
                                 {% for add_comments in addcomment_list %}
                                     <div class = "add_comment">
                                         
@@ -224,6 +219,13 @@
 
                                     </div>
                                 {% endfor %}    
+                                <div id = "new_comment" class = "new_comment">
+                                    <form action = "" class = "new_comment_form" method = POST>
+                                        {% csrf_token %}
+                                        <input type = "text" class = "new_comment_on_input" placeholder = "댓글에 대한 답글을 입력해주세요" name = "addcomment">
+                                        <button type=submit class = "new_comment_on_button">제출</button>
+                                    </form>
+                                </div>
                                 </div>
 
                             </div>
@@ -231,10 +233,9 @@
                         {% endfor %}
                     </div>                            
                 </div>
-                
+            </div>
         </div>
-                
-            
+
     </div>
 
     <div class = "footer">
