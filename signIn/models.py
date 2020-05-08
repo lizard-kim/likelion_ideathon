@@ -9,7 +9,7 @@ from django.conf import settings
 
 # Django User model과 onoToone으로 연결해준다
 # 즉 User model 칼럼에 추가해주고 싶은거 추가하면 됨
-class Profile1(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True, blank = True)
     # related_name을 설정해주면 model.obejects.all() 할때처럼 DB에 접근할때 manager 이름을 지정할 수 있는 것
     # db_column = 내가 FK 어떤 칼럼 지정할껀지 정하는 것
