@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
-from idea.models import Idea_Comments, Idea_AddComments
+from django.shortcuts import render, redirect, get_object_or_404
+from idea.models import Idea_Comments, Idea_AddComments, Idea
 from django.utils import timezone
 
-def detail(request):
+def detail(request, detail_id):
     
     if request.method == 'POST':
 
@@ -27,7 +27,32 @@ def detail(request):
         comment_list = Idea_Comments.objects.all()
         addcomment_list = Idea_AddComments.objects.all()
 
+        idea_detail = get_object_or_404(Idea, pk = detail_id)
+        full_hash_tag = idea_detail.idea_hashtag
+        hash_tag = full_hash_tag.replace(',','').split()
+
         return render(request, 'detail.html',{
             'comment_list' : comment_list,
-            'addcomment_list' : addcomment_list
+            'addcomment_list' : addcomment_list,
+            'detail':idea_detail,
+            'hasg_tag':hash_tag
         })
+
+def delete(request, detail_id):
+    idea_detail = get_object_or_404(Idea, pk = detail_id)
+    idea_detail.delete()
+    return redirect('idea')
+
+def edit(request, detail_id):
+    idea_detail = get_object_or_404(Idea, pk = detail_id)
+
+    if request.method == 'POST':
+        idea_detail.idea_title = request.POST['IdeaName']
+        idea_detail.idea_subtitle = request.POST['IdeaSubtitle']
+        idea_detail.idea_description = request.POST['IdeaContent']
+        #idea_detail.idea_image
+        idea_detail.idea_hashtag = request.POST['IdeaHashTag']
+        idea_detail.save()
+        return redirect('/detail/' + str(detail_id))
+    else:
+        return render(request, 'submit.html', {'idea_detail':idea_detail})

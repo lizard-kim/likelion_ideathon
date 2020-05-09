@@ -31,25 +31,25 @@
 
                 <div class = "title">
                         <div class = "title_name">
-                            <p>북적북적</p>
+                            <p>{{detail.idea_title}}</p>
                         </div>
 
                         <div class = "title_sub">
-                            <p>북 트레일러 영상 공유 플래폼</p>
+                            <p>{{detail.idea_subtitle}}</p>
                         </div>
                 </div>
 
                 <div class = "author_info">
                     <div class = "author_info_school">
-                        <p>멋사대학교</p>
+                        <p>{{detail.user.profile.user_school}}}</p>
                     </div>
 
                     <div class = "author_info_name">
-                        <p>홍길동</p>
+                        <p>{{detail.user.profile.user_name}}}</p>
                     </div>
 
                     <div class = "author_info_time">
-                        <p>작성시간</p>
+                        <p>{{detail.user.profile.create_data}}}</p>
                     </div>
                 </div>
 
@@ -62,9 +62,7 @@
 
                 <div class = "description">
                     <div class = "description_box">
-                        <h5>이렇고 저렇고</h5>
-                        <h5>이렇고 저렇고</h5>
-                        <h5>이렇고 저렇고</h5>
+                        <p>{{detail.idea_description}}</p>
                     </div>
                 </div>
 
@@ -73,45 +71,31 @@
 
                         <div class = "bot_box_hashbox">
                             <div class = "bot_box_hashbox_hashtag">
-                                <div class = "bot_box_hashbox_hashtag_item">
-                                    #북 트레일러
-                                </div>
-                                <div class = "bot_box_hashbox_hashtag_item">
-                                    #영상
-                                </div>
-                                <div class = "bot_box_hashbox_hashtag_item">
-                                    #플랫폼
-                                </div>
-                                <div class = "bot_box_hashbox_hashtag_item">
-                                    #북 트레일러
-                                </div>
-                                <div class = "bot_box_hashbox_hashtag_item">
-                                    #가나다라마바사아자차카타파하
-                                </div>
-                                <div class = "bot_box_hashbox_hashtag_item">
-                                    #북 트레일러
-                                </div>
-                                <div class = "bot_box_hashbox_hashtag_item">
-                                    #북 트레일러
-                                </div>
+                                {% for i in hasg_tag %}
+                                    <div class = "bot_box_hashbox_hashtag_item">
+                                        #{{i}}
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
     
                         <div class = "bot_box_edit">
                             <div class = "bot_box_edit_box1">
-                                <p>수정</p>
+                                <a href="{% url 'edit' detail.id %}">수정</a>
                             </div>
                             <div class = "bot_box_edit_box2">
-                                <p>삭제</p>
+                                <a href="{% url 'delete' detail.id %}">삭제</a><!--글 삭제-->
                             </div>
                         </div>
 
                     </div>
+            
                 </div>
-
+            
             </div>
 
         </div>
+        
     </div>
 
     <div class = "comment">
@@ -150,10 +134,15 @@
                         <div class = "comments_order_box_order_item1">
                             <h5> 1 개의 댓글이 있습니다</h5>
                         </div>
+<<<<<<< HEAD
                         
                         <div class = "comments_order_box_order_item2">
                             <button type="menu" class = "comments_order_box_order_item2_button">최신순</button>
                             <button type="menu" class = "comments_order_box_order_item2_button">답글순</button>
+=======
+                        <div class = "comment_delete">
+                            <a href="/">삭제</a>
+>>>>>>> dabf21a2724a8b02928f9a073f7cc7a7c5d1dc0e
                         </div>
                     </div>
                 </div>

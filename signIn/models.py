@@ -7,7 +7,6 @@ from idea.models import Idea
     # email
     # first_name
     # last_name
-
 # Django User model과 onoToone으로 연결해준다
 # 즉 User model 칼럼에 추가해주고 싶은거 추가하면 됨
 class Profile(models.Model):
