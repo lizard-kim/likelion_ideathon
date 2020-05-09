@@ -1,13 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import '../../../mypage/static/style/typography';
 
 html{
+    display: flex;
+    flex-direction: column;
     margin: 0;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
     font-family: 'Noto Sans', sans-serif;
 }
 /* 앞으로의 모든 header들 */
 header{
+    position: fixed;
+    width: 97%;
+    flex-direction: row;
+    padding: 1%;
+    color: white;
+    align-items: center;
+    .logo{
+        width: 260px;
+        height: 31px;
+        left: 26px;
+        top: 30px;
+    }
+    a{  
+        color: white;
+        font-size: 20px;
+        margin: 10px;
+        text-decoration: none;
+    }
+    b{
+        color: white;
+    }
+    .menu{
+        float: right;
+    }
+    /*
+    position: fixed;
+    display: flex;
     margin: 20px;
     
     .logo{
@@ -27,12 +57,15 @@ header{
     .menu{
         float: right;
     }
+    */
 }
 
 /* Main Page */
 #main_body{
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../img/hackerthon.jpg);
+    background-image: url(../img/hackerthon.png);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
@@ -49,7 +82,10 @@ header{
 }
 
 .main_section{
-    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    /*height: 100%;*/
+    margin: auto;
     text-align: center; 
     h1{
         font-weight: 600;
@@ -58,19 +94,22 @@ header{
         color: white;
     }
     h4{
+        font-size: 20px;
+        margin-top: 15px;
         margin-bottom: 45px;
         color: white;
     }
     a{
         button{
-            width: 150px;
-            height: 35px;
+            width: 300px;
+            height: 50px;
             background: rgba(255,255,255,0.7);
             border-style: none;
             border-radius: 10px;
             outline: none;
-            font-size: 15px;
+            font-size: 24px;
             font-weight: bold;
+            margin-bottom: 20px;
         }
         
     }

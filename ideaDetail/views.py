@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from ideaDetail.models import Comment, AddComment
+from idea.models import Idea_Comments, Idea_AddComments
 from django.utils import timezone
 
 def detail(request):
@@ -10,13 +10,13 @@ def detail(request):
         addcomment = request.POST.get('addcomment', 0)
 
         if 'comment' in request.POST:
-            comment = Comment()
+            comment = Idea_Comments()
             comment.text = request.POST['comment']
             comment.create_data = timezone.datetime.now()
             comment.save()
 
         elif 'addcomment' in request.POST:
-            addcomment = AddComment()
+            addcomment = Idea_AddComments()
             addcomment.text = request.POST['addcomment']
             addcomment.create_data = timezone.datetime.now()
             addcomment.save()
@@ -24,8 +24,8 @@ def detail(request):
         return redirect('detail')
 
     else:
-        comment_list = Comment.objects.all()
-        addcomment_list = AddComment.objects.all()
+        comment_list = Idea_Comments.objects.all()
+        addcomment_list = Idea_AddComments.objects.all()
 
         return render(request, 'detail.html',{
             'comment_list' : comment_list,

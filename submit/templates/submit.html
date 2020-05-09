@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <title>Submit Idea Page</title>
         <link rel="stylesheet" href="{% sass_src 'style/submit.scss' %}" type="text/css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     </head>
     <body id="submit_body">
         <!-- submit idea page header -->
@@ -29,68 +30,91 @@
                     <input type="text" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요."/>
                 </div>
                 <div>
-                    <label for="IdeaContent">설명</label>
+                    <label for="IdeaName">서브 타이틀</label>
                 </div>
                 <div class="InputBox">
-                    <input type="textarea" class="InputTextArea" name="IdeaContent" placeholder="본인의 아이디어를 뽐내주세요!" />
+                    <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글."/>
                 </div>
+                <div>
+                    <label for="IdeaContent">설명</label>
+                </div>
+                <div>
+                    <textarea class="InputTextArea" name="IdeaContent" placeholder="본인의 아이디어를 뽐내주세요!"></textarea>
+                </div>
+            </section>
+            <!-- 오른쪽 섹션 -->
+            <section id="submit_right">
+                <div class="input_wrap">
+                    <label>이미지</label>
+                    <a href="javascript:" onclick="fileUploadAction();" class="my_botton">upload</a>
+                    <input type="file" id="input_imgs" multiple/>
+                </div>
+                <div>
+                    <div class="imgs_wrap">
+                        <img id="img" />
+                    </div>
+                </div>
+                
                 <div>
                     <label for="IdeaHashTag">해시태그</label>
                 </div>
                 <div class="InputBox">
                     <input type="text" class="InputText" name="IdeaHashTag" placeholder="#교육, #문화" />
                 </div>
-
-            </section>
-            <!-- 오른쪽 섹션 -->
-            <section id="submit_right">
                 <div>
-                    <label for="IdeaImage">이미지</label>
-                    <input type="file" multiple id="IdeaImage" name="IdeaImage" accept="image/gif, image/jpeg, image/jpg, image/png" />
-                </div>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td class="tri"><button class="triB">◀</button></td>
-                            <td id="IdeaPreview"></td>
-                            <td class="tri"><button class="triB">▶</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div>
+                    <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
                     <button type="submit" id="submitB">등록</button>
                 </div>
             </section>
         </form>
 
     <!-- image 업로드할 때, 바로 미리보기 뜨게 하기 위한 script 코드 -->
-    <script>
-        var upload = document.querySelector('#IdeaImage');
-        var preview = document.querySelector('#IdeaPreview');
-        /* FileReader 객체 생성 */
-        var reader = new FileReader();
+    <script type="text/javascript">
+        var sel_files =[];
 
-        /* reader 시작 시 함수 구현 */
-        reader.onload = (function(){
+        $(document).ready(function() {
+            $("#input_imgs").on("change", handleImgFileSelect);
+        });
 
-            this.image = document.createElement('img');
-            var vm = this;
+        function fileUploadAction() {
+            console.log("fileUploadAction");
+            $("#input_imgs").trigger('click');
+        }        
 
-            return function(e){
-                vm.image.src = e.target.result
-            }
-        })()
+        function handleImgFileSelect(e) {
+            sel_files = [];
+            $(".imgs_wrap").empty();
 
-        upload.addEventListener('change', function(e){
-            var get_file = e.target.files;
+            var files = e.target.files;
+            var filesArr = Array.prototype.slice.call(files);
 
-            
-            if(get_file){
-                reader.readAsDataURL(get_file[0]);
-            }
+            var index = 0;
+            filesArr.forEach(function(f) {
+                if(!f.type.match("image.*")){
+                    alert("이미지 파일만 업로드 가능합니다.");
+                    return;
+                }
+                sel_files.push(f);
 
-            preview.appendChild(image);
-        })
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+                    $(".imgs_wrap").append(html);
+                    index++;
+                }
+                reader.readAsDataURL(f);
+            });
+        }
+
+        function deleteImageAction(index){
+            console.log("index : "+index);
+            sel_files.splice(index, 1);
+
+            var img_id = "#img_id_"+index;
+            $(img_id).remove();
+
+            console.log(sel_files);
+        }
         
     </script>
     </body>
