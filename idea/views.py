@@ -4,7 +4,7 @@ from .models import Idea
 from django.core.paginator import Paginator
 
 def idea(request):
-    ideas = Idea.objects.all().order_by('-idea_create_date')
+    ideas = Idea.objects.all().order_by('-idea_create_data')
     paginator = Paginator(ideas, 12)
     page = request.GET.get('page')
     posts = paginator.get_page(page) 
