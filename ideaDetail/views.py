@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from idea.models import Idea_Comments, Idea_AddComments, Idea
 from django.utils import timezone
+from signIn.models import Profile
 
 def detail(request, detail_id):
     
@@ -28,6 +29,8 @@ def detail(request, detail_id):
         addcomment_list = Idea_AddComments.objects.all()
 
         idea_detail = get_object_or_404(Idea, pk = detail_id)
+        user = idea_detail.user
+        user_profile =  get_object_or_404(Profile, user = user)
         full_hash_tag = idea_detail.idea_hashtag
         hash_tag = full_hash_tag.replace(',','').split()
 
@@ -35,7 +38,8 @@ def detail(request, detail_id):
             'comment_list' : comment_list,
             'addcomment_list' : addcomment_list,
             'detail':idea_detail,
-            'hasg_tag':hash_tag
+            'hasg_tag':hash_tag,
+            'user_profile' : user_profile,
         })
 
 def delete(request, detail_id):

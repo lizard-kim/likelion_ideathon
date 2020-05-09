@@ -113,11 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-<<<<<<< HEAD
-TIME_ZONE = 'asia/Seoul'
-=======
 TIME_ZONE = 'Asia/Seoul'
->>>>>>> dabf21a2724a8b02928f9a073f7cc7a7c5d1dc0e
 
 USE_I18N = True
 
