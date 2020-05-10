@@ -8,221 +8,234 @@
   <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css"/> 
 </head>
 
-<<<<<<< HEAD
-=======
-<script type = "text/javascript">
-    var slideIndex = 1;
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-
-    
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("slide");
-
-        if (n > slides.length){ // 첫번째 사진 보여줘라
-            slideIndex = 1
-        }    
-
-        if (n < 1){ // 맨 오른쪽 사진 보여줘라
-            slideIndex = slides.length
-        }
-
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-
-        slides[slideIndex - 1].style.display = "block";  
-    }
-</script>
-
->>>>>>> f5f45de55c74e31cb6e029c1634dc54480b7550f
 <body>
 
 <div class = "container">
 
     <div class = "header">
-
-        <div class = "header_title">
-            LikeLion Ideathon
-        </div>
-
-        <!-- <div class = "header_box1">
-            <p>아기사자</p>
-        </div>
-        <div class = "header_box2">
-            mypage
-        </div>
-        <div class = "header_box3">
-            logout
-        </div> -->
-
+        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
+        <span class="menu">
+            <a href="#">Log out</a>
+            |
+            <a href="#">My Page</a>
+        </span>
     </div>
+
     <div class = "content">
         <div class = "no">
         </div>
 
         <div class = "idea">
-            <div class = "idea_container">
-                
+
+            <div class = 'idea_container'>
+
                 <div class = "title">
-                    <p>북적북적</p>
+                        <div class = "title_name">
+                            <p>북적북적</p>
+                        </div>
+
+                        <div class = "title_sub">
+                            <p>북 트레일러 영상 공유 플래폼</p>
+                        </div>
                 </div>
 
-                <div class = "sub_title">
-
-                    <div class = "sub_title_name">
-                        <p>북 트레일러 영상 공유 플래폼</p>
-                    </div>
-
-                    <div class = "sub_title_school">
+                <div class = "author_info">
+                    <div class = "author_info_school">
                         <p>멋사대학교</p>
                     </div>
 
-                    <div class = "sub_title_author">
+                    <div class = "author_info_name">
                         <p>홍길동</p>
                     </div>
 
-                    <div class = "sub_title_time">
+                    <div class = "author_info_time">
                         <p>작성시간</p>
                     </div>
-
                 </div>
 
                 <div class = "image">
-                    
-                        <a onclick="plusSlides(-1)">
-                            <div class = "prev">
-                                왼쪽
-                            </div>
-                        </a>
-                        
-                        <div class = "image_box">
-                            <img class = "slide" src = "{% static 'img/1.png' %}" width = "400px" height = "400px">
-                            <img class = "slide" src = "{% static 'img/2.JPG' %}" width = "400px" height = "400px">
-                            <img class = "slide" src = "{% static 'img/3.JPG' %}" width = "400px" height = "400px">
-                        </div>
-                        
-                        <a onclick="plusSlides(1)">
-                            <div class = "next">
-                                오른쪽
-                            </div>
-                        </a>
-                        
+                    <div class = "image_box">
+                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "800px" height = "100%">
+                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "800px" height = "100%">
+                    </div>
                 </div>
 
                 <div class = "description">
-                    <p>이렇고 저렇고</p><br>
-                    <p>이렇고 저렇고</p><br>
-                    <p>이렇고 저렇고</p>
-                </div>
-                <div class = "bottom">
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #영상
-                    </div>
-                    <div class = "bottom_item">
-                        #플랫폼
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #가나다라마바사아자차카타파하
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
+                    <div class = "description_box">
+                        <h5>이렇고 저렇고</h5>
+                        <h5>이렇고 저렇고</h5>
+                        <h5>이렇고 저렇고</h5>
                     </div>
                 </div>
 
-                <div class = "edit">
-                    <div class = "edit_box1">
-                        <p>수정</p>
-                    </div>
-                    <div class = "edit_box2">
-                        <p>삭제</p>
+                <div class = "bot">
+                    <div class = "bot_box">
+
+                        <div class = "bot_box_hashbox">
+                            <div class = "bot_box_hashbox_hashtag">
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #북 트레일러
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #영상
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #플랫폼
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #북 트레일러
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #가나다라마바사아자차카타파하
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #북 트레일러
+                                </div>
+                                <div class = "bot_box_hashbox_hashtag_item">
+                                    #북 트레일러
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class = "bot_box_edit">
+                            <div class = "bot_box_edit_box1">
+                                <p>수정</p>
+                            </div>
+                            <div class = "bot_box_edit_box2">
+                                <p>삭제</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
+
         </div>
     </div>
 
     <div class = "comment">
+        
         <div class = "no">
             
         </div>
-            <div class = "comments">
-                <div class = "comment_input">
-                    <div class = "comment_input_box1">
-                        <form class = "comment_form">
-                            <input type = "text" placeholder = "Show me The Opinion">
-                            <button type = "submit">등록</button>
+
+        <div class = "comments">
+            <div class = "comments_container">
+                <div class = "comments_box">
+                    <div class = "comments_box_input">
+                        <div class = "comments_box_input_start">
+                            <div class = "comments_box_input_start_image">
+                                <img src = "{% static 'img/1.png' %}" width = "25px" height = "25px">
+                            </div>
+                            <div class = "comments_box_input_start_school">
+                                <p>대학교</p>
+                            </div>
+                            <div class = "comments_box_input_start_name">
+                                <p>이름</p>
+                            </div>
+                        </div>
+
+                        <form action = "" class = "comments_box_input_form" method = POST>
+                            {% csrf_token %}
+                            <input type = "text" placeholder = "아이디어에 대한 의견을 자유롭게 작성해주세요!" name = "comment">
+                            <button type=submit class = "comments_box_input_form_button"><p>제출</p></button>
                         </form>
-                    </div>
-                    <div class = "comment_input_box2">
-                        <p>작성</p>
+
                     </div>
                 </div>
-                <div class = "comment_list">
-                    <div class = "comment_list_author">
-                        <div class = "comment_author">
-                            아기사자
+
+                <div class = "comments_order_box">
+                    <div class = "comments_order_box_order">
+                        <div class = "comments_order_box_order_item1">
+                            <h5> 1 개의 댓글이 있습니다</h5>
                         </div>
-                        <div class = "comment_school">
-                            멋사대
-                        </div>
-                        <div class = "comment_time">
-                            작성시간
+                        
+                        <div class = "comments_order_box_order_item2">
+                            <button type="menu" class = "comments_order_box_order_item2_button">최신순</button>
+                            <button type="menu" class = "comments_order_box_order_item2_button">답글순</button>
                         </div>
                     </div>
+                </div>
+
+                <div class = "comments_list">
+                
+                    <div class = "comments_box">
+                        {% for comment in comment_list %}
+                        <div class = "comments_real">
+                            <div class = "comments_author_info">
+                                <div class = "comments_author_info_image">
+                                    <img src = "{% static 'img/1.png' %}" width = "25px" height = "25px">
+                                </div>
+                                <div class = "comments_author_info_name">
+                                    이름
+                                </div>
+                                <div class = "comments_author_info_school">
+                                    대학교
+                                </div>
+                                <div class = "comments_author_info_time">
+                                    {{comment.create_data}}
+                                </div>
+                            </div>
+
+                            <div class = "comments_content_box">
+
+                                <div class = "comments_content">
+                                    {{comment.text}}         
+                                    {{comment.pk}}                           
+                                </div>
     
-                    <div class = "comment_list_content">
-                        <div class = "comment_content">
-                        </div>
-                        <div class = "comment_edit">
-                            <p>수정</p>
-                        </div>
-                        <div class = "comment_delete">
-                            <p>삭제</p>
-                        </div>
-                    </div>
+                                <div class = "comments_add">
+                                    <button class = "comments_add_button" type="menu" name = "btn-comment">답글</button>
+                                </div>
+    
+                                <div id = "add_comment_list" class = "add_comment_list">
 
-                    <ul class = 'comment_list2'>
+                                    <div class = 'add_comment_count'>
+                                        <h5> 1 개의 답글</h5>
+                                    </div>
 
-                    </ul>
-                  
+                                {% for add_comments in addcomment_list %}
+                                    <div class = "add_comment">
+                                        
+                                        <div class = "add_comment_author_info">
+                                            <div class = "add_comment_author_info_image">
+                                                <img src = "{% static 'img/2.jpg' %}" width = "25px" height = "25px">
+                                            </div>
+                                            <div class = "add_comment_author_info_name">
+                                                이름
+                                            </div>
+                                            <div class = "add_comment_author_info_school">
+                                                대학교
+                                            </div>
+                                            <div class = "add_comment_author_info_time">
+                                                {{add_comments.create_data}}
+                                            </div>
+                                        </div>
+
+                                        <div class = "add_comment_content">
+                                            {{add_comments.text}}
+                                        </div>
+
+                                    </div>
+                                {% endfor %}    
+                                <div id = "new_comment" class = "new_comment">
+                                    <form action = "" class = "new_comment_form" method = POST>
+                                        {% csrf_token %}
+                                        <input type = "text" class = "new_comment_on_input" placeholder = "댓글에 대한 답글을 입력해주세요" name = "addcomment">
+                                        <button type=submit class = "new_comment_on_button">제출</button>
+                                    </form>
+                                </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>                            
                 </div>
-                
-
-                
             </div>
-            
-            
+        </div>
+
     </div>
 
     <div class = "footer">
@@ -233,122 +246,37 @@
 </body>
 
 <script type = "text/javascript">
-    // var slideIndex = 1;
 
-    // function plusSlides(n) {
-    //     showSlides(slideIndex += n);
-    // }
+    const add_comment = document.getElementById("new_comment");
+    const add_comment_list = document.getElementById("add_comment_list")
+    let btn_comment = document.getElementsByName('btn-comment');
 
-    // function currentSlide(n) {
-    //     showSlides(slideIndex = n);
-    // }
+    const NEW_COMMENT_ON = "new_comment_on";
+    const NEW_COMMENT = "new_comment"
+    const ADD_COMMENT_LIST = "add_comment_list";
+    const ADD_COMMENT_LIST_ON = "add_comment_list_on";
 
-    // function showSlides(n) {
-    //     var i;
-    //     var slides = document.getElementsByClassName("slide");
+    function handleClick(){
+        const currentClass = add_comment.className;
+        console.log(currentClass);
 
-    //     if (n > slides.length){ // 첫번째 사진 보여줘라
-    //         slideIndex = 1
-    //     }    
-
-    //     if (n < 1){ // 맨 오른쪽 사진 보여줘라
-    //         slideIndex = slides.length
-    //     }
-
-    //     for (i = 0; i < slides.length; i++) {
-    //         slides[i].style.display = "none";  
-    //     }
-
-    //     slides[slideIndex - 1].style.display = "block";  
-    // }
-
-    ////////////////////////////////////
-
-    const CommentForm = document.querySelector(".comment_form");
-    const CommentInput = CommentForm.querySelector("input");
-    const Comments = document.querySelector(".comment_list2");
-
-    console.log(CommentForm);
-    console.log(CommentInput);
-
-    const list_comments = "List";
-
-    let CommentArray = [];
-
-    function DeleteComment(event){
-
-        const target = event.target;
-        const Del_li = target.parentNode;
-        Comments.removeChild(Del_li);
-
-        const CleanCommentArray = CommentArray.filter(function(comment){
-            return comment.id !== parseInt(Del_li.id);
-        })  // 선택한 id 빼고 저장해줌
-
-        CommentArray = CleanCommentArray;   // 교체
-        SaveComments;
-    }
-
-    
-
-    function SaveComments(){
-        localStorage.setItem(list_comments, JSON.stringify(CommentArray));
-    }
-
-    function AddComment(text){
-
-        const li = document.createElement("li");
-
-        // li 에 들어갈 것들
-        const delBtn = document.createElement("button");
-        const span = document.createElement("span");
-        const NewId = CommentArray.length + 1;
-
-        delBtn.innerText = "삭제"; // innertext 는 value 값 지정
-        delBtn.addEventListener("click", DeleteComment);
-        span.innerText = text;
-        
-        li.appendChild(span);   // li 안에 span 넣고
-        li.appendChild(delBtn);   // li 안에 delBtn 넣고
-        li.id = NewId;  // li에 id 부여
-
-        Comments.appendChild(li);
-
-        const CommentObj = {
-            text : text,
-            id : NewId,
-        };
-
-        CommentArray.push(CommentObj);
-        SaveComments();
-    }
-
-    function something(Comment){
-        AddComment(Comment.text);
-    }
-
-    function handleSubmit(event){   // submit 시 동작어떻게 할지
-        event.preventDefault();
-        const comment = CommentInput.value;
-        AddComment(comment);
-        CommentInput.value = ""; // submit 시 댓글 창 초기화
-    }
-
-    function ShowComment(){
-        const list = localStorage.getItem(list_comments); // 로컬에 set 한 것들을 getItem
-        
-        if (list !== null){
-            const parsedCommentList = JSON.parse(list);
-            parsedCommentList.forEach(something);
+        if (currentClass == NEW_COMMENT){
+            add_comment.classList.add(NEW_COMMENT_ON);
+            add_comment_list.classList.add(ADD_COMMENT_LIST_ON);
+        } else {
+            add_comment.classList.remove(NEW_COMMENT_ON);
+            add_comment_list.classList.remove(ADD_COMMENT_LIST_ON);
         }
     }
 
     function init(){
-        ShowComment();
-        CommentForm.addEventListener("submit", handleSubmit);
-    }
+        console.log(btn_comment);
+        for (let i=0; i<btn_comment.length; i++){
+            btn_comment[i].addEventListener("click", handleClick);
+        }
+    };
 
-    init();
+    init();    
 
 </script>
 
