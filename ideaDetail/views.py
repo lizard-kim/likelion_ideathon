@@ -5,7 +5,7 @@ def detail(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
     full_hash_tag = idea_detail.idea_hashtag
     hash_tag = full_hash_tag.replace(',','').split()
-    return render(request, 'detail.html', {'detail':idea_detail, 'hasg_tag':hash_tag})
+    return render(request, 'detail.html', {'detail':idea_detail, 'hash_tag':hash_tag})
 
 def delete(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
