@@ -30,9 +30,10 @@ def detail(request, detail_id):
 
         idea_detail = get_object_or_404(Idea, pk = detail_id)
         user = idea_detail.user
-        user_profile =  get_object_or_404(Profile, user = user)
+        user_profile =  Profile.objects.get(user = user)
         full_hash_tag = idea_detail.idea_hashtag
         hash_tag = full_hash_tag.replace(',','').split()
+        
 
         return render(request, 'detail.html',{
             'comment_list' : comment_list,
