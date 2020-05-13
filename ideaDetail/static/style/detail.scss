@@ -181,8 +181,9 @@ p{
 
             &_hashtag{
                 display : flex;
-                height : 70px;
+                max-height : 200px;
                 flex-wrap : wrap-reverse;
+                margin-bottom: 1%;
 
                 &_item{
                     flex-grow: 0;
@@ -204,7 +205,6 @@ p{
             width : 800px;
             flex-direction : row;
             justify-content : flex-end;
-            margin-top : 2%;
         
             &_box1{
                 border : 1px solid rgb(180, 180, 180);
@@ -268,7 +268,7 @@ p{
         display : flex;
         justify-content: center;
         width : 800px;
-        margin-top : 2%;
+        margin-top : 1%;
 
         &_input_none{
             display : flex;
@@ -280,15 +280,18 @@ p{
             &_box{
                 display : flex;
                 flex-direction: row;
+                max-width: 800px;
             }
 
             &_text{
+                flex : none;
                 max-width : 600px;
                 height : 40px;
                 margin-right : 2%;
             }
         
             &_button{
+                flex : none;
                 margin-left : 2%;
                 border : 1px solid rgb(180, 180, 180);
                 color : black;
@@ -337,38 +340,39 @@ p{
                     margin-right : 10px;
                 }
             }
-        }
-        &_form{
-                height : 160px;
-                display : flex;
-                flex-direction: row;
-                align-items: flex-end;
 
-                &_button{
-                    display :inline-block;
-                    border : 1px solid rgb(180, 180, 180);
-                    color : black;
-                    width : 70px;
-                    height : 40px;
-                    text-align : center;
-                    background-color: white;
-                    margin-left : auto;
-                    box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
-                    margin-right : 1%;
-
-                    &:hover{
-                        color : white;
-                        background-color: #F39925;
-                        transition: 0.3s;
+            &_form{
+                    height : 160px;
+                    display : flex;
+                    flex-direction: row;
+                    align-items: flex-end;
+    
+                    &_button{
+                        display :inline-block;
+                        border : 1px solid rgb(180, 180, 180);
+                        color : black;
+                        width : 70px;
+                        height : 40px;
+                        text-align : center;
+                        background-color: white;
+                        margin-left : auto;
+                        box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+                        margin-right : 1%;
+    
+                        &:hover{
+                            color : white;
+                            background-color: #F39925;
+                            transition: 0.3s;
+                        }
                     }
-                }
+            }
         }
     }
 
     &_order_box{
         display : flex;
         justify-content: center;
-        margin-top : 3%;
+        margin-top : 1%;
 
         &_order{
             display : inline-block;
@@ -425,8 +429,10 @@ p{
         flex : none;
         width : 800px;
         max-height: 2000px;
-        margin-bottom: 15px;
         display : inline-block;
+        margin-top : 1%;
+        margin-bottom : 1%;
+        border-bottom: 1px solid rgb(182, 182, 182);
     }
 
     &_author_info{
@@ -466,20 +472,66 @@ p{
     }
 
     &_content{
-        flex : none;
-        text-overflow: ellipsis;    // 잘린 텍스트 ...표기
-        white-space: normal;
-        overflow: hidden;
+        display : flex;
+        flex-direction: row;
         max-height : 150px;
         margin-bottom : 10px;
-    }
-
-    &_add{
-        flex : none;
-        border-bottom: 1px solid rgb(182, 182, 182);
         
-        &_button{
-            display :block;
+
+        &_left{
+            flex : none;
+            text-overflow: ellipsis;    // 잘린 텍스트 ...표기
+            white-space: normal;
+            overflow: hidden;
+            max-width : 700px;
+        }
+
+        &_right{
+            flex : none;
+            margin-left : auto;
+            margin-top : auto;
+            width : 71px;
+            
+            &_button{
+                display :block;
+                border : 1px solid rgb(180, 180, 180);
+                color : black;
+                width : 70px;
+                height : 40px;
+                text-align : center;
+                background-color: white;
+                box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+    
+                &:hover{
+                    color : white;
+                    background-color: #F39925;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+}
+
+.new_comment{
+    display : block;
+        width : 800px;
+        height : 75px;
+        margin-top : 2%;
+
+    &_input[type=text]{
+            width : 620px;
+            height : 40px;
+            border : 1px solid rgb(180, 180, 180);
+            margin-left : 2%;
+        
+            &::placeholder{
+                all : unset;
+                color : rgb(90, 90, 90);
+                vertical-align : text-top;
+            }
+    }
+    
+    &_button{
             border : 1px solid rgb(180, 180, 180);
             color : black;
             width : 70px;
@@ -488,59 +540,19 @@ p{
             background-color: white;
             margin-left : auto;
             box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
-            margin-bottom: 15px;
-
-            &:hover{
+            margin-right : 1%;
+    
+        &:hover{
                 color : white;
                 background-color: #F39925;
                 transition: 0.3s;
-            }
         }
     }
-}
-
-.new_comment{
-    display : none;
-
-    &_on{
-        display : block;
-        width : 800px;
-        height : 50px;
-    
-        &_input[type=text]{
-            width : 680px;
-            height : 40px;
-            border : 1px solid rgb(180, 180, 180);
-        
-            &::placeholder{
-                all : unset;
-                color : rgb(90, 90, 90);
-                vertical-align : text-top;
-            }
-        }
-    
-        &_button{
-            border : 1px solid rgb(180, 180, 180);
-            color : black;
-            width : 60px;
-            height : 30px;
-            text-align : center;
-            background-color: white;
-            margin-left : auto;
-            box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
-    
-            &:hover{
-                color : white;
-                background-color: #F39925;
-                transition: 0.3s;
-            }
-        }
-    }
-
     &_form{
         display : flex;
         flex-direction: row;
         align-items: flex-end;
+        margin-top : 1%;
     }
 }
 
@@ -553,10 +565,11 @@ p{
 }
 
 .add_comment_list_on{
-    display : inline-block;
+    display : flex;
+    flex-direction: column;
     position : relative;
     max-height : 2000px;
-    width : 600px;
+    width : 800px;
     margin-bottom : 20px;
 }
 
@@ -564,7 +577,8 @@ p{
     display : inline-block;
     position : relative;
     max-height : 200px;
-    width : 700px;
+    width : 640px;
+    margin-left : 2%;
 
     &_content{
         margin-top : 1%;
@@ -604,11 +618,12 @@ p{
     }
 
     &_count{
-        margin-top : 2%;
-        margin-bottom : 3%;
+        margin: 1%;
         max-width : 300px;
         display : inline-block;
-        color : #F39925;
+        color : rgb(43, 43, 43);
+        padding-bottom : 1%;
+        border-bottom : 1px solid rgb(105, 105, 105);
     }
 
     &_form{
@@ -637,12 +652,12 @@ input[type=text]{
 }
 
 a {
+    color: black;
     text-decoration: none;
-    outline: none;
+    outline: none
 }
 
 a:hover, a:active {
-    text-decoration: none;
+    text-decoration: none; 
+    color:black; 
 }
-
-
