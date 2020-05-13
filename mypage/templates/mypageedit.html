@@ -4,9 +4,33 @@
 <html>
 <head>
     <title>Like Lion Ideathon</title>
-    <link href="{% sass_src 'style/mypageedit.scss' %}" rel="stylesheet" type="text/css"/> 
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+    <link href="{% sass_src 'style/mypage.scss' %}" rel="stylesheet" type="text/css"/> 
 </head>
 <body>
+    <script>
+        $(document).ready(function() {
+            console.log("hihi")
+            $(".basket__itemwrap").on('mousewheel DOMMouseScroll', function(e) {
+                e.preventDefault(); 
+                var E = e.originalEvent;
+                if (E.detail) {
+                    // for firefox
+                    scroll = E.wheelDelta * -40;
+                    //console.log(scroll)
+                    $(this).scrollLeft(-scroll + $(this).scrollLeft());
+                }else{
+                    // wheelDelta
+                    scroll = E.wheelDelta;
+                    $(this).scrollLeft(-scroll + $(this).scrollLeft());
+                    $("body").scroll(0)
+                };
+            })
+        })
+    </script>
     <div class="header">
         <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
         <span class="menu">
@@ -15,47 +39,112 @@
             <a href="#">My Page</a>
         </span>
     </div>
-
-    <div class="myInfoEdit">
-        <div class="myInfoEdit__photo">
-            <img src="{% static 'image/iron.png' %}" />
-            <button class="edit"> Edit </button>
+    <div class="mypage">
+        <div class="mypage__top">
+            <div class="userinfo">
+                <div class="userinfo__namebox">
+                    <img class="userinfo__namebox__profile" src="{% static 'image/iron.png' %}"/>
+                    <div class="userinfo__namebox__name">
+                        <p class="name"> 곽철용 </p>
+                        <p class="email"> iamdragon@likelion.org </p>
+                    </div>
+                    <a class="edit" href="edit"> <i class="far fa-edit fa-2x"></i> </a>
+                </div>
+                <div class="userinfo__infobox">
+                    <a class="edit" href="edit"> <i class="far fa-edit fa-2x"></i> </a>
+                    <h4 class="title"> Info </h4>
+                    <div class="infowrap">
+                        <h6 class="subtitle"> School </h6>
+                        <h6 class="contents"> DGIST </h6>
+                        <h6 class="subtitle"> About </h6>
+                        <h6 class="contents"> 어이 젊은 친구, 신사답게 행동해  </h6>
+                        <h6 class="subtitle"> Contact </h6>
+                        <h6 class="contents"> https://github.com/iron-dragon </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="myidea">
+                <h4 class="title"> My Idea </h4>
+                <div class="myidea__item">
+                    <h3 class="ideatitle"> 마포대교는 무너졌냐? </h3>
+                    <h6 class="idea_description"> 내가 달건이 생활을 열일곱에 시작했다. 그 나이 때 달건이 시작한... </h6>
+                    <div class="myidea__comments">
+                        <i class="far fa-comment-dots fa-2x" style="color: black"></i>
+                        <i class="fas fa-circle"></i>
+                        <h6 class="num"> 12 </h6>
+                    </div>
+                </div>
+                <h4 class="title"> My Comments </h4>
+                <div class="comment_box">
+                    <h6 class="contents"> 어이 젊은 친구, 신사답게 행동해 </h6>
+                    <h6 class="contents"> 묻고 더블로 가! </h6>
+                    <h6 class="contents"> 묻고 더블로 가! </h6>
+                    <h6 class="contents"> 묻고 더블로 가! </h6>
+                    <h6 class="contents"> 묻고 더블로 가! </h6>
+                    <h6 class="contents"> 묻고 더블로 가! </h6>
+                    <h6 class="contents"> 묻고 더블로 가! </h6>
+                    <h6 class="contents"> 묻고 더블로 가! </h6>
+                </div>
+            </div>
         </div>
-        <div class="myInfoEdit__info">
-            <div class="subtitle">
-                <h6> Email </h6>
-            </div>
-            <h5 class="email"> irondragon@likelion.org </h5>
-            <div class="subtitle">
-                <h6> Password </h6>
-            </div>
-            <input type="text" placeholder="비밀번호를 입력해주세요"/>
-            <div class="subtitle">
-                <h6> Confirm Password </h6>
-            </div>
-            <input type="text" placeholder="비밀번호 확인을 위해 한 번 더 입력해주세요"/>
-            <div class="subtitle">
-                <h6> Name </h6>
-            </div>
-            <input type="text" placeholder="이름을 적어주세요"/>
-            <div class="subtitle">
-                <h6> School </h6>
-            </div>
-            <input type="text" placeholder="소속 학교를 적어주세요"/>
-            <div class="subtitle">
-                <h6> About </h6>
-            </div>
-            <input type="text" placeholder="소개글을 적어주세요"/>
-            <div class="subtitle">
-                <h6> Contact </h6>
-            </div>
-            <input type="text" placeholder="연락처(이메일, 전화번호, github 주소 등)를 적어주세요"/>
-            <div class="btnbox">
-                <button class="init"> Initialize </button>
-                <button class="confirm"> Confirm </button>
+        <div class="mypage__bottom">
+            <div class="basket">
+                <a class="edit" href="edit"> <i class="far fa-edit fa-2x"></i> </a>
+                <h4 class="title"> Basket </h4>
+                <div class="basket__itemwrap">
+                    <div class="ideaitem">
+                        <div class="ideaitem__title">
+                            <img class="profile" src="{% static 'image/iron.png' %}"/>
+                            <h5 class="text"> 곽철용의 숲 </h5>
+                        </div>
+                        <div class="ideaitem__thumnail">
+                            <img src="{% static 'image/iron_thumnail.jpg' %}"/>
+                        </div>
+                        <div class="ideaitem__description">
+                            <h6>나는 어떻게 여기까지 왔느냐? 잘난 놈 제끼고. 못난 놈 보내고. 안경잽이같이 배신 ...</h6>
+                        </div>
+                    </div>
+                    <div class="ideaitem">
+                        <div class="ideaitem__title">
+                            <img class="profile" src="{% static 'image/iron.png' %}"/>
+                            <h5 class="text"> 곽철용의 숲 </h5>
+                        </div>
+                        <div class="ideaitem__thumnail">
+                            <img src="{% static 'image/iron_thumnail.jpg' %}"/>
+                        </div>
+                        <div class="ideaitem__description">
+                            <h6>나는 어떻게 여기까지 왔느냐? 잘난 놈 제끼고. 못난 놈 보내고. 안경잽이같이 배신 ...</h6>
+                        </div>
+                    </div>
+                    <div class="ideaitem">
+                        <div class="ideaitem__title">
+                            <img class="profile" src="{% static 'image/iron.png' %}"/>
+                            <h5 class="text"> 곽철용의 숲 </h5>
+                        </div>
+                        <div class="ideaitem__thumnail">
+                            <img src="{% static 'image/iron_thumnail.jpg' %}"/>
+                        </div>
+                        <div class="ideaitem__description">
+                            <h6>나는 어떻게 여기까지 왔느냐? 잘난 놈 제끼고. 못난 놈 보내고. 안경잽이같이 배신 ...</h6>
+                        </div>
+                    </div>
+                    <div class="ideaitem">
+                        <div class="ideaitem__title">
+                            <img class="profile" src="{% static 'image/iron.png' %}"/>
+                            <h5 class="text"> 곽철용의 숲 </h5>
+                        </div>
+                        <div class="ideaitem__thumnail">
+                            <img src="{% static 'image/iron_thumnail.jpg' %}"/>
+                        </div>
+                        <div class="ideaitem__description">
+                            <h6>나는 어떻게 여기까지 왔느냐? 잘난 놈 제끼고. 못난 놈 보내고. 안경잽이같이 배신 ...</h6>
+                        </div>
+                    </div>                    
+                </div>
             </div>
         </div>
     </div>
+    {% include 'footer.html' %}
 <!--
     <div class="footer">
         <h3> footer </h3>
@@ -63,5 +152,3 @@
 -->
 </body>
 </html>
-
-<script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>
