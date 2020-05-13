@@ -17,7 +17,8 @@
         
         <!-- Sign in form section -->
         
-            <form action="#" method="POST" id="login_form">
+            <form action="{% url 'signin' %}" method="POST" id="login_form">
+                {% csrf_token %}
                 <div>
                     <input type="text" id="email" name="email" placeholder="babylion@likelion.org" required oninvalid="this.setCustomValidity('아이디를 입력하세요')" oninput="setCustomValidity('')"/>
                 </div>
