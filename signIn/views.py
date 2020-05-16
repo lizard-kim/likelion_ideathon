@@ -12,7 +12,7 @@ def signin(request):
             auth.login(request, user)
             return redirect('idea')
         else:
-            return render(request, 'signin.html', {'alert': '이메일 또는 비밀번호를 다시 한 번 확인해주세요!'})
+            return render(request, 'signin.html', {'alert': '이메일 또는 비밀번호를 다시 한 번 확인해주세요!', 'user':user})
     else:
         return render(request, 'signin.html')
 
