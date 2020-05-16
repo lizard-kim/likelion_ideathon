@@ -7,7 +7,6 @@ from idea.models import Idea
     # email
     # first_name
     # last_name
-
 # Django User model과 onoToone으로 연결해준다
 # 즉 User model 칼럼에 추가해주고 싶은거 추가하면 됨
 class Profile(models.Model):
@@ -21,11 +20,11 @@ class Profile(models.Model):
     user_image = models.ImageField(upload_to="", null = True, blank = True)# media files 어디에 저장할지 upload to
 
     def __str__(self):
-        return str('유저' + str(self.user_id)+ '번 :') + (str(self.id) + '번 프로필')
+        return str(self.id)
 
 class Idea_Cart(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True, blank = True)
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE, null = True, blank = True)
 
     def __str__(self):
-        return str(user.id) + '번 유저의 카트'
+        return str(self.id)

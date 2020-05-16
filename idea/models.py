@@ -15,7 +15,7 @@ class Idea(models.Model):
     idea_create_data = models.DateTimeField(default = timezone.now, null = True, blank = True) # 생성날짜
 
     def __str__(self):
-        return str(self.user) + '유저' + str(self.id)+ '번 아이디어' 
+        return str(self.id)
 
 class Idea_image_storage(models.Model):
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE)
@@ -31,7 +31,7 @@ class Idea_Comments(models.Model):  # (어떤 유저의 어떤 아이디어에) 
     create_data = models.DateTimeField(default = timezone.now) # 생성날짜
     
     def __str__(self):
-        return str(self.user) + '유저의' +str(self.idea_id)+'번 아이디어' + str(self.id)+ '번 댓글 : ' + str(self.text)
+        return str(self.id)
 
 class Idea_AddComments(models.Model):   # (어떤 유저의 어떤 아이디어에 달린 댓글들에) 다른 유저가 작성하는 대댓글들 저장
     idea_comments = models.ForeignKey(Idea_Comments, on_delete=models.CASCADE, null = True, blank = True)  # 어떤 유저의 어떤 아이디어에 달린 댓글들
@@ -40,4 +40,4 @@ class Idea_AddComments(models.Model):   # (어떤 유저의 어떤 아이디어�
     create_data = models.DateTimeField(default = timezone.now) # 생성날짜
 
     def __str__(self):
-        return str(self.idea_comments.user) + '유저의' +str(self.idea_comments.idea_id)+'번 아이디어' + str(self.idea_comments_id)+ '번 댓글의 ' + str(self.id) + '번 대댓글 : ' + str(self.text)
+        return str(self.text)
