@@ -35,6 +35,7 @@ def detail(request, detail_id):
         idea_id = idea_detail.id
         user_profile =  Profile.objects.get(user = user)
 
+
         # 아이디어에 해당하는 댓글 가져오기
         comment_list_all = Idea_Comments.objects.all()
         comment_list = comment_list_all.filter(idea = idea_id) # 아이디어 순번에 맞는 댓글들
@@ -87,6 +88,7 @@ def detail(request, detail_id):
             'add_comments' : add_comments,
             'value' : value,
             'comment_check' : comment_check,
+            'idea_detail' : idea_detail,
         })
 
 def delete(request, detail_id):
