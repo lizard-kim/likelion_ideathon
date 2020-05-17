@@ -45,7 +45,7 @@ Link: [workflow_manual](./Workflow.md)
 - 박지형
 - 신효경
 - 최광일
-- 박종현
+- 박종현(제일 잘생김)
 
 
 
