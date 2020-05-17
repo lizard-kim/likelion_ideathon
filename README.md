@@ -41,11 +41,12 @@ Link: [workflow_manual](./Workflow.md)
 
 ## Contributors
 
-- 김태영 
+- 김태영
+- 박종현
 - 박지형
 - 신효경
 - 최광일
-- 박종현
+
 
 
 
