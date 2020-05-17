@@ -5,7 +5,7 @@ import main.urls, about.urls, idea.urls, ideaDetail.urls, mypage.urls, signIn.ur
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-    path('about/', include('about.urls')),
+    path('about/', include('about.urls')), 
     path('idea/', include('idea.urls')),
     path('detail/', include('ideaDetail.urls')),
     path('mypage/', include('mypage.urls')),
