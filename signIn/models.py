@@ -7,11 +7,8 @@ class MyUserManager(BaseUserManager):
 
     use_in_migrations = True
 
-<<<<<<< HEAD
     # @ brief: baseuser 
      
-=======
->>>>>>> 425981045af651f982f323c7d9a00500584a81ab
     def create_user(self, email, user_name, password=None):
         if not email:
             raise ValueError('Users must have an email address')
@@ -24,11 +21,7 @@ class MyUserManager(BaseUserManager):
 
         user.set_password(password)
         user.save(using = self._db)
-<<<<<<< HEAD
         return user 
-=======
-        return user
->>>>>>> 425981045af651f982f323c7d9a00500584a81ab
 
     def create_superuser(self, email, user_name, password=None):
         user = self.create_user(
