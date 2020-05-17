@@ -7,8 +7,11 @@ class MyUserManager(BaseUserManager):
 
     use_in_migrations = True
 
+<<<<<<< HEAD
     # @ brief: baseuser 
      
+=======
+>>>>>>> 425981045af651f982f323c7d9a00500584a81ab
     def create_user(self, email, user_name, password=None):
         if not email:
             raise ValueError('Users must have an email address')
@@ -21,7 +24,11 @@ class MyUserManager(BaseUserManager):
 
         user.set_password(password)
         user.save(using = self._db)
+<<<<<<< HEAD
         return user 
+=======
+        return user
+>>>>>>> 425981045af651f982f323c7d9a00500584a81ab
 
     def create_superuser(self, email, user_name, password=None):
         user = self.create_user(
@@ -48,6 +55,13 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     user_about = models.TextField(max_length=100, blank = True)
     user_contact = models.TextField(max_length=200, blank = True)
     user_image = models.ImageField(upload_to="",null=True, blank = True)# media files 어디에 저장할지 upload to
+
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['user_name']
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
