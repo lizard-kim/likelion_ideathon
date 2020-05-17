@@ -16,7 +16,7 @@ def signin(request):
     else:
         return render(request, 'signin.html')
 
-# @ brief: 
+# @todo: 나중에 동작 확인 
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)

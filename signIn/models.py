@@ -7,6 +7,8 @@ class MyUserManager(BaseUserManager):
 
     use_in_migrations = True
 
+    # @ brief: baseuser 
+     
     def create_user(self, email, user_name, password=None):
         if not email:
             raise ValueError('Users must have an email address')
@@ -19,7 +21,7 @@ class MyUserManager(BaseUserManager):
 
         user.set_password(password)
         user.save(using = self._db)
-        return user
+        return user 
 
     def create_superuser(self, email, user_name, password=None):
         user = self.create_user(
@@ -41,11 +43,11 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         unique=True,
     )
-    user_name = models.CharField(max_length=20 , null = True, blank = True)
-    user_school = models.CharField(max_length=20, null = True, blank = True)
-    user_about = models.TextField(max_length=100, null = True, blank = True)
-    user_contact = models.TextField(max_length=200, null = True, blank = True)
-    user_image = models.ImageField(upload_to="", null = True, blank = True)# media files 어디에 저장할지 upload to
+    user_name = models.CharField(max_length=20 , blank = True)
+    user_school = models.CharField(max_length=20, blank = True)
+    user_about = models.TextField(max_length=100, blank = True)
+    user_contact = models.TextField(max_length=200, blank = True)
+    user_image = models.ImageField(upload_to="",null=True, blank = True)# media files 어디에 저장할지 upload to
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -58,6 +60,9 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         return self.user_name
 
 class Idea_Cart(models.Model):
+
+    # @brief: member 하나씩 연결
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True, blank = True)
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE, null = True, blank = True)
 
