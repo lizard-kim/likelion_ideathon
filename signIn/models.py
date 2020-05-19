@@ -17,7 +17,7 @@ class Profile(models.Model):
     user_school = models.CharField(max_length=20, null = True, blank = True)
     user_about = models.TextField(max_length=100, null = True, blank = True)
     user_contact = models.TextField(max_length=200, null = True, blank = True)
-    user_image = models.ImageField(upload_to="", null = True, blank = True)# media files 어디에 저장할지 upload to
+    user_image = models.ImageField(upload_to="user/%Y%m%d", null = True, blank = True)# media files 어디에 저장할지 upload to
 
     def __str__(self):
         return str(self.id)
