@@ -147,3 +147,6 @@ SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
 
 AUTH_USER_MODEL = 'signIn.Profile'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
