@@ -22,14 +22,14 @@
             <a href="#">My Page</a>
         </span>
     </header>
-    <form active="#" method="POST" id="submit_form">
+    <form action="{% url 'submit' %}" method="POST" id="submit_form" enctype="multipart/form-data">
 
         <section id="submit_left">
             <!-- submit form -->
             {% csrf_token %}
             <!-- 왼쪽 섹션 -->
             <!-- Swiper -->
-            <input type="file" id="upImgFiles" accept="image/*" multiple />
+            <input type="file" name="images" id="upImgFiles" accept="image/*" multiple />
 
             <hr />
             <!-- Slider main container -->
