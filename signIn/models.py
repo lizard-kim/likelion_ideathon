@@ -18,7 +18,6 @@ class MyUserManager(BaseUserManager):
             user_name = user_name
         )
 
-
         user.set_password(password)
         user.save(using = self._db)
         return user 
@@ -47,14 +46,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     user_school = models.CharField(max_length=20, blank = True)
     user_about = models.TextField(max_length=100, blank = True)
     user_contact = models.TextField(max_length=200, blank = True)
-    user_image = models.ImageField(upload_to="",null=True, blank = True)# media files 어디에 저장할지 upload to
-
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['user_name']
+    user_image = models.ImageField(upload_to="signIn/static/profile",null=True, blank = True, default="idea/static/image/lion.png")# media files 어디에 저장할지 upload to
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -72,7 +64,8 @@ class Idea_Cart(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True, blank = True)
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE, null = True, blank = True)
-
-    def __str__(self):
-        return str(user.id) + '번 유저의 카트'
+    
+    #오류가 나서 일단 주석처리
+    # def __str__(self):
+    #     return str(user.id) + '번 유저의 카트'
 

@@ -1,359 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-{% load sass_tags %}
-{% load static %}
-<html>
-<head>
-  <title>Like Lion Ideathon</title>
-  <link href="{% sass_src 'style/detail.scss' %}" rel="stylesheet" type="text/css"/> 
-  <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css"/> 
-</head>
-
-<<<<<<< HEAD
-=======
-<script type = "text/javascript">
-    var slideIndex = 1;
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-
-    
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("slide");
-
-        if (n > slides.length){ // 첫번째 사진 보여줘라
-            slideIndex = 1
-        }    
-
-        if (n < 1){ // 맨 오른쪽 사진 보여줘라
-            slideIndex = slides.length
-        }
-
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-
-        slides[slideIndex - 1].style.display = "block";  
-    }
-</script>
-
->>>>>>> f5f45de55c74e31cb6e029c1634dc54480b7550f
-<body>
-
-<div class = "container">
-
-    <div class = "header">
-
-        <div class = "header_title">
-            LikeLion Ideathon
-        </div>
-
-        <!-- <div class = "header_box1">
-            <p>아기사자</p>
-        </div>
-        <div class = "header_box2">
-            mypage
-        </div>
-        <div class = "header_box3">
-            logout
-        </div> -->
-
-    </div>
-    <div class = "content">
-        <div class = "no">
-        </div>
-
-        <div class = "idea">
-            <div class = "idea_container">
-                
-                <div class = "title">
-                    <p>북적북적</p>
-                </div>
-
-                <div class = "sub_title">
-
-                    <div class = "sub_title_name">
-                        <p>북 트레일러 영상 공유 플래폼</p>
-                    </div>
-
-                    <div class = "sub_title_school">
-                        <p>멋사대학교</p>
-                    </div>
-
-                    <div class = "sub_title_author">
-                        <p>홍길동</p>
-                    </div>
-
-                    <div class = "sub_title_time">
-                        <p>작성시간</p>
-                    </div>
-
-                </div>
-
-                <div class = "image">
-                    
-                        <a onclick="plusSlides(-1)">
-                            <div class = "prev">
-                                왼쪽
-                            </div>
-                        </a>
-                        
-                        <div class = "image_box">
-                            <img class = "slide" src = "{% static 'img/1.png' %}" width = "400px" height = "400px">
-                            <img class = "slide" src = "{% static 'img/2.JPG' %}" width = "400px" height = "400px">
-                            <img class = "slide" src = "{% static 'img/3.JPG' %}" width = "400px" height = "400px">
-                        </div>
-                        
-                        <a onclick="plusSlides(1)">
-                            <div class = "next">
-                                오른쪽
-                            </div>
-                        </a>
-                        
-                </div>
-
-                <div class = "description">
-                    <p>이렇고 저렇고</p><br>
-                    <p>이렇고 저렇고</p><br>
-                    <p>이렇고 저렇고</p>
-                </div>
-                <div class = "bottom">
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #영상
-                    </div>
-                    <div class = "bottom_item">
-                        #플랫폼
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #가나다라마바사아자차카타파하
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                    <div class = "bottom_item">
-                        #북 트레일러
-                    </div>
-                </div>
-
-                <div class = "edit">
-                    <div class = "edit_box1">
-                        <p>수정</p>
-                    </div>
-                    <div class = "edit_box2">
-                        <p>삭제</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class = "comment">
-        <div class = "no">
-            
-        </div>
-            <div class = "comments">
-                <div class = "comment_input">
-                    <div class = "comment_input_box1">
-                        <form class = "comment_form">
-                            <input type = "text" placeholder = "Show me The Opinion">
-                            <button type = "submit">등록</button>
-                        </form>
-                    </div>
-                    <div class = "comment_input_box2">
-                        <p>작성</p>
-                    </div>
-                </div>
-                <div class = "comment_list">
-                    <div class = "comment_list_author">
-                        <div class = "comment_author">
-                            아기사자
-                        </div>
-                        <div class = "comment_school">
-                            멋사대
-                        </div>
-                        <div class = "comment_time">
-                            작성시간
-                        </div>
-                    </div>
-    
-                    <div class = "comment_list_content">
-                        <div class = "comment_content">
-                        </div>
-                        <div class = "comment_edit">
-                            <p>수정</p>
-                        </div>
-                        <div class = "comment_delete">
-                            <p>삭제</p>
-                        </div>
-                    </div>
-
-                    <ul class = 'comment_list2'>
-
-                    </ul>
-                  
-                </div>
-                
-
-                
-            </div>
-            
-            
-    </div>
-
-    <div class = "footer">
-
-    </div>
-
-</div>
-</body>
-
-<script type = "text/javascript">
-    // var slideIndex = 1;
-
-    // function plusSlides(n) {
-    //     showSlides(slideIndex += n);
-    // }
-
-    // function currentSlide(n) {
-    //     showSlides(slideIndex = n);
-    // }
-
-    // function showSlides(n) {
-    //     var i;
-    //     var slides = document.getElementsByClassName("slide");
-
-    //     if (n > slides.length){ // 첫번째 사진 보여줘라
-    //         slideIndex = 1
-    //     }    
-
-    //     if (n < 1){ // 맨 오른쪽 사진 보여줘라
-    //         slideIndex = slides.length
-    //     }
-
-    //     for (i = 0; i < slides.length; i++) {
-    //         slides[i].style.display = "none";  
-    //     }
-
-    //     slides[slideIndex - 1].style.display = "block";  
-    // }
-
-    ////////////////////////////////////
-
-    const CommentForm = document.querySelector(".comment_form");
-    const CommentInput = CommentForm.querySelector("input");
-    const Comments = document.querySelector(".comment_list2");
-
-    console.log(CommentForm);
-    console.log(CommentInput);
-
-    const list_comments = "List";
-
-    let CommentArray = [];
-
-    function DeleteComment(event){
-
-        const target = event.target;
-        const Del_li = target.parentNode;
-        Comments.removeChild(Del_li);
-
-        const CleanCommentArray = CommentArray.filter(function(comment){
-            return comment.id !== parseInt(Del_li.id);
-        })  // 선택한 id 빼고 저장해줌
-
-        CommentArray = CleanCommentArray;   // 교체
-        SaveComments;
-    }
-
-    
-
-    function SaveComments(){
-        localStorage.setItem(list_comments, JSON.stringify(CommentArray));
-    }
-
-    function AddComment(text){
-
-        const li = document.createElement("li");
-
-        // li 에 들어갈 것들
-        const delBtn = document.createElement("button");
-        const span = document.createElement("span");
-        const NewId = CommentArray.length + 1;
-
-        delBtn.innerText = "삭제"; // innertext 는 value 값 지정
-        delBtn.addEventListener("click", DeleteComment);
-        span.innerText = text;
-        
-        li.appendChild(span);   // li 안에 span 넣고
-        li.appendChild(delBtn);   // li 안에 delBtn 넣고
-        li.id = NewId;  // li에 id 부여
-
-        Comments.appendChild(li);
-
-        const CommentObj = {
-            text : text,
-            id : NewId,
-        };
-
-        CommentArray.push(CommentObj);
-        SaveComments();
-    }
-
-    function something(Comment){
-        AddComment(Comment.text);
-    }
-
-    function handleSubmit(event){   // submit 시 동작어떻게 할지
-        event.preventDefault();
-        const comment = CommentInput.value;
-        AddComment(comment);
-        CommentInput.value = ""; // submit 시 댓글 창 초기화
-    }
-
-    function ShowComment(){
-        const list = localStorage.getItem(list_comments); // 로컬에 set 한 것들을 getItem
-        
-        if (list !== null){
-            const parsedCommentList = JSON.parse(list);
-            parsedCommentList.forEach(something);
-        }
-    }
-
-    function init(){
-        ShowComment();
-        CommentForm.addEventListener("submit", handleSubmit);
-    }
-
-    init();
-
-</script>
-
-=======
 <!DOCTYPE html>
 {% load sass_tags %}
 {% load static %}
@@ -428,7 +72,7 @@
 
                         <div class = "bot_box_hashbox">
                             <div class = "bot_box_hashbox_hashtag">
-                                {% for i in hasg_tag %}
+                                {% for i in hash_tag %}
                                     <div class = "bot_box_hashbox_hashtag_item">
                                         #{{i}}
                                     </div>
@@ -478,13 +122,13 @@
 
                             <div class = "comments_box_input_start">
                                 <div class = "comments_box_input_start_image">
-                                    <img src = "{% static 'img/1.png' %}" width = "25px" height = "25px">
+                                    <img src = "{{user_profile}}" width = "25px" height = "25px">
                                 </div>
                                 <div class = "comments_box_input_start_school">
-                                    <p>{{대학교}}</p>
+                                    <p>{{user_school}}</p>
                                 </div>
                                 <div class = "comments_box_input_start_name">
-                                    <p>이름</p>
+                                    <p>{{user}}</p>
                                 </div>
                             </div>
 
@@ -548,7 +192,12 @@
 
                             <div class = "comments_author_info">
                                 <div class = "comments_author_info_image">
-                                    <img src = "{% static 'img/1.png' %}" width = "25px" height = "25px">
+                                    {% if request.user.is_authenticated %}
+                                    <!--못 고침-->
+                                    <img src = "{{request.user.user_profile.url}}" width = "25px" height = "25px">
+                                    {% else %}
+                                    <img src = "{%  static 'img/1.png' %}" width = "25px" height = "25px">
+                                    {% endif %}
                                 </div>
 
                                 <!-- 로그인 구현되면 로그인 한 유저로 바꿔야 함-->
@@ -556,7 +205,7 @@
                                     <p>{{comment.user}}</p>
                                 </div>
                                 <div class = "comments_author_info_school">
-                                    <p>{{comment.user.profile.user_school}}</p>
+                                    <p>{{comment.user_school}}</p>
                                 </div>
                                 <div class = "comments_author_info_time">
                                     <p>{{comment.create_data}}</p>
@@ -707,6 +356,4 @@
     init();    
 
 </script>
-
->>>>>>> d4e399f6fc76d7d101a3ed1ea56900b2b5b3b4a2
 </html>
