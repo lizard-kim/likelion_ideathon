@@ -2,124 +2,144 @@
 {% load sass_tags %}
 {% load static%}
 <html lang="ko">
-    <head>
-        <meta charset="utf-8">
-        <title>Submit Idea Page</title>
-        <link rel="stylesheet" href="{% sass_src 'style/submit.scss' %}" type="text/css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    </head>
-    <body id="submit_body">
-        <!-- submit idea page header -->
-        <header id="submit_idea_header">
-            <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
-            <span class="menu">
-                <a href="#">Log out</a>
-                |
-                <a href="#">My Page</a>
-            </span>
-        </header>
 
-        <!-- submit form -->
-        <form active="#" method="POST" id="submit_form">
+<head>
+    <meta charset="utf-8">
+    <title>Submit Idea Page</title>
+    <link rel="stylesheet" href="{% sass_src 'style/submit.scss' %}" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+
+</head>
+
+<body id="submit_body">
+    <!-- submit idea page header -->
+    <header id="submit_idea_header">
+        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
+        <span class="menu">
+            <a href="#">Log out</a>
+            |
+            <a href="#">My Page</a>
+        </span>
+    </header>
+    <form action="{% url 'submit' %}" method="POST" id="submit_form" enctype="multipart/form-data">
+
+        <section id="submit_left">
+            <!-- submit form -->
             {% csrf_token %}
             <!-- 왼쪽 섹션 -->
-            <section id="submit_left">
-                <div>
-                    <label for="IdeaName">제목</label>
-                </div>
-                <div class="InputBox">
-                    <input type="text" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요." value="{{ idea_detail.idea_title}}"/>
-                </div>
-                <div>
-                    <label for="IdeaName">서브 타이틀</label>
-                </div>
-                <div class="InputBox">
-                    <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글." value="{{ idea_detail.idea_subtitle}}"/>
-                </div>
-                <div>
-                    <label for="IdeaContent">설명</label>
-                </div>
-                <div>
-                    <textarea class="InputTextArea" name="IdeaContent" placeholder="본인의 아이디어를 뽐내주세요!">{{ idea_detail.idea_description}}</textarea>
-                </div>
-            </section>
-            <!-- 오른쪽 섹션 -->
-            <section id="submit_right">
-                <div class="input_wrap">
-                    <label>이미지</label>
-                    <a href="javascript:" onclick="fileUploadAction();" class="my_botton">upload</a>
-                    <input type="file" id="input_imgs" multiple/>
-                </div>
-                <div>
-                    <div class="imgs_wrap">
-                        <img id="img" />
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="IdeaHashTag">해시태그</label>
-                </div>
-                <div class="InputBox">
-                    <input type="text" class="InputText" name="IdeaHashTag" placeholder="#교육, #문화" value="{{idea_detail.idea_hashtag}}"/>
-                </div>
-                <div>
-                    <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
-                    <button type="submit" id="submitB">등록</button>
-                </div>
-            </section>
-        </form>
+            <!-- Swiper -->
+            <input type="file" name="images" id="upImgFiles" accept="image/*" multiple />
 
-    <!-- image 업로드할 때, 바로 미리보기 뜨게 하기 위한 script 코드 -->
-    <script type="text/javascript">
-        var sel_files =[];
+            <hr />
+            <!-- Slider main container -->
+            <div class="swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
 
-        $(document).ready(function() {
-            $("#input_imgs").on("change", handleImgFileSelect);
-        });
+        </section>
+        <!-- 오른쪽 섹션 -->
+        <section id="submit_right">
 
-        function fileUploadAction() {
-            console.log("fileUploadAction");
-            $("#input_imgs").trigger('click');
-        }        
+            <div>
+                <label for="IdeaName">제목</label>
+            </div>
+            <div class="InputBox">
+                <input type="text" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요."
+                    value="{{ idea_detail.idea_title}}" />
+            </div>
+            <div>
+                <label for="IdeaName">서브 타이틀</label>
+            </div>
+            <div class="InputBox">
+                <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글."
+                    value="{{ idea_detail.idea_subtitle}}" />
+            </div>
+            <div>
+                <label for="IdeaContent">설명</label>
+            </div>
+            <div>
+                <textarea class="InputTextArea" name="IdeaContent"
+                    placeholder="본인의 아이디어를 뽐내주세요!">{{ idea_detail.idea_description}}</textarea>
+            </div>
+            <div>
+                <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
+                <button type="submit" id="submitB">등록</button>
+            </div>
+        </section>
+    </form>
 
-        function handleImgFileSelect(e) {
-            sel_files = [];
-            $(".imgs_wrap").empty();
+    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
+    <script>
+        const getId = id => document.getElementById(id);
+        const upImgFiles = getId("upImgFiles");
+        const swiperWrapper = getId("swiper-wrapper");
+        upImgFiles.addEventListener("change", uploadImgPreview);
 
-            var files = e.target.files;
-            var filesArr = Array.prototype.slice.call(files);
+        var swiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            slidesPerView: 1,
+            centeredSlides: true,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            }
+        }, )
 
-            var index = 0;
-            filesArr.forEach(function(f) {
-                if(!f.type.match("image.*")){
-                    alert("이미지 파일만 업로드 가능합니다.");
-                    return;
-                }
-                sel_files.push(f);
+        var mySwiper = document.querySelector('.swiper-container').swiper
 
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
-                    $(".imgs_wrap").append(html);
-                    index++;
-                }
-                reader.readAsDataURL(f);
-            });
+        function uploadImgPreview(e) {
+            fileListToBase64(e.target.files).then(handleFileLoad);
+
+            function handleFileLoad(pictures) {
+                pictures.map(file =>
+                    mySwiper.appendSlide(`
+                <div class="swiper-slide">
+                    <img class="swiper-slide-img" src="${file}"/>
+                </div>`)
+                );
+            }
         }
 
-        function deleteImageAction(index){
-            console.log("index : "+index);
-            sel_files.splice(index, 1);
+        async function fileListToBase64(fileList) {
+            // create function which return resolved promise
+            // with data:base64 string
+            function getBase64(file) {
+                const reader = new FileReader();
+                return new Promise(resolve => {
+                    reader.onload = ev => {
+                        resolve(ev.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+            // here will be array of promisified functions
+            const promises = [];
 
-            var img_id = "#img_id_"+index;
-            $(img_id).remove();
+            // loop through fileList with for loop
+            for (let i = 0; i < fileList.length; i++) {
+                promises.push(getBase64(fileList[i]));
+            }
 
-            console.log(sel_files);
+            // array with base64 strings
+            return await Promise.all(promises);
         }
-        
     </script>
-    </body>
-    <footer>
-        
-    </footer>
+</body>
+<footer>
+
+</footer>
+
 </html>
