@@ -1,29 +1,23 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-'''
-import os, sys
-from .model import *
-'''
+from idea.models import *
 
 def submit(request):
-    '''
     if request.method == 'POST':
         title = request.POST['title']
-        contents = request.POST['contents']
-        image = request.FILE.get('image')
+        #contents = request.POST['contents']
+        #image = request.FILE.get('image')
 
         newidea = Idea.objects.create(
-            title = title,
-            contents = contents,
+            idea_title = title,
         )
-
         newimage = Idea_image_storage.objects.create(
             idea = newidea,
-            image = image
+            #image = image
         )
-
+        #return render(request, 'submit.html')
+        
         return redirect('../')
 
     else:
-    '''
-    return render(request, 'submit.html')
+        return render(request, 'submit.html')
