@@ -43,8 +43,9 @@ INSTALLED_APPS = [
     'ideaDetail',
     'main',
     'mypage',
-    'signIn',
+    
     'submit',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'about', 'static'),
     os.path.join(BASE_DIR, 'idea', 'static'),
     os.path.join(BASE_DIR, 'ideaDetail', 'static'),
-    os.path.join(BASE_DIR, 'signIn', 'static'),
+    os.path.join(BASE_DIR, 'accounts', 'static'),
     os.path.join(BASE_DIR, 'submit', 'static'),
     os.path.join(BASE_DIR, 'mypage', 'static'),
 ) 
@@ -147,4 +148,4 @@ STATICFILES_FINDERS = [
 SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
 
-AUTH_USER_MODEL = 'signIn.Profile'
+AUTH_USER_MODEL = 'accounts.Profile'

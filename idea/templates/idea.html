@@ -51,11 +51,12 @@
     <header class="header" id="mainpage_header">
       <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
       <span class="menu">
-        <span>{{user.user_name}}님</span>
-        {% if user.is_active %}
+        {% if request.user.is_active %}
+          <span>{{user.user_name}}님</span>
           <a href="{% url 'logout' %}" title="로그아웃하기">Logout</a>
         {% else %}
-          <a href="{% url 'signin' %}" title="로그인하기">Sign in</a>
+        
+          <a href="{% url 'login' %}" title="로그인하기">Sign in</a>
         {% endif %}
           <a href="">My page</a>
           <span class="inner">

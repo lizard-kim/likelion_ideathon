@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-import main.urls, about.urls, idea.urls, ideaDetail.urls, mypage.urls, signIn.urls, submit.urls
+import main.urls, about.urls, idea.urls, ideaDetail.urls, mypage.urls, accounts.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -9,6 +9,6 @@ urlpatterns = [
     path('idea/', include('idea.urls')),
     path('detail/', include('ideaDetail.urls')),
     path('mypage/', include('mypage.urls')),
-    path('signin/', include('signIn.urls')),
     path('submit/', include('submit.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
