@@ -17,7 +17,7 @@ h2 {
 h3 {
   font-family: 'Noto Sans', sans-serif;
   font-size: 40px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0; }
 
 h4 {
@@ -165,10 +165,11 @@ p {
   justify-content: center;
   max-height: 300px; }
   .bot_box {
-    width: 800px; }
+    width: 800px;
+    display: flex;
+    flex-direction: row; }
     .bot_box_hashbox {
-      width: 800px;
-      display: inline-block; }
+      width: 700px; }
       .bot_box_hashbox_hashtag {
         display: flex;
         max-height: 200px;
@@ -184,6 +185,38 @@ p {
           text-overflow: ellipsis;
           overflow: hidden;
           margin: 0px 10px 0px 10px; }
+    .bot_box_cart {
+      width: 100px; }
+      .bot_box_cart_button {
+        border: 1px solid #b4b4b4;
+        color: black;
+        width: 100px;
+        height: 30px;
+        text-align: center;
+        margin-right: 1%;
+        box-shadow: 0px 1px 1px 0px #cecece;
+        margin-bottom: 15%;
+        background-color: white; }
+        .bot_box_cart_button:hover {
+          color: white;
+          background-color: #F39925;
+          transition: 0.3s; }
+    .bot_box_cart_on {
+      width: 100px; }
+      .bot_box_cart_on_button {
+        border: 1px solid #b4b4b4;
+        color: white;
+        width: 100px;
+        height: 30px;
+        text-align: center;
+        margin-right: 1%;
+        box-shadow: 0px 1px 1px 0px #cecece;
+        margin-bottom: 15%;
+        background-color: #F39925; }
+        .bot_box_cart_on_button:hover {
+          color: black;
+          background-color: white;
+          transition: 0.3s; }
     .bot_box_edit {
       display: flex;
       height: 50px;
@@ -243,7 +276,8 @@ p {
       justify-content: center;
       align-items: center;
       width: 800px;
-      height: 100px; }
+      height: 100px;
+      margin-top: 2%; }
       .comments_box_input_none_box {
         display: flex;
         flex-direction: row;
@@ -271,17 +305,20 @@ p {
       display: flex;
       flex-direction: column;
       height: 140px;
-      width: 800px; }
+      width: 800px;
+      margin-top: 2%; }
       .comments_box_input_start {
         height: 35px;
         display: flex;
         flex-direction: row; }
         .comments_box_input_start_image {
           background-color: #F39925;
-          border-radius: 15px;
+          border-radius: 3px;
           width: 25px;
           height: 25px;
           margin-right: 10px; }
+        .comments_box_input_start_image_real {
+          border-radius: 10px; }
         .comments_box_input_start_name {
           flex: none;
           max-width: 100px;
@@ -355,7 +392,6 @@ p {
     max-height: 2000px;
     display: inline-block;
     margin-top: 1%;
-    margin-bottom: 1%;
     border-bottom: 1px solid #b6b6b6; }
   .comments_author_info {
     display: flex;
@@ -364,10 +400,11 @@ p {
     max-width: 300px; }
     .comments_author_info_image {
       flex: none;
-      border-radius: 15px;
       width: 25px;
       height: 25px;
       margin-right: 10px; }
+    .comments_author_info_image_real {
+      border-radius: 10px; }
     .comments_author_info_name {
       flex: none;
       max-width: 100px;
@@ -414,7 +451,7 @@ p {
 .new_comment {
   display: block;
   width: 800px;
-  height: 75px;
+  max-height: 300px;
   margin-top: 2%; }
   .new_comment_input[type=text] {
     width: 620px;
@@ -444,6 +481,26 @@ p {
     flex-direction: row;
     align-items: flex-end;
     margin-top: 1%; }
+  .new_comment_info {
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    max-width: 300px;
+    margin-left: 2%; }
+    .new_comment_info_image {
+      flex: none;
+      border-radius: 15px;
+      width: 25px;
+      height: 25px;
+      margin-right: 10px; }
+    .new_comment_info_name {
+      flex: none;
+      max-width: 100px;
+      margin-right: 10px; }
+    .new_comment_info_school {
+      flex: none;
+      max-width: 100px;
+      margin-right: 10px; }
 
 #btn-comment {
   cursor: pointer; }
@@ -464,7 +521,8 @@ p {
   position: relative;
   max-height: 200px;
   width: 640px;
-  margin-left: 2%; }
+  margin-left: 2%;
+  margin-bottom: 2%; }
   .add_comment_content {
     margin-top: 1%; }
   .add_comment_author_info {
@@ -479,6 +537,8 @@ p {
       width: 25px;
       height: 25px;
       margin-right: 10px; }
+      .add_comment_author_info_image_real {
+        border-radius: 10px; }
     .add_comment_author_info_name {
       flex: none;
       max-width: 100px;

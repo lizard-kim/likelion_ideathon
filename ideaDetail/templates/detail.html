@@ -71,6 +71,7 @@
                     <div class = "bot_box">
 
                         <div class = "bot_box_hashbox">
+
                             <div class = "bot_box_hashbox_hashtag">
                                 {% for i in hasg_tag %}
                                     <div class = "bot_box_hashbox_hashtag_item">
@@ -78,9 +79,27 @@
                                     </div>
                                 {% endfor %}
                             </div>
+
                         </div>
-                        
-                        {% if user %}
+
+                        {% if current_user_cart_add.add_cart == True %}
+                        <form action = "{% url 'detail' detail.id %}"
+                              method = POST
+                              class = "bot_box_cart_on">
+                            {% csrf_token %}
+                            <input type=submit class = "bot_box_cart_on_button" name = "cart" value = "추가됨">
+                        </form>
+                        {% else %}
+                        <form action = "{% url 'detail' detail.id %}"
+                              method = POST
+                              class = "bot_box_cart">
+                            {% csrf_token %}
+                            <input type=submit class = "bot_box_cart_button" name = "cart" value = "장바구니 추가">
+                        </form>
+                        {% endif %}
+
+                        <!-- 로그인한 유저가 글 작성자라면 -->
+                        {% if user == current_user %}
                         <div class = "bot_box_edit">
                             <a href="{% url 'edit' detail.id %}" class = "bot_box_edit_box1">
                                 <p>수정</p>
@@ -116,22 +135,22 @@
 
                     <!-- 로그인 구현되면 로그인 한 유저로 바꿔야 함-->
 
-                    {% if user %}  
+                    {% if current_user %}  
 
                         <div class = "comments_box_input">
 
                             <div class = "comments_box_input_start">
                                 <div class = "comments_box_input_start_image">
-                                    <img src = "{% static 'img/1.png' %}" width = "25px" height = "25px">
+                                    <img class = "comments_box_input_start_image_real" src = "{% static 'img/1.png' %}" width = "25px" height = "25px" >
                                 </div>
                                 <div class = "comments_box_input_start_school">
-                                    <p>{{대학교}}</p>
+                                    <p>{{current_user_profile.user_school}}</p>
                                 </div>
                                 <div class = "comments_box_input_start_name">
-                                    <p>이름</p>
+                                    <p>{{current_user_profile.user_name}}</p>
                                 </div>
                             </div>
-
+                            
                             <form action = "" class = "comments_box_input_form" method = POST>
                                 {% csrf_token %}
                                 <input type = "text" placeholder = "아이디어에 대한 의견을 자유롭게 작성해주세요!" name = "comment">
@@ -192,10 +211,10 @@
 
                             <div class = "comments_author_info">
                                 <div class = "comments_author_info_image">
-                                    <img src = "{% static 'img/1.png' %}" width = "25px" height = "25px">
+                                    <img src = "{% static 'img/1.png' %}"  class = "comments_author_info_image_real" width = "25px" height = "25px">
                                 </div>
 
-                                <!-- 로그인 구현되면 로그인 한 유저로 바꿔야 함-->
+                                <!-- 현재 로그인 한 유저-->
                                 <div class = "comments_author_info_name">
                                     <p>{{comment.user}}</p>
                                 </div>
@@ -230,8 +249,7 @@
                                             <div class = 'add_comment_count'>
                                                 <h6> {{comment.user}}님의 댓글에 달린 답글 {% getvalue add_comments_num check %}개</h6>
                                             </div>
-
-                                            <!-- 모든 대댓글들 중 댓글 순번에 해당하는 대댓글만 가져온다 / as 사용!! -->
+                                            <!-- 모든 대댓글들 중 댓글 순번에 해당하는 대댓글만 가져온다 / custom tag & as 사용!! -->
                                             {% getvalue add_comments check as add_comments%}
                                             
                                             <!-- 댓글 순번에 해당하는 대댓글 loop -->
@@ -241,13 +259,13 @@
                                                             
                                                     <div class = "add_comment_author_info">
                                                         <div class = "add_comment_author_info_image">
-                                                            <img src = "{% static 'img/2.jpg' %}" width = "25px" height = "25px">
+                                                            <img src = "{% static 'img/2.jpg' %}" class = "add_comment_author_info_image_real" width = "25px" height = "25px">
                                                         </div>
                                                         <div class = "add_comment_author_info_name">
-                                                            이름
+                                                            <p>{{current_user_profile.user_name}}</p>
                                                         </div>
                                                         <div class = "add_comment_author_info_school">
-                                                            대학교
+                                                            <p>{{current_user_profile.user_school}}</p>
                                                         </div>
                                                         <div class = "add_comment_author_info_time">
                                                             {{add_comment.create_data}} 
@@ -268,6 +286,19 @@
 
                                     <!-- 대댓글 Form -->
                                     <div id = "new_comment" class = "new_comment" name = "new_comment">
+
+                                        <div class = "new_comment_info">
+                                            <div class = "new_comment_info_image">
+                                                <img class = "comments_box_input_start_image_real" src = "{% static 'img/1.png' %}" width = "25px" height = "25px" >
+                                            </div>
+                                            <div class = "new_comment_info_school">
+                                                <p>{{current_user_profile.user_school}}</p>
+                                            </div>
+                                            <div class = "new_comment_info_name">
+                                                <p>{{current_user_profile.user_name}}</p>
+                                            </div>
+                                        </div>
+
                                         <form action = "" class = "new_comment_form" method = POST>
                                             {% csrf_token %}
                                             <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요">
@@ -294,21 +325,6 @@
     </div>
 
     <div class = "footer">
-        2: {{add_comments}}<br>
-        12 : {{add_comments.3}}<br><br>
-        3: {% for add in add_comments %}
-            {{add}}
-        {% endfor %}<br><br>
-        4: {{value}}<br>
-        5: 
-        {% for i in value %}
-            {% for k in i %}
-                {{k.text}}
-            {% endfor %}
-            <br>
-            {{i}}<br>
-        {% endfor %}<br>
-        <br>
     </div>
 
 </div>
