@@ -1,3 +1,78 @@
 from django.db import models
+from django.conf import settings
+from idea.models import Idea
+from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, PermissionsMixin)
 
-# Create your models here.
+class MyUserManager(BaseUserManager):
+
+    use_in_migrations = True
+
+    # @ brief: baseuser 
+     
+    def create_user(self, email, user_name, password=None):
+        if not email:
+            raise ValueError('Users must have an email address')
+
+        user = self.model(
+            email = self.normalize_email(email),
+            user_name = user_name
+        )
+
+
+        user.set_password(password)
+        user.save(using = self._db)
+        return user 
+
+    def create_superuser(self, email, user_name, password=None):
+        user = self.create_user(
+            email = self.normalize_email(email),
+            password=password,
+            user_name = user_name
+        )
+        user.is_superuser = True
+        user.is_admin = True
+        user.is_staff = True
+        user.save(using=self._db)
+        return user
+
+class Profile(AbstractBaseUser, PermissionsMixin):
+    objects = MyUserManager()
+
+    email = models.EmailField(
+        verbose_name='email',
+        max_length=255,
+        unique=True,
+    )
+    user_name = models.CharField(max_length=20 , blank = True)
+    user_school = models.CharField(max_length=20, blank = True)
+    user_about = models.TextField(max_length=100, blank = True)
+    user_contact = models.TextField(max_length=200, blank = True)
+    user_image = models.ImageField(upload_to="",null=True, blank = True)# media files 어디에 저장할지 upload to
+
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['user_name']
+
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['user_name']
+
+    def __str__(self):
+        return self.user_name
+
+class Idea_Cart(models.Model):
+
+    # @brief: member 하나씩 연결
+
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True, blank = True)
+    idea = models.ForeignKey(Idea, on_delete=models.CASCADE, null = True, blank = True)
+
+    def __str__(self):
+        return str(user.id) + '번 유저의 카트'
+

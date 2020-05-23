@@ -10,27 +10,25 @@
     <body id="signin_body">
         <!-- Sign in Page logo section -->
         <section class="signin_section">
-            <a href=" " title="메인 페이지로 돌아가기">
+            <a href="/" title="메인 페이지로 돌아가기">
                 <img id="signin_logo" src="{% static 'img/basiclogo_E_H.png' %}" />
                 <b>IDEATHON</b>
             </a>
         
         <!-- Sign in form section -->
         
-            <form action="#" method="POST" id="login_form">
+            <form action="{% url 'signin' %}" method="POST" id="login_form">
+                {% csrf_token %}
                 <div>
-                    <input type="text" id="userid" name="userid" placeholder="babylion@likelion.org" required oninvalid="this.setCustomValidity('아이디를 입력하세요')" oninput="setCustomValidity('')"/>
+                    <input type="text" id="email" name="email" placeholder="babylion@likelion.org" required oninvalid="this.setCustomValidity('아이디를 입력하세요')" oninput="setCustomValidity('')"/>
                 </div>
                 <div>
-                    <input type="password" id="userpw" name="userpw" placeholder="password" required oninvalid="this.setCustomValidity('비밀번호를 입력하세요')" oninput="setCustomValidity('')"/>
+                    <input type="password" id="password" name="password" placeholder="password" required oninvalid="this.setCustomValidity('비밀번호를 입력하세요')" oninput="setCustomValidity('')"/>
                 </div>
                 <div>
                     <button type="submit">로그인</button>
                 </div>
             </form>
         </section>
-        <footer>
-
-        </footer>
     </body>
 </html>

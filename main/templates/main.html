@@ -9,15 +9,16 @@
     </head>
     <body id="main_body">
         <!-- main page header -->
-        <header id="mainpage_header">
-            <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
-            <span class="menu">
+        <header class="header">
+            <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
+            <div class="menu">
                 <a href="#" title="누가 만들었을까요?">About</a>
                 <a href="signin/" title="로그인하기">Sign in</a>
-            </span>
+            </div>
         </header>
+
         <!-- main page 중앙 부분 -->
-        <section class="main_section">
+        <div class="main_section">
             <h1>당신의 아이디어가
                 <br/>세상을 바꿉니다
             </h1>
@@ -25,7 +26,7 @@
             <a>
                 <button id="idea_button" onclick="location.href='idea/'">아이디어 보러가기</button>
             </a>
-        </section>
+        </div>
         
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <script>
