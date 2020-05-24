@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from idea.models import Idea
 # Django User Model: 해당 칼럼을 제공해줌
     # username
     # password
@@ -20,3 +21,10 @@ class Profile(models.Model):
 
     def __str__(self):
         return str('유저' + str(self.user_id)+ '번 :') + (str(self.id) + '번 프로필')
+
+class Idea_Cart(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True, blank = True)
+    idea = models.ForeignKey(Idea, on_delete=models.CASCADE, null = True, blank = True)
+
+    def __str__(self):
+        return str(user.id) + '번 유저의 카트'
