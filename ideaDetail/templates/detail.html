@@ -316,10 +316,10 @@
                                             </div>
                                         </div>
 
-                                        <form action = "" class = "new_comment_form" method = POST>
+                                        <form action = "{% url "subcomment" idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
                                             {% csrf_token %}
-                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name = 'addcomment'>
-                                            <button type=submit class = "new_comment_button">제출</button>
+                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name ="text" value="">
+                                            <button type="submit" class = "new_comment_button">제출</button>
                                         </form>
                                     </div>
 

@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from idea.models import Idea_Comments, Idea_AddComments, Idea, Idea_image_storage
-from accounts.models import Idea_Cart
+from accounts.models import Idea_Cart, Profile
 from django.utils import timezone
-from accounts.models import Profile
 
 def detail(request, detail_id):
     
@@ -151,6 +150,22 @@ def detail(request, detail_id):
                 'idea_images' : idea_images,
             }) 
         
+
+def subcomment(request, detail_id, comment_id):
+    if request.method == 'POST':
+        text = request.POST['text']
+        profile = get_object_or_404(Profile.objects.all().filter(email = request.user.email))
+        comment = Idea_Comments.objects.filter(id=comment_id).get()
+
+        newsubcomment = Idea_AddComments.objects.create(
+            user = profile,
+            text = text,
+            idea_comments = comment,
+        )
+
+        return redirect('/detail/'+ str(detail_id))
+
+
 def delete(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
     idea_detail.delete()
