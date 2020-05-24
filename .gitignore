@@ -10,7 +10,6 @@ media
 myvenv
 .DS_Store
 venv
-**/migrations/
 
 
 
