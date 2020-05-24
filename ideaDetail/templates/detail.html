@@ -239,6 +239,12 @@
                                     <a href="{% url 'comment_edit' detail.id comment.id %}" >
                                         <p>수정</p>
                                     </a>
+                                    <!-- 로그인한 유저가 글 작성자라면 -->
+                                    {% if user == current_user %}
+                                    <a href="{% url 'comment_delete' detail.id comment.id %}" >
+                                        <p>삭제</p>
+                                    </a>
+                                    {% endif %}
                                 </div>
                                 
                                 <!-- 대댓글 -->
