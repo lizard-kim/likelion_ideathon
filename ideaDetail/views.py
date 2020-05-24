@@ -32,10 +32,10 @@ def detail(request, detail_id):
             
             if current_user_cart:
                 cart = Idea_Cart.objects.get(user = current_user, idea = current_idea)
-                if cart.add_cart == True:
+                if cart.add_cart:
                     cart.add_cart = False
                     cart.save()
-                elif cart.add_cart == False:
+                else:
                     cart.add_cart = True
                     cart.save()
             else:
