@@ -150,20 +150,6 @@ def detail(request, detail_id):
                 'user': user,
             }) 
         
-def add_comment(request, add_comment_id, detail_id):
-
-    addcomment = request.POST.get('addcomment', 0)
-
-    if 'addcomment' in request.POST:
-            addcomment = Idea_AddComments()
-            addcomment.idea_comments = Idea_AddComments.objects.get(pk = add_comment_id) 
-            addcomment.user = request.user
-            addcomment.text = request.POST['addcomment']
-            addcomment.create_data = timezone.datetime.now()
-            addcomment.save()
-        return redirect('/detail/'+ str(detail_id))
-
-
 def delete(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
     idea_detail.delete()

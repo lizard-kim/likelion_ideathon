@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from signIn.models import Profile, Idea_Cart
+from accounts.models import Profile, Idea_Cart
 from idea.models import Idea, Idea_Comments, Idea_AddComments
 
 def mypage(request):
