@@ -52,9 +52,9 @@ def detail(request, detail_id):
     else:
         # pk에 해당하는 아이디어 
         idea_detail = get_object_or_404(Idea, pk = detail_id)
-        
-        # 아이디어 해시태그, 작성자, 순번, 프로필
-        full_hash_tag = idea_detail.idea_hashtag
+        user = idea_detail.user
+        user_profile =  get_object_or_404(Profile, user = user) # 어떻게 봐볼깝?
+        full_hash_tag = idea_detail.idea_hashtag 
         hash_tag = full_hash_tag.replace(',','').split()
         user = idea_detail.user
         idea_id = idea_detail.id
@@ -114,7 +114,7 @@ def detail(request, detail_id):
             'comments_count' : comments_count,
             'addcomment_list_all' : addcomment_list_all,
             'detail':idea_detail,
-            'hasg_tag':hash_tag,
+            'hash_tag':hash_tag,
             'user_profile' : user_profile,
             'comment_num' : comment_num,
             'add_comments_num' : add_comments_num,
