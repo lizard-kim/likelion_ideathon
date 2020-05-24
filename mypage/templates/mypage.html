@@ -32,9 +32,14 @@
             <h6 class="email"> {{profile.email}} </h6>
             <div class="icon">
                 <i class="far fa-comment-dots fa-2x" style="color: black"></i>
-                <a href="{% url 'comments' %}"><h5 class="comment_num">{{comment_all}}</h5></a>
+                <a href="{% url 'comments' %}">
+                    <h5 class="comment_num">{{comment_all}}</h5>
+                </a>
                 <i class="fas fa-shopping-basket fa-2x"></i>
                 <h5 class="basket_num"> {{cart_all}}</h5>
+                <div class="edit_button">
+                    <i class="far fa-address-card "></i>
+                </div>
             </div>
         </div>
 
@@ -50,53 +55,104 @@
                 <h6 class="title"> About </h6>
                 <h6 class="description"> {{profile.user_about}} </h6>
                 <h6 class="title"> Contact </h6>
-                        <h6 class="description">{{profile.user_contact}}</h6>                
+                <h6 class="description">{{profile.user_contact}}</h6>
             </div>
             <div class="content myidea ideacards">
                 {% if myidea %}
-                    {% for idea in myidea %}
-                        <a href="{% url 'detail' idea.id %}">
-                        <div class="card ideacard card_href" style="display: inline;">
-                            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div> <!--16:9-->
-                            <span class="idea_name">{{idea.idea_title}}</span>
-                            <p>{{idea.idea_subtitle}}</p>
-                            <div class="user_div"><hr>
-                            <img class="cardprofile" src="{{idea.user_image}}">{{idea.user}}<i class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
-                            </div>
-                        </div>   
-                        </a>
-                    {% endfor %}
+                {% for idea in myidea %}
+                <a href="{% url 'detail' idea.id %}">
+                    <div class="card ideacard card_href" style="display: inline;">
+                        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
+                        <!--16:9-->
+                        <span class="idea_name">{{idea.idea_title}}</span>
+                        <p>{{idea.idea_subtitle}}</p>
+                        <div class="user_div">
+                            <hr>
+                            <img class="cardprofile" src="{{idea.user_image}}">{{idea.user}}<i
+                                class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
                 {% else %}
-                    <h3>올린 아이디어가 없습니다.</h3>
+                <h3>올린 아이디어가 없습니다.</h3>
                 {% endif %}
             </div>
-            <div class="content basket" style="display:block; color: black;">
+            <div class="content basket">
                 {% if cart %}
-                    {% for favorite in cart %}
-                        <a href="{% url 'detail' favorite.id %}">
-                        <div class="card ideacard card_href" style="display: inline;">
-                            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div> <!--16:9-->
-                            <span class="idea_name">{{favorite.idea_title}}</span>
-                            <p>{{favorite.idea_subtitle}}</p>
-                            <div class="user_div"><hr>
-                            <img class="cardprofile" src="{{favorite.user_image}}">{{favorite.user}}<i class="far fa-comment">&nbsp;{{favorite.idea_likecount}}</i>
-                            </div>
-                        </div>   
-                        </a>
-                    {% endfor %}
+                {% for favorite in cart %}
+                <a href="{% url 'detail' favorite.id %}">
+                    <div class="card ideacard card_href" style="display: inline;">
+                        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
+                        <!--16:9-->
+                        <span class="idea_name">{{favorite.idea_title}}</span>
+                        <p>{{favorite.idea_subtitle}}</p>
+                        <div class="user_div">
+                            <hr>
+                            <img class="cardprofile" src="{{favorite.user_image}}">{{favorite.user}}<i
+                                class="far fa-comment">&nbsp;{{favorite.idea_likecount}}</i>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
                 {% else %}
-                    <h3>담긴 아이디어가 없습니다.</h3>
+                <h3>담긴 아이디어가 없습니다.</h3>
                 {% endif %}
             </div>
 
         </div>
     </div>
-    {% include 'footer.html' %}
-    <!--
-    <div class="footer">
-        <h3> footer </h3>
+    <div class="content myidea ideacards">
+        {% if myidea %}
+        {% for idea in myidea %}
+        <a href="{% url 'detail' idea.id %}">
+            <div class="card ideacard card_href" style="display: inline;">
+                <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
+                <!--16:9-->
+                <span class="idea_name">{{idea.idea_title}}</span>
+                <p>{{idea.idea_subtitle}}</p>
+                <div class="user_div">
+                    <hr>
+                    <img class="cardprofile" src="{{idea.user_image}}">{{idea.user}}<i
+                        class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% else %}
+        <h3>올린 아이디어가 없습니다.</h3>
+        {% endif %}
     </div>
--->
+    <div class="content basket">
+        {% if cart %}
+        {% for favorite in cart %}
+        <a href="{% url 'detail' favorite.id %}">
+            <div class="card ideacard card_href" style="display: inline;">
+                <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
+                <!--16:9-->
+                <span class="idea_name">{{favorite.idea_title}}</span>
+                <p>{{favorite.idea_subtitle}}</p>
+                <div class="user_div">
+                    <hr>
+                    <img class="cardprofile" src="{{favorite.user_image}}">{{favorite.user}}<i
+                        class="far fa-comment">&nbsp;{{favorite.idea_likecount}}</i>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% else %}
+        <h3>담긴 아이디어가 없습니다.</h3>
+        {% endif %}
+    </div>
+
+    <div id="mypage_edit">
+        <input class="edit_component" type="text" value="my_department">
+        <input class="edit_component" type="text" value="my_about">
+        <input class="edit_component" type="text" value="my_contact">
+    </div>
+    </div>
+    {% include 'footer.html' %}
+
     <script>
         $(document).ready(function () {
             $(".menuelem").on("click", function (e) {
@@ -108,13 +164,17 @@
                 $("." + clickId).css({
                     "display": "block",
                 })
-            })
-            $(".edit_button").on("click", function (e) {
-                var editid = document.getElementById("mypage_edit")
-                $("#edit").css({
+                $("#mypage_edit").css({
                     "display": "none",
                 })
-                $(editid).css({
+
+            })
+            $(".edit_button").on("click", function (e) {
+                var edit_info = document.getElementById('mypage_edit');
+                $(".content").css({
+                    "display": "none",
+                })
+                $("#mypage_edit").css({
                     "display": "block",
                 })
             })
