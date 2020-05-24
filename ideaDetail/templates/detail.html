@@ -18,7 +18,7 @@
         <span class="menu">
             <a href="#">Log out</a>
             |
-            <a href="#">My Page</a>
+            <a href="{% url 'mypage' %}">My Page</a>
         </span>
     </div>
 
@@ -231,7 +231,7 @@
                                 <!-- 댓글 -->
                                 <div class = "comments_content">
                                     <div class = "comments_content_left">
-                                        {{comment.text}}   <br>      
+                                        {{comment.text |linebreaksbr}}   <br>      
                                     </div>
                                     <div class = "comments_content_right">
                                         <button class = "comments_content_right_button" type="menu" name = "btn-comment">답글</button>
@@ -276,7 +276,7 @@
                                                     </div>
 
                                                     <div class = "add_comment_content">
-                                                        {{add_comment.text}} 
+                                                        {{add_comment.text |linebreaksbr}} 
                                                     </div>
 
                                                 </div>
