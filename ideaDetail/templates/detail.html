@@ -56,10 +56,17 @@
 
                 <div class = "image">
                     <div class = "image_box">
-                        <img src="{{idea_detail.idea_image.url}}" alt = "d" width = "800px" height = "100%">
-                        {% for image in idea_images %}
-                        <img src="{{image.image.url}}" alt = "d" width = "800px" height = "100%">
-                        {% endfor %}
+                        
+                        {% if idea_detail.idea_image %}
+                            <img src="{{idea_detail.idea_image.url}}" alt = "d" width = "800px" height = "100%">
+                        {% endif %}
+
+                        {% if idea_images %}
+                            {% for image in idea_images %}
+                                <img src="{{image.image.url}}" alt = "d" width = "800px" height = "100%">
+                            {% endfor %}
+                        {% endif %}
+
                     </div>
                 </div>
 
@@ -335,6 +342,7 @@
     </div>
 
     <div class = "footer">
+        {{idea_detail.idea_image}}
     </div>
 
 </div>
