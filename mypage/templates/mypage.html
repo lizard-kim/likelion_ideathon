@@ -1,3 +1,6 @@
+<!--@brief: js ready 함수 구현으로 인해 첫 페이지에 모든 text들이 다 rendering -->
+<!--@todo: js ready 함수에서 다른 함수로 변경-->
+
 <!DOCTYPE html>
 {% load sass_tags %}
 {% load static %}
@@ -14,6 +17,22 @@
 
     <link href="{% sass_src 'style/mypage.scss' %}" rel="stylesheet" type="text/css" />
 </head>
+<style>
+    #mypage_edit {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    #mypage_edit input {
+        display: inline-block;
+        text-align: left;
+    }
+
+    input[type="text"] {
+        height: auto;
+        padding: .8em .5em;
+    }
+</style>
 
 <body>
     <div class="header">
@@ -146,9 +165,10 @@
     </div>
 
     <div id="mypage_edit">
-        <input class="edit_component" type="text" value="my_department">
-        <input class="edit_component" type="text" value="my_about">
-        <input class="edit_component" type="text" value="my_contact">
+        <input class="edit_component" type="text" placeholder="소속대학"><br>
+        <input class="edit_component" type="text" placeholder="비밀번호 변경"><br>
+        <input class="edit_component" type="text" placeholder="이름변경"><br>
+        <input class="edit_component" type="text" placeholder="소개변경">
     </div>
     </div>
     {% include 'footer.html' %}
