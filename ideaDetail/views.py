@@ -108,10 +108,29 @@ def detail(request, detail_id):
         
         if current_user_cart :  # 해당 아이디어에 대해 장바구니 가지고 있다면
             current_user_cart_add = Idea_Cart.objects.get(user = current_user, idea = idea_detail) # 겟또
+
+            return render(request, 'detail.html',{
+                'comment_list' : comment_list,
+                'comments_count' : comments_count,
+                'addcomment_list_all' : addcomment_list_all,
+                'detail':idea_detail,
+                'hasg_tag':hash_tag,
+                'user_profile' : user_profile,
+                'comment_num' : comment_num,
+                'add_comments_num' : add_comments_num,
+                'comments' : comments,
+                'add_comments' : add_comments,
+                'value' : value,
+                'comment_check' : comment_check,
+                'idea_detail' : idea_detail,
+                'current_user' : current_user,
+                'current_user_profile' : current_user_profile,
+                'user_profile' : user_profile,
+                'user': user,
+                'current_user_cart_add' : current_user_cart_add,
+            })
         else :
-            current_user_cart_add = NULL
-        
-        return render(request, 'detail.html',{
+                    return render(request, 'detail.html',{
             'comment_list' : comment_list,
             'comments_count' : comments_count,
             'addcomment_list_all' : addcomment_list_all,
@@ -129,8 +148,8 @@ def detail(request, detail_id):
             'current_user_profile' : current_user_profile,
             'user_profile' : user_profile,
             'user': user,
-            'current_user_cart_add' : current_user_cart_add,
-        })
+        }) 
+        
 
 def delete(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
