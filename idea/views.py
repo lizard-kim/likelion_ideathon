@@ -1,7 +1,7 @@
 import math
 from django.shortcuts import render
 from .models import Idea
-from signIn.models import Profile
+from accounts.models import Profile
 from django.core.paginator import Paginator
 
 def idea(request):

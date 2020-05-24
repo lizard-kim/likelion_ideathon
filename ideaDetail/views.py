@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from idea.models import Idea_Comments, Idea_AddComments, Idea
+from accounts.models import Idea_Cart
 from django.utils import timezone
-from signIn.models import Profile
+from accounts.models import Profile
 
 def detail(request, detail_id):
     
@@ -9,32 +10,56 @@ def detail(request, detail_id):
 
         comment = request.POST.get('comment', 0)
         addcomment = request.POST.get('addcomment', 0)
+        cart = request.POST.get('cart', 0)
 
         if 'comment' in request.POST:
             comment = Idea_Comments()
+            comment.user = request.user
+            comment.idea = Idea.objects.get(pk = detail_id)
             comment.text = request.POST['comment']
             comment.create_data = timezone.datetime.now()
             comment.save()
 
         elif 'addcomment' in request.POST:
             addcomment = Idea_AddComments()
+            addcomment.user = request.user
             addcomment.text = request.POST['addcomment']
             addcomment.create_data = timezone.datetime.now()
             addcomment.save()
-        
+
+        elif 'cart' in request.POST:
+            current_user = request.user
+            current_user_profile = Profile.objects.get(email = current_user.email)
+            current_idea = Idea.objects.get(pk = detail_id)
+            current_user_cart = Idea_Cart.objects.all().filter(user = current_user, idea = current_idea)
+            
+            if current_user_cart:
+                cart = Idea_Cart.objects.get(user = current_user, idea = current_idea)
+                if cart.add_cart == True:
+                    cart.add_cart = False
+                    cart.save()
+                elif cart.add_cart == False:
+                    cart.add_cart = True
+                    cart.save()
+            else:
+                user_cart = Idea_Cart()
+                user_cart.user = current_user_profile
+                user_cart.idea = current_idea
+                user_cart.add_cart = True
+                user_cart.save()
+
         return redirect('/detail/'+ str(detail_id))
 
     else:
         # pk에 해당하는 아이디어 
-        idea_detail = get_object_or_404(Idea, pk = detail_id)
-        
-        # 아이디어 해시태그, 작성자, 순번, 프로필
-        full_hash_tag = idea_detail.idea_hashtag
+        idea_detail = Idea.objects.get(pk = detail_id)
+        user = idea_detail.user
+        full_hash_tag = idea_detail.idea_hashtag 
         hash_tag = full_hash_tag.replace(',','').split()
         user = idea_detail.user
-        user_school = idea_detail.user.user_school
         idea_id = idea_detail.id
-        user_profile =  idea_detail.user.user_image
+        user_profile =  Profile.objects.get(email = user.email)
+
 
         # 아이디어에 해당하는 댓글 가져오기
         comment_list_all = Idea_Comments.objects.all()
@@ -59,7 +84,6 @@ def detail(request, detail_id):
         addcomment_list_all = Idea_AddComments.objects.all()
         
         # 아이디어에 해당하는 대댓글들을 각 댓글에 부여해줘야 함
-
         add_comments = {} # 댓글 순번에 따른 대댓글 부여
         add_comments_num = {}
         value = [] # 순번에 해당하는 댓글의 대댓글들
@@ -75,23 +99,57 @@ def detail(request, detail_id):
 
             value.append(add_comments[comments[t]])
 
-        return render(request, 'detail.html',{
-            'comment_list' : comment_list,
-            'comments_count' : comments_count,
-            'addcomment_list_all' : addcomment_list_all,
-            'detail':idea_detail,
-            'hash_tag':hash_tag,
-            'user_profile' : user_profile,
-            'comment_num' : comment_num,
-            'add_comments_num' : add_comments_num,
-            'comments' : comments,
-            'add_comments' : add_comments,
-            'value' : value,
-            'comment_check' : comment_check,
-            'user' : user,
-            'user_school': user_school,
-        })
+        # user permission (현재 로그인한 유저)
+        current_user = request.user
+        current_user_profile = Profile.objects.get(email = current_user.email)
 
+        # 현재 로그인한 유저가 해당 아이디어 가지고 있는지 체크
+        current_user_cart = Idea_Cart.objects.all().filter(user = current_user, idea = idea_detail)
+        
+        if current_user_cart :  # 해당 아이디어에 대해 장바구니 가지고 있다면
+            current_user_cart_add = Idea_Cart.objects.get(user = current_user, idea = idea_detail) # 겟또
+
+            return render(request, 'detail.html',{
+                'comment_list' : comment_list,
+                'comments_count' : comments_count,
+                'addcomment_list_all' : addcomment_list_all,
+                'detail':idea_detail,
+                'hasg_tag':hash_tag,
+                'user_profile' : user_profile,
+                'comment_num' : comment_num,
+                'add_comments_num' : add_comments_num,
+                'comments' : comments,
+                'add_comments' : add_comments,
+                'value' : value,
+                'comment_check' : comment_check,
+                'idea_detail' : idea_detail,
+                'current_user' : current_user,
+                'current_user_profile' : current_user_profile,
+                'user_profile' : user_profile,
+                'user': user,
+                'current_user_cart_add' : current_user_cart_add,
+            })
+        else :
+            return render(request, 'detail.html',{
+                'comment_list' : comment_list,
+                'comments_count' : comments_count,
+                'addcomment_list_all' : addcomment_list_all,
+                'detail':idea_detail,
+                'hasg_tag':hash_tag,
+                'user_profile' : user_profile,
+                'comment_num' : comment_num,
+                'add_comments_num' : add_comments_num,
+                'comments' : comments,
+                'add_comments' : add_comments,
+                'value' : value,
+                'comment_check' : comment_check,
+                'idea_detail' : idea_detail,
+                'current_user' : current_user,
+                'current_user_profile' : current_user_profile,
+                'user_profile' : user_profile,
+                'user': user,
+            }) 
+        
 def delete(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
     idea_detail.delete()
@@ -110,3 +168,16 @@ def edit(request, detail_id):
         return redirect('/detail/' + str(detail_id))
     else:
         return render(request, 'submit.html', {'idea_detail':idea_detail})
+
+def comment_edit(request, detail_id, comment_id):
+    idea_comment = Idea_Comments.objects.get(pk = comment_id)
+
+    if request.method == 'POST':
+        idea_comment.text = request.POST['comment']
+        idea_comment.save()
+        return redirect('/detail/' + str(detail_id))
+
+def comment_delete(request, comment_id, detail_id):
+    idea_comment = Idea_Comments.objects.get(pk = comment_id)
+    idea_comment.delete()
+    return redirect('/detail/'+ str(detail_id))
