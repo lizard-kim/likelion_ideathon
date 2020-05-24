@@ -174,10 +174,11 @@ p{
 
     &_box{
         width : 800px;
+        display : flex;
+        flex-direction: row;
         
         &_hashbox{
-            width : 800px;
-            display : inline-block;
+            width : 700px;
 
             &_hashtag{
                 display : flex;
@@ -195,6 +196,50 @@ p{
                     text-overflow: ellipsis;    // 잘린 텍스트 ...표기
                     overflow:hidden;    // 잘린거 안보이게 
                     margin : 0px 10px 0px 10px;
+                }
+            }
+        }
+
+        &_cart{
+            width : 100px;
+
+            &_button{
+                border : 1px solid rgb(180, 180, 180);
+                color : black;
+                width : 100px;
+                height : 30px;
+                text-align : center;
+                margin-right : 1%;
+                box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+                margin-bottom : 15%;
+                background-color: white;
+        
+                &:hover{
+                    color : white;
+                    background-color: #F39925;
+                    transition: 0.3s;
+                }
+            }
+        }
+
+        &_cart_on{
+            width : 100px;
+
+            &_button{
+                border : 1px solid rgb(180, 180, 180);
+                color : white;
+                width : 100px;
+                height : 30px;
+                text-align : center;
+                margin-right : 1%;
+                box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+                margin-bottom : 15%;
+                background-color: #F39925;
+        
+                &:hover{
+                    color : black;
+                    background-color: white;
+                    transition: 0.3s;
                 }
             }
         }
@@ -276,6 +321,7 @@ p{
             align-items: center;
             width : 800px;
             height : 100px;
+            margin-top : 2%;
 
             &_box{
                 display : flex;
@@ -314,7 +360,8 @@ p{
             flex-direction: column;
             height : 140px;
             width : 800px;
-    
+            margin-top : 2%;
+
             &_start{
                 height : 35px;
                 display : flex;
@@ -322,10 +369,13 @@ p{
 
                 &_image{
                     background-color: #F39925;
-                    border-radius: 15px;
+                    border-radius: 3px;
                     width : 25px;
                     height : 25px;
                     margin-right : 10px;
+                }
+                &_image_real{
+                    border-radius: 10px;
                 }
 
                 &_name{
@@ -431,7 +481,6 @@ p{
         max-height: 2000px;
         display : inline-block;
         margin-top : 1%;
-        margin-bottom : 1%;
         border-bottom: 1px solid rgb(182, 182, 182);
     }
 
@@ -443,11 +492,14 @@ p{
             
         &_image{
                             flex : none;
-                            border-radius: 15px;
                             width : 25px;
                             height : 25px;
                             margin-right : 10px;
                         }
+        
+        &_image_real{
+            border-radius: 10px;
+        }
         
         &_name{
                             flex : none;
@@ -515,7 +567,7 @@ p{
 .new_comment{
     display : block;
         width : 800px;
-        height : 75px;
+        max-height : 300px;
         margin-top : 2%;
 
     &_input[type=text]{
@@ -554,6 +606,34 @@ p{
         align-items: flex-end;
         margin-top : 1%;
     }
+
+    &_info{
+        display : flex;
+        flex-direction: row;
+        height : 30px;
+        max-width : 300px;
+        margin-left : 2%;
+
+        &_image{
+            flex : none;
+            border-radius: 15px;
+            width : 25px;
+            height : 25px;
+            margin-right : 10px;
+        }
+
+        &_name{
+            flex : none;
+            max-width : 100px;
+            margin-right : 10px;
+        }
+
+        &_school{
+            flex : none;
+            max-width : 100px;
+            margin-right : 10px;
+        }
+    }
 }
 
 #btn-comment{
@@ -579,6 +659,7 @@ p{
     max-height : 200px;
     width : 640px;
     margin-left : 2%;
+    margin-bottom : 2%;
 
     &_content{
         margin-top : 1%;
@@ -597,6 +678,11 @@ p{
                             width : 25px;
                             height : 25px;
                             margin-right : 10px;
+
+                        &_real{
+                            border-radius: 10px;
+                        }
+
                         }
         
         &_name{
