@@ -90,7 +90,9 @@
 
                         </div>
 
-                        {% if current_user_cart_add.add_cart == True %}
+                        {% if user == request.user %}
+                        
+                        {% elif current_user_cart_add.add_cart == True %}
                         <form action = "{% url 'detail' detail.id %}"
                               method = POST
                               class = "bot_box_cart_on">
@@ -244,11 +246,11 @@
                                     <div class = "comments_content_right">
                                         <button class = "comments_content_right_button" type="menu" name = "btn-comment">답글</button>
                                     </div>
+                                    <!-- 로그인한 유저가 글 작성자라면 -->
+                                    {% if request.user == comment.user %}
                                     <a href="{% url 'comment_edit' detail.id comment.id %}" >
                                         <p>수정</p>
                                     </a>
-                                    <!-- 로그인한 유저가 글 작성자라면 -->
-                                    {% if user == current_user %}
                                     <a href="{% url 'comment_delete' detail.id comment.id %}" >
                                         <p>삭제</p>
                                     </a>
