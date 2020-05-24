@@ -26,15 +26,17 @@
     </div>
     <div class="mypage">
         <div class="mypage__top">
+            <img src="{{profile.user_profile}}">
             <img src="{% static 'image/ironman.jpg' %}" />
-            <h3> Iron man </h3>
-            <h6 class="email"> Iamironman@likelion.org </h6>
+            <h3> {{profile.user_name}} </h3>
+            <h6 class="email"> {{profile.email}} </h6>
             <div class="icon">
                 <i class="far fa-comment-dots fa-2x" style="color: black"></i>
-                <h5 class="comment_num"> 21 </h5>
+                <a href="{% url 'comments' %}">
+                    <h5 class="comment_num">{{comment_all}}</h5>
+                </a>
                 <i class="fas fa-shopping-basket fa-2x"></i>
-                <h5 class="basket_num"> 4 </h5>
-                <i class="fa fa-bars edit_button"></i>
+                <h5 class="basket_num"> {{cart_all}}</h5>
             </div>
         </div>
 
@@ -46,9 +48,9 @@
             </div>
             <div class="content profile">
                 <h6 class="title"> Department </h6>
-                <h6 class="description"> DGIST </h6>
+                <h6 class="description"> {{profile.user_school}} </h6>
                 <h6 class="title"> About </h6>
-                <h6 class="description"> I must keep only one person, just you. </h6>
+                <h6 class="description"> {{profile.user_about}} </h6>
                 <h6 class="title"> Contact </h6>
                 <h6 class="description"> https://github.com/iron-man </h6>
 
@@ -66,12 +68,60 @@
         <div class="content basket">
             <h2> 이것은 장바구니 </h2>
         </div>
-
         <div id="mypage_edit">
             <input class="edit_component" type="text" value="my_department">
             <input class="edit_component" type="text" value="my_about">
             <input class="edit_component" type="text" value="my_contact">
         </div>
+    </div>
+    <div class="content myidea ideacards">
+        {% if myidea %}
+        {% for idea in myidea %}
+        <a href="{% url 'detail' idea.id %}">
+            <div class="card ideacard card_href" style="display: inline;">
+                <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
+                <!--16:9-->
+                <span class="idea_name">{{idea.idea_title}}</span>
+                <p>{{idea.idea_subtitle}}</p>
+                <div class="user_div">
+                    <hr>
+                    <img class="cardprofile" src="{{idea.user_image}}">{{idea.user}}<i
+                        class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% else %}
+        <h3>올린 아이디어가 없습니다.</h3>
+        {% endif %}
+    </div>
+    <div class="content basket">
+        {% if cart %}
+        {% for favorite in cart %}
+        <a href="{% url 'detail' favorite.id %}">
+            <div class="card ideacard card_href" style="display: inline;">
+                <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
+                <!--16:9-->
+                <span class="idea_name">{{favorite.idea_title}}</span>
+                <p>{{favorite.idea_subtitle}}</p>
+                <div class="user_div">
+                    <hr>
+                    <img class="cardprofile" src="{{favorite.user_image}}">{{favorite.user}}<i
+                        class="far fa-comment">&nbsp;{{favorite.idea_likecount}}</i>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% else %}
+        <h3>담긴 아이디어가 없습니다.</h3>
+        {% endif %}
+    </div>
+
+    <div id="mypage_edit">
+        <input class="edit_component" type="text" value="my_department">
+        <input class="edit_component" type="text" value="my_about">
+        <input class="edit_component" type="text" value="my_contact">
+    </div>
     </div>
     {% include 'footer.html' %}
     <!--
