@@ -52,25 +52,25 @@
                 <h6 class="title"> Contact </h6>
                 <h6 class="description"> https://github.com/iron-man </h6>
 
-                <div id="mypage_edit">
-                    <input class="edit_component" type="text" value="my_department">
-                    <input class="edit_component" type="text" value="my_about">
-                    <input class="edit_component" type="text" value="my_contact">
+            </div>
+        </div>
+        <div class="content myidea">
+            <div class="ideacard">
+                <div class="ideacard__thumbnail"></div>
+                <div class="ideacard__content">
+                    <h4 class="title"> My best idea title </h4>
+                    <h6 class="subtitle"> this is description... iron man is the best hero in my life... </h6>
                 </div>
             </div>
-            <div class="content myidea">
-                <div class="ideacard">
-                    <div class="ideacard__thumbnail"></div>
-                    <div class="ideacard__content">
-                        <h4 class="title"> My best idea title </h4>
-                        <h6 class="subtitle"> this is description... iron man is the best hero in my life... </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="content basket">
-                <h2> 이것은 장바구니 </h2>
-            </div>
+        </div>
+        <div class="content basket">
+            <h2> 이것은 장바구니 </h2>
+        </div>
 
+        <div id="mypage_edit">
+            <input class="edit_component" type="text" value="my_department">
+            <input class="edit_component" type="text" value="my_about">
+            <input class="edit_component" type="text" value="my_contact">
         </div>
     </div>
     {% include 'footer.html' %}
@@ -93,12 +93,14 @@
             })
             $(".edit_button").on("click", function (e) {
                 var editid = document.getElementById("mypage_edit")
-                $("#edit").css({
-                    "display": "none",
-                })
                 $(editid).css({
                     "display": "block",
                 })
+                $(".content").css({
+                    "display": "none",
+                })
+
+
             })
         })
     </script>
