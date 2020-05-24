@@ -70,7 +70,7 @@
                     <h3>올린 아이디어가 없습니다.</h3>
                 {% endif %}
             </div>
-            <div class="content basket">
+            <div class="content basket" style="display:block; color: black;">
                 {% if cart %}
                     {% for favorite in cart %}
                         <a href="{% url 'detail' favorite.id %}">

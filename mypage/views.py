@@ -9,7 +9,7 @@ def mypage(request):
         comment = Idea_Comments.objects.all().filter(user = request.user).count()
         add_comment = Idea_AddComments.objects.all().filter(user = request.user).count()
         comment_all = comment + add_comment
-        cart = Idea_Cart.objects.all().exclude(user = request.user)
+        cart = Idea_Cart.objects.filter(user = request.user)
         cart_all = Idea_Cart.objects.all().exclude(user = request.user).count()
         return render(request, 'mypage.html', 
             {'profile' : profile, 
