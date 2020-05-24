@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from idea.models import Idea_Comments, Idea_AddComments, Idea, Idea_image_storage
-from accounts.models import Idea_Cart
+from accounts.models import Idea_Cart, Profile
 from django.utils import timezone
-from accounts.models import Profile
 
 def detail(request, detail_id):
     
@@ -51,7 +50,7 @@ def detail(request, detail_id):
         return redirect('/detail/'+ str(detail_id))
 
     else:
-        # pk에 해당하는 아이디어 
+        # 에 해당하는 아이디어 
         idea_detail = Idea.objects.get(pk = detail_id)
         user = idea_detail.user
         full_hash_tag = idea_detail.idea_hashtag
@@ -135,7 +134,7 @@ def detail(request, detail_id):
                 'comments_count' : comments_count,
                 'addcomment_list_all' : addcomment_list_all,
                 'detail':idea_detail,
-                'hasg_tag':hash_tag,
+                # 'hasg_tag':hash_tag,
                 'user_profile' : user_profile,
                 'comment_num' : comment_num,
                 'add_comments_num' : add_comments_num,
@@ -177,6 +176,8 @@ def comment_edit(request, comment_id, detail_id):
         idea_comment.text = request.POST['comment']
         idea_comment.save()
         return redirect('/detail/' + str(detail_id))
+    else:
+        return render(request, 'detail.html', {'idea_comment': idea_comment})
 
 def comment_delete(request, comment_id, detail_id):
     idea_comment = Idea_Comments.objects.get(pk = comment_id)

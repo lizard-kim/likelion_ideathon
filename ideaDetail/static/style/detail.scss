@@ -178,7 +178,8 @@ p{
         flex-direction: row;
         
         &_hashbox{
-            width : 700px;
+            width : 800px;
+            display : inline-block;
 
             &_hashtag{
                 display : flex;
