@@ -174,11 +174,9 @@ p{
 
     &_box{
         width : 800px;
-        display : flex;
-        flex-direction: row;
-        
         &_hashbox{
-            width : 700px;
+            width : 800px;
+            display : inline-block;
 
             &_hashtag{
                 display : flex;
@@ -492,6 +490,7 @@ p{
             
         &_image{
                             flex : none;
+                            border-radius: 15px;
                             width : 25px;
                             height : 25px;
                             margin-right : 10px;
@@ -678,11 +677,6 @@ p{
                             width : 25px;
                             height : 25px;
                             margin-right : 10px;
-
-                        &_real{
-                            border-radius: 10px;
-                        }
-
                         }
         
         &_name{

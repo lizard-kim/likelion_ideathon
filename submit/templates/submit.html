@@ -44,7 +44,6 @@
         padding: 0;
         margin: -1px;
         overflow: hidden;
-        clip: rect(0, 0, 0, 0);
         border: 0;
       }
     </style>
@@ -61,7 +60,7 @@
       <span class="menu">
         <a href="#">Log out</a>
         |
-        <a href="#">My Page</a>
+        <a href="{% url 'mypage' %}">My Page</a>
       </span>
     </header>
     <form

@@ -18,7 +18,7 @@
         <span class="menu">
             <a href="#">Log out</a>
             |
-            <a href="#">My Page</a>
+            <a href="{% url 'mypage' %}">My Page</a>
         </span>
     </div>
 
@@ -56,8 +56,17 @@
 
                 <div class = "image">
                     <div class = "image_box">
-                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "800px" height = "100%">
-                        <img class = "image_real" src = "{% static 'img/1.png' %}" width = "800px" height = "100%">
+                        
+                        {% if idea_detail.idea_image %}
+                            <img src="{{idea_detail.idea_image.url}}" alt = "d" width = "800px" height = "100%">
+                        {% endif %}
+
+                        {% if idea_images %}
+                            {% for image in idea_images %}
+                                <img src="{{image.image.url}}" alt = "d" width = "800px" height = "100%">
+                            {% endfor %}
+                        {% endif %}
+
                     </div>
                 </div>
 
@@ -71,7 +80,6 @@
                     <div class = "bot_box">
 
                         <div class = "bot_box_hashbox">
-
                             <div class = "bot_box_hashbox_hashtag">
                                 {% for i in hash_tag %}
                                     <div class = "bot_box_hashbox_hashtag_item">
@@ -82,7 +90,9 @@
 
                         </div>
 
-                        {% if current_user_cart_add.add_cart == True %}
+                        {% if user == request.user %}
+                        
+                        {% elif current_user_cart_add.add_cart == True %}
                         <form action = "{% url 'detail' detail.id %}"
                               method = POST
                               class = "bot_box_cart_on">
@@ -135,7 +145,7 @@
 
                     <!-- 로그인 구현되면 로그인 한 유저로 바꿔야 함-->
 
-                    {% if current_user %}  
+                    {% if user %}  
 
                         <div class = "comments_box_input">
 
@@ -153,7 +163,7 @@
                             
                             <form action = "" class = "comments_box_input_form" method = POST>
                                 {% csrf_token %}
-                                <input type = "text" placeholder = "아이디어에 대한 의견을 자유롭게 작성해주세요!" name = "comment">
+                                <input type = "text" placeholder = "아이디어에 대한 의견을 자유롭게 작성해주세요!" name = "comment" >
                                 <button type=submit class = "comments_box_input_form_button"><p>제출</p></button>
                             </form>
 
@@ -231,16 +241,16 @@
                                 <!-- 댓글 -->
                                 <div class = "comments_content">
                                     <div class = "comments_content_left">
-                                        {{comment.text}}   <br>      
+                                        {{comment.text |linebreaksbr}}   <br>      
                                     </div>
                                     <div class = "comments_content_right">
                                         <button class = "comments_content_right_button" type="menu" name = "btn-comment">답글</button>
                                     </div>
+                                    <!-- 로그인한 유저가 글 작성자라면 -->
+                                    {% if request.user == comment.user %}
                                     <a href="{% url 'comment_edit' detail.id comment.id %}" >
                                         <p>수정</p>
                                     </a>
-                                    <!-- 로그인한 유저가 글 작성자라면 -->
-                                    {% if user == current_user %}
                                     <a href="{% url 'comment_delete' detail.id comment.id %}" >
                                         <p>삭제</p>
                                     </a>
@@ -282,7 +292,7 @@
                                                     </div>
 
                                                     <div class = "add_comment_content">
-                                                        {{add_comment.text}} 
+                                                        {{add_comment.text |linebreaksbr}} 
                                                     </div>
 
                                                 </div>
@@ -308,10 +318,10 @@
                                             </div>
                                         </div>
 
-                                        <form action = "" class = "new_comment_form" method = POST>
+                                        <form action = "{% url "subcomment" idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
                                             {% csrf_token %}
-                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name = 'addcomment'>
-                                            <button type=submit class = "new_comment_button">제출</button>
+                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name ="text" value="">
+                                            <button type="submit" class = "new_comment_button">제출</button>
                                         </form>
                                     </div>
 
@@ -334,6 +344,7 @@
     </div>
 
     <div class = "footer">
+        {{idea_detail.idea_image}}
     </div>
 
 </div>
@@ -376,5 +387,4 @@
     init();    
 
 </script>
-
 </html>
