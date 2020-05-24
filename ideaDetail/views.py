@@ -17,13 +17,6 @@ def detail(request, detail_id):
             comment.create_data = timezone.datetime.now()
             comment.save()
 
-        elif 'addcomment' in request.POST:
-            addcomment = Idea_AddComments()
-            addcomment.user = request.user
-            addcomment.text = request.POST['addcomment']
-            addcomment.create_data = timezone.datetime.now()
-            addcomment.save()
-
         elif 'cart' in request.POST:
             current_user = request.user
             current_user_profile = Profile.objects.get(email = current_user.email)
@@ -163,19 +156,16 @@ def subcomment(request, detail_id, comment_id):
 
         return redirect('/detail/'+ str(detail_id))
 
-def comment_edit(request, detail_id, comment_id):
-    if request.method == 'POST':
-        text = request.POST['text']
-        profile = get_object_or_404(Profile.objects.all().filter(email = request.user.email))
-        comment = Idea_Comments.objects.filter(id=comment_id).get()
-
-        newsubcomment = Idea_AddComments.objects.create(
-            user = profile,
-            text = text,
-            idea_comments = comment,
-        )
-
-        return redirect('/detail/'+ str(detail_id))
+# def comment_edit(request, detail_id, comment_id):
+#     if request.method == 'POST':
+#         text = request.POST['comment']
+#         comment = Idea_Comments.objects.filter(id=comment_id).get()
+#         comment.text = text
+#         comment.save()
+        
+#         return redirect('/detail/'+ str(detail_id))
+#     else:
+#         return render(request, 'detail.html' , {'comment' : comment})
 
 
 def delete(request, detail_id):
@@ -197,17 +187,22 @@ def edit(request, detail_id):
     else:
         return render(request, 'submit.html', {'idea_detail':idea_detail})
 
-def comment_edit(request, comment_id, detail_id):
-    idea_comment = Idea_Comments.objects.get(pk = comment_id)
+# def comment_edit(request, comment_id, detail_id):
+#     idea_comment = Idea_Comments.objects.get(pk = comment_id)
 
-    if request.method == 'POST':
-        idea_comment.text = request.POST['comment']
-        idea_comment.save()
-        return redirect('/detail/' + str(detail_id))
-    else:
-        return render(request, 'detail.html', {'idea_comment': idea_comment})
+#     if request.method == 'POST':
+#         idea_comment.text = request.POST['comment']
+#         idea_comment.save()
+#         return redirect('/detail/' + str(detail_id))
+#     else:
+#         return render(request, 'detail.html', {'idea_comment': idea_comment})
 
 def comment_delete(request, comment_id, detail_id):
     idea_comment = Idea_Comments.objects.get(pk = comment_id)
     idea_comment.delete()
+    return redirect('/detail/'+ str(detail_id))
+
+def addcomment_delete(request, addcomment_id, detail_id):
+    idea_addcomment = Idea_AddComments.objects.get(pk = addcomment_id)
+    idea_addcomment.delete()
     return redirect('/detail/'+ str(detail_id))

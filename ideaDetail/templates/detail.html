@@ -72,7 +72,7 @@
 
                 <div class = "description">
                     <div class = "description_box">
-                        <p>{{detail.idea_description}}</p>
+                        <h6>{{detail.idea_description}}</h6>
                     </div>
                 </div>
 
@@ -163,7 +163,7 @@
                             
                             <form action = "" class = "comments_box_input_form" method = POST>
                                 {% csrf_token %}
-                                <input type = "text" placeholder = "아이디어에 대한 의견을 자유롭게 작성해주세요!" name = "comment" >
+                                <input type = "text" placeholder = "아이디어에 대한 의견을 자유롭게 작성해주세요!" name = "comment" value="{{comment.text}}">
                                 <button type=submit class = "comments_box_input_form_button"><p>제출</p></button>
                             </form>
 
@@ -197,12 +197,12 @@
                             </div>
                         
                         <!-- 댓글 정렬 버튼 백엔드 아직 미구현 -->
-                        {% if comment %}
+                        <!-- {% if comment %}
                         <div class = "comments_order_box_order_item2">
                             <button type="menu" class = "comments_order_box_order_item2_button">최신순</button>
                             <button type="menu" class = "comments_order_box_order_item2_button">답글순</button>
                         </div>
-                        {% else %}
+                        {% else %} -->
                         
                         {% endif %}
                     </div>
@@ -234,6 +234,14 @@
                                 <div class = "comments_author_info_time">
                                     <p>{{comment.create_data}}</p>
                                 </div>
+                                {% if request.user == comment.user or request.user == idea_detail.user %}
+                                <div class = "comments_delete">
+                                    <a href="{% url 'comment_delete' detail.id comment.id %}" class = "comments_delete_button">
+                                        <p>삭제</p>
+                                    </a>
+                                </div>
+
+                                {% endif %}
                             </div>
 
                             <div class = "comments_content_box">
@@ -246,15 +254,7 @@
                                     <div class = "comments_content_right">
                                         <button class = "comments_content_right_button" type="menu" name = "btn-comment">답글</button>
                                     </div>
-                                    <!-- 로그인한 유저가 글 작성자라면 -->
-                                    {% if request.user == comment.user %}
-                                    <a href="{% url 'comment_edit' detail.id comment.id %}" >
-                                        <p>수정</p>
-                                    </a>
-                                    <a href="{% url 'comment_delete' detail.id comment.id %}" >
-                                        <p>삭제</p>
-                                    </a>
-                                    {% endif %}
+
                                 </div>
                                 
                                 <!-- 대댓글 -->
@@ -289,12 +289,19 @@
                                                         <div class = "add_comment_author_info_time">
                                                             {{add_comment.create_data}} 
                                                         </div>
+                                                        {% if request.user == comment.user or request.user == idea_detail.user %}
+                                                        <div class = "add_comment_delete">
+                                                            <a href="{% url 'comment_delete' detail.id comment.id %}" class = "add_comment_delete_button">
+                                                                <p>삭제</p>
+                                                            </a>
+                                                        </div>
+                        
+                                                        {% endif %}
                                                     </div>
 
                                                     <div class = "add_comment_content">
                                                         {{add_comment.text |linebreaksbr}} 
                                                     </div>
-
                                                 </div>
 
                                             {% endfor %}
@@ -318,9 +325,9 @@
                                             </div>
                                         </div>
 
-                                        <form action = "{% url "subcomment" idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
+                                        <form action = "{% url 'subcomment' idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
                                             {% csrf_token %}
-                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name ="text" value="">
+                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name ="text" >
                                             <button type="submit" class = "new_comment_button">제출</button>
                                         </form>
                                     </div>
