@@ -235,7 +235,10 @@
                                     </div>
                                     <div class = "comments_content_right">
                                         <button class = "comments_content_right_button" type="menu" name = "btn-comment">답글</button>
-                                    </div>        
+                                    </div>
+                                    <a href="{% url 'comment_edit' detail.id comment.id %}" >
+                                        <p>수정</p>
+                                    </a>
                                 </div>
                                 
                                 <!-- 대댓글 -->
