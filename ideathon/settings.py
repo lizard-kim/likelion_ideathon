@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -146,3 +145,9 @@ STATICFILES_FINDERS = [
 
 SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/' 
+# 업로드된 파일을 저장할 디렉토리 경로
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'idea', 'media')
+AUTH_USER_MODEL = 'signIn.Profile'
