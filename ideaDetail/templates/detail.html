@@ -74,7 +74,7 @@
                             <div class="bot_box_hashbox">
 
                                 <div class="bot_box_hashbox_hashtag">
-                                    {% for i in hasg_tag %}
+                                    {% for i in hash_tag %}
                                     <div class="bot_box_hashbox_hashtag_item">
                                         #{{i}}
                                     </div>
@@ -239,6 +239,17 @@
                                                 name="btn-comment">답글</button>
                                         </div>
                                     </div>
+                                    <div class="comments_content_right">
+                                        <button class="comments_content_right_button" type="menu"
+                                            name="btn-comment">답글</button>
+                                    </div>
+                                    <a href="{% url 'comment_edit' detail.id comment.id %}">
+                                        <p>수정</p>
+                                    </a>
+                                </div>
+
+                                <!-- 대댓글 -->
+                                <div id="add_comment_list" class="add_comment_list" name="add_comment_list">
 
                                     <!-- 대댓글 -->
                                     <div id="add_comment_list" class="add_comment_list" name="add_comment_list">
