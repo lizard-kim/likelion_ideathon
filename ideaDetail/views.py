@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from idea.models import Idea_Comments, Idea_AddComments, Idea
-from signIn.models import Idea_Cart
+from accounts.models import Idea_Cart
 from django.utils import timezone
-from signIn.models import Profile
+from accounts.models import Profile
 
 def detail(request, detail_id):
     
@@ -52,9 +52,9 @@ def detail(request, detail_id):
     else:
         # pk에 해당하는 아이디어 
         idea_detail = get_object_or_404(Idea, pk = detail_id)
-        
-        # 아이디어 해시태그, 작성자, 순번, 프로필
-        full_hash_tag = idea_detail.idea_hashtag
+        user = idea_detail.user
+        user_profile =  get_object_or_404(Profile, user = user) # 어떻게 봐볼깝?
+        full_hash_tag = idea_detail.idea_hashtag 
         hash_tag = full_hash_tag.replace(',','').split()
         user = idea_detail.user
         idea_id = idea_detail.id
