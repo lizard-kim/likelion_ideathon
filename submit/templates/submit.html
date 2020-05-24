@@ -27,9 +27,61 @@
         transition: background-color 0.2s;
       }
 
+<<<<<<< HEAD
+        <!-- submit form -->
+        <form active="#" method="POST" id="submit_form">
+            {% csrf_token %}
+            <!-- 왼쪽 섹션 -->
+            <section id="submit_left">
+                <div>
+                    <label for="IdeaName">제목</label>
+                </div>
+                <div class="InputBox">
+                    <input type="text" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요." value="{{ idea_detail.idea_title}}"/>
+                </div>
+                <div>
+                    <label for="IdeaName">서브 타이틀</label>
+                </div>
+                <div class="InputBox">
+                    <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글." value="{{ idea_detail.idea_subtitle}}"/>
+                </div>
+                <div>
+                    <label for="IdeaContent">설명</label>
+                </div>
+                <div>
+                    <textarea class="InputTextArea" name="IdeaContent" placeholder="본인의 아이디어를 뽐내주세요!">{{ idea_detail.idea_description}}</textarea>
+                </div>
+            </section>
+            <!-- 오른쪽 섹션 -->
+            <section id="submit_right">
+                <div class="input_wrap">
+                    <label>이미지</label>
+                    <a href="javascript:" onclick="fileUploadAction();" class="my_botton">upload</a>
+                    <input type="file" id="input_imgs" multiple/>
+                </div>
+                <div>
+                    <div class="imgs_wrap">
+                        <img id="img" />
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="IdeaHashTag">해시태그</label>
+                </div>
+                <div class="InputBox">
+                    <input type="text" class="InputText" name="IdeaHashTag" placeholder="#교육, #문화" value="{{idea_detail.idea_hashtag}}"/>
+                </div>
+                <div>
+                    <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
+                    <button type="submit" id="submitB">등록</button>
+                </div>
+            </section>
+        </form>
+=======
       .filebox label:hover {
         background-color: #6ed36e;
       }
+>>>>>>> 8c43fdcd3145d465478808743b14143a77709b71
 
       .filebox label:active {
         background-color: #367c36;
