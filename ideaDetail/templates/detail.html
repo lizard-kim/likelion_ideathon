@@ -47,19 +47,11 @@
 
                     <div class = "author_info_name">
                         <p>{{user_profile.user_name}}</p>
-<<<<<<< HEAD
-                    </div>
-
-                    <div class = "author_info_time">
-                        <p>{{detail.idea_create_data}}</p>
-                    </div>
-=======
                     </div>
                     
                     <div class = "author_info_time">
                         <p>{{detail.idea_create_data}}</p>
                     </div>
->>>>>>> 8c43fdcd3145d465478808743b14143a77709b71
                 </div>
 
                 <div class = "image">
@@ -343,24 +335,6 @@
     </div>
 
     <div class = "footer">
-<<<<<<< HEAD
-        2: {{add_comments}}<br>
-        12 : {{add_comments.3}}<br><br>
-        3: {% for add in add_comments %}
-            {{add}}
-        {% endfor %}<br><br>
-        4: {{value}}<br>
-        5: 
-        {% for i in value %}
-            {% for k in i %}
-                {{k.text}}
-            {% endfor %}
-            <br>
-            {{i}}<br>
-        {% endfor %}<br>
-        7:{{comment_check}}
-=======
->>>>>>> 8c43fdcd3145d465478808743b14143a77709b71
     </div>
 
 </div>
@@ -384,10 +358,6 @@
         // 버튼 개수만큼 loop 돌리고 버튼에 해당하는 댓글에 event 각자 따로 부여해주기
         for (let i=0; i<btn_comment.length; i++){
             btn_comment[i].addEventListener("click", handleClick);
-<<<<<<< HEAD
-
-            function handleClick(){
-=======
 
             function handleClick(){
 
@@ -405,7 +375,6 @@
 
     // html page가 rending 되면 init 함수가 작동하도록
     init();    
->>>>>>> 8c43fdcd3145d465478808743b14143a77709b71
 
                 let currentClass = add_comment_list[i].className;    // 현재 class이름 처리해주기 위해 js 변수로 선언 및 할당
 
