@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'ideaDetail',
     'main',
     'mypage',
-    'signIn',
+    
     'submit',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +133,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'about', 'static'),
     os.path.join(BASE_DIR, 'idea', 'static'),
     os.path.join(BASE_DIR, 'ideaDetail', 'static'),
-    os.path.join(BASE_DIR, 'signIn', 'static'),
+    os.path.join(BASE_DIR, 'accounts', 'static'),
     os.path.join(BASE_DIR, 'submit', 'static'),
     os.path.join(BASE_DIR, 'mypage', 'static'),
 ) 
@@ -150,4 +151,4 @@ MEDIA_URL = '/media/'
 # 업로드된 파일을 저장할 디렉토리 경로
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'idea', 'media')
-AUTH_USER_MODEL = 'signIn.Profile'
+AUTH_USER_MODEL = 'accounts.Profile'

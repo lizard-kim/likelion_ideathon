@@ -51,9 +51,13 @@
     <header class="header" id="mainpage_header">
       <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
       <span class="menu">
-        <span>님</span>
-          <a href="#" title="로그아웃하기">Sign out</a>
-          <a href="signin/" title="로그인하기">Sign in</a>
+        {% if request.user.is_active %}
+          <span>{{user.user_name}}님</span>
+          <a href="{% url 'logout' %}" title="로그아웃하기">Logout</a>
+        {% else %}
+        
+          <a href="{% url 'login' %}" title="로그인하기">Sign in</a>
+        {% endif %}
           <a href="">My page</a>
           <span class="inner">
             <a href="" class="hover-shadow hover-color"><span>s</span><span>u</span><span>b</span><span>m</span><span>i</span><span>t</span>
@@ -109,7 +113,7 @@
             <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg2.jpg' %}"></div> <!--16:9-->
             <span class="idea_name">I have a dream</span>
 
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색</p>
+            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
             <div class="user_div"><hr>
             <img class="cardprofile" src="{% static 'image/lion.png'%}">달려라하니<i class="far fa-comment">&nbsp;12</i>
             </div>
