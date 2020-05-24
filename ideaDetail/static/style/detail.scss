@@ -174,11 +174,9 @@ p{
 
     &_box{
         width : 800px;
-        display : flex;
-        flex-direction: row;
-        
         &_hashbox{
-            width : 700px;
+            width : 800px;
+            display : inline-block;
 
             &_hashtag{
                 display : flex;
@@ -481,7 +479,6 @@ p{
         max-height: 2000px;
         display : inline-block;
         margin-top : 1%;
-        margin-bottom : 1%;
         border-bottom: 1px solid rgb(182, 182, 182);
     }
 
@@ -680,11 +677,6 @@ p{
                             width : 25px;
                             height : 25px;
                             margin-right : 10px;
-
-                        &_real{
-                            border-radius: 10px;
-                        }
-
                         }
         
         &_name{
