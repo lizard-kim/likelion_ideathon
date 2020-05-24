@@ -1,145 +1,208 @@
 <!DOCTYPE html>
-{% load sass_tags %}
-{% load static%}
+{% load sass_tags %} {% load static%}
 <html lang="ko">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Submit Idea Page</title>
-    <link rel="stylesheet" href="{% sass_src 'style/submit.scss' %}" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="{% sass_src 'style/submit.scss' %}"
+      type="text/css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css" />
+    <style>
+      .filebox label {
+        display: inline-block;
+        padding: 0.5em 0.75em;
+        color: #fff;
+        font-size: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #5cb85c;
+        cursor: pointer;
+        border: 1px solid #4cae4c;
+        border-radius: 0.25em;
+        -webkit-transition: background-color 0.2s;
+        transition: background-color 0.2s;
+      }
 
-</head>
+      .filebox label:hover {
+        background-color: #6ed36e;
+      }
 
-<body id="submit_body">
+      .filebox label:active {
+        background-color: #367c36;
+      }
+
+      .filebox input {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        color: red;
+        background-color: orange;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+    </style>
+  </head>
+
+  <body id="submit_body">
     <!-- submit idea page header -->
     <header id="submit_idea_header">
-        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
-        <span class="menu">
-            <a href="#">Log out</a>
-            |
-            <a href="#">My Page</a>
-        </span>
+      <a href="/"
+        ><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}" />&nbsp;<b
+          >IDEATHON</b
+        ></a
+      >
+      <span class="menu">
+        <a href="#">Log out</a>
+        |
+        <a href="#">My Page</a>
+      </span>
     </header>
-    <form action="{% url 'submit' %}" method="POST" id="submit_form" enctype="multipart/form-data">
-
-        <section id="submit_left">
-            <!-- submit form -->
-            {% csrf_token %}
-            <!-- 왼쪽 섹션 -->
-            <!-- Swiper -->
-            <input type="file" name="images" id="upImgFiles" accept="image/*" multiple />
-
-            <hr />
-            <!-- Slider main container -->
-            <div class="swiper-container">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Arrows -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-
-        </section>
-        <!-- 오른쪽 섹션 -->
-        <section id="submit_right">
-
-            <div>
-                <label for="IdeaName">제목</label>
-            </div>
-            <div class="InputBox">
-                <input type="text" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요."
-                    value="{{ idea_detail.idea_title}}" />
-            </div>
-            <div>
-                <label for="IdeaName">서브 타이틀</label>
-            </div>
-            <div class="InputBox">
-                <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글."
-                    value="{{ idea_detail.idea_subtitle}}" />
-            </div>
-            <div>
-                <label for="IdeaContent">설명</label>
-            </div>
-            <div>
-                <textarea class="InputTextArea" name="IdeaContent"
-                    placeholder="본인의 아이디어를 뽐내주세요!">{{ idea_detail.idea_description}}</textarea>
-            </div>
-            <div>
-                <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
-                <button type="submit" id="submitB">등록</button>
-            </div>
-        </section>
+    <form
+      action="{% url 'submit' %}"
+      method="POST"
+      id="submit_form"
+      enctype="multipart/form-data"
+    >
+      <section id="submit_left">
+        <!-- submit form -->
+        {% csrf_token %}
+        <!-- 왼쪽 섹션 -->
+        <!-- Swiper -->
+        <div class="filebox">
+          <label for="ex_file">업로드</label>
+          <input
+            type="file"
+            name="images"
+            id="upImgFiles"
+            accept="image/*"
+            multiple
+          />
+        </div>
+        <hr />
+        <!-- Slider main container -->
+        <div class="swiper-container">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper"></div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+          <!-- Add Arrows -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </section>
+      <!-- 오른쪽 섹션 -->
+      <section id="submit_right">
+        <div>
+          <label for="IdeaName">제목</label>
+        </div>
+        <div class="InputBox">
+          <input
+            type="text"
+            class="InputText"
+            name="IdeaName"
+            placeholder="20자 이내로 입력해주세요."
+            value="{{ idea_detail.idea_title}}"
+          />
+        </div>
+        <div>
+          <label for="IdeaName">서브 타이틀</label>
+        </div>
+        <div class="InputBox">
+          <input
+            type="text"
+            class="InputText"
+            name="IdeaSubtitle"
+            placeholder="간단한 한줄 소개글."
+            value="{{ idea_detail.idea_subtitle}}"
+          />
+        </div>
+        <div>
+          <label for="IdeaContent">설명</label>
+        </div>
+        <div>
+          <textarea
+            class="InputTextArea"
+            name="IdeaContent"
+            placeholder="본인의 아이디어를 뽐내주세요!"
+          >
+{{ idea_detail.idea_description}}</textarea
+          >
+        </div>
+        <div>
+          <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
+          <button type="submit" id="submitB">등록</button>
+        </div>
+      </section>
     </form>
 
     <script src="https://unpkg.com/swiper/js/swiper.js"></script>
     <script>
-        const getId = id => document.getElementById(id);
-        const upImgFiles = getId("upImgFiles");
-        const swiperWrapper = getId("swiper-wrapper");
-        upImgFiles.addEventListener("change", uploadImgPreview);
+      const getId = (id) => document.getElementById(id);
+      const upImgFiles = getId("upImgFiles");
+      const swiperWrapper = getId("swiper-wrapper");
+      upImgFiles.addEventListener("change", uploadImgPreview);
 
-        var swiper = new Swiper('.swiper-container', {
-            // Optional parameters
-            slidesPerView: 1,
-            centeredSlides: true,
-            spaceBetween: 30,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev"
-            }
-        }, )
+      var swiper = new Swiper(".swiper-container", {
+        // Optional parameters
+        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
 
-        var mySwiper = document.querySelector('.swiper-container').swiper
+      var mySwiper = document.querySelector(".swiper-container").swiper;
 
-        function uploadImgPreview(e) {
-            fileListToBase64(e.target.files).then(handleFileLoad);
+      function uploadImgPreview(e) {
+        fileListToBase64(e.target.files).then(handleFileLoad);
 
-            function handleFileLoad(pictures) {
-                pictures.map(file =>
-                    mySwiper.appendSlide(`
+        function handleFileLoad(pictures) {
+          pictures.map((file) =>
+            mySwiper.appendSlide(`
                 <div class="swiper-slide">
                     <img class="swiper-slide-img" src="${file}"/>
                 </div>`)
-                );
-            }
+          );
+        }
+      }
+
+      async function fileListToBase64(fileList) {
+        // create function which return resolved promise
+        // with data:base64 string
+        function getBase64(file) {
+          const reader = new FileReader();
+          return new Promise((resolve) => {
+            reader.onload = (ev) => {
+              resolve(ev.target.result);
+            };
+            reader.readAsDataURL(file);
+          });
+        }
+        // here will be array of promisified functions
+        const promises = [];
+
+        // loop through fileList with for loop
+        for (let i = 0; i < fileList.length; i++) {
+          promises.push(getBase64(fileList[i]));
         }
 
-        async function fileListToBase64(fileList) {
-            // create function which return resolved promise
-            // with data:base64 string
-            function getBase64(file) {
-                const reader = new FileReader();
-                return new Promise(resolve => {
-                    reader.onload = ev => {
-                        resolve(ev.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                });
-            }
-            // here will be array of promisified functions
-            const promises = [];
-
-            // loop through fileList with for loop
-            for (let i = 0; i < fileList.length; i++) {
-                promises.push(getBase64(fileList[i]));
-            }
-
-            // array with base64 strings
-            return await Promise.all(promises);
-        }
+        // array with base64 strings
+        return await Promise.all(promises);
+      }
     </script>
-</body>
-<footer>
-
-</footer>
-
+  </body>
+  <footer></footer>
 </html>
