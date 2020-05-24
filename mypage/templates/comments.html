@@ -1,0 +1,5 @@
+{% for i in comments %}
+<p>댓글내용 : {{i.text}}</p>
+<p>작성자 : {{i.user}}</p>
+<p>작성일 : {{i.create_data}}</p><br><br>
+{% endfor %}

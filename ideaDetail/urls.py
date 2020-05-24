@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('<int:detail_id>', views.detail, name = "detail"),
+    path('<int:add_comment_id>/<int:detail_id>', views.add_comment, name = "add_comment"),
     path('<int:detail_id>/delete', views.delete, name = "delete"),
     path('<int:detail_id>/edit', views.edit, name = "edit"),
     path('<int:detail_id>/<int:comment_id>/comment_edit', views.comment_edit, name = "comment_edit"),

@@ -39,6 +39,14 @@
                         <div class="title_sub">
                             <p>{{detail.idea_subtitle}}</p>
                         </div>
+<<<<<<< HEAD
+                </div>
+
+                <div class = "author_info">
+                    <div class = "author_info_school">
+                        <p>{{user_profile.user_school}}</p>
+=======
+>>>>>>> 76e3f8d3af2ddc66184704f6a688436086a61644
                     </div>
 
                     <div class="author_info">
@@ -324,6 +332,14 @@
                                             </form>
                                         </div>
 
+<<<<<<< HEAD
+                                        <form action = "{% add_comment comment.id detail.id %}" class = "new_comment_form" method = POST>
+                                            {% csrf_token %}
+                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name = 'addcomment'>
+                                            <button type=submit class = "new_comment_button">제출</button>
+                                        </form>
+=======
+>>>>>>> 76e3f8d3af2ddc66184704f6a688436086a61644
                                     </div>
 
                                 </div>
