@@ -169,17 +169,13 @@ def edit(request, detail_id):
     else:
         return render(request, 'submit.html', {'idea_detail':idea_detail})
 
-def comment_edit(request, comment_id, detail_id):
+def comment_edit(request, detail_id, comment_id):
     idea_comment = Idea_Comments.objects.get(pk = comment_id)
 
     if request.method == 'POST':
         idea_comment.text = request.POST['comment']
         idea_comment.save()
         return redirect('/detail/' + str(detail_id))
-    else:
-        return render(request, 'detail.html', {
-            'idea_comment' : idea_comment,
-        })
 
 def comment_delete(request, comment_id, detail_id):
     idea_comment = Idea_Comments.objects.get(pk = comment_id)
