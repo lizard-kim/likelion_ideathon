@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from idea.models import *
 
@@ -38,7 +38,7 @@ def submit(request):
             )
         #return render(request, 'submit.html')
         
-        return redirect('../')
+        return redirect('/')
 
     else:
         return render(request, 'submit.html')

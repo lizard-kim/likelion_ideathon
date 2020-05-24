@@ -15,6 +15,7 @@ def detail(request, detail_id):
         if 'comment' in request.POST:
             comment = Idea_Comments()
             comment.user = request.user
+            comment.idea = Idea.objects.get(pk = detail_id)
             comment.text = request.POST['comment']
             comment.create_data = timezone.datetime.now()
             comment.save()
@@ -51,9 +52,8 @@ def detail(request, detail_id):
 
     else:
         # pk에 해당하는 아이디어 
-        idea_detail = get_object_or_404(Idea, pk = detail_id)
+        idea_detail = Idea.objects.get(pk = detail_id)
         user = idea_detail.user
-        user_profile =  get_object_or_404(Profile, user = user) # 어떻게 봐볼깝?
         full_hash_tag = idea_detail.idea_hashtag 
         hash_tag = full_hash_tag.replace(',','').split()
         user = idea_detail.user
@@ -150,6 +150,19 @@ def detail(request, detail_id):
                 'user': user,
             }) 
         
+def add_comment(request, add_comment_id, detail_id):
+
+    addcomment = request.POST.get('addcomment', 0)
+
+    if 'addcomment' in request.POST:
+            addcomment = Idea_AddComments()
+            addcomment.idea_comments = Idea_AddComments.objects.get(pk = add_comment_id) 
+            addcomment.user = request.user
+            addcomment.text = request.POST['addcomment']
+            addcomment.create_data = timezone.datetime.now()
+            addcomment.save()
+        return redirect('/detail/'+ str(detail_id))
+
 
 def delete(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
@@ -178,7 +191,9 @@ def comment_edit(request, comment_id, detail_id):
         idea_comment.save()
         return redirect('/detail/' + str(detail_id))
     else:
-        return render(request, 'detail.html', {'idea_comment' : idea_comment})
+        return render(request, 'detail.html', {
+            'idea_comment' : idea_comment,
+        })
 
 def comment_delete(request, comment_id, detail_id):
     idea_comment = Idea_Comments.objects.get(pk = comment_id)

@@ -42,7 +42,7 @@
 
                 <div class = "author_info">
                     <div class = "author_info_school">
-                        <p>학교이름 가져와야함</p>
+                        <p>{{user_profile.user_school}}</p>
                     </div>
 
                     <div class = "author_info_name">
@@ -302,9 +302,9 @@
                                             </div>
                                         </div>
 
-                                        <form action = "" class = "new_comment_form" method = POST>
+                                        <form action = "{% add_comment comment.id detail.id %}" class = "new_comment_form" method = POST>
                                             {% csrf_token %}
-                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요">
+                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name = 'addcomment'>
                                             <button type=submit class = "new_comment_button">제출</button>
                                         </form>
                                     </div>
