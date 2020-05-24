@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from idea.models import Idea_Comments, Idea_AddComments, Idea
-from signIn.models import Idea_Cart
+from accounts.models import Idea_Cart
 from django.utils import timezone
 from accounts.models import Profile
 

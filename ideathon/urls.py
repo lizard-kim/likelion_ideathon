@@ -13,5 +13,5 @@ urlpatterns = [
     path('mypage/', include('mypage.urls')),
     path('submit/', include('submit.urls')),
     path('accounts/', include('accounts.urls')),
-]
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
