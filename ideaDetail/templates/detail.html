@@ -3,337 +3,351 @@
 {% load static %}
 {% load comment %}
 <html>
+
 <head>
-  <title>Like Lion Ideathon</title>
-  <link href="{% sass_src 'style/detail.scss' %}" rel="stylesheet" type="text/css"/> 
-  <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css"/> 
+    <title>Like Lion Ideathon</title>
+    <link href="{% sass_src 'style/detail.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 
-<div class = "container">
+    <div class="container">
 
-    <div class = "header">
-        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
-        <span class="menu">
-            <a href="#">Log out</a>
-            |
-            <a href="{% url 'mypage' %}">My Page</a>
-        </span>
-    </div>
-
-    <div class = "content">
-        <div class = "no">
+        <div class="header">
+            <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
+            <span class="menu">
+                <a href="#">Log out</a>
+                |
+                <a href="{% url 'mypage' %}">My Page</a>
+            </span>
         </div>
 
-        <div class = "idea">
+        <div class="content">
+            <div class="no">
+            </div>
 
-            <div class = 'idea_container'>
+            <div class="idea">
 
-                <div class = "title">
-                        <div class = "title_name">
+                <div class='idea_container'>
+
+                    <div class="title">
+                        <div class="title_name">
                             <p>{{detail.idea_title}}</p>
                         </div>
 
-                        <div class = "title_sub">
+                        <div class="title_sub">
                             <p>{{detail.idea_subtitle}}</p>
                         </div>
-                </div>
-
-                <div class = "author_info">
-                    <div class = "author_info_school">
-                        <p>{{user_profile.user_school}}</p>
                     </div>
 
-                    <div class = "author_info_name">
-                        <p>{{user_profile.user_name}}</p>
-                    </div>
-                    
-                    <div class = "author_info_time">
-                        <p>{{detail.idea_create_data}}</p>
-                    </div>
-                </div>
+                    <div class="author_info">
+                        <div class="author_info_school">
+                            <p>{{user_profile.user_school}}</p>
+                        </div>
 
-                <div class = "image">
-                    <div class = "image_box">
-                        
-                        {% if idea_detail.idea_image %}
-                            <img src="{{idea_detail.idea_image.url}}" alt = "d" width = "800px" height = "100%">
-                        {% endif %}
+                        <div class="author_info_name">
+                            <p>{{user_profile.user_name}}</p>
+                        </div>
 
-                        {% if idea_images %}
+                        <div class="author_info_time">
+                            <p>{{detail.idea_create_data}}</p>
+                        </div>
+                    </div>
+
+                    <div class="image">
+                        <div class="image_box">
+
+                            {% if idea_detail.idea_image %}
+                            <img src="{{idea_detail.idea_image.url}}" alt="d" width="800px" height="100%">
+                            {% endif %}
+
+                            {% if idea_images %}
                             {% for image in idea_images %}
-                                <img src="{{image.image.url}}" alt = "d" width = "800px" height = "100%">
+                            <img src="{{image.image.url}}" alt="d" width="800px" height="100%">
                             {% endfor %}
-                        {% endif %}
+                            {% endif %}
 
+                        </div>
                     </div>
-                </div>
 
-                <div class = "description">
-                    <div class = "description_box">
-                        <p>{{detail.idea_description}}</p>
+                    <div class="description">
+                        <div class="description_box">
+                            <p>{{detail.idea_description}}</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class = "bot">
-                    <div class = "bot_box">
+                    <div class="bot">
+                        <div class="bot_box">
 
-                        <div class = "bot_box_hashbox">
-                            <div class = "bot_box_hashbox_hashtag">
-                                {% for i in hash_tag %}
-                                    <div class = "bot_box_hashbox_hashtag_item">
+                            <div class="bot_box_hashbox">
+                                <div class="bot_box_hashbox_hashtag">
+                                    {% for i in hash_tag %}
+                                    <div class="bot_box_hashbox_hashtag_item">
                                         #{{i}}
                                     </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                </div>
+
                             </div>
 
+                            {% if user == request.user %}
+
+                            {% elif current_user_cart_add.add_cart == True %}
+                            <form action="{% url 'detail' detail.id %}" method=POST class="bot_box_cart_on">
+                                {% csrf_token %}
+                                <input type=submit class="bot_box_cart_on_button" name="cart" value="추가됨">
+                            </form>
+                            {% else %}
+                            <form action="{% url 'detail' detail.id %}" method=POST class="bot_box_cart">
+                                {% csrf_token %}
+                                <input type=submit class="bot_box_cart_button" name="cart" value="장바구니 추가">
+                            </form>
+                            {% endif %}
+
+                            <!-- 로그인한 유저가 글 작성자라면 -->
+                            {% if user == current_user %}
+                            <div class="bot_box_edit">
+                                <a href="{% url 'edit' detail.id %}" class="bot_box_edit_box1">
+                                    <p>수정</p>
+                                </a>
+
+                                <a href="{% url 'delete' detail.id %}" class="bot_box_edit_box2">
+                                    <p>삭제</p>
+                                </a>
+                            </div>
+                            {% endif %}
+
                         </div>
-
-                        {% if user == request.user %}
-                        
-                        {% elif current_user_cart_add.add_cart == True %}
-                        <form action = "{% url 'detail' detail.id %}"
-                              method = POST
-                              class = "bot_box_cart_on">
-                            {% csrf_token %}
-                            <input type=submit class = "bot_box_cart_on_button" name = "cart" value = "추가됨">
-                        </form>
-                        {% else %}
-                        <form action = "{% url 'detail' detail.id %}"
-                              method = POST
-                              class = "bot_box_cart">
-                            {% csrf_token %}
-                            <input type=submit class = "bot_box_cart_button" name = "cart" value = "장바구니 추가">
-                        </form>
-                        {% endif %}
-
-                        <!-- 로그인한 유저가 글 작성자라면 -->
-                        {% if user == current_user %}
-                        <div class = "bot_box_edit">
-                            <a href="{% url 'edit' detail.id %}" class = "bot_box_edit_box1">
-                                <p>수정</p>
-                            </a>
-
-                            <a href="{% url 'delete' detail.id %}" class = "bot_box_edit_box2">
-                                <p>삭제</p>    
-                            </a>
-                        </div>
-                        {% endif %}
 
                     </div>
-            
+
                 </div>
-            
+
             </div>
 
         </div>
 
-    </div>
+        <div class="comment">
 
-    <div class = "comment">
-        
-        <div class = "no">
-            
-        </div>
+            <div class="no">
 
-        <div class = "comments">
+            </div>
 
-            <div class = "comments_container">
+            <div class="comments">
 
-                <div class = "comments_box">
+                <div class="comments_container">
 
-                    <!-- 로그인 구현되면 로그인 한 유저로 바꿔야 함-->
+                    <div class="comments_box">
 
-                    {% if user %}  
+                        <!-- 로그인 구현되면 로그인 한 유저로 바꿔야 함-->
 
-                        <div class = "comments_box_input">
+                        {% if user %}
 
-                            <div class = "comments_box_input_start">
-                                <div class = "comments_box_input_start_image">
-                                    <img class = "comments_box_input_start_image_real" src = "{% static 'img/1.png' %}" width = "25px" height = "25px" >
+                        <div class="comments_box_input">
+
+                            <div class="comments_box_input_start">
+                                <div class="comments_box_input_start_image">
+                                    <img class="comments_box_input_start_image_real" src="{% static 'img/1.png' %}"
+                                        width="25px" height="25px">
                                 </div>
-                                <div class = "comments_box_input_start_school">
+                                <div class="comments_box_input_start_school">
                                     <p>{{current_user_profile.user_school}}</p>
                                 </div>
-                                <div class = "comments_box_input_start_name">
+                                <div class="comments_box_input_start_name">
                                     <p>{{current_user_profile.user_name}}</p>
                                 </div>
                             </div>
-                            
-                            <form action = "" class = "comments_box_input_form" method = POST>
+
+                            <form action="" class="comments_box_input_form" method=POST>
                                 {% csrf_token %}
-                                <input type = "text" placeholder = "아이디어에 대한 의견을 자유롭게 작성해주세요!" name = "comment" >
-                                <button type=submit class = "comments_box_input_form_button"><p>제출</p></button>
+                                <input type="text" placeholder="아이디어에 대한 의견을 자유롭게 작성해주세요!" name="comment">
+                                <button type=submit class="comments_box_input_form_button">
+                                    <p>제출</p>
+                                </button>
                             </form>
 
                         </div>
 
-                    {% else %}
+                        {% else %}
 
-                        <div class = "comments_box_input_none">
-                            <div class = "comments_box_input_none_box">
-                                <div class = "comments_box_input_none_text">
+                        <div class="comments_box_input_none">
+                            <div class="comments_box_input_none_box">
+                                <div class="comments_box_input_none_text">
                                     <h5>댓글을 달려면 로그인을 해주세요</h5>
                                 </div>
-                                <div class = "comments_box_input_none_button">
-                                    <a href = "{% url 'signin' %}">로그인</a>
+                                <div class="comments_box_input_none_button">
+                                    <a href="{% url 'signin' %}">로그인</a>
                                 </div>
                             </div>
                         </div>
 
-                    {% endif %}
-
-                </div>
-
-                <div class = "comments_order_box">
-                    <div class = "comments_order_box_order">
-                        <div class = "comments_order_box_order_item1">
-                            {% if comment_num %}
-                                <h5> {{comment_num}} 개의 댓글이 있습니다</h5>
-                            {% else %}
-                                <h5>0 개의 댓글이 있습니다</h5>
-                            {% endif %}
-                            </div>
-                        
-                        <!-- 댓글 정렬 버튼 백엔드 아직 미구현 -->
-                        {% if comment %}
-                        <div class = "comments_order_box_order_item2">
-                            <button type="menu" class = "comments_order_box_order_item2_button">최신순</button>
-                            <button type="menu" class = "comments_order_box_order_item2_button">답글순</button>
-                        </div>
-                        {% else %}
-                        
                         {% endif %}
+
                     </div>
-                </div>
 
-                <!-- 댓글 list -->
-                <div class = "comments_list">
-
-                    <div class = "comments_box">
-
-                        <!-- 댓글 list loop -->
-                        {% for comment in comment_list %}
-                        
-                        <!-- 댓글 하나 -->
-                        <div class = "comments_real">
-
-                            <div class = "comments_author_info">
-                                <div class = "comments_author_info_image">
-                                    <img src = "{% static 'img/1.png' %}"  class = "comments_author_info_image_real" width = "25px" height = "25px">
-                                </div>
-
-                                <!-- 현재 로그인 한 유저-->
-                                <div class = "comments_author_info_name">
-                                    <p>{{comment.user}}</p>
-                                </div>
-                                <div class = "comments_author_info_school">
-                                    <p>{{comment.user.profile.user_school}}</p>
-                                </div>
-                                <div class = "comments_author_info_time">
-                                    <p>{{comment.create_data}}</p>
-                                </div>
+                    <div class="comments_order_box">
+                        <div class="comments_order_box_order">
+                            <div class="comments_order_box_order_item1">
+                                {% if comment_num %}
+                                <h5> {{comment_num}} 개의 댓글이 있습니다</h5>
+                                {% else %}
+                                <h5>0 개의 댓글이 있습니다</h5>
+                                {% endif %}
                             </div>
 
-                            <div class = "comments_content_box">
+                            <!-- 댓글 정렬 버튼 백엔드 아직 미구현 -->
+                            {% if comment %}
+                            <div class="comments_order_box_order_item2">
+                                <button type="menu" class="comments_order_box_order_item2_button">최신순</button>
+                                <button type="menu" class="comments_order_box_order_item2_button">답글순</button>
+                            </div>
+                            {% else %}
 
-                                <!-- 댓글 -->
-                                <div class = "comments_content">
-                                    <div class = "comments_content_left">
-                                        {{comment.text |linebreaksbr}}   <br>      
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- 댓글 list -->
+                    <div class="comments_list">
+
+                        <div class="comments_box">
+
+                            <!-- 댓글 list loop -->
+                            {% for comment in comment_list %}
+
+                            <!-- 댓글 하나 -->
+                            <div class="comments_real">
+
+                                <div class="comments_author_info">
+                                    <div class="comments_author_info_image">
+                                        <img src="{% static 'img/1.png' %}" class="comments_author_info_image_real"
+                                            width="25px" height="25px">
                                     </div>
-                                    <div class = "comments_content_right">
-                                        <button class = "comments_content_right_button" type="menu" name = "btn-comment">답글</button>
+
+                                    <!-- 현재 로그인 한 유저-->
+                                    <div class="comments_author_info_name">
+                                        <p>{{comment.user}}</p>
                                     </div>
-                                    <!-- 로그인한 유저가 글 작성자라면 -->
-                                    {% if request.user == comment.user %}
-                                    <a href="{% url 'comment_edit' detail.id comment.id %}" >
-                                        <p>수정</p>
-                                    </a>
-                                    <a href="{% url 'comment_delete' detail.id comment.id %}" >
-                                        <p>삭제</p>
-                                    </a>
-                                    {% endif %}
+                                    <div class="comments_author_info_school">
+                                        <p>{{comment.user.profile.user_school}}</p>
+                                    </div>
+                                    <div class="comments_author_info_time">
+                                        <p>{{comment.create_data}}</p>
+                                    </div>
                                 </div>
-                                
-                                <!-- 대댓글 -->
-                                <div id = "add_comment_list" class = "add_comment_list" name = "add_comment_list">
 
-                                    <!-- 댓글 리스트에서 특정 리스트를 선별하기 위해 전체 댓글의 순번 loop -->
-                                    {% for check in comment_check %} 
+                                <div class="comments_content_box">
+
+                                    <!-- 댓글 -->
+                                    <div class="comments_content"
+                                        style="border-bottom: 2px solid; border-bottom-color:orange">
+                                        <div class="comments_content_left">
+                                            {{comment.text |linebreaksbr}} <br>
+                                        </div>
+                                        <div class="comments_content_right">
+                                            <button class="comments_content_right_button" type="menu"
+                                                name="btn-comment">답글</button>
+                                        </div>
+                                        <!-- 로그인한 유저가 글 작성자라면 -->
+                                        <div class="need_edit ">
+                                            {% if request.user == comment.user %}
+                                            <a href="{% url 'comment_edit' detail.id comment.id %}">
+                                                <p>수정</p>
+                                            </a>
+                                            <a href="{% url 'comment_delete' detail.id comment.id %}">
+                                                <p>삭제</p>
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- 대댓글 -->
+                                    <div id="add_comment_list" class="add_comment_list" name="add_comment_list">
+
+                                        <!-- 댓글 리스트에서 특정 리스트를 선별하기 위해 전체 댓글의 순번 loop -->
+                                        {% for check in comment_check %}
 
                                         <!-- 댓글의 pk와 댓글 순번이 같다면-->
-                                        {% if comment.id == check %}  
-                                            <div class = 'add_comment_count'>
-                                                <h6> {{comment.user}}님의 댓글에 달린 답글 {% getvalue add_comments_num check %}개</h6>
-                                            </div>
-                                            <!-- 모든 대댓글들 중 댓글 순번에 해당하는 대댓글만 가져온다 / custom tag & as 사용!! -->
-                                            {% getvalue add_comments check as add_comments%}
-                                            
-                                            <!-- 댓글 순번에 해당하는 대댓글 loop -->
-                                            {% for add_comment in add_comments %}
+                                        {% if comment.id == check %}
+                                        <div class='add_comment_count'>
+                                            <h6 style="white-space:nowrap;"> {{comment.user}}님의 댓글에 달린 답글
+                                                {% getvalue add_comments_num check %}개
+                                            </h6>
+                                        </div>
+                                        <!-- 모든 대댓글들 중 댓글 순번에 해당하는 대댓글만 가져온다 / custom tag & as 사용!! -->
+                                        {% getvalue add_comments check as add_comments%}
 
-                                                <div class = "add_comment" >
-                                                            
-                                                    <div class = "add_comment_author_info">
-                                                        <div class = "add_comment_author_info_image">
-                                                            <img src = "{% static 'img/2.jpg' %}" class = "add_comment_author_info_image_real" width = "25px" height = "25px">
-                                                        </div>
-                                                        <div class = "add_comment_author_info_name">
-                                                            <p>{{current_user_profile.user_name}}</p>
-                                                        </div>
-                                                        <div class = "add_comment_author_info_school">
-                                                            <p>{{current_user_profile.user_school}}</p>
-                                                        </div>
-                                                        <div class = "add_comment_author_info_time">
-                                                            {{add_comment.create_data}} 
-                                                        </div>
-                                                    </div>
+                                        <!-- 댓글 순번에 해당하는 대댓글 loop -->
+                                        {% for add_comment in add_comments %}
 
-                                                    <div class = "add_comment_content">
-                                                        {{add_comment.text |linebreaksbr}} 
-                                                    </div>
+                                        <div class="add_comment">
 
+                                            <div class="add_comment_author_info">
+                                                <div class="add_comment_author_info_image">
+                                                    <img src="{% static 'img/2.jpg' %}"
+                                                        class="add_comment_author_info_image_real" width="25px"
+                                                        height="25px">
                                                 </div>
+                                                <div class="add_comment_author_info_name">
+                                                    <p>{{current_user_profile.user_name}}</p>
+                                                </div>
+                                                <div class="add_comment_author_info_school">
+                                                    <p>{{current_user_profile.user_school}}</p>
+                                                </div>
+                                                <div class="add_comment_author_info_time">
+                                                    {{add_comment.create_data}}
+                                                </div>
+                                            </div>
 
-                                            {% endfor %}
+                                            <div class="add_comment_content">
+                                                {{add_comment.text |linebreaksbr}}
+                                            </div>
+
+                                        </div>
+
+                                        {% endfor %}
 
                                         {% endif %}
 
-                                    {% endfor %}
+                                        {% endfor %}
 
-                                    <!-- 대댓글 Form -->
-                                    <div id = "new_comment" class = "new_comment" name = "new_comment">
+                                        <!-- 대댓글 Form -->
+                                        <div id="new_comment" class="new_comment" name="new_comment">
 
-                                        <div class = "new_comment_info">
-                                            <div class = "new_comment_info_image">
-                                                <img class = "comments_box_input_start_image_real" src = "{% static 'img/1.png' %}" width = "25px" height = "25px" >
+                                            <div class="new_comment_info">
+                                                <div class="new_comment_info_image">
+                                                    <img class="comments_box_input_start_image_real"
+                                                        src="{% static 'img/1.png' %}" width="25px" height="25px">
+                                                </div>
+                                                <div class="new_comment_info_school">
+                                                    <p>{{current_user_profile.user_school}}</p>
+                                                </div>
+                                                <div class="new_comment_info_name">
+                                                    <p>{{current_user_profile.user_name}}</p>
+                                                </div>
                                             </div>
-                                            <div class = "new_comment_info_school">
-                                                <p>{{current_user_profile.user_school}}</p>
-                                            </div>
-                                            <div class = "new_comment_info_name">
-                                                <p>{{current_user_profile.user_name}}</p>
-                                            </div>
+
+                                            <form action="{% url "subcomment" idea_detail.id comment.id %}"
+                                                class="new_comment_form" method=POST>
+                                                {% csrf_token %}
+                                                <input type="text" class="new_comment_input"
+                                                    placeholder="댓글에 대한 답글을 입력해주세요" name="text" value="">
+                                                <button type="submit" class="new_comment_button">제출</button>
+                                            </form>
                                         </div>
 
-                                        <form action = "{% url "subcomment" idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
-                                            {% csrf_token %}
-                                            <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name ="text" value="">
-                                            <button type="submit" class = "new_comment_button">제출</button>
-                                        </form>
                                     </div>
 
                                 </div>
 
                             </div>
 
+                            {% endfor %}
+
                         </div>
 
-                        {% endfor %}
-
-                    </div>       
+                    </div>
 
                 </div>
 
@@ -341,21 +355,19 @@
 
         </div>
 
-    </div>
+        <div class="footer">
+            {{idea_detail.idea_image}}
+        </div>
 
-    <div class = "footer">
-        {{idea_detail.idea_image}}
     </div>
-
-</div>
 </body>
 
-<script type = "text/javascript">
+<script type="text/javascript">
     // getElementById는 Id에 해당하는 객체(?)를 하나만 가져온다
     // 따라서 여러개를 배열 형태로 가져오기 위해 getElementsByName을 사용
-    const add_comment_list = document.getElementsByName("add_comment_list");    // 대댓글 
+    const add_comment_list = document.getElementsByName("add_comment_list"); // 대댓글 
     console.log(add_comment_list);
-    console.log(add_comment_list[0]);   // 배열이니까 index 값으로 해당 value에 접근할 수 있다
+    console.log(add_comment_list[0]); // 배열이니까 index 값으로 해당 value에 접근할 수 있다
 
     // 답글 버튼도 여러개를 배열 형태로 가져오기 위해 getElementsByName을 사용
     let btn_comment = document.getElementsByName('btn-comment');
@@ -364,27 +376,27 @@
     const ADD_COMMENT_LIST = "add_comment_list";
     const ADD_COMMENT_LIST_ON = "add_comment_list_on";
 
-    function init(){
+    function init() {
         // 버튼 개수만큼 loop 돌리고 버튼에 해당하는 댓글에 event 각자 따로 부여해주기
-        for (let i=0; i<btn_comment.length; i++){
+        for (let i = 0; i < btn_comment.length; i++) {
             btn_comment[i].addEventListener("click", handleClick);
 
-            function handleClick(){
+            function handleClick() {
 
-                let currentClass = add_comment_list[i].className;    // 현재 class이름 처리해주기 위해 js 변수로 선언 및 할당
+                let currentClass = add_comment_list[i].className; // 현재 class이름 처리해주기 위해 js 변수로 선언 및 할당
 
-                if (currentClass == ADD_COMMENT_LIST){   // 현재 class display가 none이면 
+                if (currentClass == ADD_COMMENT_LIST) { // 현재 class display가 none이면 
                     add_comment_list[i].classList.add(ADD_COMMENT_LIST_ON); // display를 on 인 class 를 추가한다
 
-                } else {    // 현재 class display가 on이면 
-                    add_comment_list[i].classList.remove(ADD_COMMENT_LIST_ON);  // display를 on 인 class 를 제거한다
+                } else { // 현재 class display가 on이면 
+                    add_comment_list[i].classList.remove(ADD_COMMENT_LIST_ON); // display를 on 인 class 를 제거한다
                 }
             }
         }
     };
 
     // html page가 rending 되면 init 함수가 작동하도록
-    init();    
-
+    init();
 </script>
+
 </html>

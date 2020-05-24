@@ -1,235 +1,263 @@
 {% load sass_tags %}
 {% load static %}
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{% sass_src 'style/idea.scss' %}" rel="stylesheet" type="text/css"/> 
-    <title>IDEATHON</title>
-    <script src="https://kit.fontawesome.com/76c68926ea.js" crossorigin="anonymous"></script>
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-      $( document ).ready( function() {
-        $( window ).scroll( function() {
-          if ( $( this ).scrollTop() > 200 ) {
-            $( '.top' ).fadeIn();
-          } else {
-            $( '.top' ).fadeOut();
-          }
-        } );
-        $( '.top' ).click( function() {
-          $( 'html, body' ).animate( { scrollTop : 0 }, 600 );
-          return false;
-        } );
-      } );
 
-      function fnMove(seq){
-          var offset = $("#div" + seq).offset();
-          $('html, body').animate({scrollTop : offset.top}, 600);
-      }
-      
-  </script>
-    <style>  
-      
-    </style>
-</head>
-<body>   
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="{% sass_src 'style/idea.scss' %}" rel="stylesheet" type="text/css" />
+  <title>IDEATHON</title>
+  <script src="https://kit.fontawesome.com/76c68926ea.js" crossorigin="anonymous"></script>
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
-    $(window).scroll(function() {    
-        var scroll = $(window).scrollTop();
-        //console.log(scroll);
-        if (scroll >= 500) {
-            //console.log('a');
-            $(".header").addClass("change");
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 200) {
+          $('.top').fadeIn();
         } else {
-            //console.log('a');
-            $(".header").removeClass("change");
+          $('.top').fadeOut();
         }
+      });
+      $('.top').click(function () {
+        $('html, body').animate({
+          scrollTop: 0
+        }, 600);
+        return false;
+      });
+    });
+
+    function fnMove(seq) {
+      var offset = $("#div" + seq).offset();
+      $('html, body').animate({
+        scrollTop: offset.top
+      }, 600);
+    }
+  </script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <script>
+    $(window).scroll(function () {
+      var scroll = $(window).scrollTop();
+      //console.log(scroll);
+      if (scroll >= 500) {
+        //console.log('a');
+        $(".header").addClass("change");
+      } else {
+        //console.log('a');
+        $(".header").removeClass("change");
+      }
     });
   </script>
-    <header class="header" id="mainpage_header">
-      <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
-      <span class="menu">
-        {% if request.user.is_active %}
-          <span>{{user.user_name}}님</span>
-          <a href="{% url 'logout' %}" title="로그아웃하기">Logout</a>
+  <header class="header" id="mainpage_header">
+    <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
+    <span class="menu">
+      {% if request.user.is_active %}
+      <a href="{% url 'mypage' %}">
+        <span>{{user.user_name}}님</span>
+      </a>
+      <a href="{% url 'logout' %}" title="로그아웃하기">Logout</>
         {% else %}
-        
-          <a href="{% url 'login' %}" title="로그인하기">Sign in</a>
-        {% endif %}
-          <a href="{% url 'mypage' %}">My page</a>
-          <span class="inner">
-            <a href="{% url 'submit' %}" class="hover-shadow hover-color"><span>s</span><span>u</span><span>b</span><span>m</span><span>i</span><span>t</span>
-              <span>y</span><span>o</span><span>u</span><span>r</span>
-              <span>i</span><span>d</span><span>e</span><span>a</span><span>!</a>
-            </span>
-      </span>
-    </header>
-    <div class="randImg">
-        <div class="randImg__left">
-        </div>
-        <div class="randImg__right">
-          <div class="deco_box">
-            <div class="contents">
-              <h2 class="title"> 아이폰 SE2 </h2>
-              <h3 class="subtitle"> 최고의 아이디어! </h3>
-              <h6 class="description"> 이것은 아이디어에 대한 설명입니다. 설명은 보통 길죠. 한 50자 넘어가면 뒤에 생략 ... </h6>
-              <br/>
-              <div class="writer_info">
-                <img class="profile_img" src="{% static 'image/lion.png' %}" />
-                <p class="writer"> 김태영 - DGIST </p>
-              </div>
-              <p class="detail"> Go detail </p>
-            </div>
-          </div>
-        </div>
-        <div class="down" onclick="fnMove('1')"><i class="fas fa-arrow-down"></i></div class="down"></div>
-    </div>
-    <div id="div1"></div>
-    <div class="search">
-        <form class="search_form">
-            <input class="search_input" style="width:600px; height:50px; margin:40px 0px 30px 100px; border-radius:15px;"type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
-            <button class="search_btn" type="submit"><i class="fas fa-search"></i></button>
-        </form>
-    </div>
-    <hr style="width:90%; border: 1px solid rgb(0, 0, 0, 0.5);">
-    <p class="idea_count">아이디어 <span class="idea_count__span">7</span>개</p>
-    <div class="ideacards">
-        {% for idea in posts %}
-          <a href="{% url 'detail' idea.id %}">
-          <div class="card ideacard card_href" style="display: inline;">
-              <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div> <!--16:9-->
-              <span class="idea_name">{{idea.idea_title}}</span>
-              <p>{{idea.idea_subtitle}}</p>
-              <div class="user_div"><hr>
-              <img class="cardprofile" src="{% static 'image/lion.png'%}">{{idea.user}}<i class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
-              </div>
-          </div>   
-          </a>
-        {% endfor %}
-        <a href="/">
-        <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg2.jpg' %}"></div> <!--16:9-->
-            <span class="idea_name">I have a dream</span>
 
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
-            <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">달려라하니<i class="far fa-comment">&nbsp;12</i>
-            </div>
-        </div>
-        </a> 
-        <a href="/">
-        <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg3.png' %}"></div> <!--16:9-->
-            <span class="idea_name">자몽허니블랙티</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
-            <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion2.png'%}">톰과제리<i class="far fa-comment">&nbsp;0</i>
-            </div>
-        </div> 
-        </a>
-        <a href="/">
-        <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg4.jpg' %}"></div> <!--16:9-->
-            <span class="idea_name">민초에미초</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
-            <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">짱구<i class="far fa-comment">&nbsp;3</i>
-            </div>
-        </div> 
-        </a>
-        <a href="/">
-        <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg5.jpg' %}"></div> <!--16:9-->
-            <span class="idea_name">toAnyone</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
-            <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">오즈의마법사<i class="far fa-comment">&nbsp;6</i>
-            </div>
-        </div> 
-        </a>
-        <a href="/">
-        <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg11.jpg' %}"></div> <!--16:9-->
-            <span class="idea_name">생각이안나</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
-            <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
-            </div>
-        </div> 
-        </a>
-        <a href="/">
-          <div class="card ideacard card_href" style="display: inline;">
-              <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg9.jpg' %}"></div> <!--16:9-->
-              <span class="idea_name">생각이안나</span>
-              <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
-              <div class="user_div"><hr>
-              <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
-              </div>
-          </div> 
-        </a> 
-        <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg9.jpg' %}"></div> <!--16:9-->
-            <span class="idea_name">생각이안나</span>
-            <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
-            <div class="user_div"><hr>
-            <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
-            </div>
-        </div> 
-    </div> 
-  </div> 
-    <div class="pgn_div">
-      {% if posts.has_previous %}
-        <a href="?page=1" class="pgn">First</a>
-        <a href="?page={{posts.previous_page_number}}" class="pgn">Previous</a>
-      {% endif %}
-        <span class="pgn">{{posts.number}}</span>
-        <span class="pgn"> of </span>
-        <span class="pgn">{{posts.paginator.num_pages}}</span>
-      {% if posts.has_next %}
-          <a href="?page={{posts.next_page_number}}" class="pgn">Next</a>
-          <a href="?page={{posts.paginator.num_pages}}" class="pgn">Last</a>
-      {% endif %}
+        <a href="{% url 'login' %}" title="로그인하기">Sign in</a>
+        {% endif %}
+        <!-- <a href="{% url 'mypage' %}">My page</a> -->
+        <span class="inner">
+          <a href="{% url 'submit' %}"
+            class="hover-shadow hover-color"><span>s</span><span>u</span><span>b</span><span>m</span><span>i</span><span>t</span>
+            <span>y</span><span>o</span><span>u</span><span>r</span>
+            <span>i</span><span>d</span><span>e</span><span>a</span><span>!</a>
+        </span>
+    </span>
+  </header>
+  <div class="randImg">
+    <div class="randImg__left">
     </div>
+    <div class="randImg__right">
+      <div class="deco_box">
+        <div class="contents">
+          <h2 class="title"> 아이폰 SE2 </h2>
+          <h3 class="subtitle"> 최고의 아이디어! </h3>
+          <h6 class="description"> 이것은 아이디어에 대한 설명입니다. 설명은 보통 길죠. 한 50자 넘어가면 뒤에 생략 ... </h6>
+          <br />
+          <div class="writer_info">
+            <img class="profile_img" src="{% static 'image/lion.png' %}" />
+            <p class="writer"> 김태영 - DGIST </p>
+          </div>
+          <p class="detail"> Go detail </p>
+        </div>
+      </div>
+    </div>
+    <div class="down" onclick="fnMove('1')"><i class="fas fa-arrow-down"></i></div class="down">
+  </div>
+  </div>
+  <div id="div1"></div>
+  <div class="search">
+    <!-- <form class="search_form">
+      <input class="search_input" style="width:600px; height:50px; margin:40px 0px 30px 100px; border-radius:15px;"
+        type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
+      <button class="search_btn" type="submit"><i class="fas fa-search"></i></button>
+    </form> -->
+  </div>
+  <hr style="width:90%; border: 1px solid rgb(0, 0, 0, 0.5);">
+  <p class="idea_count">아이디어 <span class="idea_count__span">7</span>개</p>
+  <div class="ideacards">
+    {% for idea in posts %}
+    <a href="{% url 'detail' idea.id %}">
+      <div class="card ideacard card_href" style="display: inline;">
+        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
+        <!--16:9-->
+        <span class="idea_name">{{idea.idea_title}}</span>
+        <p>{{idea.idea_subtitle}}</p>
+        <div class="user_div">
+          <hr>
+          <img class="cardprofile" src="{% static 'image/lion.png'%}">{{idea.user}}<i
+            class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+    <a href="/">
+      <div class="card ideacard card_href" style="display: inline;">
+        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg2.jpg' %}"></div>
+        <!--16:9-->
+        <span class="idea_name">I have a dream</span>
+
+        <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
+        <div class="user_div">
+          <hr>
+          <img class="cardprofile" src="{% static 'image/lion.png'%}">달려라하니<i class="far fa-comment">&nbsp;12</i>
+        </div>
+      </div>
+    </a>
+    <a href="/">
+      <div class="card ideacard card_href" style="display: inline;">
+        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg3.png' %}"></div>
+        <!--16:9-->
+        <span class="idea_name">자몽허니블랙티</span>
+        <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
+        <div class="user_div">
+          <hr>
+          <img class="cardprofile" src="{% static 'image/lion2.png'%}">톰과제리<i class="far fa-comment">&nbsp;0</i>
+        </div>
+      </div>
+    </a>
+    <a href="/">
+      <div class="card ideacard card_href" style="display: inline;">
+        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg4.jpg' %}"></div>
+        <!--16:9-->
+        <span class="idea_name">민초에미초</span>
+        <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
+        <div class="user_div">
+          <hr>
+          <img class="cardprofile" src="{% static 'image/lion.png'%}">짱구<i class="far fa-comment">&nbsp;3</i>
+        </div>
+      </div>
+    </a>
+    <a href="/">
+      <div class="card ideacard card_href" style="display: inline;">
+        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg5.jpg' %}"></div>
+        <!--16:9-->
+        <span class="idea_name">toAnyone</span>
+        <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
+        <div class="user_div">
+          <hr>
+          <img class="cardprofile" src="{% static 'image/lion.png'%}">오즈의마법사<i class="far fa-comment">&nbsp;6</i>
+        </div>
+      </div>
+    </a>
+    <a href="/">
+      <div class="card ideacard card_href" style="display: inline;">
+        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg11.jpg' %}"></div>
+        <!--16:9-->
+        <span class="idea_name">생각이안나</span>
+        <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
+        <div class="user_div">
+          <hr>
+          <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
+        </div>
+      </div>
+    </a>
+    <a href="/">
+      <div class="card ideacard card_href" style="display: inline;">
+        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg9.jpg' %}"></div>
+        <!--16:9-->
+        <span class="idea_name">생각이안나</span>
+        <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색<br>likelion hack your life!<i class="fas fa-bath"></i></p>
+        <div class="user_div">
+          <hr>
+          <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
+        </div>
+      </div>
+    </a>
+    <div class="card ideacard card_href" style="display: inline;">
+      <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg9.jpg' %}"></div>
+      <!--16:9-->
+      <span class="idea_name">생각이안나</span>
+      <p>아이디어 설명 어쩌구 블라블라블라 분홍색 노란색 하늘색 흰색 보라색 녹색</p>
+      <div class="user_div">
+        <hr>
+        <img class="cardprofile" src="{% static 'image/lion.png'%}">세일러문<i class="far fa-comment">&nbsp;1</i>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="pgn_div">
+    {% if posts.has_previous %}
+    <a href="?page=1" class="pgn">First</a>
+    <a href="?page={{posts.previous_page_number}}" class="pgn">Previous</a>
+    {% endif %}
+    <span class="pgn">{{posts.number}}</span>
+    <span class="pgn"> of </span>
+    <span class="pgn">{{posts.paginator.num_pages}}</span>
+    {% if posts.has_next %}
+    <a href="?page={{posts.next_page_number}}" class="pgn">Next</a>
+    <a href="?page={{posts.paginator.num_pages}}" class="pgn">Last</a>
+    {% endif %}
+  </div>
 </body>
 <footer class="footer">
-    <div class="">
-      <div class="footer_cnts">
-        <h5>김태영</h5>
-        <ul class="">
-          <li><span class="" href="#">전 6,7기멤버</a></li>
-          <li><span class="" href="#">DIGIST 운영진</a></li>
-          <li><span class="" href="#">뭐 이런거 쓰자ㅏㅏ</a></li>
-        </ul>
-      </div>
-      <div class="footer_cnts">
-        <h5>박지형</h5>
-        <ul class="">
-          <li><span class="" href="#">전 7기멤버</span></li>
-          <li><span class="" href="#">서울여대 운영진</span></li>
-          <li><span class="" href="#">가나다순이야</span></li>
-        </ul>
-      </div>
-      <div class="footer_cnts">
-        <h5>신효경</h5>
-        <ul class="">
-          <li><span class="" href="#">전 7기멤버</span></li>
-          <li><span class="" href="#">동덕여대 운영진</span></li>
-          <li><span class="" href="#">어쩌구</span></li>
-        </ul>
-      </div>
-      <div class="footer_cnts">
-        <h5>최광일</h5>
-        <ul class="">
-          <li><span class="" href="#">전 7기멤버</span></li>
-          <li><span class="" href="#">아주대 운영진</span></li>
-          <li><span class="" href="#">Privacy</span></li>
-        </ul>
-      </div>
+  <div class="">
+    <div class="footer_cnts">
+      <h5>김태영</h5>
+      <ul class="">
+        <li><span class="" href="#">전 6,7기멤버</a></li>
+        <li><span class="" href="#">DIGIST 운영진</a></li>
+        <li><span class="" href="#">뭐 이런거 쓰자ㅏㅏ</a></li>
+      </ul>
     </div>
-    <div class="top_div">
-      <a href="#" class="top"><i class="fas fa-angle-double-up"></i></a>
+    <div class="footer_cnts">
+      <h5>박지형</h5>
+      <ul class="">
+        <li><span class="" href="#">전 7기멤버</span></li>
+        <li><span class="" href="#">서울여대 운영진</span></li>
+        <li><span class="" href="#">가나다순이야</span></li>
+      </ul>
     </div>
+    <div class="footer_cnts">
+      <h5>신효경</h5>
+      <ul class="">
+        <li><span class="" href="#">전 7기멤버</span></li>
+        <li><span class="" href="#">동덕여대 운영진</span></li>
+        <li><span class="" href="#">어쩌구</span></li>
+      </ul>
+    </div>
+    <div class="footer_cnts">
+      <h5>최광일</h5>
+      <ul class="">
+        <li><span class="" href="#">전 7기멤버</span></li>
+        <li><span class="" href="#">아주대 운영진</span></li>
+        <li><span class="" href="#">Privacy</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="top_div">
+    <a href="#" class="top"><i class="fas fa-angle-double-up"></i></a>
+  </div>
 </footer>
+
 </html>
