@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from idea.models import Idea_Comments, Idea_AddComments, Idea
+from idea.models import Idea_Comments, Idea_AddComments, Idea, Idea_image_storage
 from accounts.models import Idea_Cart
 from django.utils import timezone
 from accounts.models import Profile
@@ -54,12 +54,12 @@ def detail(request, detail_id):
         # pk에 해당하는 아이디어 
         idea_detail = Idea.objects.get(pk = detail_id)
         user = idea_detail.user
-        full_hash_tag = idea_detail.idea_hashtag 
+        full_hash_tag = idea_detail.idea_hashtag
         hash_tag = full_hash_tag.replace(',','').split()
         user = idea_detail.user
         idea_id = idea_detail.id
         user_profile =  Profile.objects.get(email = user.email)
-
+        idea_images = Idea_image_storage.objects.all().filter(idea = idea_detail)
 
         # 아이디어에 해당하는 댓글 가져오기
         comment_list_all = Idea_Comments.objects.all()
@@ -126,6 +126,7 @@ def detail(request, detail_id):
                 'current_user_profile' : current_user_profile,
                 'user_profile' : user_profile,
                 'user': user,
+                'idea_images' : idea_images,
                 'current_user_cart_add' : current_user_cart_add,
             })
         else :
@@ -147,6 +148,7 @@ def detail(request, detail_id):
                 'current_user_profile' : current_user_profile,
                 'user_profile' : user_profile,
                 'user': user,
+                'idea_images' : idea_images,
             }) 
         
 def delete(request, detail_id):
@@ -168,7 +170,7 @@ def edit(request, detail_id):
     else:
         return render(request, 'submit.html', {'idea_detail':idea_detail})
 
-def comment_edit(request, detail_id, comment_id):
+def comment_edit(request, comment_id, detail_id):
     idea_comment = Idea_Comments.objects.get(pk = comment_id)
 
     if request.method == 'POST':
