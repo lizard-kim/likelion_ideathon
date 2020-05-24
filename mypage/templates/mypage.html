@@ -2,17 +2,19 @@
 {% load sass_tags %}
 {% load static %}
 <html>
+
 <head>
     <title>Like Lion Ideathon</title>
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>
     <!-- jquery -->
-    
-    <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
-    
-    <link href="{% sass_src 'style/mypage.scss' %}" rel="stylesheet" type="text/css"/> 
 
+    <script src="https://code.jquery.com/jquery-3.5.0.js"
+        integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+
+    <link href="{% sass_src 'style/mypage.scss' %}" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
     <div class="header">
         <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
@@ -32,7 +34,12 @@
                 <i class="far fa-comment-dots fa-2x" style="color: black"></i>
                 <a href="{% url 'comments' %}"><h5 class="comment_num">{{comment_all}}</h5></a>
                 <i class="fas fa-shopping-basket fa-2x"></i>
+<<<<<<< HEAD
                 <h5 class="basket_num"> {{cart_all}}</h5>
+=======
+                <h5 class="basket_num"> 4 </h5>
+                <i class="fa fa-bars edit_button"></i>
+>>>>>>> 76e3f8d3af2ddc66184704f6a688436086a61644
             </div>
         </div>
 
@@ -48,7 +55,17 @@
                 <h6 class="title"> About </h6>
                 <h6 class="description"> {{profile.user_about}} </h6>
                 <h6 class="title"> Contact </h6>
+<<<<<<< HEAD
                 <h6 class="description">{{profile.user_contact}}</h6>                
+=======
+                <h6 class="description"> https://github.com/iron-man </h6>
+
+                <div id="mypage_edit">
+                    <input class="edit_component" type="text" value="my_department">
+                    <input class="edit_component" type="text" value="my_about">
+                    <input class="edit_component" type="text" value="my_contact">
+                </div>
+>>>>>>> 76e3f8d3af2ddc66184704f6a688436086a61644
             </div>
             <div class="content myidea ideacards">
                 {% if myidea %}
@@ -86,27 +103,38 @@
                     <h3>담긴 아이디어가 없습니다.</h3>
                 {% endif %}
             </div>
+
         </div>
     </div>
     {% include 'footer.html' %}
-<!--
+    <!--
     <div class="footer">
         <h3> footer </h3>
     </div>
 -->
     <script>
-        $(document).ready(function() {
-            $(".menuelem").on("click", function(e) {
+        $(document).ready(function () {
+            $(".menuelem").on("click", function (e) {
                 console.log(this.id)
                 var clickId = this.id
                 $(".content").css({
-                    "display" : "none",
+                    "display": "none",
                 })
-                $("."+clickId).css({
-                    "display" : "block",
+                $("." + clickId).css({
+                    "display": "block",
+                })
+            })
+            $(".edit_button").on("click", function (e) {
+                var editid = document.getElementById("mypage_edit")
+                $("#edit").css({
+                    "display": "none",
+                })
+                $(editid).css({
+                    "display": "block",
                 })
             })
         })
     </script>
 </body>
+
 </html>
