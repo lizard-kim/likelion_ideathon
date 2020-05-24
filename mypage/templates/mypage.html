@@ -34,8 +34,7 @@
                 <i class="far fa-comment-dots fa-2x" style="color: black"></i>
                 <a href="{% url 'comments' %}"><h5 class="comment_num">{{comment_all}}</h5></a>
                 <i class="fas fa-shopping-basket fa-2x"></i>
-                <h5 class="basket_num"> 4 </h5>
-                <i class="fa fa-bars edit_button"></i>
+                <h5 class="basket_num"> {{cart_all}}</h5>
             </div>
         </div>
 
@@ -51,22 +50,8 @@
                 <h6 class="title"> About </h6>
                 <h6 class="description"> {{profile.user_about}} </h6>
                 <h6 class="title"> Contact </h6>
-                <h6 class="description">{{profile.user_contact}}</h6>                
-
+                        <h6 class="description">{{profile.user_contact}}</h6>                
             </div>
-        </div>
-        <div class="content myidea">
-            <div class="ideacard">
-                <div class="ideacard__thumbnail"></div>
-                <div class="ideacard__content">
-                    <h4 class="title"> My best idea title </h4>
-                    <h6 class="subtitle"> this is description... iron man is the best hero in my life... </h6>
-                </div>
-            </div>
-        </div>
-        <div class="content basket">
-            <h2> 이것은 장바구니 </h2>
-        </div>
             <div class="content myidea ideacards">
                 {% if myidea %}
                     {% for idea in myidea %}
@@ -103,10 +88,7 @@
                     <h3>담긴 아이디어가 없습니다.</h3>
                 {% endif %}
             </div>
-        <div id="mypage_edit">
-            <input class="edit_component" type="text" value="my_department">
-            <input class="edit_component" type="text" value="my_about">
-            <input class="edit_component" type="text" value="my_contact">
+
         </div>
     </div>
     {% include 'footer.html' %}
@@ -129,14 +111,12 @@
             })
             $(".edit_button").on("click", function (e) {
                 var editid = document.getElementById("mypage_edit")
+                $("#edit").css({
+                    "display": "none",
+                })
                 $(editid).css({
                     "display": "block",
                 })
-                $(".content").css({
-                    "display": "none",
-                })
-
-
             })
         })
     </script>
