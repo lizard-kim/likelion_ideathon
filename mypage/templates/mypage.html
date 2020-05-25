@@ -125,7 +125,7 @@
     </div>
 
     <div id="mypage_edit">
-        <form action="{% url 'edit' %}" method='POST'>
+        <form action="{% url 'mypage_edit' %}" method='POST'>
             {% csrf_token %}
             <table>
                 <input name="password" type="password" value="">
