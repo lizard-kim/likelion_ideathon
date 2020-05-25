@@ -59,13 +59,13 @@
                         <div class="image_box">
 
                             {% if idea_detail.idea_image %}
-                            <img src="{{idea_detail.idea_image.url}}" alt="d" width="800px" height="100%">
+                                <img src="{{idea_detail.idea_image.url}}" alt="d" width="800px" height="100%">
                             {% endif %}
 
                             {% if idea_images %}
-                            {% for image in idea_images %}
-                            <img src="{{image.image.url}}" alt="d" width="800px" height="100%">
-                            {% endfor %}
+                                {% for image in idea_images %}
+                                    <img src="{{image.image.url}}" alt="d" width="800px" height="100%">
+                                {% endfor %}
                             {% endif %}
 
                         </div>
@@ -79,21 +79,24 @@
 
                     <div class="bot">
                         <div class="bot_box">
+                            {% if is_logined_user and current_user != user %}
 
-                            {% if request.user %}
+                                {% if current_user_cart_add.add_cart == True %}
 
-                            {% if user == request.user %}
+                                    <form action="{% url 'detail' detail.id %}" method=POST class="bot_box_cart_on">
+                                        {% csrf_token %}
+                                        <input type=submit class="bot_box_cart_on_button" name="cart" value="추가됨">
+                                    </form>
 
-                            {% elif current_user_cart_add.add_cart == True %}
-                            <form action="{% url 'detail' detail.id %}" method=POST class="bot_box_cart_on">
-                                {% csrf_token %}
-                                <input type=submit class="bot_box_cart_on_button" name="cart" value="추가됨">
-                            </form>
-                            {% else %}
-                            <form action="{% url 'detail' detail.id %}" method=POST class="bot_box_cart">
-                                {% csrf_token %}
-                                <input type=submit class="bot_box_cart_button" name="cart" value="장바구니 추가">
-                            </form>
+                                {% else %}
+                                   
+                                    <form action="{% url 'detail' detail.id %}" method=POST class="bot_box_cart">
+                                        {% csrf_token %}
+                                        <input type=submit class="bot_box_cart_button" name="cart" value="장바구니 추가">
+                                    </form>
+
+                                {% endif %}
+
                             {% endif %}
 
                             <!-- 로그인한 유저가 글 작성자라면 -->
@@ -107,8 +110,6 @@
                                     <p>삭제</p>
                                 </a>
                             </div>
-                            {% endif %}
-
                             {% endif %}
                         </div>
 
@@ -168,14 +169,14 @@
 
                         {% else %}
 
-                        <div class="comments_box_input_none">
+                        <!-- <div class="comments_box_input_none">
                             <div class="comments_box_input_none_box">
                                     <div class="comments_box_input_none_text">
                                         <h5>댓글을 달려면 로그인을 해주세요</h5>
                                     </div>
                                         <a href="{% url 'login' %}" class="comments_box_input_none_button">로그인</a>
                             </div>
-                        </div>
+                        </div> -->
 
                         {% endif %}
 
@@ -185,9 +186,9 @@
                         <div class="comments_order_box_order">
                             <div class="comments_order_box_order_item1">
                                 {% if comment_num %}
-                                <h5> {{comment_num}} 개의 댓글이 있습니다</h5>
+                                <h5> 댓글 {{comment_num}}</h5>
                                 {% else %}
-                                <h5>0 개의 댓글이 있습니다</h5>
+                                <h5>댓글 0개</h5>
                                 {% endif %}
                             </div>
                         </div>
@@ -281,6 +282,12 @@
                                                                         <div class="add_comment_author_info_name">
                                                                             <p>{{add_comment.user.user_name}}</p>
                                                                         </div>
+                                                                        {% if add_comment.user == user or add_comment.user == current_user %}
+                                                                        <div class="add_comment_author_info_delete">
+                                                                            <a href="{% url 'addcomment_delete' detail.id add_comment.id %}"
+                                                                               class = 'add_comment_author_info_delete_button'>삭제</a>
+                                                                        </div>
+                                                                        {% endif %}
                                                                     </div>
 
                                                                     <div class="add_comment_content">
@@ -305,10 +312,6 @@
                                             
                                                     {% endfor %}
                                                     
-                                            
-
-                                        
-
                                             <!-- 대댓글 Form -->
                                             {% if current_user %}
                                             <div id="new_comment" class="new_comment" name="new_comment">
