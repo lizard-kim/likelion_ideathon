@@ -66,7 +66,7 @@ header {
 
     #submit_left {
         padding-right: 48px;
-        width: 50%;
+        width: 57%;
         float: left;
         box-sizing: border-box;
         margin-top: 20px;
@@ -78,12 +78,13 @@ header {
 
     #submit_right {
         padding-right: 50px;
-        width: 50%;
+        width: 43%;
         float: right;
         border-left: 2px solid #B8B8B8;
         box-sizing: border-box;
         margin-top: 20px;
         height: 500px;
+        padding-left: 10px;
 
         #submitB {
             float: right;
@@ -105,6 +106,7 @@ header {
             border: 1px solid #A9A9A9;
             border-radius: 10px;
             font-size: 15px;
+            margin-top: 5px;
         }
 
         .InputTextArea {
@@ -121,7 +123,9 @@ header {
 }
 
 .swiper-container {
-    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
     height: auto;
     overflow: hidden;
     margin: 0 !important;

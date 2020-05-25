@@ -165,7 +165,7 @@ def edit(request, detail_id):
         idea_detail.idea_image = request.POST['images']
         idea_detail.idea_hashtag = request.POST['IdeaHashTag']
         idea_detail.save()
-        return redirect('/detail/' + str(detail.id))
+        return redirect('/detail/' + str(idea_detail.id))
     else:
         return render(request, 'submit.html', {'idea_detail':idea_detail})
 
