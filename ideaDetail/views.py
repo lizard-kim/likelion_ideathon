@@ -18,9 +18,9 @@ def detail(request, detail_id):
             comment.save()
 
         elif 'cart' in request.POST:
-            current_user = request.user
-            current_user_profile = Profile.objects.get(email = current_user.email)
-            current_idea = Idea.objects.get(pk = detail_id)
+            current_user = request.user #로그인한 유저
+            current_user_profile = Profile.objects.get(email = current_user.email) #로그인한 유저 프로필
+            current_idea = Idea.objects.get(pk = detail_id) #지금 내가 위치해 있는 페이지 아이디어내용
             current_user_cart = Idea_Cart.objects.all().filter(user = current_user, idea = current_idea)
             
             if current_user_cart:
@@ -37,6 +37,7 @@ def detail(request, detail_id):
                 user_cart.idea = current_idea
                 user_cart.add_cart = True
                 user_cart.save()
+
 
         return redirect('/detail/'+ str(detail_id))
 
