@@ -160,7 +160,6 @@ p{
         display : block;
         width : 800px;
         max-height: 800px;
-        margin : 10px 0px 10px 20px; 
         font-size : 10px;
         padding : 20px 0px 0px 10px;
         margin-bottom : 100px;
@@ -319,12 +318,17 @@ p{
             align-items: center;
             width : 800px;
             height : 100px;
-            margin-top : 2%;
 
             &_box{
                 display : flex;
+                justify-content: center;
+                align-items: center;
                 flex-direction: row;
-                max-width: 800px;
+                width: 650px;
+                height : 75px;
+                border : 1px solid rgb(212, 212, 212);
+                border-radius: 10px;
+                box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
             }
 
             &_text{
@@ -339,13 +343,14 @@ p{
                 margin-left : 2%;
                 border : 1px solid rgb(180, 180, 180);
                 color : black;
-                width : 100px;
-                height : 40px;
+                width : 80px;
+                height : 25px;
                 text-align : center;
                 background-color: white;
                 box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+                padding : 1%;
 
-                &a:hover{
+                &:hover{
                     color : white;
                     background-color: #F39925;
                     transition: 0.3s;
@@ -366,7 +371,6 @@ p{
                 flex-direction: row;
 
                 &_image{
-                    background-color: #F39925;
                     border-radius: 3px;
                     width : 25px;
                     height : 25px;
@@ -462,7 +466,6 @@ p{
     
     // 여기부터 달린 댓글
     &_list{
-        margin-top : 1%;
         display : flex;
         justify-content: center;
         max-height: 2000px;
@@ -478,8 +481,26 @@ p{
         width : 800px;
         max-height: 2000px;
         display : inline-block;
-        margin-top : 1%;
+        margin-top : 2%;
         border-bottom: 1px solid rgb(182, 182, 182);
+    }
+
+    &_delete{
+        flex:none;
+        margin-left : 2%;
+
+        &_button{
+            border : 1px solid rgb(180, 180, 180);
+            color : black;
+            box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+            text-align : center;
+
+            &:hover{
+                color : rgb(0, 0, 0);
+                background-color: rgba(196, 192, 192, 0.644);
+                transition: 0.3s;
+            }
+        }
     }
 
     &_author_info{
@@ -650,19 +671,49 @@ p{
     max-height : 2000px;
     width : 800px;
     margin-bottom : 20px;
+    border-top: 1px solid rgb(182, 182, 182);
+
+}
+
+.add_comment_sorting{
+    display : flex;
+    flex-direction: row;
 }
 
 .add_comment{
     display : inline-block;
-    position : relative;
     max-height : 200px;
     width : 640px;
     margin-left : 2%;
     margin-bottom : 2%;
 
-    &_content{
-        margin-top : 1%;
+    &_box{
+        display : inline-block;
+        max-height : 1500px;
+        width : 640px;
     }
+
+    &_content{
+    }
+
+    &_delete{
+        flex:none;
+        margin-left : 2%;
+
+        &_button{
+            border : 1px solid rgb(180, 180, 180);
+            color : black;
+            box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+            text-align : center;
+
+            &:hover{
+                color : white;
+                background-color: rgba(138, 31, 31, 0.644);
+                transition: 0.3s;
+            }
+        }
+    }
+
 
     &_author_info{
         display : flex;
@@ -698,12 +749,13 @@ p{
     }
 
     &_count{
-        margin: 1%;
-        max-width : 300px;
+        width : 70px;
+        height : 30px;
         display : inline-block;
-        color : rgb(43, 43, 43);
-        padding-bottom : 1%;
-        border-bottom : 1px solid rgb(105, 105, 105);
+        color : rgb(133, 133, 133);
+        padding : 1%;
+        margin-left : auto;
+        
     }
 
     &_form{
