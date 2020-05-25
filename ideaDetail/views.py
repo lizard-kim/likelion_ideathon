@@ -25,10 +25,10 @@ def detail(request, detail_id):
             
             if current_user_cart:
                 cart = Idea_Cart.objects.get(user = current_user, idea = current_idea)
-                if cart.add_cart == True:
+                if cart.add_cart:
                     cart.add_cart = False
                     cart.save()
-                elif cart.add_cart == False:
+                else:
                     cart.add_cart = True
                     cart.save()
             else:
@@ -46,10 +46,9 @@ def detail(request, detail_id):
         user = idea_detail.user
         # full_hash_tag = idea_detail.idea_hashtag
         # hash_tag = full_hash_tag.replace(',','').split()
-        user = idea_detail.user
         idea_id = idea_detail.id
-        user_profile =  Profile.objects.get(email = user.email)
         idea_images = Idea_image_storage.objects.all().filter(idea = idea_detail)
+        user_profile =  Profile.objects.get(email = user.email)
 
         # 아이디어에 해당하는 댓글 가져오기
         comment_list_all = Idea_Comments.objects.all()
@@ -89,58 +88,74 @@ def detail(request, detail_id):
 
             value.append(add_comments[comments[t]])
 
-        # user permission (현재 로그인한 유저)
-        current_user = request.user
-        current_user_profile = Profile.objects.get(email = current_user.email)
+        # 로그인한 유저가 있다면
+        if request.user.is_authenticated :
+            current_user = request.user
+            current_user_profile = Profile.objects.get(email = current_user.email)
 
-        # 현재 로그인한 유저가 해당 아이디어 가지고 있는지 체크
-        current_user_cart = Idea_Cart.objects.all().filter(user = current_user, idea = idea_detail)
+            # 현재 로그인한 유저가 해당 아이디어 가지고 있는지 체크
+            current_user_cart = Idea_Cart.objects.all().filter(user = current_user, idea = idea_detail)
         
-        if current_user_cart :  # 해당 아이디어에 대해 장바구니 가지고 있다면
-            current_user_cart_add = Idea_Cart.objects.get(user = current_user, idea = idea_detail) # 겟또
+            if current_user_cart :  # 해당 아이디어에 대해 장바구니 가지고 있다면
+                current_user_cart_add = Idea_Cart.objects.get(user = current_user, idea = idea_detail) # 겟또
 
+                return render(request, 'detail.html',{
+                    'comment_list' : comment_list,
+                    'comments_count' : comments_count,
+                    'addcomment_list_all' : addcomment_list_all,
+                    'detail':idea_detail,
+                    # 'hasg_tag':hash_tag,
+                    'comment_num' : comment_num,
+                    'add_comments_num' : add_comments_num,
+                    'comments' : comments,
+                    'add_comments' : add_comments,
+                    'value' : value,
+                    'comment_check' : comment_check,
+                    'idea_detail' : idea_detail,
+                    'current_user' : current_user,
+                    'current_user_profile' : current_user_profile,
+                    'user_profile' : user_profile,
+                    'user': user,
+                    'idea_images' : idea_images,
+                    'current_user_cart_add' : current_user_cart_add,
+                })
+            else :
+                return render(request, 'detail.html',{
+                    'comment_list' : comment_list,
+                    'comments_count' : comments_count,
+                    'addcomment_list_all' : addcomment_list_all,
+                    'detail':idea_detail,
+                    # 'hasg_tag':hash_tag,
+                    'user_profile' : user_profile,
+                    'comment_num' : comment_num,
+                    'add_comments_num' : add_comments_num,
+                    'comments' : comments,
+                    'add_comments' : add_comments,
+                    'value' : value,
+                    'comment_check' : comment_check,
+                    'idea_detail' : idea_detail,
+                    'current_user' : current_user,
+                    'current_user_profile' : current_user_profile,
+                    'user_profile' : user_profile,
+                    'user': user,
+                    'idea_images' : idea_images,
+                }) 
+        else:
             return render(request, 'detail.html',{
-                'comment_list' : comment_list,
-                'comments_count' : comments_count,
-                'addcomment_list_all' : addcomment_list_all,
-                'detail':idea_detail,
-                # 'hasg_tag':hash_tag,
-                'comment_num' : comment_num,
-                'add_comments_num' : add_comments_num,
-                'comments' : comments,
-                'add_comments' : add_comments,
-                'value' : value,
-                'comment_check' : comment_check,
-                'idea_detail' : idea_detail,
-                'current_user' : current_user,
-                'current_user_profile' : current_user_profile,
-                'user_profile' : user_profile,
-                'user': user,
-                'idea_images' : idea_images,
-                'current_user_cart_add' : current_user_cart_add,
-            })
-        else :
-            return render(request, 'detail.html',{
-                'comment_list' : comment_list,
-                'comments_count' : comments_count,
-                'addcomment_list_all' : addcomment_list_all,
-                'detail':idea_detail,
-                # 'hasg_tag':hash_tag,
-                'user_profile' : user_profile,
-                'comment_num' : comment_num,
-                'add_comments_num' : add_comments_num,
-                'comments' : comments,
-                'add_comments' : add_comments,
-                'value' : value,
-                'comment_check' : comment_check,
-                'idea_detail' : idea_detail,
-                'current_user' : current_user,
-                'current_user_profile' : current_user_profile,
-                'user_profile' : user_profile,
-                'user': user,
-                'idea_images' : idea_images,
-            }) 
-        
+                    'comment_list' : comment_list,
+                    'comments_count' : comments_count,
+                    'addcomment_list_all' : addcomment_list_all,
+                    'detail':idea_detail,
+                    # 'hasg_tag':hash_tag,
+                    'comment_num' : comment_num,
+                    'add_comments_num' : add_comments_num,
+                    'comments' : comments,
+                    'add_comments' : add_comments,
+                    'value' : value,
+                    'comment_check' : comment_check,
+                    'idea_detail' : idea_detail,
+                    'idea_images' : idea_images,
+                }) 
 
 def subcomment(request, detail_id, comment_id):
     if request.method == 'POST':

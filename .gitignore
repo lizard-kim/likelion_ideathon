@@ -10,9 +10,6 @@ media
 myvenv
 .DS_Store
 venv
-<<<<<<< HEAD
-.venv/
-=======
 
 
 
@@ -185,4 +182,3 @@ dmypy.json
 # Pyre type checker
 
 # End of https://www.gitignore.io/api/django,python
->>>>>>> 8c43fdcd3145d465478808743b14143a77709b71

@@ -58,7 +58,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
 
 # 현재 접속한 유저가 @다른 사람이 등록한 @아이디어를 @저장
 class Idea_Cart(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True, blank = True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null = True, blank = True)
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE, null = True, blank = True)
     add_cart = models.NullBooleanField()
 
