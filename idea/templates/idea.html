@@ -52,6 +52,10 @@
         $(".header").removeClass("change");
       }
     });
+    var submit_check = document.getElementsByClassName('submit_btn')
+    submit_check.onclick() = function () {
+      console.log(submit_check);
+    }
   </script>
   <header class="header" id="mainpage_header">
     <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
@@ -65,19 +69,13 @@
 
         <a href="{% url 'login' %}" title="로그인하기">Sign in</a>
         {% endif %}
-        <!-- <a href="{% url 'mypage' %}">My page</a> -->
-        <span class="inner">
-          <a href="{% url 'submit' %}"
-            class="hover-shadow hover-color"><span>s</span><span>u</span><span>b</span><span>m</span><span>i</span><span>t</span>
-            <span>y</span><span>o</span><span>u</span><span>r</span>
-            <span>i</span><span>d</span><span>e</span><span>a</span><span>!</a>
-        </span>
+
     </span>
   </header>
   <div class="randImg">
     <div class="randImg__left">
     </div>
-    <div class="randImg__right">
+    <!-- <div class="randImg__right">
       <div class="deco_box">
         <div class="contents">
           <h2 class="title"> 아이폰 SE2 </h2>
@@ -92,17 +90,24 @@
         </div>
       </div>
     </div>
-    <div class="down" onclick="fnMove('1')"><i class="fas fa-arrow-down"></i></div class="down">
+    <div class="down" onclick="fnMove('1')"><i class="fas fa-arrow-down"></i></div class="down"> -->
+    <a href="{% url 'submit' %}">
+      <button class="submit_btn">
+        submit
+      </button>
+    </a>
   </div>
   </div>
   <div id="div1"></div>
-  <div class="search">
+
+  <!--@brief: delete search bar-->
+
+  <!-- < class="search">
     <!-- <form class="search_form">
       <input class="search_input" style="width:600px; height:50px; margin:40px 0px 30px 100px; border-radius:15px;"
         type="text" placeholder="&emsp;검색하려는 단어를 입력하세요!" aria-label="Search">
       <button class="search_btn" type="submit"><i class="fas fa-search"></i></button>
     </form> -->
-  </div>
   <hr style="width:90%; border: 1px solid rgb(0, 0, 0, 0.5);">
   <p class="idea_count">아이디어 <span class="idea_count__span">7</span>개</p>
   <div class="ideacards">
