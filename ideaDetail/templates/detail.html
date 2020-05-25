@@ -282,7 +282,7 @@
                                                                         <div class="add_comment_author_info_name">
                                                                             <p>{{add_comment.user.user_name}}</p>
                                                                         </div>
-                                                                        {% if add_comment.user == user or add_comment.user == current_user %}
+                                                                        {% if add_comment.user == user or add_comment.user == current_user or current_user %}
                                                                         <div class="add_comment_author_info_delete">
                                                                             <a href="{% url 'addcomment_delete' detail.id add_comment.id %}"
                                                                                class = 'add_comment_author_info_delete_button'>삭제</a>
@@ -355,8 +355,6 @@
 
                                         </div>
                                         
-                                    </div>
-
                                 </div>
 
                             {% endfor %}
