@@ -4,7 +4,9 @@ from accounts.models import Idea_Cart, Profile
 from django.utils import timezone
 
 def detail(request, detail_id):
+    
     if request.method == 'POST':
+
         comment = request.POST.get('comment', 0)
         addcomment = request.POST.get('addcomment', 0)
         cart = request.POST.get('cart', 0)
@@ -199,12 +201,12 @@ def edit(request, detail_id):
         idea_detail.idea_title = request.POST['IdeaName']
         idea_detail.idea_subtitle = request.POST['IdeaSubtitle']
         idea_detail.idea_description = request.POST['IdeaContent']
-        #idea_detail.idea_image
-        idea_detail.idea_hashtag = request.POST['IdeaHashTag']
+        idea_detail.idea_image = request.POST['images']
+        # idea_detail.idea_hashtag = request.POST['IdeaHashTag']
         idea_detail.save()
-        return redirect('/detail/' + str(detail_id))
+        return redirect('/detail/' + str(idea_detail.id))
     else:
-        return render(request, 'submit.html', {'idea_detail':idea_detail})
+        return render(request, 'edit.html', {'idea_detail':idea_detail})
 
 # def comment_edit(request, comment_id, detail_id):
 #     idea_comment = Idea_Comments.objects.get(pk = comment_id)

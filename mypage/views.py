@@ -7,10 +7,10 @@ from accounts.forms import *
 
 def mypage(request):
     if request.user.is_authenticated == True:
-        profile = get_object_or_404(Profile.objects.all().filter(email = request.user.email))
-        myidea = Idea.objects.all().filter(user = request.user)
-        comment = Idea_Comments.objects.all().filter(user = request.user).count()
-        add_comment = Idea_AddComments.objects.all().filter(user = request.user).count()
+        profile = get_object_or_404(Profile.objects.filter(email = request.user.email))
+        myidea = Idea.objects.filter(user = request.user)
+        comment = Idea_Comments.objects.filter(user = request.user).count()
+        add_comment = Idea_AddComments.objects.filter(user = request.user).count()
         comment_all = comment + add_comment
         form = UserChangeForm()
         cart = Idea_Cart.objects.filter(user = request.user) #카트유저가 지금 로그인한 유저와 같아
@@ -44,7 +44,6 @@ def edit(request):
         return render(request, 'mypageedit.html',{
             'form' : form
         })
-
 def comments(request):
     comment = Idea_Comments.objects.all().filter(user = request.user)
     add_comment = Idea_AddComments.objects.all().filter(user = request.user)
