@@ -93,16 +93,12 @@
                         {% if user == request.user %}
                         
                         {% elif current_user_cart_add.add_cart == True %}
-                        <form action = "{% url 'detail' detail.id %}"
-                              method = POST
-                              class = "bot_box_cart_on">
+                        <form action = "{% url 'detail' detail.id %}" method = POST class = "bot_box_cart_on">
                             {% csrf_token %}
                             <input type=submit class = "bot_box_cart_on_button" name = "cart" value = "추가됨">
                         </form>
                         {% else %}
-                        <form action = "{% url 'detail' detail.id %}"
-                              method = POST
-                              class = "bot_box_cart">
+                        <form action = "{% url 'detail' detail.id %}" method = POST class = "bot_box_cart">
                             {% csrf_token %}
                             <input type=submit class = "bot_box_cart_button" name = "cart" value = "장바구니 추가">
                         </form>
@@ -342,11 +338,6 @@
         </div>
 
     </div>
-
-    <div class = "footer">
-        {{idea_detail.idea_image}}
-    </div>
-
 </div>
 </body>
 

@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'ideaDetail',
     'main',
     'mypage',
-    
     'submit',
     'accounts.apps.AccountsConfig',
 ]

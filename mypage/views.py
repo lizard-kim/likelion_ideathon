@@ -4,13 +4,13 @@ from idea.models import Idea, Idea_Comments, Idea_AddComments
 
 def mypage(request):
     if request.user.is_authenticated == True:
-        profile = get_object_or_404(Profile.objects.all().filter(email = request.user.email))
-        myidea = Idea.objects.all().filter(user = request.user)
-        comment = Idea_Comments.objects.all().filter(user = request.user).count()
-        add_comment = Idea_AddComments.objects.all().filter(user = request.user).count()
+        profile = get_object_or_404(Profile.objects.filter(email = request.user.email))
+        myidea = Idea.objects.filter(user = request.user)
+        comment = Idea_Comments.objects.filter(user = request.user).count()
+        add_comment = Idea_AddComments.objects.filter(user = request.user).count()
         comment_all = comment + add_comment
-        cart = Idea_Cart.objects.all().exclude(user = request.user)
-        cart_all = Idea_Cart.objects.all().exclude(user = request.user).count()
+        cart = Idea_Cart.objects.exclude(user = request.user)
+        cart_all = Idea_Cart.objects.exclude(user = request.user).count()
         return render(request, 'mypage.html', 
             {'profile' : profile, 
             'myidea' : myidea, 

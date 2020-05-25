@@ -53,8 +53,8 @@ def detail(request, detail_id):
         # 에 해당하는 아이디어 
         idea_detail = Idea.objects.get(pk = detail_id)
         user = idea_detail.user
-        full_hash_tag = idea_detail.idea_hashtag
-        hash_tag = full_hash_tag.replace(',','').split()
+        # full_hash_tag = idea_detail.idea_hashtag
+        # hash_tag = full_hash_tag.replace(',','').split()
         user = idea_detail.user
         idea_id = idea_detail.id
         user_profile =  Profile.objects.get(email = user.email)
@@ -113,7 +113,7 @@ def detail(request, detail_id):
                 'comments_count' : comments_count,
                 'addcomment_list_all' : addcomment_list_all,
                 'detail':idea_detail,
-                'hash_tag':hash_tag,
+                # 'hash_tag':hash_tag,
                 'comment_num' : comment_num,
                 'add_comments_num' : add_comments_num,
                 'comments' : comments,
@@ -162,10 +162,10 @@ def edit(request, detail_id):
         idea_detail.idea_title = request.POST['IdeaName']
         idea_detail.idea_subtitle = request.POST['IdeaSubtitle']
         idea_detail.idea_description = request.POST['IdeaContent']
-        #idea_detail.idea_image
+        idea_detail.idea_image = request.POST['images']
         idea_detail.idea_hashtag = request.POST['IdeaHashTag']
         idea_detail.save()
-        return redirect('/detail/' + str(detail_id))
+        return redirect('/detail/' + str(detail.id))
     else:
         return render(request, 'submit.html', {'idea_detail':idea_detail})
 
