@@ -34,3 +34,4 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(Profile, UserAdmin)
 admin.site.unregister(Group)
+admin.site.register(Idea_Cart)

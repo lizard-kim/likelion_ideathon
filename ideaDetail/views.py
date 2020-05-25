@@ -43,7 +43,7 @@ def detail(request, detail_id):
         return redirect('/detail/'+ str(detail_id))
 
     else:
-        # 에 해당하는 아이디어 
+        # pk 에 해당하는 아이디어 
         idea_detail = Idea.objects.get(pk = detail_id)
         user = idea_detail.user
         # full_hash_tag = idea_detail.idea_hashtag
@@ -157,6 +157,8 @@ def detail(request, detail_id):
                     'comment_check' : comment_check,
                     'idea_detail' : idea_detail,
                     'idea_images' : idea_images,
+                    'user' : user,
+                    'idea_detail' : idea_detail,
                 }) 
 
 def subcomment(request, detail_id, comment_id):
