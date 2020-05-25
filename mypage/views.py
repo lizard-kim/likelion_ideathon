@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from accounts.models import Profile, Idea_Cart
 from idea.models import Idea, Idea_Comments, Idea_AddComments
+from accounts.forms import *
 
 def mypage(request):
     if request.user.is_authenticated == True:
@@ -23,7 +24,15 @@ def mypage(request):
         return render(request, 'signIn.html')
 
 def edit(request):
-    return render(request, 'mypageedit.html')
+    if request.user.is_authenticated == True and request.method == 'POST':
+        form = UserChangeForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('./')
+        return render(request, 'mypageedit.html',{
+            'form' : form
+        })
 
 def comments(request):
     comment = Idea_Comments.objects.all().filter(user = request.user)
