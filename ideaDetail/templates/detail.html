@@ -43,15 +43,15 @@
 
                     <div class="author_info">
                         <div class="author_info_school">
-                            <p>{{user_profile.user_school}}</p>
+                            <p>{{user.user_school}}</p>
                         </div>
 
                         <div class="author_info_name">
-                            <p>{{user_profile.user_name}}</p>
+                            <p>{{user.user_name}}</p>
                         </div>
 
                         <div class="author_info_time">
-                            <p>{{detail.idea_create_data}}</p>
+                            <p>{{idea_detail.idea_create_data}}</p>
                         </div>
                     </div>
 
@@ -277,10 +277,10 @@
                                                                             {% endif %}
                                                                         </div>
                                                                         <div class="add_comment_author_info_school">
-                                                                            <p>{{current_user_profile.user_school}}</p>
+                                                                            <p>{{add_comment.user.user_school}}</p>
                                                                         </div>
                                                                         <div class="add_comment_author_info_name">
-                                                                            <p>{{current_user_profile.user_name}}</p>
+                                                                            <p>{{add_comment.user.user_name}}</p>
                                                                         </div>
                                                                     </div>
 
