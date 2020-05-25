@@ -681,19 +681,20 @@ p{
 }
 
 .add_comment{
-    display : inline-block;
-    max-height : 200px;
+    flex : none;
+    max-height : 500px;
     width : 640px;
     margin-left : 2%;
-    margin-bottom : 2%;
 
     &_box{
-        display : inline-block;
+        display : flex;
+        flex-direction: column;
         max-height : 1500px;
-        width : 640px;
+        width : 650px;
     }
 
     &_content{
+        text-overflow: ellipsis;    // 잘린 텍스트 ...표기
     }
 
     &_delete{
@@ -749,6 +750,7 @@ p{
     }
 
     &_count{
+        flex : none;
         width : 70px;
         height : 30px;
         display : inline-block;
