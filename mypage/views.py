@@ -10,8 +10,10 @@ def mypage(request):
         comment = Idea_Comments.objects.all().filter(user = request.user).count()
         add_comment = Idea_AddComments.objects.all().filter(user = request.user).count()
         comment_all = comment + add_comment
-        cart = Idea_Cart.objects.filter(user = request.user)
-        cart_all = Idea_Cart.objects.all().exclude(user = request.user).count()
+        cart = Idea_Cart.objects.filter(user = request.user) #카트유저가 지금 로그인한 유저와 같아
+        #cart_all = Idea_Cart.objects.all().exclude(user = request.user).count()
+        cart_all = Idea_Cart.objects.filter( user = request.user, add_cart = True ).count()
+
         return render(request, 'mypage.html', 
             {'profile' : profile, 
             'myidea' : myidea, 
