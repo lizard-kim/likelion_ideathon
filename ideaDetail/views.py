@@ -48,11 +48,10 @@ def detail(request, detail_id):
         # pk 에 해당하는 아이디어 
         idea_detail = Idea.objects.get(pk = detail_id)
         user = idea_detail.user
-        # full_hash_tag = idea_detail.idea_hashtag
-        # hash_tag = full_hash_tag.replace(',','').split()
         idea_id = idea_detail.id
         idea_images = Idea_image_storage.objects.all().filter(idea = idea_detail)
         user_profile =  Profile.objects.get(email = user.email)
+        is_logined_user = request.user.is_authenticated
 
         # 아이디어에 해당하는 댓글 가져오기
         comment_list_all = Idea_Comments.objects.all()
@@ -108,7 +107,6 @@ def detail(request, detail_id):
                     'comments_count' : comments_count,
                     'addcomment_list_all' : addcomment_list_all,
                     'detail':idea_detail,
-                    # 'hasg_tag':hash_tag,
                     'comment_num' : comment_num,
                     'add_comments_num' : add_comments_num,
                     'comments' : comments,
@@ -116,12 +114,13 @@ def detail(request, detail_id):
                     'value' : value,
                     'comment_check' : comment_check,
                     'idea_detail' : idea_detail,
-                    'current_user' : current_user,
+                    'current_user' : current_user,  # 현재 로그인한 사람
                     'current_user_profile' : current_user_profile,
                     'user_profile' : user_profile,
-                    'user': user,
+                    'user': user,   # 아이디어 작성자 
                     'idea_images' : idea_images,
                     'current_user_cart_add' : current_user_cart_add,
+                    'is_logined_user' : is_logined_user,  # 로그인 여부 확인 T/F
                 })
             else :
                 return render(request, 'detail.html',{
@@ -141,8 +140,9 @@ def detail(request, detail_id):
                     'current_user' : current_user,
                     'current_user_profile' : current_user_profile,
                     'user_profile' : user_profile,
-                    'user': user,
+                    'user': user,   # 아이디어 글 작성자
                     'idea_images' : idea_images,
+                    'is_logined_user' : is_logined_user,    # 로그인 여부 확인 T/F
                 }) 
         else:
             return render(request, 'detail.html',{
@@ -157,10 +157,10 @@ def detail(request, detail_id):
                     'add_comments' : add_comments,
                     'value' : value,
                     'comment_check' : comment_check,
-                    'idea_detail' : idea_detail,
                     'idea_images' : idea_images,
-                    'user' : user,
+                    'user' : user,  # 아이디어 글 작성자
                     'idea_detail' : idea_detail,
+                    'is_logined_user' : is_logined_user,    # 로그인 여부 확인 T/F
                 }) 
 
 def subcomment(request, detail_id, comment_id):
@@ -195,7 +195,7 @@ def delete(request, detail_id):
     return redirect('idea')
 
 def edit(request, detail_id):
-    idea_detail = get_object_or_404(Idea, pk = detail_id)
+    idea_detail = Idea.objects.get(pk = detail_id)
 
     if request.method == 'POST':
         idea_detail.idea_title = request.POST['IdeaName']
