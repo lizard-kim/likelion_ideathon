@@ -26,9 +26,9 @@ def detail(request, detail_id):
             if current_user_cart:
                 cart = Idea_Cart.objects.get(user = current_user, idea = current_idea)
                 if cart.add_cart:
-                    cart.add_cart = False
-                    #cart.delete()
-                    cart.save()
+                    #cart.add_cart = False
+                    cart.delete()
+                    #cart.save()
                 else:
                     cart.add_cart = True
                     cart.save()
