@@ -19,13 +19,6 @@ def detail(request, detail_id):
             comment.create_data = timezone.datetime.now()
             comment.save()
 
-        elif 'addcomment' in request.POST:
-            addcomment = Idea_AddComments()
-            addcomment.user = request.user
-            addcomment.text = request.POST['addcomment']
-            addcomment.create_data = timezone.datetime.now()
-            addcomment.save()
-
         elif 'cart' in request.POST:
             current_user = request.user
             current_user_profile = Profile.objects.get(email = current_user.email)
@@ -55,10 +48,9 @@ def detail(request, detail_id):
         user = idea_detail.user
         # full_hash_tag = idea_detail.idea_hashtag
         # hash_tag = full_hash_tag.replace(',','').split()
-        user = idea_detail.user
         idea_id = idea_detail.id
-        user_profile =  Profile.objects.get(email = user.email)
         idea_images = Idea_image_storage.objects.all().filter(idea = idea_detail)
+        user_profile =  Profile.objects.get(email = user.email)
 
         # 아이디어에 해당하는 댓글 가져오기
         comment_list_all = Idea_Comments.objects.all()
@@ -98,58 +90,101 @@ def detail(request, detail_id):
 
             value.append(add_comments[comments[t]])
 
-        # user permission (현재 로그인한 유저)
-        current_user = request.user
-        current_user_profile = Profile.objects.get(email = current_user.email)
+        # 로그인한 유저가 있다면
+        if request.user.is_authenticated :
+            current_user = request.user
+            current_user_profile = Profile.objects.get(email = current_user.email)
 
-        # 현재 로그인한 유저가 해당 아이디어 가지고 있는지 체크
-        current_user_cart = Idea_Cart.objects.all().filter(user = current_user, idea = idea_detail)
+            # 현재 로그인한 유저가 해당 아이디어 가지고 있는지 체크
+            current_user_cart = Idea_Cart.objects.all().filter(user = current_user, idea = idea_detail)
         
-        if current_user_cart :  # 해당 아이디어에 대해 장바구니 가지고 있다면
-            current_user_cart_add = Idea_Cart.objects.get(user = current_user, idea = idea_detail) # 겟또
+            if current_user_cart :  # 해당 아이디어에 대해 장바구니 가지고 있다면
+                current_user_cart_add = Idea_Cart.objects.get(user = current_user, idea = idea_detail) # 겟또
 
+                return render(request, 'detail.html',{
+                    'comment_list' : comment_list,
+                    'comments_count' : comments_count,
+                    'addcomment_list_all' : addcomment_list_all,
+                    'detail':idea_detail,
+                    # 'hasg_tag':hash_tag,
+                    'comment_num' : comment_num,
+                    'add_comments_num' : add_comments_num,
+                    'comments' : comments,
+                    'add_comments' : add_comments,
+                    'value' : value,
+                    'comment_check' : comment_check,
+                    'idea_detail' : idea_detail,
+                    'current_user' : current_user,
+                    'current_user_profile' : current_user_profile,
+                    'user_profile' : user_profile,
+                    'user': user,
+                    'idea_images' : idea_images,
+                    'current_user_cart_add' : current_user_cart_add,
+                })
+            else :
+                return render(request, 'detail.html',{
+                    'comment_list' : comment_list,
+                    'comments_count' : comments_count,
+                    'addcomment_list_all' : addcomment_list_all,
+                    'detail':idea_detail,
+                    # 'hasg_tag':hash_tag,
+                    'user_profile' : user_profile,
+                    'comment_num' : comment_num,
+                    'add_comments_num' : add_comments_num,
+                    'comments' : comments,
+                    'add_comments' : add_comments,
+                    'value' : value,
+                    'comment_check' : comment_check,
+                    'idea_detail' : idea_detail,
+                    'current_user' : current_user,
+                    'current_user_profile' : current_user_profile,
+                    'user_profile' : user_profile,
+                    'user': user,
+                    'idea_images' : idea_images,
+                }) 
+        else:
             return render(request, 'detail.html',{
-                'comment_list' : comment_list,
-                'comments_count' : comments_count,
-                'addcomment_list_all' : addcomment_list_all,
-                'detail':idea_detail,
-                # 'hash_tag':hash_tag,
-                'comment_num' : comment_num,
-                'add_comments_num' : add_comments_num,
-                'comments' : comments,
-                'add_comments' : add_comments,
-                'value' : value,
-                'comment_check' : comment_check,
-                'idea_detail' : idea_detail,
-                'current_user' : current_user,
-                'current_user_profile' : current_user_profile,
-                'user_profile' : user_profile,
-                'user': user,
-                'idea_images' : idea_images,
-                'current_user_cart_add' : current_user_cart_add,
-            })
-        else :
-            return render(request, 'detail.html',{
-                'comment_list' : comment_list,
-                'comments_count' : comments_count,
-                'addcomment_list_all' : addcomment_list_all,
-                'detail':idea_detail,
-                # 'hasg_tag':hash_tag,
-                'user_profile' : user_profile,
-                'comment_num' : comment_num,
-                'add_comments_num' : add_comments_num,
-                'comments' : comments,
-                'add_comments' : add_comments,
-                'value' : value,
-                'comment_check' : comment_check,
-                'idea_detail' : idea_detail,
-                'current_user' : current_user,
-                'current_user_profile' : current_user_profile,
-                'user_profile' : user_profile,
-                'user': user,
-                'idea_images' : idea_images,
-            }) 
+                    'comment_list' : comment_list,
+                    'comments_count' : comments_count,
+                    'addcomment_list_all' : addcomment_list_all,
+                    'detail':idea_detail,
+                    # 'hasg_tag':hash_tag,
+                    'comment_num' : comment_num,
+                    'add_comments_num' : add_comments_num,
+                    'comments' : comments,
+                    'add_comments' : add_comments,
+                    'value' : value,
+                    'comment_check' : comment_check,
+                    'idea_detail' : idea_detail,
+                    'idea_images' : idea_images,
+                }) 
+
+def subcomment(request, detail_id, comment_id):
+    if request.method == 'POST':
+        text = request.POST['text']
+        profile = get_object_or_404(Profile.objects.all().filter(email = request.user.email))
+        comment = Idea_Comments.objects.filter(id=comment_id).get()
+
+        newsubcomment = Idea_AddComments.objects.create(
+            user = profile,
+            text = text,
+            idea_comments = comment,
+        )
+
+        return redirect('/detail/'+ str(detail_id))
+
+# def comment_edit(request, detail_id, comment_id):
+#     if request.method == 'POST':
+#         text = request.POST['comment']
+#         comment = Idea_Comments.objects.filter(id=comment_id).get()
+#         comment.text = text
+#         comment.save()
         
+#         return redirect('/detail/'+ str(detail_id))
+#     else:
+#         return render(request, 'detail.html' , {'comment' : comment})
+
+
 def delete(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
     idea_detail.delete()
@@ -163,23 +198,28 @@ def edit(request, detail_id):
         idea_detail.idea_subtitle = request.POST['IdeaSubtitle']
         idea_detail.idea_description = request.POST['IdeaContent']
         idea_detail.idea_image = request.POST['images']
-        idea_detail.idea_hashtag = request.POST['IdeaHashTag']
+        # idea_detail.idea_hashtag = request.POST['IdeaHashTag']
         idea_detail.save()
         return redirect('/detail/' + str(idea_detail.id))
     else:
-        return render(request, 'submit.html', {'idea_detail':idea_detail})
+        return render(request, 'edit.html', {'idea_detail':idea_detail})
 
-def comment_edit(request, comment_id, detail_id):
-    idea_comment = Idea_Comments.objects.get(pk = comment_id)
+# def comment_edit(request, comment_id, detail_id):
+#     idea_comment = Idea_Comments.objects.get(pk = comment_id)
 
-    if request.method == 'POST':
-        idea_comment.text = request.POST['comment']
-        idea_comment.save()
-        return redirect('/detail/' + str(detail_id))
-    else:
-        return render(request, 'detail.html', {'idea_comment': idea_comment})
+#     if request.method == 'POST':
+#         idea_comment.text = request.POST['comment']
+#         idea_comment.save()
+#         return redirect('/detail/' + str(detail_id))
+#     else:
+#         return render(request, 'detail.html', {'idea_comment': idea_comment})
 
 def comment_delete(request, comment_id, detail_id):
     idea_comment = Idea_Comments.objects.get(pk = comment_id)
     idea_comment.delete()
+    return redirect('/detail/'+ str(detail_id))
+
+def addcomment_delete(request, addcomment_id, detail_id):
+    idea_addcomment = Idea_AddComments.objects.get(pk = addcomment_id)
+    idea_addcomment.delete()
     return redirect('/detail/'+ str(detail_id))

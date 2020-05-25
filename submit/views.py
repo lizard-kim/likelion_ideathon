@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from accounts.models import Profile
-from idea.models import *
+from idea.models import Idea_image_storage, Idea
 
 def submit(request):
     if request.method == 'POST':

@@ -22,7 +22,7 @@ def mypage(request):
         
         return render(request, 'signIn.html')
 
-def edit(request):
+def mypageedit(request):
     return render(request, 'mypageedit.html')
 
 def comments(request):
