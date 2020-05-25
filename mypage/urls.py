@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
 
 urlpatterns = [
     path('', mypage, name="mypage"),
-    path('edit/', edit, name="edit"),
+    path('mypageedit/', mypageedit, name="mypageedit"),
     path('comments/', comments, name="comments"),
 ]
