@@ -30,7 +30,7 @@ def mypage(request):
         
         return render(request, 'signIn.html')
 
-def edit(request):
+def mypage_edit(request):
     if request.user.is_authenticated == True and request.method == 'POST':
         password = request.POST['password']
         new_password = request.POST['new_password']
