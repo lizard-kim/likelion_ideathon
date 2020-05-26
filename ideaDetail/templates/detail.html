@@ -63,7 +63,6 @@
                     
                     <div class="image">
                         <div class="image_box">
-
                             {% if idea_detail.idea_image %}
                                 <img src="{{idea_detail.idea_image.url}}" alt="아이디어 사진" width="800px" height="auto">
                             {% endif %}
@@ -73,7 +72,6 @@
                                     <img src="{{image.image.url}}" alt="아이디어 사진" width="800px" height="auto">
                                 {% endfor %}
                             {% endif %}
-
                         </div>
                     </div>
 
@@ -104,7 +102,6 @@
                                 {% endif %}
 
                             {% endif %}
-
                             <!-- 로그인한 유저가 글 작성자라면 -->
                             {% if user == current_user %}
                             <div class="bot_box_edit">
@@ -118,33 +115,19 @@
                             </div>
                             {% endif %}
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
         <div class="comment">
-
             <div class="no">
-
             </div>
-
             <div class="comments">
-
                 <div class="comments_container">
-
                     <div class="comments_box">
-
                         <!-- 로그인 구현되면 로그인 한 유저로 바꿔야 함-->
-
                         {% if request.user.is_authenticated %}
-
                         <div class="comments_box_input">
-
                             <div class="comments_box_input_start">
                                 <div class="comments_box_input_start_image">
                                     {% if current_user_profile.user_image %}
@@ -212,7 +195,7 @@
                                 <div class="comments_real">
 
                                     <div class="comments_author_info">
-                                        <div class="comments_author_info_image">
+                                        <!-- <div class="comments_author_info_image">
                                             {% if comment.user.user_image %}
                                             <img src="{{comment.user.user_image.url}}" class="comments_author_info_image_real"
                                                 width="25px" height="25px">
@@ -220,7 +203,7 @@
                                             <img src="{% static 'img/4.png' %}" class="comments_author_info_image_real"
                                                 width="25px" height="25px">
                                             {% endif %}
-                                        </div>
+                                        </div> -->
 
                                         <!-- 현재 로그인 한 유저-->
                                         <div class="comments_author_info_school">
