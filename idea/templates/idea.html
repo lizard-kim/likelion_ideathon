@@ -77,13 +77,11 @@
   </header>
 
   <div class="randImg">
-    {% if request.user.is_active %}
     <div class="go_submit">
         <a href="{% url 'submit' %}">
           <button class="submit_btn">submit</button>
         </a>
     </div>
-      {% endif %}
   </div>
   <p class="idea_count">아이디어 <span class="idea_count__span">7</span>개</p>
   <div class="ideacards">

@@ -27,7 +27,6 @@ def mypage(request):
             }
         )
     else:
-        
         return render(request, 'signIn.html')
 
 def mypage_edit(request):
