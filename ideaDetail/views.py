@@ -227,3 +227,9 @@ def addcomment_delete(request, addcomment_id, detail_id):
     idea_addcomment = Idea_AddComments.objects.get(pk = addcomment_id)
     idea_addcomment.delete()
     return redirect('/detail/'+ str(detail_id))
+
+def who(request, detail_id):
+    idea_detail = Idea.objects.get( pk = detail_id)
+    idea_user = idea_detail.user
+
+    return render(request, "who.html", {'idea_user':idea_user })
