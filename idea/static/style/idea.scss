@@ -49,7 +49,6 @@ header {
 .change {
     background-color:rgba(0, 0, 0, .4);
 }
-
 .randImg {
     position: relative;
     display: flex;
@@ -60,12 +59,12 @@ header {
     background-repeat: repeat-x;
     background-size: contain;
     background-color: black;
-
+    
     &__left {
         width: 60%;
         height: 100%;
     }
-
+    
     &__right {
         position: relative;
         width: 50%;
@@ -74,20 +73,20 @@ header {
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
-
+        
     }
 }
 
+.go_submit{
+    position: absolute;
+    width: 100%;
+    top:80%;
+    text-align: center;
+}
 .submit_btn{
     background: rgb(243, 153, 38);
     color: #fff;
     border: none;
-    position: absolute;
-    top: 80%;
-    left:42%;
-    display: block;
-    float:center;
-    text-align: center;
     height: 60px;
     width: auto;
     font-size: 1.6em;
@@ -96,8 +95,7 @@ header {
     transition: 800ms ease all;
     outline: none;
     border-radius: 20px;
-    display: flex; 
-    justify-content: center;
+
 
     &:hover {
         background: #fff;

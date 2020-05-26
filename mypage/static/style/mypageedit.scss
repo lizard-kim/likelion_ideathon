@@ -133,6 +133,7 @@
     background-color: white;
     border-radius: 10px;
     margin-top: 60px;
+    display: none;
     @include box;
 
     &__itemwrap {
@@ -184,9 +185,6 @@
     }
 }
 
-.edit {
-    width: 100px;
-    height: 60px;
-}
+
 
 @import './mypage_mobile'

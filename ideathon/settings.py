@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's0v%^f*k=z%538^xf9ps&d7(9ik!6%#v^dz#!8u#dqy(4m9bj!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -127,16 +127,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-STATIC_ROOT =  os.path.join(BASE_DIR, 'static') # 추가
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 추가
 STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, 'main', 'static'),
+    os.path.join(BASE_DIR, 'main', 'static'),
     os.path.join(BASE_DIR, 'about', 'static'),
     os.path.join(BASE_DIR, 'idea', 'static'),
     os.path.join(BASE_DIR, 'ideaDetail', 'static'),
     os.path.join(BASE_DIR, 'accounts', 'static'),
     os.path.join(BASE_DIR, 'submit', 'static'),
     os.path.join(BASE_DIR, 'mypage', 'static'),
-) 
+)
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -147,7 +147,7 @@ STATICFILES_FINDERS = [
 SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = '/media/' 
+MEDIA_URL = '/media/'
 # 업로드된 파일을 저장할 디렉토리 경로
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'idea', 'media')
