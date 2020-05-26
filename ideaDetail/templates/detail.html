@@ -30,31 +30,37 @@
             <div class="idea">
 
                 <div class='idea_container'>
+                        <div class="title">
+                            <div class="title_name">
+                                <p>{{detail.idea_title}}</p>
+                            </div>
 
-                    <div class="title">
-                        <div class="title_name">
-                            <p>{{detail.idea_title}}</p>
+                            <div class="title_sub">
+                                <p>{{detail.idea_subtitle}}</p>
+                            </div>
                         </div>
+                        {% if user == current_user %}
+                            <a href = "{% url 'mypage' %}" >
+                        {% else %}
+                            <a href = "{% url 'who' idea_detail %}" >
+                        {% endif %}
+                                <div class="author_info">
+                                    
+                                    <div class="author_info_school">
+                                        <p>{{user.user_school}}</p>
+                                    </div>
 
-                        <div class="title_sub">
-                            <p>{{detail.idea_subtitle}}</p>
-                        </div>
-                    </div>
-
-                    <div class="author_info">
-                        <div class="author_info_school">
-                            <p>{{user.user_school}}</p>
-                        </div>
-
-                        <div class="author_info_name">
-                            <p>{{user.user_name}}</p>
-                        </div>
-
-                        <div class="author_info_time">
-                            <p>{{idea_detail.idea_create_data}}</p>
-                        </div>
-                    </div>
-
+                                    <div class="author_info_name">
+                                        <p>{{user.user_name}}</p>
+                                    </div>
+                            
+                                    <div class="author_info_time">
+                                        <p>{{idea_detail.idea_create_data}}</p>
+                                    </div>
+                                    
+                                </div>
+                            </a>
+                    
                     <div class="image">
                         <div class="image_box">
 
