@@ -45,27 +45,30 @@
                             <p>{{detail.idea_subtitle}}</p>
                         </div>
                     </div>
+                {% if user == current_user %}
+                    <a href = "{% url 'mypage' %}" >
+                {% else %}
+                    <a href = "{% url 'who' idea_detail %}" >
+                {% endif %}
+                        <div class="author_info">
+                            <div class="author_info_school">
+                                <p>{{user.user_school}}</p>
+                            </div>
+                            <div class="author_info_image">
+                                {% if user.user_image %}
+                                <img class="author_info_image_real" src="{{user.user_image.url}}"
+                                    width="25px" height="25px" alt = "유저사진">
+                                {% else %}
+                                <img class="author_info_image_real" src="{% static 'img/4.png' %}"
+                                    width="25px" height="25px" alt = "사자사진">
+                                {% endif %}
+                            </div>
 
-                    <div class="author_info">
-                        <div class="author_info_school">
-                            <p>{{user.user_school}}</p>
+                            <div class="author_info_name">
+                                <p>{{user.user_name}}</p>
+                            </div>
                         </div>
-
-                        <div class="author_info_image">
-                            {% if user.user_image %}
-                            <img class="author_info_image_real" src="{{user.user_image.url}}"
-                                width="25px" height="25px" alt = "유저사진">
-                            {% else %}
-                            <img class="author_info_image_real" src="{% static 'img/4.png' %}"
-                                width="25px" height="25px" alt = "사자사진">
-                            {% endif %}
-                        </div>
-
-                        <div class="author_info_name">
-                            <p>{{user.user_name}}</p>
-                        </div>
-
-                    </div>
+                    </a>
             
                     <div class="author_info_time">
                         <p>{{idea_detail.idea_create_data}}</p>
