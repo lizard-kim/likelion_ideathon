@@ -1,11 +1,10 @@
-{% load sass_tags %}
-{% load static %}
+{% load sass_tags %} {% load static %}
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link href="{% sass_src 'style/idea.scss' %}" rel="stylesheet" type="text/css" />
   <title>IDEATHON</title>
   <script src="https://kit.fontawesome.com/76c68926ea.js" crossorigin="anonymous"></script>
@@ -14,29 +13,33 @@
     $(document).ready(function () {
       $(window).scroll(function () {
         if ($(this).scrollTop() > 200) {
-          $('.top').fadeIn();
+          $(".top").fadeIn();
         } else {
-          $('.top').fadeOut();
+          $(".top").fadeOut();
         }
       });
-      $('.top').click(function () {
-        $('html, body').animate({
-          scrollTop: 0
-        }, 600);
+      $(".top").click(function () {
+        $("html, body").animate(
+          {
+            scrollTop: 0,
+          },
+          600
+        );
         return false;
       });
     });
 
     function fnMove(seq) {
       var offset = $("#div" + seq).offset();
-      $('html, body').animate({
-        scrollTop: offset.top
-      }, 600);
+      $("html, body").animate(
+        {
+          scrollTop: offset.top,
+        },
+        600
+      );
     }
   </script>
-  <style>
-
-  </style>
+  <style></style>
 </head>
 
 <body>
@@ -52,30 +55,32 @@
         $(".header").removeClass("change");
       }
     });
-    var submit_check = document.getElementsByClassName('submit_btn')
+    var submit_check = document.getElementsByClassName("submit_btn");
     submit_check.onclick() = function () {
       console.log(submit_check);
-    }
+    };
   </script>
 
   <header class="header" id="mainpage_header">
-    <a href="/"><img class='logo' src="{% static 'img/basiclogo_E_H_W.png' %}">&nbsp;<b>IDEATHON</b></a>
+    <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H_W.png' %}" />&nbsp;<b>IDEATHON</b></a>
 
     <span class="menu">
       {% if request.user.is_active %}
-        <a href="{% url 'mypage' %}">
-          <span>{{user.user_name}}님</span>
-        </a>
-        <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
+      <a href="{% url 'mypage' %}">
+        <span>{{user.user_name}}님</span>
+      </a>
+      <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
       {% else %}
-        <a href="{% url 'login' %}" title="로그인">Sign in</a>
+      <a href="{% url 'login' %}" title="로그인">Sign in</a>
       {% endif %}
     </span>
   </header>
 
   <div class="randImg">
-    <a href="{% url 'submit' %}">
-      <button class="submit_btn">submit</button>
+    <div class="go_submit">
+      <a href="{% url 'submit' %}">
+        <button class="submit_btn">submit</button>
+    </div>
     </a>
   </div>
 
@@ -85,34 +90,35 @@
     <a href="{% url 'detail' idea.id %}">
       <div class="card ideacard">
         <div class="cardImg_board">
-          <img class="card_image" src="{% static 'image/bg8.jpg' %}">
+          <img class="card_image" src="{% static 'image/bg8.jpg' %}" />
         </div>
         <!--16:9-->
         <p class="idea_title">{{idea.idea_title}}</p>
         <p class="idea_subtitle">{{idea.idea_subtitle}}</p>
         <div class="user_div">
-          <hr>
+          <hr />
           {{idea.user}}<i class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
         </div>
       </div>
     </a>
     {% endfor %}
   </div>
-  
+
   <div class="pgn_div">
     {% if posts.has_previous %}
-      <a href="?page=1" class="pgn">First</a>
-      <a href="?page={{posts.previous_page_number}}" class="pgn">Previous</a>
+    <a href="?page=1" class="pgn">First</a>
+    <a href="?page={{posts.previous_page_number}}" class="pgn">Previous</a>
     {% endif %}
-      <span class="pgn">{{posts.number}}</span>
-      <span class="pgn"> of </span>
-      <span class="pgn">{{posts.paginator.num_pages}}</span>
+    <span class="pgn">{{posts.number}}</span>
+    <span class="pgn"> of </span>
+    <span class="pgn">{{posts.paginator.num_pages}}</span>
     {% if posts.has_next %}
-      <a href="?page={{posts.next_page_number}}" class="pgn">Next</a>
-      <a href="?page={{posts.paginator.num_pages}}" class="pgn">Last</a>
+    <a href="?page={{posts.next_page_number}}" class="pgn">Next</a>
+    <a href="?page={{posts.paginator.num_pages}}" class="pgn">Last</a>
     {% endif %}
   </div>
 </body>
 
 {% include 'footer.html' %}
+
 </html>
