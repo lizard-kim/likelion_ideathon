@@ -35,20 +35,36 @@
                                 <p>{{detail.idea_title}}</p>
                             </div>
 
-                            <div class="title_sub">
-                                <p>{{detail.idea_subtitle}}</p>
-                            </div>
+                    <div class="title">
+                        <div class="title_name">
+                            <p>{{detail.idea_title}}</p>
                         </div>
-                        {% if user == current_user %}
-                            <a href = "{% url 'mypage' %}" >
-                        {% else %}
-                            <a href = "{% url 'who' idea_detail %}" >
-                        {% endif %}
-                                <div class="author_info">
-                                    
-                                    <div class="author_info_school">
-                                        <p>{{user.user_school}}</p>
-                                    </div>
+
+                        <div class="title_sub">
+                            <p>{{detail.idea_subtitle}}</p>
+                        </div>
+                    </div>
+
+                    <div class="author_info">
+                        <div class="author_info_school">
+                            <p>{{user.user_school}}</p>
+                        </div>
+
+                        <div class="author_info_image">
+                            {% if user.user_image %}
+                            <img class="author_info_image_real" src="{{user.user_image.url}}"
+                                width="25px" height="25px" alt = "유저사진">
+                            {% else %}
+                            <img class="author_info_image_real" src="{% static 'img/4.png' %}"
+                                width="25px" height="25px" alt = "사자사진">
+                            {% endif %}
+                        </div>
+
+                        <div class="author_info_name">
+                            <p>{{user.user_name}}</p>
+                        </div>
+
+                    </div>
 
                                     <div class="author_info_name">
                                         <p>{{user.user_name}}</p>
@@ -63,14 +79,18 @@
                     
                     <div class="image">
                         <div class="image_box">
-                            {% if idea_detail.idea_image %}
-                                <img src="{{idea_detail.idea_image.url}}" alt="아이디어 사진" width="800px" height="auto">
-                            {% endif %}
 
                             {% if idea_images %}
                                 {% for image in idea_images %}
-                                    <img src="{{image.image.url}}" alt="아이디어 사진" width="800px" height="auto">
+                                    <div class = "image_box_real">
+                                        <img class = "image_box_real" src="{{image.image.url}}" alt="아이디어 사진" >
+                                    </div>
                                 {% endfor %}
+                                    
+                            {% else %}
+                                <div class = "image_box_real">
+                                    <img src="{% static 'img/4.png' %}" alt="아이디어 사진" >
+                                </div>
                             {% endif %}
                         </div>
                     </div>
@@ -109,7 +129,7 @@
                                     <p>수정</p>
                                 </a>
 
-                                <a href="{% url 'delete' detail.id %}" class="bot_box_edit_box2">
+                                <a onclick = "idea_delete()" href="{% url 'delete' detail.id %}" class="bot_box_edit_box2">
                                     <p>삭제</p>
                                 </a>
                             </div>
@@ -155,18 +175,6 @@
                             </form>
 
                         </div>
-
-                        {% else %}
-
-                        <!-- <div class="comments_box_input_none">
-                            <div class="comments_box_input_none_box">
-                                    <div class="comments_box_input_none_text">
-                                        <h5>댓글을 달려면 로그인을 해주세요</h5>
-                                    </div>
-                                        <a href="{% url 'login' %}" class="comments_box_input_none_button">로그인</a>
-                            </div>
-                        </div> -->
-
                         {% endif %}
 
                     </div>
@@ -298,9 +306,9 @@
                                                     
                                                     </div>
                                                 
-                                                    {% endif %}
+                                                {% endif %}
                                             
-                                                    {% endfor %}
+                                            {% endfor %}
                                                     
                                             <!-- 대댓글 Form -->
                                             {% if current_user %}
@@ -330,18 +338,18 @@
                                                     </div>
                                                 </div>
 
+                                                {% if request.user %}
                                                 <form action = "{% url 'subcomment' idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
                                                     {% csrf_token %}
                                                     <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name ="text" >
                                                     <button type="submit" class = "new_comment_button">제출</button>
                                                 </form>
+                                                {% endif %}
 
                                             </div>
+                                            {% endif %}
                                           
                                         </div>
-
-                                            {% endif %}
-
 
                                         </div>
                                         
@@ -358,6 +366,7 @@
             </div>
 
         </div>
+    </div>
 
         <div class="footer">
         </div>
@@ -398,6 +407,12 @@
 
     // html page가 rending 되면 init 함수가 작동하도록
     init();
+
+    function idea_delete() {
+        alert("진짜 삭제할꺼야 ?");
+    }
+
+
 </script>
 
 </html>
