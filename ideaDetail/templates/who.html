@@ -1,0 +1,76 @@
+<!--@brief: js ready 함수 구현으로 인해 첫 페이지에 모든 text들이 다 rendering -->
+<!--@todo: js ready 함수에서 다른 함수로 변경-->
+
+<!DOCTYPE html>
+{% load sass_tags %}
+{% load static %}
+<html>
+
+<head>
+    <title>Like Lion Ideathon</title>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>
+ 
+
+    <link href="{% sass_src 'style/mypage.scss' %}" rel="stylesheet" type="text/css" />
+</head>
+<style>
+    #mypage_edit {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    #mypage_edit input {
+        display: inline-block;
+        text-align: left;
+    }
+
+    input[type="text"] {
+        height: auto;
+        padding: .8em .5em;
+    }
+
+    #profile {
+        padding: 20px;
+    }
+</style>
+
+<body>
+    <div class="header">
+        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
+        <span class="menu">
+            <a href="#">Log out</a>
+            |
+            <a href="{% url 'mypage' %}">My Page</a>
+        </span>
+    </div>
+    <div class="mypage">
+        <div class="mypage__top">
+            <img src="{{idea_user.user_profile}}">
+            <img src="{% static 'image/ironman.jpg' %}" />
+            <h3> {{idea_user.user_name}} </h3>
+            <h6 class="email"> {{idea_user.email}} </h6>
+        </div>
+
+        <div class="mypage__bottom">
+            <div class="menu">
+                <h4 id="profile"> 프로필 </h4>
+            </div>
+            <div class="content profile">
+                <h6 class="title"> Department </h6>
+                <h6 class="description"> {{idea_user.user_school}} </h6>
+                <h6 class="title"> About </h6>
+                <h6 class="description"> {{idea_user.user_about}} </h6>
+                <h6 class="title"> Contact </h6>
+                <h6 class="description">{{idea_user.user_contact}}</h6>
+            </div>
+        </div>
+    </div>
+           
+
+    {% include 'footer.html' %}
+
+    
+</body>
+
+</html>

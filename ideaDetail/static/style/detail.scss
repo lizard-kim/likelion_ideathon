@@ -685,7 +685,6 @@ p{
     max-height : 500px;
     width : 640px;
     margin-left : 2%;
-    margin-bottom : 2%;
 
     &_box{
         display : flex;
@@ -725,12 +724,12 @@ p{
         margin-top : 1%;
             
         &_image{
-                            flex : none;
-                            border-radius: 15px;
-                            width : 25px;
-                            height : 25px;
-                            margin-right : 10px;
-                        }
+            flex : none;
+            border-radius: 15px;
+            width : 25px;
+            height : 25px;
+            margin-right : 10px;
+        }
         
         &_name{
                             flex : none;
@@ -744,10 +743,23 @@ p{
                             margin-right : 10px;
                         }
         
-        &_time{
-                            flex : none;
-                            max-width : 200px;
-                        }
+        &_delete{
+            flex : none;
+            max-width : 200px;
+
+            &_button{
+                border : 1px solid rgb(180, 180, 180);
+                color : black;
+                box-shadow: 0px 1px 1px 0px rgb(206, 206, 206);
+                text-align : center;
+    
+                &:hover{
+                    color : rgb(0, 0, 0);
+                    background-color: rgba(196, 192, 192, 0.644);
+                    transition: 0.3s;
+                }
+            }
+        }
     }
 
     &_count{

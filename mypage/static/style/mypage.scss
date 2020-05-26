@@ -84,12 +84,6 @@
             display: none;
         }
 
-        .basket {
-            display: none;
-        }
-
-
-
     }
 
     .ideacard {
@@ -121,5 +115,19 @@
         }
     }
 }
+
+.basket {
+    display: none;
+}
+
+#mypage_edit{
+    display: none;
+}
+
+.myidea_ideacards{
+    display: none;
+}
+
+
 
 //@import './mypage_mobile'

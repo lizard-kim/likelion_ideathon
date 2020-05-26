@@ -76,46 +76,46 @@
                 <h6 class="title"> Contact </h6>
                 <h6 class="description">{{profile.user_contact}}</h6>
             </div>
-            <div class="content myidea ideacards">
+            <div class="myidea_ideacards content myidea">
                 {% if myidea %}
-                {% for idea in myidea %}
-                <a href="{% url 'detail' idea.id %}">
-                    <div class="card ideacard card_href" style="display: inline;">
-                        <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
-                        <!--16:9-->
-                        <span class="idea_name">{{idea.idea_title}}</span>
-                        <p>{{idea.idea_subtitle}}</p>
-                        <div class="user_div">
-                            <hr>
-                            <img class="cardprofile" src="{{idea.user_image}}">{{idea.user}}<i
-                                class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
+                    {% for idea in myidea %}
+                    <a href="{% url 'detail' idea.id %}">
+                        <div class="card ideacard card_href" style="display: inline;">
+                            <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
+                            <!--16:9-->
+                            <span class="idea_name">{{idea.idea_title}}</span>
+                            <p>{{idea.idea_subtitle}}</p>
+                            <div class="user_div">
+                                <hr>
+                                <img class="cardprofile" src="{{idea.user_image}}">{{idea.user}}<i
+                                    class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                {% endfor %}
+                    </a>
+                    {% endfor %}
                 {% else %}
                 <h3>올린 아이디어가 없습니다.</h3>
                 {% endif %}
             </div>
-            <div class="content basket">
+            <div class="basket content ">
                 {% if cart %}
-                {% for favorite in cart %}
-                    {% if favorite.add_cart == True %}
-                        <a href="{% url 'detail' favorite.idea.id %}">
-                            <div class="card ideacard card_href" style="display: inline;">
-                                <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
-                                <!--16:9-->
-                                <span class="idea_name">{{favorite.idea.idea_title}}</span>
-                                <p>{{favorite.idea.idea_subtitle}}</p>
-                                <div class="user_div">
-                                    <hr>
-                                    <img class="cardprofile" src="{{favorite.idea.user_image}}">{{favorite.idea.user}}<i
-                                        class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
+                    {% for favorite in cart %}
+                        {% if favorite.add_cart == True %}
+                            <a href="{% url 'detail' favorite.idea.id %}">
+                                <div class="card ideacard card_href" style="display: inline;">
+                                    <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
+                                    <!--16:9-->
+                                    <span class="idea_name">{{favorite.idea.idea_title}}</span>
+                                    <p>{{favorite.idea.idea_subtitle}}</p>
+                                    <div class="user_div">
+                                        <hr>
+                                        <img class="cardprofile" src="{{favorite.idea.user_image}}">{{favorite.idea.user}}
+                                        <i class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    {% endif %}
-                {% endfor %}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
                 {% else %}
                 <h3>담긴 아이디어가 없습니다.</h3>
                 {% endif %}
@@ -123,55 +123,19 @@
 
         </div>
     </div>
-    <div class="content myidea ideacards">
-        {% if myidea %}
-        {% for idea in myidea %}
-        <a href="{% url 'detail' idea.id %}">
-            <div class="card ideacard card_href" style="display: inline;">
-                <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
-                <!--16:9-->
-                <span class="idea_name">{{idea.idea_title}}</span>
-                <p>{{idea.idea_subtitle}}</p>
-                <div class="user_div">
-                    <hr>
-                    <img class="cardprofile" src="{{idea.user_image}}">{{idea.user}}<i
-                        class="far fa-comment">&nbsp;{{idea.idea_likecount}}</i>
-                </div>
-            </div>
-        </a>
-        {% endfor %}
-        {% else %}
-        <h3>올린 아이디어가 없습니다.</h3>
-        {% endif %}
-    </div>
-    <div class="content basket">
-        {% if cart %}
-        {% for favorite in cart %}
-        <a href="{% url 'detail' favorite.id %}">
-            <div class="card ideacard card_href" style="display: inline;">
-                <div class="cardImg_board"><img class="card_image" src="{% static 'image/bg8.jpg' %}"></div>
-                <!--16:9-->
-                <span class="idea_name">{{favorite.idea_title}}</span>
-                <p>{{favorite.idea_subtitle}}</p>
-                <div class="user_div">
-                    <hr>
-                    <img class="cardprofile" src="{{favorite.user_image}}">{{favorite.user}}<i
-                        class="far fa-comment">&nbsp;{{favorite.idea_likecount}}</i>
-                </div>
-            </div>
-        </a>
-        {% endfor %}
-        {% else %}
-        <h3>담긴 아이디어가 없습니다.</h3>
-        {% endif %}
-    </div>
 
     <div id="mypage_edit">
-        <input class="edit_component" type="text" placeholder="소속대학"><br>
-        <input class="edit_component" type="text" placeholder="비밀번호 변경"><br>
-        <input class="edit_component" type="text" placeholder="이름변경"><br>
-        <input class="edit_component" type="text" placeholder="소개변경">
-    </div>
+        <form action="{% url 'mypage_edit' %}" method='POST'>
+            {% csrf_token %}
+            <table class="edit">
+                <input name="edit_user_id" type="text" placeholder="이름을 바꿔주세요">
+                <input name="edit_new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요">
+                <input name="edit_password_confirm" type="password" value="" placeholder="한 번 더 입력 부탁드립니다.">
+                <input name="edit_user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows='1000' cols='100'>
+            </table>
+            <br>
+            <input class="btn btn-dark" type="submit">
+        </form>
     </div>
     {% include 'footer.html' %}
 

@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's0v%^f*k=z%538^xf9ps&d7(9ik!6%#v^dz#!8u#dqy(4m9bj!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'ideaDetail',
     'main',
     'mypage',
-    
     'submit',
     'accounts.apps.AccountsConfig',
 ]
