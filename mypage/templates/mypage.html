@@ -168,10 +168,11 @@
     <form class="form" action="{% url 'mypage_edit' %}" method="POST">
       {% csrf_token %}
       <table class="edit">
-        <input name="edit_user_id" type="text" placeholder="이름을 바꿔주세요" /><br />
-        <input name="edit_new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
-        <input name="edit_password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
-        <input name="edit_user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" />
+        <input name="name" type="text" placeholder="이름을 바꿔주세요" /><br />
+        <input name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
+        <input name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
+        <input name="password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
+        <input name="user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" />
       </table>
       <br />
       <input class="submit_btn" type="submit" />

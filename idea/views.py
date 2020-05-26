@@ -6,10 +6,7 @@ from django.core.paginator import Paginator
 from django.core.cache import cache
 
 def idea(request):
-    ideas = cache.get("ideas")
-    if not ideas:
-        ideas = Idea.objects.all().order_by('?')
-        cache.set("ideas", ideas)
+    ideas = Idea.objects.all().order_by('?')
     profile = Profile.objects.all()
     paginator = Paginator(ideas,  12)
     page = request.GET.get('page')
