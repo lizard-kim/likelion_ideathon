@@ -3,9 +3,13 @@ from django.shortcuts import render
 from .models import Idea
 from accounts.models import Profile
 from django.core.paginator import Paginator
+from django.core.cache import cache
 
 def idea(request):
-    ideas = Idea.objects.all().order_by('-idea_create_data')
+    ideas = cache.get("ideas")
+    if not ideas:
+        ideas = Idea.objects.all().order_by('?')
+        cache.set("ideas", ideas)
     profile = Profile.objects.all()
     paginator = Paginator(ideas,  12)
     page = request.GET.get('page')
