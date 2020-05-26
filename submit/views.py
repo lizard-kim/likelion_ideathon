@@ -53,4 +53,4 @@ def submit(request):
         else:
             return render(request, 'submit.html')
     else:
-        return render(request, 'signIn.html')
+        return render(request, 'signin.html')
