@@ -11,7 +11,7 @@ def idea(request):
         ideas = Idea.objects.all().order_by('?')
         cache.set("ideas", ideas)
     profile = Profile.objects.all()
-    paginator = Paginator(ideas,  1)
+    paginator = Paginator(ideas,  12)
     page = request.GET.get('page')
     posts = paginator.get_page(page) 
     page_range = 6
