@@ -263,20 +263,16 @@ a.top {
     background: rgb(243, 153, 38);
     color: #fff;
     border: none;
+    max-width: auto;
     position: absolute;
-    top: 80%;
-    left: 45%;
     height: 60px;
-    width: auto;
     font-size: 1.6em;
     padding: 0 2em;
     cursor: pointer;
-    transition: 800ms ease all;
+    transition: 230ms ease all;
     outline: none;
     margin: auto;
     border-radius: 20px;
-    padding-top: 2px;
-    padding-bottom: 2px;
 }
 
 .submit_btn:hover {

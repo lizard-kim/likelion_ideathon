@@ -1,22 +1,25 @@
 @import './typography';
 @import './layout';
 
-.mypage{
+.mypage {
     padding: 4% 8%;
-    &__top{
+
+    &__top {
         flex-direction: row;
         height: 550px;
         //flex-flow: row wrap;
     }
-    &__bottom{
+
+    &__bottom {
         flex-direction: column;
     }
 }
 
-.userinfo{
+.userinfo {
     flex: 1;
+
     //max-height: 550px;
-    &__namebox{
+    &__namebox {
         position: relative;
         flex-direction: row;
         height: 200px;
@@ -24,19 +27,23 @@
         background-color: white;
         border: 1px solid #dadada;
         border-radius: 10px;
-        &__profile{
+
+        &__profile {
             width: 140px;
             height: 140px;
             margin-right: 40px;
         }
-        &__name{
+
+        &__name {
             margin: auto 0;
-            .name{
+
+            .name {
                 font-size: 44px;
                 font-weight: 500;
                 margin: 0;
             }
-            .email{
+
+            .email {
                 font-size: 16px;
                 font-weight: 400;
                 margin: 0;
@@ -44,38 +51,44 @@
                 color: gray;
             }
         }
-        .edit{
+
+        .edit {
             display: none;
             text-decoration: none;
             color: black;
         }
-        .fa-edit{
+
+        .fa-edit {
             position: absolute;
             right: 32px;
         }
-        &:hover .edit{
+
+        &:hover .edit {
             display: block;
         }
     }
-    &__infobox{
+
+    &__infobox {
         @include box;
         min-height: 250px;
         max-height: 300px;
         margin-top: 40px;
-        .infowrap{
+
+        .infowrap {
             display: flex;
             margin: auto 0;
         }
     }
 }
 
-.myidea{
+.myidea {
     @include box;
     overflow: hidden;
     flex: 1;
     margin-left: 40px;
     max-height: 500px;
-    &__item{
+
+    &__item {
         max-height: 200px;
         overflow: hidden;
         background-color: #e5e5e5;
@@ -84,31 +97,36 @@
         border-radius: 10px;
         margin-bottom: 20px;
     }
-    &__item:hover{
+
+    &__item:hover {
         background-color: #F39925;
     }
-    &__comments{
+
+    &__comments {
         flex-direction: row;
         margin: 12px 0;
-        .fa-circle{
+
+        .fa-circle {
             position: relative;
             margin-left: -10px;
             color: rgb(255, 1, 86);
         }
-        .num{
+
+        .num {
             margin: auto 0;
             margin-left: 5px;
             font-size: 20px;
             font-weight: bold;
         }
     }
-    .comment_box{
+
+    .comment_box {
         max-height: 200px;
         overflow-y: scroll;
     }
 }
 
-.basket{
+.basket {
     flex-direction: column;
     flex: 1;
     padding: 24px 40px;
@@ -116,47 +134,59 @@
     border-radius: 10px;
     margin-top: 60px;
     @include box;
-    &__itemwrap{
+
+    &__itemwrap {
         flex-direction: row;
         overflow-x: scroll;
     }
 }
 
-.ideaitem{
+.ideaitem {
     width: 300px;
     height: 350px;
     border: 1px solid black;
     border-radius: 35px;
     margin-right: 40px;
-    &__title{
+
+    &__title {
         flex-direction: row;
         height: 50px;
         border-bottom: 1px solid black;
         padding-left: 20px;
-        .profile{
+
+        .profile {
             width: 40px;
             height: 40px;
             margin: auto 0;
             margin-right: 10px;
         }
-        .text{
+
+        .text {
             margin: auto 0;
         }
     }
-    &__thumnail{
+
+    &__thumnail {
         display: block;
         width: 300px;
         height: 225px;
-        img{
+
+        img {
             width: 300px;
             height: 100%;
         }
     }
-    &__description{
+
+    &__description {
         margin: auto 0;
         padding: 5px 10px;
         line-height: 24px;
     }
+}
+
+.edit {
+    width: 100px;
+    height: 60px;
 }
 
 @import './mypage_mobile'
