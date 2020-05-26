@@ -9,6 +9,7 @@ $lioncolor : rgb(243, 153, 37);
 
 body {
     background-color: #fafafa;
+    overflow: hidden;
 }
 
 body,
@@ -138,7 +139,7 @@ header {
 }
 
 .ideacards {
-    width: 80%;
+    width: 100%;
     margin: 0 10%;
     padding-top: 4%;
     display: inline-block;
