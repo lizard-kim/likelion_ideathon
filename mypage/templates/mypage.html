@@ -109,8 +109,8 @@
                         <p>{{favorite.idea.idea_subtitle}}</p>
                         <div class="user_div">
                             <hr>
-                            <img class="cardprofile" src="{{favorite.idea.user_image}}">{{favorite.idea.user}}<i
-                                class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
+                            <img class="cardprofile" src="{{favorite.idea.user_image}}">{{favorite.idea.user}}
+                            <i class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
                         </div>
                     </div>
                 </a>
@@ -125,7 +125,7 @@
     </div>
 
     <div id="mypage_edit">
-        <form action="{% url 'edit' %}" method='POST'>
+        <form action="{% url 'mypage_edit' %}" method='POST'>
             {% csrf_token %}
             <table class="edit">
                 <input name="edit_user_id" type="text" placeholder="이름을 바꿔주세요">
