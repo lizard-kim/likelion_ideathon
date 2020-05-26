@@ -43,7 +43,6 @@ def mypage_edit(request):
 
         if check_password(password,user.password) and new_password == password_confirm:
             user.set_password(new_password)
-            
             user.user_name = name
             user.user_about = user_info
             user.save()     
