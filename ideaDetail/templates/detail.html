@@ -30,7 +30,11 @@
             <div class="idea">
 
                 <div class='idea_container'>
+                    {% if user == current_user %}
+                    <a href = "{% url 'mypage' %}" >
+                    {% else %}
                     <a href = "{% url 'who' idea_detail %}" >
+                    {% endif %}
                         <div class="title">
                             <div class="title_name">
                                 <p>{{detail.idea_title}}</p>
