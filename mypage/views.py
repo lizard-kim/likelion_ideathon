@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from accounts.models import Profile, Idea_Cart
 from django.contrib import auth
-from idea.models import Idea, Idea_Comments, Idea_AddComments
+from idea.models import Idea, Idea_Comments, Idea_AddComments, Idea_image_storage
 from django.contrib.auth.hashers import check_password
 from accounts.forms import *
 

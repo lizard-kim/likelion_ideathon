@@ -124,7 +124,9 @@
         <a href="{% url 'detail' idea.id %}">
           <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board">
-              <img class="card_image" src="{% static 'image/bg8.jpg' %}" />
+              <!-- {% if idea.idea_image %} -->
+                  <img class="card_image" src="{{ idea.idea_image.url }}" height="100">
+              <!-- {% endif %} -->
             </div>
             <!--16:9-->
             <span class="idea_name">{{idea.idea_title}}</span>
