@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'mypage',
     'submit',
     'accounts',
+    'imagekit',
 ]
 
 MIDDLEWARE = [

@@ -125,7 +125,7 @@
           <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board">
               {% if kk.image %}
-              <img class="card_image" src="{{kk.image.url}}"/>
+              <img class="card_image" src="{{kk.image.url|first}}"/>
               {% else %}
               <img class="card_image" src="{% static 'image/ironman.jpg' %}">
               {% endif %}

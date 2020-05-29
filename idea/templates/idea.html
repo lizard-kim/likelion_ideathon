@@ -89,8 +89,8 @@
     <a href="{% url 'detail' idea.id %}">
       <div class="card ideacard">
         <div class="cardImg_board">
-           {% if idea.image %}
-          <img class="card_image" src="{{idea.image.url}}"/>
+           {% if idea.image_thumbnail %}
+          <img class="card_image" src="{{idea.image_thumbnail.url}}"/>
           {% else %}
           <img class="card_image" src="{% static 'image/lion2.png' %}">
           {% endif %}
