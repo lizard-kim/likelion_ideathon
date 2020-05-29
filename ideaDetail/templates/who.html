@@ -36,46 +36,36 @@
 </style>
 
 <body>
-    <div class="header">
-        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
-        <span class="menu">
-            {% if request.user.is_active %}
-            <a href="{% url 'mypage' %}">
-                <span>{{user.user_name}}님</span>
-            </a>
-            <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
-            {% else %}
-            <a href="{% url 'login' %}" title="로그인">Sign in</a>
-            {% endif %}
-        </span>
-    </div>
-    <div class="mypage">
-        <div class="mypage__top">
-            <img src="{{idea_user.user_profile}}">
-            <img src="{% static 'image/ironman.jpg' %}" />
-            <h3> {{idea_user.user_name}} </h3>
-            <h6 class="email"> {{idea_user.email}} </h6>
-        </div>
+    {% include 'bright_header.html' %}
 
-        <div class="mypage__bottom">
-            <div class="menu">
-                <h4 id="profile"> 프로필 </h4>
+    {% block content %}
+        <div class="mypage">
+            <div class="mypage__top">
+                <img src="{{idea_user.user_profile}}">
+                <img src="{% static 'image/ironman.jpg' %}" />
+                <h3> {{idea_user.user_name}} </h3>
+                <h6 class="email"> {{idea_user.email}} </h6>
             </div>
-            <div class="content profile">
-                <h6 class="title"> Department </h6>
-                <h6 class="description"> {{idea_user.user_school}} </h6>
-                <h6 class="title"> About </h6>
-                <h6 class="description"> {{idea_user.user_about}} </h6>
-                <h6 class="title"> Contact </h6>
-                <h6 class="description">{{idea_user.user_contact}}</h6>
+
+            <div class="mypage__bottom">
+                <div class="menu">
+                    <h4 id="profile"> 프로필 </h4>
+                </div>
+                <div class="content profile">
+                    <h6 class="title"> Department </h6>
+                    <h6 class="description"> {{idea_user.user_school}} </h6>
+                    <h6 class="title"> About </h6>
+                    <h6 class="description"> {{idea_user.user_about}} </h6>
+                    <h6 class="title"> Contact </h6>
+                    <h6 class="description">{{idea_user.user_contact}}</h6>
+                </div>
             </div>
         </div>
-    </div>
-           
+            
 
-    {% include 'footer.html' %}
+        {% include 'footer.html' %}
 
-    
+    {% endblock %}
 </body>
 
 </html>

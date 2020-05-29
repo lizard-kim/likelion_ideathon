@@ -1,6 +1,7 @@
 $lioncolor : rgb(243, 153, 37);
 
 @import "./typography";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
 @mixin w_h_size($w, $h) {
     width: $w;
@@ -20,36 +21,10 @@ html {
     color: white;
 }
 
-header {
-    background-color: none;
-    z-index: 1;
-    width: 99%;
-    padding: 15px 9px 9px 5px;
-    position: fixed;
-    color: white;
-
-    .logo {
-        width: 260px;
-        height: 31px;
-        left: 26px;
-        top: 30px;
-        float: left;
-        vertical-align: top;
-    }
-    a {
-        font-size: 20px;
-        margin: 10px;
-        color: white;
-        text-decoration: none;
-    }
-    .menu {
-        float: right;
-    }
-}
-
 .change {
     background-color:rgba(0, 0, 0, .4);
 }
+
 .randImg {
     position: relative;
     display: flex;
@@ -139,7 +114,7 @@ header {
 }
 
 .ideacards {
-    width: 100%;
+    width: 80%;
     margin: 0 10%;
     padding-top: 4%;
     display: inline-block;
@@ -148,7 +123,7 @@ header {
 .ideacard {
     display: inline-block;
     float: left;
-    @include w_h_size(23%, 390px);
+    @include w_h_size(30%, 390px);
     padding: 1% 1% 2% 1%;
     margin-left: 1%;
     margin-bottom:2%;
