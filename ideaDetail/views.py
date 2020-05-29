@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from idea.models import Idea_Comments, Idea_AddComments, Idea, Idea_image_storage
 from accounts.models import Idea_Cart, Profile
 from django.utils import timezone
+import os
+from django.conf import settings
 
 def detail(request, detail_id):
     
@@ -201,16 +203,25 @@ def delete(request, detail_id):
 def edit(request, detail_id):
     idea_detail = Idea.objects.get(pk = detail_id)
     idea_image = Idea_image_storage.objects.all().filter(idea = idea_detail)
-    
-    for image in idea_image:
-        image.delete()
+
 
     if request.method == 'POST':
+        #file_change_check = request.POST.get('images', False)
+
         idea_detail.idea_title = request.POST['IdeaName']
         idea_detail.idea_subtitle = request.POST['IdeaSubtitle']
         idea_detail.idea_description = request.POST['IdeaContent']
         images = request.FILES.getlist('images')
-        idea_detail.save()
+
+        os.remove(os.path.join(settings.MEDIA_ROOT, idea_detail.idea_image.path))
+
+        if images:
+            idea_detail.idea_image = images[0]
+
+        for elem in idea_image:
+            #print(os.path.join(settings.MEDIA_ROOT, elem.image.path))
+            os.remove(os.path.join(settings.MEDIA_ROOT, elem.image.path))
+            elem.delete()
 
         for img in images:
             newimage = Idea_image_storage.objects.create(
@@ -218,6 +229,8 @@ def edit(request, detail_id):
                 image = img
             )
 
+
+        idea_detail.save()
         return redirect('/detail/' + str(idea_detail.id))
     else:
         return render(request, 'edit.html', {
