@@ -50,9 +50,7 @@ def mypage_edit(request):
             
             auth.login(request, user)
             return redirect('../')
-        return render(request, 'mypageedit.html',{
-            'form' : form
-        })
+    return render(request, 'mypage.html')
 def comments(request):
     comment = Idea_Comments.objects.all().filter(user = request.user)
     add_comment = Idea_AddComments.objects.all().filter(user = request.user)
