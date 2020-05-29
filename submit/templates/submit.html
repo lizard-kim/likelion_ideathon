@@ -11,6 +11,10 @@
 
 </head>
 
+<style>
+
+</style>
+
 <body id="submit_body">
     <!-- submit idea page header -->
     <header id="submit_idea_header">
@@ -33,8 +37,8 @@
             <!-- 왼쪽 섹션 -->
             <!-- Swiper -->
             <div class="filebox">
-                <label for="ex_file">업로드</label>
-                <input type="file" name="images" id="upImgFiles" accept="image/*" multiple />
+                <label for="ex_file" class="ex_file">업로드</label>
+                <input type="file" name="images" id="upImgFiles" class="upload_image" accept="image/*" multiple />
             </div>
             <hr />
             <!-- Slider main container -->
@@ -83,6 +87,7 @@
         const getId = (id) => document.getElementById(id);
         const upImgFiles = getId("upImgFiles");
         const swiperWrapper = getId("swiper-wrapper");
+
         upImgFiles.addEventListener("change", uploadImgPreview);
 
         var swiper = new Swiper(".swiper-container", {

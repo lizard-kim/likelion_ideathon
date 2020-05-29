@@ -9,7 +9,7 @@ class Idea(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     idea_title = models.CharField(max_length=20, null=True, blank=True)
-    idea_subtitle = models.TextField(max_length=100, null=True, blank=True)
+    idea_subtitle = models.TextField(max_length=40, null=True, blank=True)
     idea_image = models.ImageField(
         upload_to="idea/%Y%m%d", null=True, blank=True)
     idea_description = models.TextField(max_length=500, null=True, blank=True)
