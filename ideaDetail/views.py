@@ -188,11 +188,14 @@ def subcomment(request, detail_id, comment_id):
 #     else:
 #         return render(request, 'detail.html' , {'comment' : comment})
 
-
 def delete(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
-    idea_detail.delete()
-    return redirect('idea')
+    
+    if request.user == idea_detail.user:
+        idea_detail.delete()
+        return redirect('idea')
+    else:
+        return redirect('/detail/'+ str(detail_id))
 
 def edit(request, detail_id):
     idea_detail = Idea.objects.get(pk = detail_id)
