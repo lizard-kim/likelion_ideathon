@@ -47,6 +47,9 @@ def detail(request, detail_id):
     else:
         # pk 에 해당하는 아이디어 
         idea_detail = Idea.objects.get(pk = detail_id)
+        idea_desc = idea_detail.idea_description
+        idea_desc_len = len(idea_desc)
+
         user = idea_detail.user
         idea_id = idea_detail.id
         idea_images = Idea_image_storage.objects.all().filter(idea = idea_detail)
@@ -143,6 +146,8 @@ def detail(request, detail_id):
                     'user': user,   # 아이디어 글 작성자
                     'idea_images' : idea_images,
                     'is_logined_user' : is_logined_user,    # 로그인 여부 확인 T/F
+                    'idea_desc' : idea_desc,
+                    'idea_desc_len' : idea_desc_len,
                 }) 
         else:
             return render(request, 'detail.html',{
