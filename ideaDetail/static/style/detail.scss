@@ -85,6 +85,9 @@ p{
         font-size : 40px;
         text-align : center;
         max-width : 800px;
+        overflow:hidden;    // 잘린거 안보이게 
+        text-overflow: ellipsis;    // 잘린 텍스트 ...표기
+        white-space : nowrap;   // 텍스트 길어도 줄바꿈 ㄴㄴ
     }
 
     &_sub{
@@ -95,6 +98,9 @@ p{
         text-align : center;
         max-width : 800px;
         color : rgb(126, 126, 126);
+        overflow:hidden;    // 잘린거 안보이게 
+        text-overflow: ellipsis;    // 잘린 텍스트 ...표기
+        white-space : nowrap;   // 텍스트 길어도 줄바꿈 ㄴㄴ
     }
 }
 
@@ -173,12 +179,27 @@ p{
     justify-content: center;
 
     &_box{
-        display : block;
-        width : 800px;
-        max-height: auto;
-        font-size : 10px;
-        padding : 20px 0px 0px 10px;
-        margin-bottom : 100px;
+
+        &_real{
+            display :-webkit-box;
+            -webkit-line-clamp: 5;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            width : 800px;
+            font-size : 10px;
+            margin-bottom : 3%;
+            overflow:hidden;    // 잘린거 안보이게 
+            text-overflow: ellipsis;    // 잘린 텍스트 ...표기
+
+            
+            &_show{
+                display : block;
+                font-size : 10px;
+                margin-bottom : 3%;
+            }
+        }
+
     }
 }
 
