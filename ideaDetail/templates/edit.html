@@ -16,9 +16,14 @@
     <header id="submit_idea_header">
         <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}" />&nbsp;<b>IDEATHON</b></a>
         <span class="menu">
-            <a href="#">Log out</a>
-            |
-            <a href="{% url 'mypage' %}">My Page</a>
+            {% if request.user.is_active %}
+            <a href="{% url 'mypage' %}">
+                <span>{{user.user_name}}님</span>
+            </a>
+            <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}" title="로그인">Sign in</a>
+            {% endif %}
         </span>
     </header>
     <form action="{% url 'edit' idea_detail.id %}" method="POST" id="submit_form" enctype="multipart/form-data">
@@ -29,7 +34,7 @@
             <!-- Swiper -->
             <div class="filebox">
                 <label for="ex_file">업로드</label>
-                <input type="file" name="images" id="upImgFiles" accept="image/*" multiple />
+                <input type="file" name="images" id="upImgFiles" accept="image/*" multiple />               
             </div>
             <hr />
             <!-- Slider main container -->

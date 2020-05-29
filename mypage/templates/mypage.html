@@ -75,9 +75,14 @@
   <div class="header">
     <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}" />&nbsp;<b>IDEATHON</b></a>
     <span class="menu">
-      <a href="#">Log out</a>
-      |
-      <a href="{% url 'mypage' %}">My Page</a>
+      {% if request.user.is_active %}
+      <a href="{% url 'mypage' %}">
+        <span>{{user.user_name}}님</span>
+      </a>
+      <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
+      {% else %}
+      <a href="{% url 'login' %}" title="로그인">Sign in</a>
+      {% endif %}
     </span>
   </div>
   <div class="mypage">
@@ -119,7 +124,9 @@
         <a href="{% url 'detail' idea.id %}">
           <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board">
-              <img class="card_image" src="{% static 'image/bg8.jpg' %}" />
+              <!-- {% if idea.idea_image %} -->
+                  <img class="card_image" src="{{ idea.idea_image.url }}" height="100">
+              <!-- {% endif %} -->
             </div>
             <!--16:9-->
             <span class="idea_name">{{idea.idea_title}}</span>
@@ -168,10 +175,11 @@
     <form class="form" action="{% url 'mypage_edit' %}" method="POST">
       {% csrf_token %}
       <table class="edit">
-        <input name="edit_user_id" type="text" placeholder="이름을 바꿔주세요" /><br />
-        <input name="edit_new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
-        <input name="edit_password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
-        <input name="edit_user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" />
+        <input name="name" type="text" placeholder="이름을 바꿔주세요" /><br />
+        <input name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
+        <input name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
+        <input name="password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
+        <input name="user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" />
       </table>
       <br />
       <input class="submit_btn" type="submit" />

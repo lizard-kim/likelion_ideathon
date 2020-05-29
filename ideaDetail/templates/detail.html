@@ -17,9 +17,14 @@
         <div class="header">
             <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
             <span class="menu">
-                <a href="#">Log out</a>
-                |
-                <a href="{% url 'mypage' %}">My Page</a>
+                {% if request.user.is_active %}
+                <a href="{% url 'mypage' %}">
+                    <span>{{user.user_name}}님</span>
+                </a>
+                <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}" title="로그인">Sign in</a>
+                {% endif %}
             </span>
         </div>
 
@@ -30,10 +35,6 @@
             <div class="idea">
 
                 <div class='idea_container'>
-                        <div class="title">
-                            <div class="title_name">
-                                <p>{{detail.idea_title}}</p>
-                            </div>
 
                     <div class="title">
                         <div class="title_name">
@@ -44,38 +45,35 @@
                             <p>{{detail.idea_subtitle}}</p>
                         </div>
                     </div>
+                {% if user == current_user %}
+                    <a href = "{% url 'mypage' %}" >
+                {% else %}
+                    <a href = "{% url 'who' idea_detail %}" >
+                {% endif %}
+                        <div class="author_info">
+                            <div class="author_info_school">
+                                <p>{{user.user_school}}</p>
+                            </div>
+                            <div class="author_info_image">
+                                {% if user.user_image %}
+                                <img class="author_info_image_real" src="{{user.user_image.url}}"
+                                    width="25px" height="25px" alt = "유저사진">
+                                {% else %}
+                                <img class="author_info_image_real" src="{% static 'img/4.png' %}"
+                                    width="25px" height="25px" alt = "사자사진">
+                                {% endif %}
+                            </div>
 
-                    <div class="author_info">
-                        <div class="author_info_school">
-                            <p>{{user.user_school}}</p>
+                            <div class="author_info_name">
+                                <p>{{user.user_name}}</p>
+                            </div>
                         </div>
-
-                        <div class="author_info_image">
-                            {% if user.user_image %}
-                            <img class="author_info_image_real" src="{{user.user_image.url}}"
-                                width="25px" height="25px" alt = "유저사진">
-                            {% else %}
-                            <img class="author_info_image_real" src="{% static 'img/4.png' %}"
-                                width="25px" height="25px" alt = "사자사진">
-                            {% endif %}
-                        </div>
-
-                        <div class="author_info_name">
-                            <p>{{user.user_name}}</p>
-                        </div>
-
+                    </a>
+            
+                    <div class="author_info_time">
+                        <p>{{idea_detail.idea_create_data}}</p>
                     </div>
 
-                                    <div class="author_info_name">
-                                        <p>{{user.user_name}}</p>
-                                    </div>
-                            
-                                    <div class="author_info_time">
-                                        <p>{{idea_detail.idea_create_data}}</p>
-                                    </div>
-                                    
-                                </div>
-                            </a>
                     
                     <div class="image">
                         <div class="image_box">

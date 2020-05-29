@@ -78,13 +78,12 @@
 
   <div class="randImg">
     <div class="go_submit">
-      <a href="{% url 'submit' %}">
-        <button class="submit_btn">submit</button>
+        <a href="{% url 'submit' %}">
+          <button class="submit_btn">submit</button>
+        </a>
     </div>
-    </a>
   </div>
-
-  <p class="idea_count">아이디어 <span class="idea_count__span">7</span>개</p>
+  <p class="idea_count">아이디어 <span class="idea_count__span">{{count}}</span>개</p>
   <div class="ideacards">
     {% for idea in posts %}
     <a href="{% url 'detail' idea.id %}">
@@ -104,7 +103,7 @@
     {% endfor %}
   </div>
 
-  <div class="pgn_div">
+  <!--<div class="pgn_div">
     {% if posts.has_previous %}
     <a href="?page=1" class="pgn">First</a>
     <a href="?page={{posts.previous_page_number}}" class="pgn">Previous</a>
@@ -116,7 +115,7 @@
     <a href="?page={{posts.next_page_number}}" class="pgn">Next</a>
     <a href="?page={{posts.paginator.num_pages}}" class="pgn">Last</a>
     {% endif %}
-  </div>
+  </div>-->
 </body>
 
 {% include 'footer.html' %}

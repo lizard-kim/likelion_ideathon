@@ -196,12 +196,13 @@ def delete(request, detail_id):
 
 def edit(request, detail_id):
     idea_detail = Idea.objects.get(pk = detail_id)
-
+    #idea_image = Idea_image_storage(pk = detail_id)
+    
     if request.method == 'POST':
         idea_detail.idea_title = request.POST['IdeaName']
         idea_detail.idea_subtitle = request.POST['IdeaSubtitle']
         idea_detail.idea_description = request.POST['IdeaContent']
-        idea_detail.idea_image = request.POST['images']
+        idea_image.image = request.POST.get('images', False)
         # idea_detail.idea_hashtag = request.POST['IdeaHashTag']
         idea_detail.save()
         return redirect('/detail/' + str(idea_detail.id))
@@ -233,6 +234,8 @@ def who(request, detail_id):
     idea_user = idea_detail.user
 
     if request.user.is_authenticated :
-            current_user = request.user
+        current_user = request.user
+        return render(request, "who.html", {'idea_user':idea_user ,'current_user':current_user})
+    else:
+        return render(request, 'signin.html')
 
-    return render(request, "who.html", {'idea_user':idea_user ,'current_user':current_user})
