@@ -1,6 +1,10 @@
 @import './layout';
 @import './typography';
 
+@mixin w_h_size($w, $h) {
+    width: $w;
+    height: $h;
+}
 .mypage {
     align-items: center;
     width: 800px;
@@ -125,7 +129,16 @@
 }
 
 .myidea_ideacards{
-    display: none;
+    display: inline-block;
+    float: center;
+    @include w_h_size(23%, 390px);
+    padding: 1% 1% 2% 1%;
+    margin-left: 1%;
+    margin-bottom:2%;
+    border: none;
+    background-color: #ffffff;
+    position: relative;
+    color: rgb(52, 52, 52);
 }
 
 

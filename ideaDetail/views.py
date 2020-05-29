@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from idea.models import Idea_Comments, Idea_AddComments, Idea, Idea_image_storage
 from accounts.models import Idea_Cart, Profile
 from django.utils import timezone
+import os
+from django.conf import settings
 
 def detail(request, detail_id):
     
@@ -47,6 +49,9 @@ def detail(request, detail_id):
     else:
         # pk 에 해당하는 아이디어 
         idea_detail = Idea.objects.get(pk = detail_id)
+        idea_desc = idea_detail.idea_description
+        idea_desc_len = len(idea_desc)
+
         user = idea_detail.user
         idea_id = idea_detail.id
         idea_images = Idea_image_storage.objects.all().filter(idea = idea_detail)
@@ -143,6 +148,8 @@ def detail(request, detail_id):
                     'user': user,   # 아이디어 글 작성자
                     'idea_images' : idea_images,
                     'is_logined_user' : is_logined_user,    # 로그인 여부 확인 T/F
+                    'idea_desc' : idea_desc,
+                    'idea_desc_len' : idea_desc_len,
                 }) 
         else:
             return render(request, 'detail.html',{
@@ -188,26 +195,53 @@ def subcomment(request, detail_id, comment_id):
 #     else:
 #         return render(request, 'detail.html' , {'comment' : comment})
 
-
 def delete(request, detail_id):
     idea_detail = get_object_or_404(Idea, pk = detail_id)
-    idea_detail.delete()
-    return redirect('idea')
+    
+    if request.user == idea_detail.user:
+        idea_detail.delete()
+        return redirect('idea')
+    else:
+        messages.error(request, "본인 게시글이 아닙니다.")
+        return redirect('/detail/'+ str(detail_id))
 
 def edit(request, detail_id):
     idea_detail = Idea.objects.get(pk = detail_id)
-    #idea_image = Idea_image_storage(pk = detail_id)
-    
+    idea_image = Idea_image_storage.objects.all().filter(idea = idea_detail)
+
+
     if request.method == 'POST':
+        #file_change_check = request.POST.get('images', False)
+
         idea_detail.idea_title = request.POST['IdeaName']
         idea_detail.idea_subtitle = request.POST['IdeaSubtitle']
         idea_detail.idea_description = request.POST['IdeaContent']
-        idea_image.image = request.POST.get('images', False)
-        # idea_detail.idea_hashtag = request.POST['IdeaHashTag']
+        images = request.FILES.getlist('images')
+
+        os.remove(os.path.join(settings.MEDIA_ROOT, idea_detail.idea_image.path))
+
+        if images:
+            idea_detail.idea_image = images[0]
+
+        for elem in idea_image:
+            #print(os.path.join(settings.MEDIA_ROOT, elem.image.path))
+            os.remove(os.path.join(settings.MEDIA_ROOT, elem.image.path))
+            elem.delete()
+
+        for img in images:
+            newimage = Idea_image_storage.objects.create(
+                idea = idea_detail,
+                image = img
+            )
+
+
         idea_detail.save()
         return redirect('/detail/' + str(idea_detail.id))
     else:
-        return render(request, 'edit.html', {'idea_detail':idea_detail})
+        return render(request, 'edit.html', {
+            'idea_detail':idea_detail,
+            'idea_image' : idea_image
+        })
 
 # def comment_edit(request, comment_id, detail_id):
 #     idea_comment = Idea_Comments.objects.get(pk = comment_id)

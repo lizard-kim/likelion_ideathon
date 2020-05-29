@@ -100,12 +100,17 @@
                             </div>
                         </div>
 
-                        <div class="description">
-                            <div class="description_box">
-                                
-                                <div class = "description_box_real" id = "description">
-                                    <h6>{{detail.idea_description}}</h6>
-                                </div>
+                    <div class="description">
+                        <div class="description_box">
+                            
+                            <div class = "description_box_real" id = "description">
+                                <h6>{{detail.idea_description}}</h6>
+                            </div>
+                            <div class = "description_box_more">
+                                {% if idea_desc_len > 380 %}
+                                <a href="javascript:showplay();" class="show_more" id="show_more">더보기</a>
+                                {% endif %}
+                            </div>
 
                                 <div class = "description_box_more">
                                     <a href="javascript:showplay();" class="show_more" id="show_more">더보기</a>
@@ -134,19 +139,9 @@
 
                                     {% endif %}
 
-                                {% endif %}
-                                <!-- 로그인한 유저가 글 작성자라면 -->
-                                {% if user == current_user %}
-                                <div class="bot_box_edit">
-                                    <a href="{% url 'edit' detail.id %}" class="bot_box_edit_box1">
-                                        <p>수정</p>
-                                    </a>
-
-                                    <a onclick = "idea_delete()" href="{% url 'delete' detail.id %}" class="bot_box_edit_box2">
-                                        <p>삭제</p>
-                                    </a>
-                                </div>
-                                {% endif %}
+                                <a onclick = "idea_delete()" class="bot_box_edit_box2">
+                                    <p>삭제</p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -209,8 +204,40 @@
 
                             <div class="comments_box">
 
-                                <!-- 댓글 list loop -->
-                                {% for comment in comment_list %}
+                            <!-- 댓글 list loop -->
+                            {% for comment in comment_list %}
+
+                                <!-- 댓글 하나 -->
+                                <div class="comments_real">
+
+                                    <div class="comments_author_info">
+                                        <!-- <div class="comments_author_info_image">
+                                            {% if comment.user.user_image %}
+                                            <img src="{{comment.user.user_image.url}}" class="comments_author_info_image_real"
+                                                width="25px" height="25px">
+                                            {% else %}
+                                            <img src="{% static 'img/4.png' %}" class="comments_author_info_image_real"
+                                                width="25px" height="25px">
+                                            {% endif %}
+                                        </div> -->
+
+                                        <!-- 현재 로그인 한 유저-->
+                                        <div class="comments_author_info_school">
+                                            <p>{{comment.user.user_school}}</p>
+                                        </div>
+                                        <div class="comments_author_info_name">
+                                            <p>{{comment.user}}</p>
+                                        </div>
+
+                                        <!-- 로그인한 유저가 댓글 작성자 or 글 작성자라면 -->
+                                        <div class="comments_delete ">
+                                            {% if request.user == comment.user %}
+                                            <a onclick = "comment_delete()" href="{% url 'comment_delete' detail.id comment.id %}"
+                                            class = "comments_delete_button">
+                                                <p>삭제</p>
+                                            </a>
+                                            {% endif %}
+                                        </div>
 
                                     <!-- 댓글 하나 -->
                                     <div class="comments_real">
@@ -230,8 +257,23 @@
                                             <div class="comments_author_info_school">
                                                 <p>{{comment.user.user_school}}</p>
                                             </div>
-                                            <div class="comments_author_info_name">
-                                                <p>{{comment.user}}</p>
+                                            <div class="comments_content_right">
+                                                {% for check in comment_check %}
+                                                {% if comment.id == check %}
+
+                                                {% getvalue add_comments_num check as num %}
+
+                                                {% if num %}
+                                                <button class="comments_content_right_button" type="menu"
+                                                    name="btn-comment">답글 {{num}}개
+                                                </button>
+                                                {% else %}
+                                                <button class="comments_content_right_button" type="menu"
+                                                    name="btn-comment">답글
+                                                </button>
+                                                {% endif %}
+                                                {% endif %}
+                                                {% endfor %}
                                             </div>
 
                                             <!-- 로그인한 유저가 댓글 작성자 or 글 작성자라면 -->
@@ -300,9 +342,17 @@
                                                                             </div>
                                                                             {% endif %}
                                                                         </div>
-
-                                                                        <div class="add_comment_content">
-                                                                            {{add_comment.text |linebreaksbr}}
+                                                                        <div class="add_comment_author_info_school">
+                                                                            <p>{{add_comment.user.user_school}}</p>
+                                                                        </div>
+                                                                        <div class="add_comment_author_info_name">
+                                                                            <p>{{add_comment.user.user_name}}</p>
+                                                                        </div>
+                                                                        <!-- 답글 작성자 = 현재 로그인한 유저   -->
+                                                                        {% if add_comment.user == request.user %}
+                                                                        <div class="add_comment_author_info_delete">
+                                                                            <a onclick = "comment_delete()" href="{% url 'addcomment_delete' detail.id add_comment.id %}"
+                                                                               class = 'add_comment_author_info_delete_button'>삭제</a>
                                                                         </div>
 
                                                                     {% endfor %}
@@ -311,15 +361,8 @@
 
                                                             </div>
 
-                                                            <div class='add_comment_count'>
-                                                                <p style="white-space:nowrap;">
-                                                                    답글 {% getvalue add_comments_num check %}개
-                                                                </p>
-                                                            </div>
-                                                        
                                                         </div>
-                                                    
-                                                    {% endif %}
+                                                    </div>
                                                 
                                                 {% endfor %}
                                                         
@@ -415,8 +458,13 @@
                 }
             };
 
-            // html page가 rending 되면 init 함수가 작동하도록
-            init();
+    function idea_delete() {
+        confirm("세상을 바꿀 아이디어를 삭제하시겠습니까 ?");
+    }
+
+    function comment_delete() {
+        confirm("삭제하시겠습니까 ?");
+    }
 
             function idea_delete() {
                 alert("진짜 삭제할꺼야 ?");

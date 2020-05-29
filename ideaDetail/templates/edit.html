@@ -14,7 +14,6 @@
 <body id="submit_body">
     <!-- submit idea page header -->
     {% include 'bright_header.html' %}
-
     {% block content %}
         <form action="{% url 'edit' idea_detail.id %}" method="POST" id="submit_form" enctype="multipart/form-data">
             <section id="submit_left">
@@ -24,7 +23,7 @@
                 <!-- Swiper -->
                 <div class="filebox">
                     <label for="ex_file">업로드</label>
-                    <input type="file" name="images" id="upImgFiles" accept="image/*" multiple />               
+                    <input type="file" name="images" id="upImgFiles" accept="image/*" onchange="checkSize(this)" multiple />               
                 </div>
                 <hr />
                 <!-- Slider main container -->
@@ -68,6 +67,15 @@
             </section>
         </form>
     {% endblock %}
+    
+    <script type="text/javascript">
+        function checkSize(input) {
+            if (input.files && input.files[0].size > (10 * 1024 * 1024)) {
+                alert("파일 사이즈가 10mb 를 넘습니다.");
+                input.value = null;
+            }
+        }
+    </script>
     <script src="https://unpkg.com/swiper/js/swiper.js"></script>
     <script>
         const getId = (id) => document.getElementById(id);
