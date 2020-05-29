@@ -218,24 +218,27 @@ def edit(request, detail_id):
         idea_detail.idea_description = request.POST['IdeaContent']
         images = request.FILES.getlist('images')
 
-        os.remove(os.path.join(settings.MEDIA_ROOT, idea_detail.idea_image.path))
+        if idea_image:
+            os.remove(os.path.join(settings.MEDIA_ROOT, idea_detail.idea_image.path))
 
         if images:
             idea_detail.idea_image = images[0]
 
-        for elem in idea_image:
-            #print(os.path.join(settings.MEDIA_ROOT, elem.image.path))
-            os.remove(os.path.join(settings.MEDIA_ROOT, elem.image.path))
-            elem.delete()
-        
-        for img in images:
-            newimage = Idea_image_storage.objects.create(
-                idea = idea_detail,
-                image = img
-            )
+        if idea_image:
+            for elem in idea_image:
+                os.remove(os.path.join(settings.MEDIA_ROOT, elem.image.path))
+                elem.delete()
+
+        if images:
+            for img in images:
+                newimage = Idea_image_storage.objects.create(
+                    idea = idea_detail,
+                    image = img
+                )
 
 
         idea_detail.save()
+        
         return redirect('/detail/' + str(idea_detail.id))
     else:
         return render(request, 'edit.html', {

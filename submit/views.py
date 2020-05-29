@@ -61,5 +61,9 @@ def submit(request):
                 return render(request, 'submit.html', {
                     "errro" : "this is error"
                 })
+        else:
+            return render(request, 'submit.html', {
+                "errro" : "this is error"
+            })
     else:
         return render(request, 'signin.html')
