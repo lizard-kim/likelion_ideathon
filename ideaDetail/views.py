@@ -227,7 +227,7 @@ def edit(request, detail_id):
             #print(os.path.join(settings.MEDIA_ROOT, elem.image.path))
             os.remove(os.path.join(settings.MEDIA_ROOT, elem.image.path))
             elem.delete()
-
+        
         for img in images:
             newimage = Idea_image_storage.objects.create(
                 idea = idea_detail,

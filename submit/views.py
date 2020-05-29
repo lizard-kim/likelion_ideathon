@@ -29,29 +29,37 @@ def submit(request):
             if request.user.is_authenticated == True:
                 profile = get_object_or_404(Profile.objects.all().filter(email = request.user.email))
 
-                newidea = Idea.objects.create(
-                    user = profile,
-                    idea_title = IdeaName,
-                    idea_subtitle = IdeaSubtitle,
-                    idea_description = IdeaContent,
-                    idea_likecount = 0,
-                    idea_image = images[0],
-                )
+                if images :
+
+                    newidea = Idea.objects.create(
+                        user = profile,
+                        idea_title = IdeaName,
+                        idea_subtitle = IdeaSubtitle,
+                        idea_description = IdeaContent,
+                        idea_likecount = 0,
+                        idea_image = images[0],
+                    )
+
+                    for img in images:
+                        newimage = Idea_image_storage.objects.create(
+                        idea = newidea,
+                        image = img
+                    )
+            
+                    return redirect('/detail/' + str(newidea.id))
+
+                else:
+                    newidea = Idea.objects.create(
+                        user = profile,
+                        idea_title = IdeaName,
+                        idea_subtitle = IdeaSubtitle,
+                        idea_description = IdeaContent,
+                        idea_likecount = 0,
+                    )
+                    return redirect('/detail/' + str(newidea.id))
             else:
                 return render(request, 'submit.html', {
                     "errro" : "this is error"
                 })
-
-            for img in images:
-                newimage = Idea_image_storage.objects.create(
-                    idea = newidea,
-                    image = img
-                )
-            #return render(request, 'submit.html')
-            
-            return redirect('/')
-
-        else:
-            return render(request, 'submit.html')
     else:
         return render(request, 'signin.html')
