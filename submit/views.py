@@ -3,6 +3,7 @@ from django.contrib import auth
 from accounts.models import Profile
 from idea.models import Idea_image_storage, Idea
 
+
 def submit(request):
     if request.user.is_authenticated == True:
         if request.method == 'POST':
@@ -27,28 +28,29 @@ def submit(request):
             '''
 
             if request.user.is_authenticated == True:
-                profile = get_object_or_404(Profile.objects.all().filter(email = request.user.email))
+                profile = get_object_or_404(
+                    Profile.objects.all().filter(email=request.user.email))
 
                 newidea = Idea.objects.create(
-                    user = profile,
-                    idea_title = IdeaName,
-                    idea_subtitle = IdeaSubtitle,
-                    idea_description = IdeaContent,
-                    idea_likecount = 0,
-                    idea_image = images[0],
+                    user=profile,
+                    idea_title=IdeaName,
+                    idea_subtitle=IdeaSubtitle,
+                    idea_description=IdeaContent,
+                    idea_likecount=0,
+                    idea_image=images[0],
                 )
             else:
                 return render(request, 'submit.html', {
-                    "errro" : "this is error"
+                    "errro": "this is error"
                 })
 
             for img in images:
                 newimage = Idea_image_storage.objects.create(
-                    idea = newidea,
-                    image = img
+                    idea=newidea,
+                    image=img
                 )
-            #return render(request, 'submit.html')
-            
+            # return render(request, 'submit.html')
+
             return redirect('/')
 
         else:

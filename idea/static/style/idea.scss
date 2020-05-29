@@ -147,7 +147,6 @@ header {
 
 .ideacard {
     display: inline-block;
-    float: left;
     @include w_h_size(23%, 390px);
     padding: 1% 1% 2% 1%;
     margin-left: 1%;
