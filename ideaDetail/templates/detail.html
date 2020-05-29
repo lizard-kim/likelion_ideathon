@@ -154,7 +154,7 @@
                                     <p>수정</p>
                                 </a>
 
-                                <a onclick = "idea_delete()" href="{% url 'delete' detail.id %}" class="bot_box_edit_box2">
+                                <a onclick = "idea_delete()" class="bot_box_edit_box2">
                                     <p>삭제</p>
                                 </a>
                             </div>
@@ -249,7 +249,7 @@
                                         <!-- 로그인한 유저가 댓글 작성자 or 글 작성자라면 -->
                                         <div class="comments_delete ">
                                             {% if request.user == comment.user %}
-                                            <a href="{% url 'comment_delete' detail.id comment.id %}"
+                                            <a onclick = "comment_delete()" href="{% url 'comment_delete' detail.id comment.id %}"
                                             class = "comments_delete_button">
                                                 <p>삭제</p>
                                             </a>
@@ -307,7 +307,7 @@
                                                                         <!-- 답글 작성자 = 현재 로그인한 유저   -->
                                                                         {% if add_comment.user == request.user %}
                                                                         <div class="add_comment_author_info_delete">
-                                                                            <a href="{% url 'addcomment_delete' detail.id add_comment.id %}"
+                                                                            <a onclick = "comment_delete()" href="{% url 'addcomment_delete' detail.id add_comment.id %}"
                                                                                class = 'add_comment_author_info_delete_button'>삭제</a>
                                                                         </div>
                                                                         {% endif %}
@@ -430,7 +430,11 @@
     init();
 
     function idea_delete() {
-        alert("진짜 삭제할꺼야 ?");
+        confirm("세상을 바꿀 아이디어를 삭제하시겠습니까 ?");
+    }
+
+    function comment_delete() {
+        confirm("삭제하시겠습니까 ?");
     }
 
 
