@@ -124,8 +124,8 @@
         <a href="{% url 'detail' idea.id %}">
           <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board">
-              {% if kk.image %}
-              <img class="card_image" src="{{kk.image.url|first}}"/>
+              {% if idea.image_thumbnail %}
+              <img class="card_image" src="{{idea.image_thumbnail.url}}"/>
               {% else %}
               <img class="card_image" src="{% static 'image/ironman.jpg' %}">
               {% endif %}
