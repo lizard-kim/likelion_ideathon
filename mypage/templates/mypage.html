@@ -124,9 +124,11 @@
         <a href="{% url 'detail' idea.id %}">
           <div class="card ideacard card_href" style="display: inline;">
             <div class="cardImg_board">
-              <!-- {% if idea.idea_image %} -->
-                  <img class="card_image" src="{{ idea.idea_image.url }}" height="100">
-              <!-- {% endif %} -->
+              {% if kk.image %}
+              <img class="card_image" src="{{kk.image.url}}"/>
+              {% else %}
+              <img class="card_image" src="{% static 'image/ironman.jpg' %}">
+              {% endif %}
             </div>
             <!--16:9-->
             <span class="idea_name">{{idea.idea_title}}</span>
@@ -145,25 +147,28 @@
       </div>
       <div class="basket content">
         {% if cart %}
-        {% for favorite in cart %}
-        {% if favorite.add_cart == True %}
-        <a href="{% url 'detail' favorite.idea.id %}">
-          <div class="card ideacard card_href" style="display: inline;">
-            <div class="cardImg_board">
-              <img class="card_image" src="{% static 'image/bg8.jpg' %}" />
-            </div>
-            <!--16:9-->
-            <span class="idea_name">{{favorite.idea.idea_title}}</span>
-            <p>{{favorite.idea.idea_subtitle}}</p>
-            <div class="user_div">
-              <hr />
-              <img class="cardprofile" src="{{favorite.idea.user_image}}" />{{favorite.idea.user}}
-              <i class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
-            </div>
-          </div>
-        </a>
-        {% endif %}
-        {% endfor %}
+          {% for favorite in cart %}
+            {% if favorite.add_cart == True %}
+            <a href="{% url 'detail' favorite.idea.id %}">
+              <div class="card ideacard card_href" style="display: inline;">
+                <div class="cardImg_board">
+                  {% if favorite.idea.idea_image %}
+                  <img class="card_image" src="{{favorite.idea.idea_image.url}}"/>
+                  {% else %}
+                  <img class="card_image" src="{% static 'image/ironman.jpg' %}">
+                  {% endif %}            </div>
+                <!--16:9-->
+                <span class="idea_name">{{favorite.idea.idea_title}}</span>
+                <p>{{favorite.idea.idea_subtitle}}</p>
+                <div class="user_div">
+                  <hr />
+                  <img class="cardprofile" src="{{favorite.idea.user_image}}" />{{favorite.idea.user}}
+                  <i class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+          {% endfor %}
         {% else %}
         <h3>담긴 아이디어가 없습니다.</h3>
         {% endif %}

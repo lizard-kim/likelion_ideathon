@@ -16,6 +16,8 @@ class Idea(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
 class Idea_image_storage(models.Model):
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="idea/%Y%m%d", null = True, blank = True)

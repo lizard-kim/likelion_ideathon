@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, get_list_or_404
 from accounts.models import Profile, Idea_Cart
 from django.contrib import auth
 from idea.models import Idea, Idea_Comments, Idea_AddComments, Idea_image_storage
@@ -9,6 +9,8 @@ def mypage(request):
     if request.user.is_authenticated == True:
         profile = get_object_or_404(Profile.objects.filter(email = request.user.email))
         myidea = Idea.objects.filter(user = request.user)
+        kk = Idea_image_storage.objects.filter(idea = myidea).first().get()
+        print(kk)
         comment = Idea_Comments.objects.filter(user = request.user).count()
         add_comment = Idea_AddComments.objects.filter(user = request.user).count()
         comment_all = comment + add_comment
@@ -23,7 +25,8 @@ def mypage(request):
             'comment_all' : comment_all, 
             'cart_all' : cart_all,
             'cart' : cart,
-            'form' : form
+            'form' : form,
+            'kk':kk,
             }
         )
     else:
