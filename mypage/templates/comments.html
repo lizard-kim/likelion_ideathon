@@ -7,13 +7,13 @@
 <head>
     <title>Like Lion Ideathon</title>
     <link href="{% sass_src 'style/detail.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% sass_src 'style/comments.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-
     <div class="container">
-
         <div class="header">
             <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
             <span class="menu">
@@ -28,11 +28,24 @@
             </span>
         </div>
     </div>
-    {% for i in comments %}
-    <p>글: {{i.idea.idea_title}}</p><br>
-    <p>댓글내용 : {{i.text |linebreaksbr}}</p><br>
 
-    <p>작성일 : {{i.create_data}}</p><br><br>
+    <p class="comment_list">댓글 목록</p><br>
+    <hr width="80%">
+
+    {% for i in comments %}
+    <div class="cards">
+        <div class="card">
+            <div class="card__header">
+                <p>{{i.idea.idea_title}} &nbsp; <p class="card__date">{{i.create_data}}</p></p>
+            </div>
+            <div class="card__contents">
+                <p>{{i.text |linebreaksbr |truncatewords:150 }}</p>
+            </div>
+            
+        </div>
+    </div>
+    <hr width="80%">
     {% endfor %}
+    
 </body>
 </html>
