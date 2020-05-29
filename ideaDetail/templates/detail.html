@@ -19,7 +19,7 @@
             <span class="menu">
                 {% if request.user.is_active %}
                 <a href="{% url 'mypage' %}">
-                    <span>{{user.user_name}}님</span>
+                    <span>{{current_user}}님</span>
                 </a>
                 <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
                 {% else %}
