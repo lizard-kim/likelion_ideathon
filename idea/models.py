@@ -28,7 +28,7 @@ class Idea_image_storage(models.Model):
         return str(self.idea_id)
 
 class Idea_Comments(models.Model):  # (어떤 유저의 어떤 아이디어에) 다른 유저가 다는 댓글들 저장
-    idea = models.ForeignKey(Idea, on_delete=models.CASCADE, null = True, blank = True)    # 어떤 유저의 어떤 아이디어에
+    idea = models.ForeignKey(Idea, on_delete=models.CASCADE, null = True, blank = True, related_name="comments")    # 어떤 유저의 어떤 아이디어에
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True, blank = True)    # 다른 유저가
     text = models.CharField(max_length = 200, null = True, blank = True)    # 작성하는 댓글
     create_data = models.DateTimeField(default = timezone.now) # 생성날짜
