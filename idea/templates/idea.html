@@ -85,11 +85,15 @@
   </div>
   <p class="idea_count">아이디어 <span class="idea_count__span">{{count}}</span>개</p>
   <div class="ideacards">
-    {% for idea in posts %}
+    {% for idea in ideas %}
     <a href="{% url 'detail' idea.id %}">
       <div class="card ideacard">
         <div class="cardImg_board">
-          <img class="card_image" src="{% static 'image/bg8.jpg' %}" />
+           {% if idea.image_thumbnail %}
+          <img class="card_image" src="{{idea.image_thumbnail.url}}"/>
+          {% else %}
+          <img class="card_image" src="{% static 'image/lion2.png' %}">
+          {% endif %}
         </div>
         <!--16:9-->
         <p class="idea_title">{{idea.idea_title}}</p>

@@ -3,13 +3,15 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from imagekit.models import ImageSpecField  # 썸네일 만들 수 있게 해줌
+from imagekit.processors import ResizeToFill  # 썸네일 크기 조정
 
 
 class Idea(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     idea_title = models.CharField(max_length=20, null=True, blank=True)
-    idea_subtitle = models.TextField(max_length=40, null=True, blank=True)
+    idea_subtitle = models.TextField(max_length=100, null=True, blank=True)
     idea_image = models.ImageField(
         upload_to="idea/%Y%m%d", null=True, blank=True)
     idea_description = models.TextField(max_length=500, null=True, blank=True)
@@ -17,6 +19,8 @@ class Idea(models.Model):
     idea_likecount = models.IntegerField(null=True, blank=True)
     idea_create_data = models.DateTimeField(
         default=timezone.now, null=True, blank=True)  # 생성날짜
+    image_thumbnail = ImageSpecField(
+        source='idea_image', processors=[ResizeToFill(300, 300)])
 
     def __str__(self):
         return str(self.id)
