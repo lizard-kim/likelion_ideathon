@@ -195,22 +195,35 @@ def delete(request, detail_id):
         idea_detail.delete()
         return redirect('idea')
     else:
+        messages.error(request, "본인 게시글이 아닙니다.")
         return redirect('/detail/'+ str(detail_id))
 
 def edit(request, detail_id):
     idea_detail = Idea.objects.get(pk = detail_id)
-    #idea_image = Idea_image_storage(pk = detail_id)
+    idea_image = Idea_image_storage.objects.all().filter(idea = idea_detail)
     
+    for image in idea_image:
+        image.delete()
+
     if request.method == 'POST':
         idea_detail.idea_title = request.POST['IdeaName']
         idea_detail.idea_subtitle = request.POST['IdeaSubtitle']
         idea_detail.idea_description = request.POST['IdeaContent']
-        idea_image.image = request.POST.get('images', False)
-        # idea_detail.idea_hashtag = request.POST['IdeaHashTag']
+        images = request.FILES.getlist('images')
         idea_detail.save()
+
+        for img in images:
+            newimage = Idea_image_storage.objects.create(
+                idea = idea_detail,
+                image = img
+            )
+
         return redirect('/detail/' + str(idea_detail.id))
     else:
-        return render(request, 'edit.html', {'idea_detail':idea_detail})
+        return render(request, 'edit.html', {
+            'idea_detail':idea_detail,
+            'idea_image' : idea_image
+        })
 
 # def comment_edit(request, comment_id, detail_id):
 #     idea_comment = Idea_Comments.objects.get(pk = comment_id)
