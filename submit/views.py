@@ -34,7 +34,8 @@ def submit(request):
                     idea_title = IdeaName,
                     idea_subtitle = IdeaSubtitle,
                     idea_description = IdeaContent,
-                    idea_likecount = 0
+                    idea_likecount = 0,
+                    idea_image = images[0],
                 )
             else:
                 return render(request, 'submit.html', {
