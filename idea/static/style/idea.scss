@@ -122,12 +122,12 @@ a{
     width: 100%;
     margin: 0 10%;
     padding-top: 4%;
-    display: inline-block;
+    display: inline-flex;
 }
 
 .ideacard {
-    display: inline-block;
-    @include w_h_size(23%, 390px);
+    width:300px;
+    height:390px;
     padding: 1% 1% 2% 1%;
     margin-left: 1%;
     margin-bottom:2%;
