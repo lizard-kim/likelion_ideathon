@@ -87,19 +87,22 @@
   </div>
   <div class="mypage">
     <div class="mypage__top">
-      <img src="{{profile.user_profile}}" />
+      {% if profile.user_image %}
+      <img class="mypage_profile_image" src="{{profile.user_image.url}}" alt="profile"/>
+      {% else %}
       <img src="{% static 'image/ironman.jpg' %}" />
+      {% endif %}
       <h3>{{profile.user_name}}</h3>
       <h6 class="email">{{profile.email}}</h6>
       <div class="icon">
         <i class="far fa-comment-dots fa-2x" style="color: black;"></i>
-        <a href="{% url 'comments' %}">
-          <h5 class="comment_num">{{comment_all}}</h5>
+        <a class="comment_num" href="{% url 'comments' %}">
+          <h5 >{{comment_all}}</h5>
         </a>
         <i class="fas fa-shopping-basket fa-2x"></i>
         <h5 class="basket_num">{{cart_all}}</h5>
         <div class="edit_button">
-          <i class="far fa-address-card"></i>
+          <i class="fas fa-cog fa-2x"></i>
         </div>
       </div>
     </div>
