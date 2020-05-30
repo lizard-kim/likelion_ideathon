@@ -42,7 +42,7 @@
         <div class="mypage">
             <div class="mypage__top">
                 <div class="profile_image_refer">
-                    {% if profile.user_image %}
+                    {% if idea_user.user_image %}
                     <img src="{{idea_user.user_image.url}}" class="mypage_profile_image" />
                     {% else %}
                     <img src="{% static 'img/4.png' %}" alt="아이디어 사진">
