@@ -1,10 +1,6 @@
 @import './layout';
 @import './typography';
 
-@mixin w_h_size($w, $h) {
-    width: $w;
-    height: $h;
-}
 
 html{
     ::-webkit-scrollbar { display: none; }
@@ -184,4 +180,3 @@ a{
 .cardprofile{
     margin-right: 5px;
 }
-
