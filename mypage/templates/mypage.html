@@ -91,8 +91,19 @@
   </div>
   <div class="mypage">
     <div class="mypage__top">
-      <img src="{{profile.user_profile}}" />
-      <img src="{% static 'image/ironman.jpg' %}" />
+
+      {% if profile.user_image %}
+      <img src= "{{profile.user_image.url}}" />
+      {% else %}
+      <img src="{% static 'img/4.png' %}" alt="아이디어 사진" >
+      {% endif %}
+
+      <form action="{% url 'image_edit' %}" method="POST" >
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*" />
+        <button type = "submit">제출</button>
+      </form>
+
       <h3>{{profile.user_name}}</h3>
       <h6 class="email">{{profile.email}}</h6>
       <div class="icon">
@@ -193,7 +204,7 @@
   </div>
 
   <div id="mypage_edit">
-    <form class="form" action="{% url 'mypage_edit' %}" method="POST">
+    <form class="form" action="{% url 'mypage_edit' %}" method="POST" >
       {% csrf_token %}
       <table class="edit">
         <input name="name" type="text" placeholder="이름을 바꿔주세요" value="{{profile.user_name}}"/><br />
@@ -201,6 +212,7 @@
         <input id="new_password" name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
         <input id="password_confirm" name="password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
         <input name="user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" value="{{profile.user_about}}"/>
+        <input type="file" name="image" accept="image/*" />
       </table>
       <br />
       <input class="submit_btn" type="submit" />
