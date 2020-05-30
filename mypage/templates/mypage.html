@@ -87,8 +87,11 @@
   </div>
   <div class="mypage">
     <div class="mypage__top">
-      <img src="{{profile.user_profile}}" />
+      {% if profile.user_image %}
+      <img class="mypage_profile_image" src="{{profile.user_image.url}}" alt="profile"/>
+      {% else %}
       <img src="{% static 'image/ironman.jpg' %}" />
+      {% endif %}
       <h3>{{profile.user_name}}</h3>
       <h6 class="email">{{profile.email}}</h6>
       <div class="icon">
