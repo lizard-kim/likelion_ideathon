@@ -98,9 +98,9 @@
         </a>
         <i class="fas fa-shopping-basket fa-2x"></i>
         <h5 class="basket_num">{{cart_all}}</h5>
-        <div class="edit_button">&emsp;&emsp;&emsp;
-          <i class="far fa-address-card fa-2x edit_button__i"></i>
-        </div>
+        <p class="edit_button">
+          <i class="fas fa-cog fa-2x"></i>
+        </p>
       </div>
     </div>
 
@@ -114,7 +114,7 @@
         <h6 class="title">Department</h6>
         <h6 class="description">{{profile.user_school}}</h6>
         <h6 class="title">About</h6>
-        <h6 class="description">{{profile.user_about|linebreaks}}</h6>
+        <h6 class="description">{{profile.user_about}}</h6>
         <h6 class="title">Contact</h6>
         <h6 class="description">{{profile.user_contact}}</h6>
       </div>
@@ -177,14 +177,14 @@
   </div>
 
   <div id="mypage_edit">
-    <form class="form" id="doesntSubmit" action="{% url 'mypage_edit' %}" method="POST">
+    <form class="form" action="{% url 'mypage_edit' %}" method="POST">
       {% csrf_token %}
       <table class="edit">
-        <input name="name" type="text" value="{{profile.user_name}}" /><br />
-        <input name="password" type="password" placeholder=" 비밀번호를 입력해주세요" /><br />
-        <input name="new_password" type="password" value="" placeholder=" 새로운 비밀번호를 입력해주세요" /><br />
-        <input name="password_confirm" type="password" value="" placeholder=" 비밀번호를 한 번 더 입력 부탁드립니다." /><br />
-        <textarea name="user_info" id="area" type="textarea" value="" rows="10" cols="87">{{profile.user_about}}</textarea>
+        <input name="name" type="text" placeholder="이름을 바꿔주세요" /><br />
+        <input name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
+        <input name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
+        <input name="password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
+        <input name="user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" />
       </table>
       <br />
       <input class="submit_btn" type="submit" />
@@ -217,16 +217,6 @@
         });
       });
     });
-    //enter치면 새로운 줄로 가도록
-    var area = document.getElementById('area');
-
-    document.getElementById('doesntSubmit').addEventListener('keydown', function (e) {
-      if (e.keyCode === 13 && e.target !== area) {
-        e.preventDefault();  
-      }
-    });
-
-    area.style.backgroundColor='#f5f5f5';
   </script>
 </body>
 
