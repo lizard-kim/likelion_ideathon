@@ -13,7 +13,6 @@
 <body>
 
     <div class="container">
-
         <div class="bright">
             <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
             <span class="menu">
@@ -29,23 +28,16 @@
         </div>
 
         <div class="content">
-            <div class="no">
-            </div>
-
             <div class="idea">
-
                 <div class='idea_container'>
-
                     <div class="title">
                         <div class="title_name">
                             <p>{{detail.idea_title}}</p>
                         </div>
-
                         <div class="title_sub">
                             <p>{{detail.idea_subtitle}}</p>
                         </div>
                     </div>
-
                     <div class="author_info">
                         {% if user == current_user %}
                         <a href="{% url 'mypage' %}">
@@ -56,7 +48,6 @@
                                 <div class="author_info_school">
                                     <p>{{user.user_school}}</p>
                                 </div>
-
                             </a>
 
                             {% if user == current_user %}
@@ -118,11 +109,6 @@
                             <div class="description_box_real" id="description">
                                 <h6>{{detail.idea_description}}</h6>
                             </div>
-                            <div class="description_box_more">
-                                {% if idea_desc_len > 380 %}
-                                <a href="javascript:showplay();" class="show_more" id="show_more">더보기</a>
-                                {% endif %}
-                            </div>
 
                         </div>
                     </div>
@@ -169,8 +155,6 @@
             </div>
         </div>
         <div class="comment">
-            <div class="no">
-            </div>
             <div class="comments">
                 <div class="comments_container">
                     <div class="comments_box">
@@ -458,25 +442,6 @@
 
     function comment_delete() {
         return confirm("삭제하시겠습니까 ?");
-    }
-
-
-    function showplay() {
-
-        const show_more = document.getElementById("show_more");
-        const text = document.getElementById("description");
-
-
-        let show_more_text = show_more.text;
-
-        if (show_more_text == "더보기") {
-            show_more.innerHTML = "닫기";
-            text.classList.add("description_box_real_show")
-        } else {
-            show_more.innerHTML = "더보기";
-            text.classList.remove("description_box_real_show")
-        }
-
     }
     
 

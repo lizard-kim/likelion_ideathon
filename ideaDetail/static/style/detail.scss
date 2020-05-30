@@ -60,29 +60,25 @@ p{
 }
 
 .container{
-    display : grid;
-    grid-template-areas: 'header'
-                         'content'
-                         'comment'
-                         'footer';
-    grid-auto-rows: auto;
-    max-height : auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
 }
 
 
 //여기부터 content
 .content{
-    display : grid;
-    grid-template-areas: 'no' 'idea' 'no';
-    grid-template-columns: 1.5fr 7fr 1.5fr;
-    grid-area : 'content';
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .idea{
-    grid-area : 'idea';
     background-color: white;
     display : flex;
     justify-content: center;
+    flex: 1;
     
     &_container{
         margin-top : 20px;  
@@ -200,17 +196,15 @@ p{
 .description{
     display : flex;
     justify-content: center;
+    flex: 1;
 
     &_box{
-
+        height: 100%;
         &_real{
-            display :-webkit-box;
-            -webkit-line-clamp: 10;
-            -webkit-box-orient: vertical;
             width : 800px;
             font-size : 10px;
             margin-bottom : 2%;
-            overflow:hidden;    // 잘린거 안보이게 
+            //overflow:hidden;    // 잘린거 안보이게 
             text-overflow: ellipsis;    // 잘린 텍스트 ...표기
             word-break: break-all;
             white-space: pre-wrap;
@@ -377,15 +371,12 @@ p{
 
 // 여기부터 comment
 .comment{
-    display : grid;
-    grid-template-areas: 'no' 'comments' 'no';
-    grid-template-columns: 1.5fr 7fr 1.5fr;
-    grid-area : 'comment';
+    display: flex;
+    flex-direction: column;
     margin-bottom : 3%;    
 }
 
 .comments{
-    grid-area : 'comments';
     display : flex;
     justify-content: center;
 
