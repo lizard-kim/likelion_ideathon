@@ -196,19 +196,23 @@ def subcomment(request, detail_id, comment_id):
 #         return render(request, 'detail.html' , {'comment' : comment})
 
 def delete(request, detail_id):
-    idea_detail = get_object_or_404(Idea, pk = detail_id)
-    
-    if request.user == idea_detail.user:
-        idea_detail.delete()
-        return redirect('idea')
+
+    if request.method == 'POST':
+
+        idea_detail = get_object_or_404(Idea, pk = detail_id)
+        
+        if request.user == idea_detail.user:
+            idea_detail.delete()
+            return redirect('idea')
+        else:
+            messages.error(request, "본인 게시글이 아닙니다.")
+            return redirect('/detail/'+ str(detail_id))
     else:
-        messages.error(request, "본인 게시글이 아닙니다.")
         return redirect('/detail/'+ str(detail_id))
 
 def edit(request, detail_id):
     idea_detail = Idea.objects.get(pk = detail_id)
     idea_image = Idea_image_storage.objects.all().filter(idea = idea_detail)
-
 
     if request.method == 'POST':
         idea_detail.idea_title = request.POST['IdeaName']

@@ -151,14 +151,10 @@
                             <!-- 로그인한 유저가 글 작성자라면 -->
                             {% if user == current_user %}
                             <div class="bot_box_edit">
-                                <form 
-                                action="{% url 'edit' detail.id %}"
-                                method=POST 
-                                class="bot_box_edit_box1"
-                            >
-                                {% csrf_token %}
-                                <input type="submit" value="수정">
-                            </form>
+
+                                <a href="{% url 'edit' detail.id %}" class="bot_box_edit_box1">
+                                    수정
+                                </a>
 
                                 <form 
                                     action="{% url 'delete' idea_detail.id %}" 
