@@ -43,6 +43,7 @@ def mypage_edit(request):
         cart = Idea_Cart.objects.filter(user = request.user) #카트유저가 지금 로그인한 유저와 같아
         cart_all = Idea_Cart.objects.filter( user = request.user, add_cart = True ).count()
         #profile = Profile.objects.get(email = request.user.email)
+        profile = request.FILES['profile']
         name = request.POST['name']
         password = request.POST['password']
         new_password = request.POST['new_password']
