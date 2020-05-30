@@ -98,12 +98,6 @@
       <img src="{% static 'img/4.png' %}" alt="아이디어 사진" >
       {% endif %}
 
-      <form action="{% url 'image_edit' %}" method="POST" >
-        {% csrf_token %}
-        <input type="file" name="image" accept="image/*" />
-        <button type = "submit">제출</button>
-      </form>
-
       <h3>{{profile.user_name}}</h3>
       <h6 class="email">{{profile.email}}</h6>
       <div class="icon">
@@ -204,7 +198,7 @@
   </div>
 
   <div id="mypage_edit">
-    <form class="form" action="{% url 'mypage_edit' %}" method="POST" >
+    <form class="form" action="{% url 'mypage_edit' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <table class="edit">
         <input name="name" type="text" placeholder="이름을 바꿔주세요" value="{{profile.user_name}}"/><br />

@@ -50,7 +50,7 @@ def mypage_edit(request):
             new_password = request.POST['new_password']
             password_confirm = request.POST['password_confirm']
             user_info = request.POST['user_info']
-            user_image = request.FILES['image']
+            user_image = request.FILES.get('image')
             user = request.user
 
             if check_password(password,user.password) and new_password == password_confirm:
