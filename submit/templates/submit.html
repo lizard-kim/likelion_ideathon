@@ -43,15 +43,15 @@
                     <label for="IdeaName">제목</label>
                 </div>
                 <div class="InputBox">
-                    <input type="text" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요."
-                        value="{{ idea_detail.idea_title}}" />
+                    <input type="text" id="inputTitle" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요." maxlength="20"
+                        value="" oninput="numberMaxLength(this);" />
                 </div>
                 <div>
                     <label for="IdeaName">서브 타이틀</label>
                 </div>
                 <div class="InputBox">
-                    <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글."
-                        value="{{ idea_detail.idea_subtitle}}" />
+                    <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글." maxlength="40"
+                        value="" oninput="numberMaxLength(this);" />
                 </div>
                 <div>
                     <label for="IdeaContent">설명</label>
@@ -62,12 +62,11 @@
                 </div>
                 <div>
                     <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
-                    <button type="submit" id="submitB">등록</button>
+                    <button class="submit" type="submit" id="submitB">등록</button>
                 </div>
             </section>
         </form>
     {% endblock %}
-    
     <script type="text/javascript">
     function checkSize(input) {
         if (input.files && input.files[0].size > (10 * 1024 * 1024)) {
@@ -75,6 +74,16 @@
             input.value = null;
         }
     }
+    $(document).ready(function(){
+        $(".submit").on("click", function(){
+            var test = $("#inputTitle").val()
+            if (!test){
+                alert("입력 바람")
+                return false
+            }
+        })
+    })
+
     </script>
     <script src="https://unpkg.com/swiper/js/swiper.js"></script>
     <script>
@@ -135,6 +144,12 @@
 
             // array with base64 strings
             return await Promise.all(promises);
+        }
+
+        function numberMaxLength(e) {
+            if (e.value.length > e.maxLength) {
+                e.value = e.value.slice(0, e.maxLength);
+            }
         }
     </script>
 </body>

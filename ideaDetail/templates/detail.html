@@ -133,6 +133,7 @@
                                             <input type=submit class="bot_box_cart_button" name="cart" value="장바구니 추가">
                                         </form>
 
+<<<<<<< HEAD
                                     {% endif %}
 
                                 {% endif %}
@@ -148,45 +149,52 @@
                                     </a>
                                 </div>
                                 {% endif %}
+=======
+                                <a href="{% url 'delete' detail.id %}" onclick = "idea_delete()" class="bot_box_edit_box2">
+                                    <p>삭제</p>
+                                </a>
+>>>>>>> 3e3517da251082bcaa5d6e7792347a21e208cbe6
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="comment">
-                <div class="no">
-                </div>
-                <div class="comments">
-                    <div class="comments_container">
-                        <div class="comments_box">
-                            <!-- 로그인 구현되면 로그인 한 유저로 바꿔야 함-->
-                            {% if request.user.is_authenticated %}
-                            <div class="comments_box_input">
-                                <div class="comments_box_input_start">
-                                    <div class="comments_box_input_start_image">
-                                        {% if current_user_profile.user_image %}
-                                        <img class="comments_box_input_start_image_real" src="{{current_user_profile.user_image.url}}"
-                                            width="25px" height="25px" alt = "유저사진">
-                                        {% else %}
-                                        <img class="comments_box_input_start_image_real" src="{% static 'img/4.png' %}"
-                                            width="25px" height="25px" alt = "유저사진">
-                                        {% endif %}
-                                    </div>
-                                    <div class="comments_box_input_start_school">
-                                        <p>{{current_user_profile.user_school}}</p>
-                                    </div>
-                                    <div class="comments_box_input_start_name">
-                                        <p>{{current_user_profile.user_name}}</p>
-                                    </div>
+        </div>
+        <div class="comment">
+            <div class="no">
+            </div>
+            <div class="comments">
+                <div class="comments_container">
+                    <div class="comments_box">
+                        <!-- 로그인 구현되면 로그인 한 유저로 바꿔야 함-->
+                        {% if request.user.is_authenticated %}
+                        <div class="comments_box_input">
+                            <div class="comments_box_input_start">
+                                <div class="comments_box_input_start_image">
+                                    {% if current_user_profile.user_image %}
+                                    <img class="comments_box_input_start_image_real" src="{{current_user_profile.user_image.url}}"
+                                        width="25px" height="25px" alt = "유저사진">
+                                    {% else %}
+                                    <img class="comments_box_input_start_image_real" src="{% static 'img/4.png' %}"
+                                        width="25px" height="25px" alt = "유저사진">
+                                    {% endif %}
+                                </div>
+                                <div class="comments_box_input_start_info">
+                                    {{current_user_profile.user_school}} &ensp;
+                                       {{current_user_profile.user_name}}
                                 </div>
 
-                                <form action="" class="comments_box_input_form" method=POST>
-                                    {% csrf_token %}
-                                    <input type="text" placeholder="아이디어에 대한 의견을 자유롭게 작성해주세요!" name="comment">
-                                    <button type=submit class="comments_box_input_form_button">
-                                        <p>제출</p>
-                                    </button>
-                                </form>
+                            <form action="" class="comments_box_input_form" method=POST>
+                                {% csrf_token %}
+                                <input 
+                                    type="text" 
+                                    placeholder="아이디어에 대한 의견을 자유롭게 작성해주세요!" 
+                                    name="comment"
+                                    maxlength="500">
+                                <button type=submit class="comments_box_input_form_button">
+                                    <p>제출</p>
+                                </button>
+                            </form>
 
                             </div>
                             {% endif %}
@@ -359,15 +367,17 @@
                                                         </div>
                                                     </div>
 
-                                                    {% if request.user %}
-                                                    <form action = "{% url 'subcomment' idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
-                                                        {% csrf_token %}
-                                                        <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name ="text" >
-                                                        <button type="submit" class = "new_comment_button">제출</button>
-                                                    </form>
-                                                    {% endif %}
-
-                                                </div>
+                                                {% if request.user %}
+                                                <form action = "{% url 'subcomment' idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
+                                                    {% csrf_token %}
+                                                    <input
+                                                        type = "text" 
+                                                        class = "new_comment_input" 
+                                                        placeholder = "댓글에 대한 답글을 입력해주세요" 
+                                                        name ="text"
+                                                        maxlength="200" >
+                                                    <button type="submit" class = "new_comment_button">제출</button>
+                                                </form>
                                                 {% endif %}
                                             
                                             </div>
@@ -427,11 +437,11 @@
     init();
 
     function idea_delete() {
-        confirm("세상을 바꿀 아이디어를 삭제하시겠습니까 ?");
+        return confirm("세상을 바꿀 아이디어를 삭제하시겠습니까 ?");
     }
 
     function comment_delete() {
-        confirm("삭제하시겠습니까 ?");
+        return confirm("삭제하시겠습니까 ?");
     }
 
 

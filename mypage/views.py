@@ -33,7 +33,15 @@ def mypage(request):
 
 def mypage_edit(request):
     if request.user.is_authenticated == True and request.method == 'POST':
-        profile = Profile(email = request.user.email)
+        #profile = Profile(email = request.user.email)
+        profile = get_object_or_404(Profile.objects.filter(email = request.user.email))
+        myidea = Idea.objects.filter(user = request.user)
+        kk = Idea_image_storage.objects.filter(idea = myidea)
+        comment = Idea_Comments.objects.filter(user = request.user).count()
+        add_comment = Idea_AddComments.objects.filter(user = request.user).count()
+        comment_all = comment + add_comment
+        cart = Idea_Cart.objects.filter(user = request.user) #카트유저가 지금 로그인한 유저와 같아
+        cart_all = Idea_Cart.objects.filter( user = request.user, add_cart = True ).count()
         #profile = Profile.objects.get(email = request.user.email)
         name = request.POST['name']
         password = request.POST['password']
@@ -47,12 +55,19 @@ def mypage_edit(request):
             user.user_name = name
             user.user_about = user_info
             user.save()     
-            
             auth.login(request, user)
             return redirect('../')
-        return render(request, 'mypageedit.html',{
-            'form' : form
-        })
+        else:
+            return render(request, 'mypage.html', {
+                'profile' : profile, 
+                'myidea' : myidea, 
+                'comment_all' : comment_all, 
+                'cart_all' : cart_all,
+                'cart' : cart,
+                'kk':kk,
+                'error' : "비밀번호가 틀렸습니다."
+                }
+            )            
 def comments(request):
     comment = Idea_Comments.objects.all().filter(user = request.user) #내가 단 댓글 불러옴
     add_comment = Idea_AddComments.objects.all().filter(user = request.user) #내가 단 대댓글 불러옴
