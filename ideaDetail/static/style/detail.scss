@@ -1,8 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import '../../../mypage/static/style/typography';
 
-body{
+html,body{
+    ::-webkit-scrollbar { display: none; }
     margin :0;
+}
+
+header{
+
+    width: 100%;
+    
+    flex-direction: row;
+    padding: 1% 0;
+    color: white;
+    align-items: center;
+
+    .logo{
+        width: 260px;
+        height: 31px;
+        left: 26px;
+        top: 30px;
+    }
+    a{  
+        color: white;
+        font-size: 20px;
+        margin: 10px;
+        text-decoration: none;
+    }
+    b{
+        color: white;
+    }
+    .menu{
+        float: right;
+    }
+}
+
+.bright{
+    @extend header;
+    
+
+    a{
+        color: black;
+    }
+    b{
+        color: black;
+    }
+    border-bottom: 1px solid #B8B8B8;
 }
 
 input, button, textarea, menu {
@@ -26,32 +69,6 @@ p{
     max-height : auto;
 }
 
-// 여기부터 헤더
-.header{
-    height : 40px;
-    grid-area : 'header';
-    padding-bottom: 10px;
-    padding-top: 10px;
-    border-bottom: 1px solid #B8B8B8;
-
-    .logo{
-        width: 260px;
-        height: 31px;
-        left: 26px;
-        top: 30px;
-    }
-
-    a{  
-        font-size: 20px;
-        margin: 10px;
-        color: black;
-        text-decoration: none;
-    }
-    
-    .menu{
-        float: right;
-    }
-}
 
 //여기부터 content
 .content{

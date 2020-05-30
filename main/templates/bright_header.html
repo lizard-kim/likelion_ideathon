@@ -1,0 +1,25 @@
+{% load static %} {% load sass_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% sass_src 'style/main.scss' %}" type="text/css" />
+</head>
+<body>
+    <header class="bright">
+        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}" />&nbsp;<b>IDEATHON</b></a>
+        <span class="menu">
+          {% if request.user.is_active %}
+          <a href="{% url 'mypage' %}">
+            <span>{{user.user_name}}님</span>
+          </a>
+          <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
+          {% else %}
+          <a href="{% url 'login' %}" title="로그인">Sign in</a>
+          {% endif %}
+        </span>
+    </header>
+    
+      {% block content %}
+      {% endblock %}
+</body>
+</html>

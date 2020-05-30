@@ -18,38 +18,13 @@ html {
     padding: 0;
     @include w_h_size(100%, auto);
     color: white;
+    ::-webkit-scrollbar { display: none; }
 }
 
-header {
-    background-color: none;
-    z-index: 1;
-    width: 99%;
-    padding: 15px 9px 9px 5px;
-    position: fixed;
-    color: white;
 
-    .logo {
-        width: 260px;
-        height: 31px;
-        left: 26px;
-        top: 30px;
-        float: left;
-        vertical-align: top;
-    }
-    a {
-        font-size: 20px;
-        margin: 10px;
-        color: white;
-        text-decoration: none;
-    }
-    .menu {
-        float: right;
-    }
-}
 
-.change {
-    background-color:rgba(0, 0, 0, .4);
-}
+
+
 .randImg {
     position: relative;
     display: flex;

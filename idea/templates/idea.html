@@ -44,74 +44,51 @@
 
 <body>
   <script>
-    $(window).scroll(function () {
-      var scroll = $(window).scrollTop();
-      //console.log(scroll);
-      if (scroll >= 500) {
-        //console.log('a');
-        $(".header").addClass("change");
-      } else {
-        //console.log('a');
-        $(".header").removeClass("change");
-      }
-    });
     var submit_check = document.getElementsByClassName("submit_btn");
-    submit_check.onclick() = function () {
-      console.log(submit_check);
-    };
+        submit_check.onclick() = function () {
+          console.log(submit_check);
+        };
   </script>
 
-  <header class="header" id="mainpage_header">
-    <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H_W.png' %}" />&nbsp;<b>IDEATHON</b></a>
+  {% include 'dark_header.html' %}
+  {% block content %}
 
-    <span class="menu">
-      {% if request.user.is_active %}
-      <a href="{% url 'mypage' %}">
-        <span>{{user.user_name}}님</span>
-      </a>
-      <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
-      {% else %}
-      <a href="{% url 'login' %}" title="로그인">Sign in</a>
-      {% endif %}
-    </span>
-  </header>
-
-  <div class="randImg">
-    <div class="go_submit">
-      <a href="{% url 'submit' %}">
-        <button class="submit_btn">submit</button>
-      </a>
-    </div>
-  </div>
-
-  <!--@brief: idea thumbnail 가지고 오기-->
-
-  <!--@todo: thumbnail image 가지고오기-->
-  <p class="idea_count">아이디어 <span class="idea_count__span">{{count}}</span>개</p>
-  <div class="ideacards">
-    {% for idea in ideas %}
-    <a href="{% url 'detail' idea.id %}">
-      <div class="card ideacard">
-        <div class="cardImg_board">
-          {% if idea.image_thumbnail %}
-          <img class="card_image" src="{{idea.image_thumbnail.url}}" />
-          {% else %}
-          <img class="card_image" src="{% static 'image/lion2.png' %}">
-          {% endif %}
-        </div>
-        <!--16:9-->
-        <p class="idea_title">{{idea.idea_title}}</p>
-        <p class="idea_subtitle">{{idea.idea_subtitle}}</p>
-        <div class="user_div">
-          <hr />
-          {{idea.user}}<i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
+      <div class="randImg">
+        <div class="go_submit">
+          <a href="{% url 'submit' %}">
+            <button class="submit_btn">submit</button>
+          </a>
         </div>
       </div>
-    </a>
-    {% endfor %}
-  </div>
-</body>
 
+      <!--@brief: idea thumbnail 가지고 오기-->
+
+      <!--@todo: thumbnail image 가지고오기-->
+      <p class="idea_count">아이디어 <span class="idea_count__span">{{count}}</span>개</p>
+      <div class="ideacards">
+        {% for idea in ideas %}
+        <a href="{% url 'detail' idea.id %}">
+          <div class="card ideacard">
+            <div class="cardImg_board">
+              {% if idea.image_thumbnail %}
+              <img class="card_image" src="{{idea.image_thumbnail.url}}" />
+              {% else %}
+              <img class="card_image" src="{% static 'image/lion2.png' %}">
+              {% endif %}
+            </div>
+            <!--16:9-->
+            <p class="idea_title">{{idea.idea_title}}</p>
+            <p class="idea_subtitle">{{idea.idea_subtitle}}</p>
+            <div class="user_div">
+              <hr />
+              {{idea.user}}<i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </body>
+  {% endblock %}
 {% include 'footer.html' %}
 
 </html>
