@@ -1,10 +1,7 @@
 @import './layout';
 @import './typography';
 
-@mixin w_h_size($w, $h) {
-    width: $w;
-    height: $h;
-}
+
 .mypage {
     align-items: center;
     width: 800px;
@@ -88,58 +85,96 @@
             display: none;
         }
 
-    }
+        
 
-    .ideacard {
-        width: 800px;
-        height: 200px;
-        background-color: #f5f5f5;
-        border-radius: 10px;
-        flex-direction: row;
-
-        &__thumbnail {
-            max-width: 300px;
-            min-width: 250px;
-            background: url(../image/iron_thumbnail.jpg) center center / cover no-repeat;
-            border: none;
-            border-radius: 10px 0 0 10px;
-        }
-
-        &__content {
-            padding-left: 12px;
-            justify-content: center;
-
-            .title {
-                color: black;
-            }
-
-            .subtitle {
-                color: #A0A0A0;
-            }
-        }
     }
 }
-
-.basket {
-    display: none;
+//@ brief: 내 아이디어 css 수정
+a{
+    text-decoration: none;
+}
+.myidea content{
+    width: 100%;
+    margin: 0 10%;
+    padding-top: 4%;
+    display: grid;
 }
 
-#mypage_edit{
-    display: none;
-}
-
-.myidea_ideacards{
-    display: inline-block;
-    float: center;
-    @include w_h_size(23%, 390px);
-    padding: 1% 1% 2% 1%;
-    margin-left: 1%;
-    margin-bottom:2%;
+.myidea_list{
+    display: inline-flex;
+    width: 266px;
+    height: 300px;
+    padding: 2px 2px 2px 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom:2px;
     border: none;
     background-color: #ffffff;
     position: relative;
     color: rgb(52, 52, 52);
 }
 
+.basket{
+    display: none;
+}
 
-//@import './mypage_mobile'
+.basket content{
+    width: 100%;
+    margin: 0 10%;
+    padding-top: 4%;
+    display: grid;
+}
+
+.basket_list{
+    margin-top:5%;
+    display: inline-flex;
+    width:266px;
+    height: 390px;
+    padding: 2px 2px 2px 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 2px;
+    border: none;
+    background-color: #ffffff;
+    position: relative;
+    color: rgb(52, 52, 52);
+}
+
+.cardImg_board {
+    background-color: #ffffff;
+    text-align: center;
+    background-position: center;
+    height: 200px;
+    text-align: center;
+}
+
+.card_image {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+}
+
+.title{
+    display:inline-block;
+}
+.idea_title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    outline: none;
+}
+.user_div{
+    display: inline-block;
+    outline: none;
+}
+.idea_subtitle{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    outline: none;
+}
+
+.cardprofile{
+    margin-right: 5px;
+}
+

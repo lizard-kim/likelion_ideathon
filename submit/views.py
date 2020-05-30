@@ -21,7 +21,6 @@ def submit(request):
             idea_hashtag = models.TextField(max_length=100,  blank = True)
             idea_likecount = models.IntegerField(null=True, blank = True)
             idea_create_data = models.DateTimeField(default = timezone.now) # 생성날짜
-
             idea = models.ForeignKey(Idea, on_delete=models.CASCADE)
             image = models.ImageField(upload_to="", null = True, blank = True)
             '''
