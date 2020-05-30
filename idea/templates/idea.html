@@ -106,20 +106,6 @@
     </a>
     {% endfor %}
   </div>
-
-  <!--<div class="pgn_div">
-    {% if posts.has_previous %}
-    <a href="?page=1" class="pgn">First</a>
-    <a href="?page={{posts.previous_page_number}}" class="pgn">Previous</a>
-    {% endif %}
-    <span class="pgn">{{posts.number}}</span>
-    <span class="pgn"> of </span>
-    <span class="pgn">{{posts.paginator.num_pages}}</span>
-    {% if posts.has_next %}
-    <a href="?page={{posts.next_page_number}}" class="pgn">Next</a>
-    <a href="?page={{posts.paginator.num_pages}}" class="pgn">Last</a>
-    {% endif %}
-  </div>-->
 </body>
 
 {% include 'footer.html' %}
