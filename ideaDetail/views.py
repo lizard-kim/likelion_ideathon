@@ -211,8 +211,6 @@ def edit(request, detail_id):
 
 
     if request.method == 'POST':
-        #file_change_check = request.POST.get('images', False)
-
         idea_detail.idea_title = request.POST['IdeaName']
         idea_detail.idea_subtitle = request.POST['IdeaSubtitle']
         idea_detail.idea_description = request.POST['IdeaContent']
@@ -223,6 +221,8 @@ def edit(request, detail_id):
 
         if images:
             idea_detail.idea_image = images[0]
+        else:
+            idea_detail.idea_image = None
 
         if idea_image:
             for elem in idea_image:

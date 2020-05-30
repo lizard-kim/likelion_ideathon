@@ -155,7 +155,7 @@
                                     <p>수정</p>
                                 </a>
 
-                                <a onclick = "idea_delete()" class="bot_box_edit_box2">
+                                <a href="{% url 'delete' detail.id %}" onclick = "idea_delete()" class="bot_box_edit_box2">
                                     <p>삭제</p>
                                 </a>
                             </div>
@@ -436,11 +436,11 @@
     init();
 
     function idea_delete() {
-        confirm("세상을 바꿀 아이디어를 삭제하시겠습니까 ?");
+        return confirm("세상을 바꿀 아이디어를 삭제하시겠습니까 ?");
     }
 
     function comment_delete() {
-        confirm("삭제하시겠습니까 ?");
+        return confirm("삭제하시겠습니까 ?");
     }
 
 

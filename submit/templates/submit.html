@@ -16,14 +16,14 @@
     <header id="submit_idea_header">
         <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}" />&nbsp;<b>IDEATHON</b></a>
         <span class="menu">
-        {% if request.user.is_active %}
-        <a href="{% url 'mypage' %}">
-            <span>{{user.user_name}}님</span>
-        </a>
-        <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
-        {% else %}
-        <a href="{% url 'login' %}" title="로그인">Sign in</a>
-        {% endif %}
+            {% if request.user.is_active %}
+            <a href="{% url 'mypage' %}">
+                <span>{{user.user_name}}님</span>
+            </a>
+            <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}" title="로그인">Sign in</a>
+            {% endif %}
         </span>
     </header>
     <form action="{% url 'submit' %}" method="POST" id="submit_form" enctype="multipart/form-data">
@@ -54,15 +54,15 @@
                 <label for="IdeaName">제목</label>
             </div>
             <div class="InputBox">
-                <input type="text" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요."
-                    value="{{ idea_detail.idea_title}}" />
+                <input type="text" id="inputTitle" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요." maxlength="20"
+                    value="" oninput="numberMaxLength(this);" />
             </div>
             <div>
                 <label for="IdeaName">서브 타이틀</label>
             </div>
             <div class="InputBox">
-                <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글."
-                    value="{{ idea_detail.idea_subtitle}}" />
+                <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글." maxlength="40"
+                    value="" oninput="numberMaxLength(this);" />
             </div>
             <div>
                 <label for="IdeaContent">설명</label>
@@ -73,7 +73,7 @@
             </div>
             <div>
                 <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
-                <button type="submit" id="submitB">등록</button>
+                <button class="submit" type="submit" id="submitB">등록</button>
             </div>
         </section>
     </form>
@@ -85,6 +85,16 @@
             input.value = null;
         }
     }
+    $(document).ready(function(){
+        $(".submit").on("click", function(){
+            var test = $("#inputTitle").val()
+            if (!test){
+                alert("입력 바람")
+                return false
+            }
+        })
+    })
+
     </script>
     <script src="https://unpkg.com/swiper/js/swiper.js"></script>
     <script>
@@ -145,6 +155,12 @@
 
             // array with base64 strings
             return await Promise.all(promises);
+        }
+
+        function numberMaxLength(e) {
+            if (e.value.length > e.maxLength) {
+                e.value = e.value.slice(0, e.maxLength);
+            }
         }
     </script>
 </body>
