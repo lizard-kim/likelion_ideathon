@@ -59,6 +59,12 @@
       border-bottom: 1px solid #ccc;
     }
 
+    input[type="file"] {
+      border: none;
+      background-color: #f5f6f8;
+      border-bottom: 1px solid #ccc;
+    }
+
     .form {
       text-align: center;
     }
@@ -73,134 +79,144 @@
       border-radius: 10px;
       margin-top: 10px;
     }
+
+    .profile_image {
+      text-align: center;
+
+    }
   </style>
 </head>
 
 <body>
   {% include 'bright_header.html' %}
   {% block content %}
-      <div class="mypage">
-        <div class="mypage__top">
+  <div class="mypage">
+    <div class="mypage__top">
 
-          {% if profile.user_image %}
-          <img src= "{{profile.user_image.url}}" />
-          {% else %}
-          <img src="{% static 'img/4.png' %}" alt="아이디어 사진" >
-          {% endif %}
+      {% if profile.user_image %}
+      <img src="{{profile.user_image.url}}" />
+      {% else %}
+      <img src="{% static 'img/4.png' %}" alt="아이디어 사진">
+      {% endif %}
 
-          <h3>{{profile.user_name}}</h3>
-          <h6 class="email">{{profile.email}}</h6>
-          <div class="icon">
-            <i class="far fa-comment-dots fa-2x" style="color: black;"></i>
-            <a href="{% url 'comments' %}">
-              <h5 class="comment_num">{{comment_all}}</h5>
-            </a>
-            <i class="fas fa-shopping-basket fa-2x"></i>
-            <h5 class="basket_num">{{cart_all}}</h5>
-            <p class="edit_button">
-              <i class="fas fa-cog fa-2x"></i>
-            </p>
-          </div>
-
-          <div class="mypage__bottom">
-            <div class="menu">
-              <h4 id="profile" class="menuelem menu__profile">프로필</h4>
-              <h4 id="myidea" class="menuelem menu__myidea">내 아이디어</h4>
-              <h4 id="basket" class="menuelem menu__basket">장바구니</h4>
-            </div>
-            <!--자기 프로필들-->
-            <div class="content profile">
-              <h6 class="title">Department</h6>
-              <h6 class="description">{{profile.user_school}}</h6>
-              <h6 class="title">About</h6>
-              <h6 class="description">{{profile.user_about}}</h6>
-              <h6 class="title">Contact</h6>
-              <h6 class="description">{{profile.user_contact}}</h6>
-            </div>
-
-            <!--내 아이디어 카드들-->
-            <div class="myidea content">
-              {% if myidea %}
-              {% for myidea in myidea %}
-              <a href="{% url 'detail' myidea.id %}">
-                <!--cardlist output-->
-                <div class="myidea_list">
-                  <div class="cardImg_board">
-                    {% if myidea.image_thumbnail %}
-                    <img class="card_image" src="{{myidea.image_thumbnail.url}}" />
-
-                    {% else %}
-                    <img class="card_image" src="{% static 'image/lion2.png' %}">
-                    {% endif %}
-                  </div>
-                  <!--16:9-->
-                  <p class="idea_title">{{myidea.idea_title}}</p>
-                  <p class="idea_subtitle">{{myidea.idea_subtitle}}</p>
-                  <div class="user_div">
-                    <hr />
-                    {{myidea.user}}<i class="far fa-comment">&nbsp;{{myidea.idea_likecount}}</i>
-                  </div>
-                </div>
-              </a>
-              {% endfor %}
-            </div>
-            {% else %}
-            <h3>올린 아이디어가 없습니다.</h3>
-            {% endif %}
-          </div>
-
-
-          <!-- @todo: basket이 full-width가 아님-->
-          <!-- @todo: basket이 초반에 display:none이 안됨-->
-
-          <div class="basket content">
-            {% if cart %}
-            {% for favorite in cart %}
-            {% if favorite.add_cart == True %}
-            <a href="{% url 'detail' favorite.idea.id %}">
-              <div class="basket_list">
-                <div class="cardImg_board">
-                  {% if favorite.idea.idea_image %}
-                  <img class="card_image" src="{{favorite.idea.image_thumbnail.url}}" />
-                  {% else %}
-                  <img class="card_image" src="{% static 'image/lion2.png' %}">
-                  {% endif %} </div>
-                <!--16:9-->
-                <div class="title">
-                  <p class="idea_title">{{favorite.idea.idea_title}}</p>
-                  <p class="idea_subtitle">{{favorite.idea.idea_subtitle}}</p>
-                </div>
-                <div class="user_div">
-                  <hr />
-                  <img class="cardprofile" src="{{favorite.idea.user_image}}" />{{favorite.idea.user}}
-                  <i class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
-                </div>
-              </div>
-            </a>
-            {% endif %}
-            {% endfor %}
-            {% else %}
-            <h3>담긴 아이디어가 없습니다.</h3>
-            {% endif %}
-          </div>
-        </div>
-        </div>
-
-      <div id="mypage_edit">
-        <form class="form" action="{% url 'mypage_edit' %}" method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <table class="edit">
-            <input name="name" type="text" placeholder="이름을 바꿔주세요" value="{{profile.user_name}}"/><br />
-            <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
-            <input id="new_password" name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
-            <input id="password_confirm" name="password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
-            <input name="user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" value="{{profile.user_about}}"/>
-            <input type="file" name="image" accept="image/*" />
-          </table>
-          <br />
-          <input class="submit_btn" type="submit" />
-        </form>
+      <h3>{{profile.user_name}}</h3>
+      <h6 class="email">{{profile.email}}</h6>
+      <div class="icon">
+        <i class="far fa-comment-dots fa-2x" style="color: black;"></i>
+        <a href="{% url 'comments' %}">
+          <h5 class="comment_num">{{comment_all}}</h5>
+        </a>
+        <i class="fas fa-shopping-basket fa-2x"></i>
+        <h5 class="basket_num">{{cart_all}}</h5>
+        <p class="edit_button">
+          <i class="fas fa-cog fa-2x"></i>
+        </p>
       </div>
+
+      <div class="mypage__bottom">
+        <div class="menu">
+          <h4 id="profile" class="menuelem menu__profile">프로필</h4>
+          <h4 id="myidea" class="menuelem menu__myidea">내 아이디어</h4>
+          <h4 id="basket" class="menuelem menu__basket">장바구니</h4>
+        </div>
+        <!--자기 프로필들-->
+        <div class="content profile">
+          <h6 class="title">Department</h6>
+          <h6 class="description">{{profile.user_school}}</h6>
+          <h6 class="title">About</h6>
+          <h6 class="description">{{profile.user_about}}</h6>
+          <h6 class="title">Contact</h6>
+          <h6 class="description">{{profile.user_contact}}</h6>
+        </div>
+
+        <!--내 아이디어 카드들-->
+        <div class="myidea content">
+          {% if myidea %}
+          {% for myidea in myidea %}
+          <a href="{% url 'detail' myidea.id %}">
+            <!--cardlist output-->
+            <div class="myidea_list">
+              <div class="cardImg_board">
+                {% if myidea.image_thumbnail %}
+                <img class="card_image" src="{{myidea.image_thumbnail.url}}" />
+
+                {% else %}
+                <img class="card_image" src="{% static 'image/lion2.png' %}">
+                {% endif %}
+              </div>
+              <!--16:9-->
+              <p class="idea_title">{{myidea.idea_title}}</p>
+              <p class="idea_subtitle">{{myidea.idea_subtitle}}</p>
+              <div class="user_div">
+                <hr />
+                {{myidea.user}}<i class="far fa-comment">&nbsp;{{myidea.idea_likecount}}</i>
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        {% else %}
+        <h3>올린 아이디어가 없습니다.</h3>
+        {% endif %}
+      </div>
+
+
+      <!-- @todo: basket이 full-width가 아님-->
+      <!-- @todo: basket이 초반에 display:none이 안됨-->
+
+      <div class="basket content">
+        {% if cart %}
+        {% for favorite in cart %}
+        {% if favorite.add_cart == True %}
+        <a href="{% url 'detail' favorite.idea.id %}">
+          <div class="basket_list">
+            <div class="cardImg_board">
+              {% if favorite.idea.idea_image %}
+              <img class="card_image" src="{{favorite.idea.image_thumbnail.url}}" />
+              {% else %}
+              <img class="card_image" src="{% static 'image/lion2.png' %}">
+              {% endif %} </div>
+            <!--16:9-->
+            <div class="title">
+              <p class="idea_title">{{favorite.idea.idea_title}}</p>
+              <p class="idea_subtitle">{{favorite.idea.idea_subtitle}}</p>
+            </div>
+            <div class="user_div">
+              <hr />
+              <img class="cardprofile" src="{{favorite.idea.user_image}}" />{{favorite.idea.user}}
+              <i class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
+            </div>
+          </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <h3>담긴 아이디어가 없습니다.</h3>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div id="mypage_edit">
+    <form class="form" action="{% url 'mypage_edit' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table class="edit">
+        <input name="name" type="text" placeholder="이름을 바꿔주세요" value="{{profile.user_name}}" /><br />
+        <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
+        <input id="new_password" name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
+        <input id="password_confirm" name="password_confirm" type="password" value=""
+          placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
+        <input name="user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100"
+          value="{{profile.user_about}}" />
+        <div class="profile_image">
+          <label for="image">프로필 사진 변경</label>
+          <input type="file" name="image" accept="image/*" />
+        </div>
+      </table>
+      <br />
+      <input class="submit_btn" type="submit" />
+    </form>
+  </div>
   {% endblock %}
   {% include 'footer.html' %}
 
@@ -231,14 +247,14 @@
       });
     });
     $(document).ready(function () {
-      $(".submit_btn").on("click", function(){
+      $(".submit_btn").on("click", function () {
         var password = $("#password").val()
         console.log(password)
-        if(!password){
+        if (!password) {
           alert("비밀번호를 입력해주세요")
           return false
         }
-        if($("#new_password").val() != $("#password_confirm").val()){
+        if ($("#new_password").val() != $("#password_confirm").val()) {
           alert("새 비밀번호를 다시 확인해주세요")
           return false
         }
@@ -246,7 +262,7 @@
     })
     $(document).ready(function () {
       var error = "{{error}}"
-      if(error){
+      if (error) {
         alert(error)
       }
     })
