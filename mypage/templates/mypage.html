@@ -147,7 +147,7 @@
             <p class="idea_subtitle">{{myidea.idea_subtitle}}</p>
             <div class="user_div">
               <hr />
-              {{myidea.user}}<i class="far fa-comment">&nbsp;{{myidea.idea_likecount}}</i>
+              {{myidea.user}}<i class="far fa-comment">&nbsp;{{myidea.comments.count}}</i>
             </div>
           </div>
         </a>
@@ -182,7 +182,7 @@
           <div class="user_div">
             <hr />
             <img class="cardprofile" src="{{favorite.idea.user_image}}" />{{favorite.idea.user}}
-            <i class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
+            <i class="far fa-comment">&nbsp;{{favorite.idea.comments.count}}</i>
           </div>
         </div>
       </a>
@@ -199,7 +199,7 @@
     <form class="form" action="{% url 'mypage_edit' %}" method="POST">
       {% csrf_token %}
       <table class="edit">
-        <input method="FILES" type="file" name="profile">
+        <input  type="file" name="profile_image">
         <input name="name" type="text" placeholder="이름을 바꿔주세요" value="{{profile.user_name}}"/><br />
         <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
         <input id="new_password" name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
