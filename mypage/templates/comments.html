@@ -13,39 +13,60 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
-            <span class="menu">
-                {% if request.user.is_active %}
-                <a href="{% url 'mypage' %}">
-                    <span>{{user.user_name}}님</span>
-                </a>
-                <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
-                {% else %}
-                <a href="{% url 'login' %}" title="로그인">Sign in</a>
-                {% endif %}
-            </span>
-        </div>
-    </div>
-
-    <p class="comment_list">댓글 목록</p><br>
-    <hr width="80%">
-
-    {% for i in comments %}
-    <div class="cards">
-        <div class="card">
-            <div class="card__header">
-                <p>{{i.idea.idea_title}} &nbsp; <p class="card__date">{{i.create_data}}</p></p>
-            </div>
-            <div class="card__contents">
-                <p>{{i.text |linebreaksbr |truncatewords:150 }}</p>
-            </div>
-            
-        </div>
-    </div>
-    <hr width="80%">
-    {% endfor %}
     
+    {% include 'bright_header.html' %}
+    
+    {% block content %}
+        <p class="comment_list">댓글 목록</p><br>
+        <hr width="80%">
+        
+            
+            {% for i in comment %} 
+             
+                <div class="cards">
+                    <div class="card">
+                        
+                            <a href="{% url 'detail' i.idea_id %}">
+                                <div class="card__header">
+                                    <p>{{i.idea.idea_title}} &nbsp; <p class="card__date">{{i.create_data}}</p></p>
+                                </div>
+                                <div class="card__contents">
+                                    <p>{{i.text |linebreaksbr |truncatewords:150 }}</p>
+                                </div>
+                            </a>
+                        
+                    </div>
+                </div>
+            
+                <hr width="80%">
+            {% endfor %}
+        <br><br><br>
+        <p class="comment_list">답글 목록</p><br>
+        <hr width="80%">
+            {% for i in add_comment %} 
+             
+                <div class="cards">
+                    <div class="card">
+                        <a href="{% url 'detail' i.idea_comments.idea_id %}">
+                        
+                            <div class="card__header">
+                                
+                                <p>{{i.idea_comments.idea.idea_title}} &nbsp; <p class="card__date">{{i.create_data}}</p></p>
+                                
+                            </div>
+                            <div class="card__contents">
+                                
+                                <p>{{i.text |linebreaksbr |truncatewords:150 }}</p>
+                                
+                            </div>
+                        </a>
+                        
+                    </div>
+                </div>
+            
+                <hr width="80%">
+            {% endfor %}
+            
+    {% endblock %}
 </body>
 </html>

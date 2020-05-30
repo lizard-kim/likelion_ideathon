@@ -13,71 +13,60 @@
 
 <body id="submit_body">
     <!-- submit idea page header -->
-    <header id="submit_idea_header">
-        <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}" />&nbsp;<b>IDEATHON</b></a>
-        <span class="menu">
-            {% if request.user.is_active %}
-            <a href="{% url 'mypage' %}">
-                <span>{{user.user_name}}님</span>
-            </a>
-            <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
-            {% else %}
-            <a href="{% url 'login' %}" title="로그인">Sign in</a>
-            {% endif %}
-        </span>
-    </header>
-    <form action="{% url 'submit' %}" method="POST" id="submit_form" enctype="multipart/form-data">
-        <section id="submit_left">
-            <!-- submit form -->
-            {% csrf_token %}
-            <!-- 왼쪽 섹션 -->
-            <!-- Swiper -->
-            <div class="filebox">
-                <label for="ex_file">업로드</label>
-                <input type="file" name="images" id="upImgFiles" accept="image/*" onchange="checkSize(this)" multiple />
-            </div>
-            <hr />
-            <!-- Slider main container -->
-            <div class="swiper-container">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper"></div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Arrows -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </section>
-        <!-- 오른쪽 섹션 -->
-        <section id="submit_right">
-            <div>
-                <label for="IdeaName">제목</label>
-            </div>
-            <div class="InputBox">
-                <input type="text" id="inputTitle" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요." maxlength="20"
-                    value="" oninput="numberMaxLength(this);" />
-            </div>
-            <div>
-                <label for="IdeaName">서브 타이틀</label>
-            </div>
-            <div class="InputBox">
-                <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글." maxlength="40"
-                    value="" oninput="numberMaxLength(this);" />
-            </div>
-            <div>
-                <label for="IdeaContent">설명</label>
-            </div>
-            <div>
-                <textarea class="InputTextArea" name="IdeaContent" placeholder="본인의 아이디어를 뽐내주세요!">
-{{ idea_detail.idea_description}}</textarea>
-            </div>
-            <div>
-                <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
-                <button class="submit" type="submit" id="submitB">등록</button>
-            </div>
-        </section>
-    </form>
-
+    {% include 'bright_header.html' %}
+    {% block content %}
+            <form action="{% url 'submit' %}" method="POST" id="submit_form" enctype="multipart/form-data">
+                <section id="submit_left">
+                    <!-- submit form -->
+                    {% csrf_token %}
+                    <!-- 왼쪽 섹션 -->
+                    <!-- Swiper -->
+                    <div class="filebox">
+                        <label for="ex_file">업로드</label>
+                        <input type="file" name="images" id="upImgFiles" accept="image/*" onchange="checkSize(this)" multiple />
+                    </div>
+                    <hr />
+                    <!-- Slider main container -->
+                    <div class="swiper-container">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper"></div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </section>
+                <!-- 오른쪽 섹션 -->
+                <section id="submit_right">
+                    <div>
+                        <label for="IdeaName">제목</label>
+                    </div>
+                    <div class="InputBox">
+                        <input type="text" id="inputTitle" class="InputText" name="IdeaName" placeholder="20자 이내로 입력해주세요." maxlength="20"
+                            value="" oninput="numberMaxLength(this);" />
+                    </div>
+                    <div>
+                        <label for="IdeaSubtitle">서브 타이틀</label>
+                    </div>
+                    <div class="InputBox">
+                        <input type="text" class="InputText" name="IdeaSubtitle" placeholder="간단한 한줄 소개글." maxlength="40"
+                            value="" oninput="numberMaxLength(this);" />
+                    </div>
+                    <div>
+                        <label for="IdeaContent">설명</label>
+                    </div>
+                    <div>
+                        <textarea class="InputTextArea" name="IdeaContent" placeholder="본인의 아이디어를 뽐내주세요!">
+        {{ idea_detail.idea_description}}</textarea>
+                    </div>
+                    <div>
+                        <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->
+                        <button class="submit" type="submit" id="submitB">등록</button>
+                    </div>
+                </section>
+            </form>
+    {% endblock %}
     <script type="text/javascript">
     function checkSize(input) {
         if (input.files && input.files[0].size > (10 * 1024 * 1024)) {

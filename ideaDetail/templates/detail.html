@@ -14,7 +14,7 @@
 
     <div class="container">
 
-        <div class="header">
+        <div class="bright">
             <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
             <span class="menu">
                 {% if request.user.is_active %}
@@ -151,13 +151,20 @@
                             <!-- 로그인한 유저가 글 작성자라면 -->
                             {% if user == current_user %}
                             <div class="bot_box_edit">
+
                                 <a href="{% url 'edit' detail.id %}" class="bot_box_edit_box1">
-                                    <p>수정</p>
+                                    수정
                                 </a>
 
-                                <a href="{% url 'delete' detail.id %}" onclick = "idea_delete()" class="bot_box_edit_box2">
-                                    <p>삭제</p>
-                                </a>
+                                <form 
+                                    action="{% url 'delete' idea_detail.id %}" 
+                                    method=POST 
+                                    class="bot_box_edit_box2"
+                                    onsubmit = "return idea_delete()"
+                                >
+                                    {% csrf_token %}
+                                    <input type="submit" value="삭제">
+                                </form>
                             </div>
                             {% endif %}
                         </div>
@@ -252,10 +259,16 @@
                                         <!-- 로그인한 유저가 댓글 작성자 or 글 작성자라면 -->
                                         <div class="comments_delete ">
                                             {% if request.user == comment.user %}
-                                            <a onclick = "comment_delete()" href="{% url 'comment_delete' detail.id comment.id %}"
-                                            class = "comments_delete_button">
-                                                <p>삭제</p>
-                                            </a>
+                                            <form 
+                                                action="{% url 'comment_delete' detail.id comment.id %}" 
+                                                method=POST 
+                                                class="comments_delete_button"
+                                                onsubmit = "return comment_delete()">
+                                                
+                                                {% csrf_token %}
+                                                <input type="submit" value="삭제">
+                                
+                                            </form>
                                             {% endif %}
                                         </div>
 
