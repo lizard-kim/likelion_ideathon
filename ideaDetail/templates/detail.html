@@ -118,9 +118,10 @@
                             <div class = "description_box_real" id = "description">
                                 <h6>{{detail.idea_description}}</h6>
                             </div>
-    
                             <div class = "description_box_more">
+                                {% if idea_desc_len > 380 %}
                                 <a href="javascript:showplay();" class="show_more" id="show_more">더보기</a>
+                                {% endif %}
                             </div>
 
                         </div>
@@ -264,8 +265,22 @@
                                                 {{comment.text |linebreaksbr}} <br>
                                             </div>
                                             <div class="comments_content_right">
+                                                {% for check in comment_check %}
+                                                {% if comment.id == check %}
+
+                                                {% getvalue add_comments_num check as num %}
+
+                                                {% if num %}
                                                 <button class="comments_content_right_button" type="menu"
-                                                    name="btn-comment">답글</button>
+                                                    name="btn-comment">답글 {{num}}개
+                                                </button>
+                                                {% else %}
+                                                <button class="comments_content_right_button" type="menu"
+                                                    name="btn-comment">답글
+                                                </button>
+                                                {% endif %}
+                                                {% endif %}
+                                                {% endfor %}
                                             </div>
                                         </div>
 
@@ -320,13 +335,6 @@
                                                             </div>
 
                                                         </div>
-
-                                                        <div class='add_comment_count'>
-                                                            <p style="white-space:nowrap;">
-                                                                답글 {% getvalue add_comments_num check %}개
-                                                            </p>
-                                                        </div>
-                                                    
                                                     </div>
                                                 
                                                 {% endif %}
