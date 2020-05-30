@@ -33,8 +33,10 @@ def mypage(request):
 
 def mypage_edit(request):
     if request.user.is_authenticated == True and request.method == 'POST':
+        
         #profile = Profile(email = request.user.email)
         profile = get_object_or_404(Profile.objects.filter(email = request.user.email))
+        profile.user_image.delete()
         myidea = Idea.objects.filter(user = request.user)
         kk = Idea_image_storage.objects.filter(idea = myidea)
         comment = Idea_Comments.objects.filter(user = request.user).count()

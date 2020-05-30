@@ -24,17 +24,18 @@
                     <div class="filebox">
                         <label for="ex_file">업로드</label>
                         <input type="file" name="images" id="upImgFiles" accept="image/*" onchange="checkSize(this)" multiple />
-                    </div>
-                    <hr />
-                    <!-- Slider main container -->
-                    <div class="swiper-container">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper"></div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination"></div>
-                        <!-- Add Arrows -->
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
+                    
+                        <hr />
+                        <!-- Slider main container -->
+                        <div class="swiper-container">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper"></div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
                     </div>
                 </section>
                 <!-- 오른쪽 섹션 -->
@@ -57,8 +58,7 @@
                         <label for="IdeaContent">설명</label>
                     </div>
                     <div>
-                        <textarea class="InputTextArea" name="IdeaContent" placeholder="본인의 아이디어를 뽐내주세요!">
-        {{ idea_detail.idea_description}}</textarea>
+                        <textarea class="InputTextArea" name="IdeaContent" placeholder="본인의 아이디어를 뽐내주세요!">{{ idea_detail.idea_description}}</textarea>
                     </div>
                     <div>
                         <!-- <a href="javascript:" class="my_button" onclick="submitAction();">upload</a> -->

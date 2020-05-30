@@ -95,6 +95,9 @@ html{
 //@ brief: 내 아이디어 css 수정
 a{
     text-decoration: none;
+    all : unset;
+    cursor: pointer;
+
 }
 .myidea content{
     width: 100%;
