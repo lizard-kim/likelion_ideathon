@@ -168,6 +168,7 @@ def detail(request, detail_id):
                     'user' : user,  # 아이디어 글 작성자
                     'idea_detail' : idea_detail,
                     'is_logined_user' : is_logined_user,    # 로그인 여부 확인 T/F
+                    'idea_desc_len' : idea_desc_len
                 }) 
 
 def subcomment(request, detail_id, comment_id):
