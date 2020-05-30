@@ -78,19 +78,23 @@
 
   <div class="randImg">
     <div class="go_submit">
-        <a href="{% url 'submit' %}">
-          <button class="submit_btn">submit</button>
-        </a>
+      <a href="{% url 'submit' %}">
+        <button class="submit_btn">submit</button>
+      </a>
     </div>
   </div>
+
+  <!--@brief: idea thumbnail 가지고 오기-->
+
+  <!--@todo: thumbnail image 가지고오기-->
   <p class="idea_count">아이디어 <span class="idea_count__span">{{count}}</span>개</p>
   <div class="ideacards">
     {% for idea in ideas %}
     <a href="{% url 'detail' idea.id %}">
       <div class="card ideacard">
         <div class="cardImg_board">
-           {% if idea.image_thumbnail %}
-          <img class="card_image" src="{{idea.image_thumbnail.url}}"/>
+          {% if idea.image_thumbnail %}
+          <img class="card_image" src="{{idea.image_thumbnail.url}}" />
           {% else %}
           <img class="card_image" src="{% static 'image/lion2.png' %}">
           {% endif %}
