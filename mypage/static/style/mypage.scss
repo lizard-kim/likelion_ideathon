@@ -1,10 +1,6 @@
 @import './layout';
 @import './typography';
 
-@mixin w_h_size($w, $h) {
-    width: $w;
-    height: $h;
-}
 
 .mypage {
     align-items: center;
@@ -94,20 +90,24 @@
     }
 }
 //@ brief: 내 아이디어 css 수정
-
+a{
+    text-decoration: none;
+}
 .myidea content{
     width: 100%;
     margin: 0 10%;
     padding-top: 4%;
-    display: inline-block;
+    display: grid;
 }
 
 .myidea_list{
-    display: inline-block;
-    @include w_h_size(23%, 390px);
-    padding: 1% 1% 2% 1%;
-    margin-left: 1%;
-    margin-bottom:2%;
+    display: inline-flex;
+    width: 266px;
+    height: 300px;
+    padding: 2px 2px 2px 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom:2px;
     border: none;
     background-color: #ffffff;
     position: relative;
@@ -122,17 +122,18 @@
     width: 100%;
     margin: 0 10%;
     padding-top: 4%;
-    display: inline-block;
+    display: grid;
 }
 
 .basket_list{
     margin-top:5%;
-    display: inline-block;
-    @include w_h_size(23%, 390px);
-    padding: 1% 1% 2% 1%;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-bottom:2%;
+    display: inline-flex;
+    width:266px;
+    height: 390px;
+    padding: 2px 2px 2px 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 2px;
     border: none;
     background-color: #ffffff;
     position: relative;
@@ -153,16 +154,27 @@
     vertical-align: middle;
 }
 
+.title{
+    display:inline-block;
+}
 .idea_title{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    outline: none;
 }
-
+.user_div{
+    display: inline-block;
+    outline: none;
+}
 .idea_subtitle{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    outline: none;
 }
 
+.cardprofile{
+    margin-right: 5px;
+}
 

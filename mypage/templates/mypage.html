@@ -171,8 +171,10 @@
             <img class="card_image" src="{% static 'image/lion2.png' %}">
             {% endif %} </div>
           <!--16:9-->
-          <p class="idea_title">{{favorite.idea.idea_title}}</p>
-          <p class="idea_subtitle">{{favorite.idea.idea_subtitle}}</p>
+          <div class="title">
+            <p class="idea_title">{{favorite.idea.idea_title}}</p>
+            <p class="idea_subtitle">{{favorite.idea.idea_subtitle}}</p>
+          </div>
           <div class="user_div">
             <hr />
             <img class="cardprofile" src="{{favorite.idea.user_image}}" />{{favorite.idea.user}}
