@@ -54,7 +54,8 @@ def mypage_edit(request):
             'form' : form
         })
 def comments(request):
-    comment = Idea_Comments.objects.all().filter(user = request.user)
-    add_comment = Idea_AddComments.objects.all().filter(user = request.user)
-    comments = comment.union(add_comment)
-    return render(request, 'comments.html', {'comments':comments})
+    comment = Idea_Comments.objects.all().filter(user = request.user) #내가 단 댓글 불러옴
+    add_comment = Idea_AddComments.objects.all().filter(user = request.user) #내가 단 대댓글 불러옴
+
+
+    return render(request, 'comments.html', {'comment':comment,'add_comment':add_comment})
