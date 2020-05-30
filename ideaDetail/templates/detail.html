@@ -192,7 +192,11 @@
 
                             <form action="" class="comments_box_input_form" method=POST>
                                 {% csrf_token %}
-                                <input type="text" placeholder="아이디어에 대한 의견을 자유롭게 작성해주세요!" name="comment">
+                                <input 
+                                    type="text" 
+                                    placeholder="아이디어에 대한 의견을 자유롭게 작성해주세요!" 
+                                    name="comment"
+                                    maxlength="500">
                                 <button type=submit class="comments_box_input_form_button">
                                     <p>제출</p>
                                 </button>
@@ -372,7 +376,12 @@
                                                 {% if request.user %}
                                                 <form action = "{% url 'subcomment' idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
                                                     {% csrf_token %}
-                                                    <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name ="text" >
+                                                    <input
+                                                        type = "text" 
+                                                        class = "new_comment_input" 
+                                                        placeholder = "댓글에 대한 답글을 입력해주세요" 
+                                                        name ="text"
+                                                        maxlength="200" >
                                                     <button type="submit" class = "new_comment_button">제출</button>
                                                 </form>
                                                 {% endif %}
