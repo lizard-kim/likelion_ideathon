@@ -54,7 +54,7 @@ header {
     position: relative;
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: 90%;
     background-image: url("../image/background.png");
     background-position: center left;
     background-repeat: repeat-x;
@@ -147,7 +147,6 @@ header {
 
 .ideacard {
     display: inline-block;
-    float: left;
     @include w_h_size(23%, 390px);
     padding: 1% 1% 2% 1%;
     margin-left: 1%;
