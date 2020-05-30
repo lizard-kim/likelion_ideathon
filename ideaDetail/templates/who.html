@@ -41,8 +41,15 @@
     {% block content %}
         <div class="mypage">
             <div class="mypage__top">
-                <img src="{{idea_user.user_profile}}">
-                <img src="{% static 'image/ironman.jpg' %}" />
+                <div class="profile_image_refer">
+                    {% if profile.user_image %}
+                    <img src="{{idea_user.user_image.url}}" class="mypage_profile_image" />
+                    {% else %}
+                    <img src="{% static 'img/4.png' %}" alt="아이디어 사진">
+                    {% endif %}
+                </div>
+                
+                
                 <h3> {{idea_user.user_name}} </h3>
                 <h6 class="email"> {{idea_user.email}} </h6>
             </div>
