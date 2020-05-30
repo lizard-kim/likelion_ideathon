@@ -33,8 +33,10 @@ def mypage(request):
 
 def mypage_edit(request):
     if request.user.is_authenticated == True and request.method == 'POST':
+        
         #profile = Profile(email = request.user.email)
         profile = get_object_or_404(Profile.objects.filter(email = request.user.email))
+        profile.user_image.delete()
         myidea = Idea.objects.filter(user = request.user)
         kk = Idea_image_storage.objects.filter(idea = myidea)
         comment = Idea_Comments.objects.filter(user = request.user).count()
@@ -43,7 +45,7 @@ def mypage_edit(request):
         cart = Idea_Cart.objects.filter(user = request.user) #카트유저가 지금 로그인한 유저와 같아
         cart_all = Idea_Cart.objects.filter( user = request.user, add_cart = True ).count()
         #profile = Profile.objects.get(email = request.user.email)
-        profile.user_image = request.POST.get('profile_image')
+        profile.user_image = request.POST['myimage']
         name = request.POST['name']
         password = request.POST['password']
         new_password = request.POST['new_password']
