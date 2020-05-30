@@ -6,30 +6,11 @@ html {
     height: 100%;
     overflow: hidden;
     font-family: 'Noto Sans', sans-serif;
+    ::-webkit-scrollbar { display: none; }
 }
 
 /* 앞으로의 모든 header들 */
-header {
-    margin: 20px;
 
-    .logo {
-        width: 260px;
-        height: 31px;
-        left: 26px;
-        top: 30px;
-    }
-
-    a {
-        font-size: 20px;
-        margin: 10px;
-        color: black;
-        text-decoration: none;
-    }
-
-    .menu {
-        float: right;
-    }
-}
 
 /* Main Page */
 #submit_body {
@@ -45,15 +26,7 @@ header {
 
 /* Submit Idea Page */
 
-#submit_idea_header {
-    @extend header;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left: 0;
-    margin-right: 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #B8B8B8;
-}
+
 
 #submit_form {
     font-size: 20px;

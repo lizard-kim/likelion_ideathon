@@ -2,6 +2,9 @@
 @import './typography';
 
 
+html{
+    ::-webkit-scrollbar { display: none; }
+}
 .mypage {
     align-items: center;
     width: 800px;
@@ -176,5 +179,12 @@ a{
 
 .cardprofile{
     margin-right: 5px;
+}
+
+.mypage_profile_image{
+    width:400px;
+    height:auto;
+    margin-top:30px;
+    margin-bottom:20px;
 }
 
