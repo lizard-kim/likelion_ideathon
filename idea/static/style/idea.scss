@@ -182,10 +182,20 @@ a.top {
     vertical-align: top;
     font-size: 20px;
     margin-bottom: 10px;
+    display :-webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow:hidden;    // 잘린거 안보이게 
+    text-overflow: ellipsis;    // 잘린 텍스트 ...표기
 }
 
 .idea_subtitle{
+    display :-webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
     text-align: center;
+    overflow:hidden;    // 잘린거 안보이게 
+    text-overflow: ellipsis;    // 잘린 텍스트 ...표기
 }
 
 .user_div {
