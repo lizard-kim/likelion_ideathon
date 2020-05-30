@@ -1,6 +1,10 @@
 @import './typography';
 @import './layout';
 
+html{
+    ::-webkit-scrollbar { display: none; }
+}
+
 .mypage {
     padding: 4% 8%;
 

@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import '../../../mypage/static/style/typography';
 
-body{
+html,body{
+    ::-webkit-scrollbar { display: none; }
     margin :0;
 }
 

@@ -6,6 +6,7 @@ html {
     height: 100%;
     overflow: hidden;
     font-family: 'Noto Sans', sans-serif;
+    ::-webkit-scrollbar { display: none; }
 }
 
 /* 앞으로의 모든 header들 */

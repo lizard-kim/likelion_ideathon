@@ -2,13 +2,18 @@
 @import '../../../mypage/static/style/typography';
 
 html{
-    
+    ::-webkit-scrollbar { display: none; }
     display: flex;
     flex-direction: column;
     margin: 0;
+    padding: 0;
     height: 100%;
     overflow: auto;
     font-family: 'Noto Sans', sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
 }
 /* 앞으로의 모든 header들 */
 header{
@@ -42,7 +47,7 @@ header{
 
 .dark{
     @extend header;
-    border: 10px;
+    
     a{
         color: white;
     }
@@ -53,14 +58,16 @@ header{
     
     z-index : 1;
     position: fixed;
-    align-items: center;
+    
+}
+
+.change {
+    background-color:rgba(0, 0, 0, .4);
 }
 
 .bright{
     @extend header;
-    margin-right : 10px;
-    margin-bottom : 10px;
-    margin-left : 10px;
+    
 
     a{
         color: black;

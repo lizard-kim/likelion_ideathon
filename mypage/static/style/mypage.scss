@@ -5,6 +5,10 @@
     width: $w;
     height: $h;
 }
+
+html{
+    ::-webkit-scrollbar { display: none; }
+}
 .mypage {
     align-items: center;
     width: 800px;
