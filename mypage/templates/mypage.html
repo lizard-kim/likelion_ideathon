@@ -205,9 +205,9 @@
       <table class="edit">
         <input name="name" type="text" placeholder="이름을 바꿔주세요" value="{{profile.user_name}}" /><br />
         <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
-        <input id="new_password" name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
+        <input id="new_password" name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" required/><br />
         <input id="password_confirm" name="password_confirm" type="password" value=""
-          placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
+          placeholder="비밀번호를 한 번 더 입력 부탁드립니다." required /><br />
         <input name="user_info" type="text" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100"
           value="{{profile.user_about}}" />
         <br />
