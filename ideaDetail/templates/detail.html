@@ -118,9 +118,10 @@
                             <div class = "description_box_real" id = "description">
                                 <h6>{{detail.idea_description}}</h6>
                             </div>
-    
                             <div class = "description_box_more">
+                                {% if idea_desc_len > 380 %}
                                 <a href="javascript:showplay();" class="show_more" id="show_more">더보기</a>
+                                {% endif %}
                             </div>
 
                         </div>
@@ -154,7 +155,7 @@
                                     <p>수정</p>
                                 </a>
 
-                                <a onclick = "idea_delete()" class="bot_box_edit_box2">
+                                <a href="{% url 'delete' detail.id %}" onclick = "idea_delete()" class="bot_box_edit_box2">
                                     <p>삭제</p>
                                 </a>
                             </div>
@@ -173,7 +174,11 @@
                         {% if request.user.is_authenticated %}
                             <form action="" class="comments_box_input_form" method=POST>
                                 {% csrf_token %}
-                                <input type="text" placeholder="아이디어에 대한 의견을 자유롭게 작성해주세요!" name="comment">
+                                <input 
+                                    type="text" 
+                                    placeholder="아이디어에 대한 의견을 자유롭게 작성해주세요!" 
+                                    name="comment"
+                                    maxlength="500">
                                 <button type=submit class="comments_box_input_form_button">
                                     <p>제출</p>
                                 </button>
@@ -249,8 +254,22 @@
                                                 {{comment.text |linebreaksbr}} <br>
                                             </div>
                                             <div class="comments_content_right">
+                                                {% for check in comment_check %}
+                                                {% if comment.id == check %}
+
+                                                {% getvalue add_comments_num check as num %}
+
+                                                {% if num %}
                                                 <button class="comments_content_right_button" type="menu"
-                                                    name="btn-comment">답글</button>
+                                                    name="btn-comment">답글 {{num}}개
+                                                </button>
+                                                {% else %}
+                                                <button class="comments_content_right_button" type="menu"
+                                                    name="btn-comment">답글
+                                                </button>
+                                                {% endif %}
+                                                {% endif %}
+                                                {% endfor %}
                                             </div>
                                         </div>
 
@@ -305,13 +324,6 @@
                                                             </div>
 
                                                         </div>
-
-                                                        <div class='add_comment_count'>
-                                                            <p style="white-space:nowrap;">
-                                                                답글 {% getvalue add_comments_num check %}개
-                                                            </p>
-                                                        </div>
-                                                    
                                                     </div>
                                                 
                                                 {% endif %}
@@ -347,7 +359,12 @@
                                                 {% if request.user %}
                                                 <form action = "{% url 'subcomment' idea_detail.id comment.id %}" class = "new_comment_form" method = POST>
                                                     {% csrf_token %}
-                                                    <input type = "text" class = "new_comment_input" placeholder = "댓글에 대한 답글을 입력해주세요" name ="text" >
+                                                    <input
+                                                        type = "text" 
+                                                        class = "new_comment_input" 
+                                                        placeholder = "댓글에 대한 답글을 입력해주세요" 
+                                                        name ="text"
+                                                        maxlength="200" >
                                                     <button type="submit" class = "new_comment_button">제출</button>
                                                 </form>
                                                 {% endif %}
@@ -411,11 +428,11 @@
     init();
 
     function idea_delete() {
-        confirm("세상을 바꿀 아이디어를 삭제하시겠습니까 ?");
+        return confirm("세상을 바꿀 아이디어를 삭제하시겠습니까 ?");
     }
 
     function comment_delete() {
-        confirm("삭제하시겠습니까 ?");
+        return confirm("삭제하시겠습니까 ?");
     }
 
 

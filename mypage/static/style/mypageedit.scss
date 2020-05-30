@@ -56,6 +56,7 @@
             display: none;
             text-decoration: none;
             color: black;
+            margin-left:0;
         }
 
         .fa-edit {
@@ -186,5 +187,12 @@
 }
 
 
+#edit_button:hover{
+    cursor: pointer;
+}
+.mypage:hover{
+    cursor: pointer;
+}
 
 @import './mypage_mobile'
+

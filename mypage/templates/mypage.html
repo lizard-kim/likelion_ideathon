@@ -101,9 +101,9 @@
         </a>
         <i class="fas fa-shopping-basket fa-2x"></i>
         <h5 class="basket_num">{{cart_all}}</h5>
-        <div class="edit_button">
+        <p class="edit_button">
           <i class="fas fa-cog fa-2x"></i>
-        </div>
+        </p>
       </div>
     </div>
 
@@ -183,11 +183,11 @@
     <form class="form" action="{% url 'mypage_edit' %}" method="POST">
       {% csrf_token %}
       <table class="edit">
-        <input name="name" type="text" placeholder="이름을 바꿔주세요" /><br />
-        <input name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
-        <input name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
-        <input name="password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
-        <input name="user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" />
+        <input name="name" type="text" placeholder="이름을 바꿔주세요" value="{{profile.user_name}}"/><br />
+        <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
+        <input id="new_password" name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
+        <input id="password_confirm" name="password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
+        <input name="user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" value="{{profile.user_about}}"/>
       </table>
       <br />
       <input class="submit_btn" type="submit" />
@@ -220,6 +220,26 @@
         });
       });
     });
+    $(document).ready(function () {
+      $(".submit_btn").on("click", function(){
+        var password = $("#password").val()
+        console.log(password)
+        if(!password){
+          alert("비밀번호를 입력해주세요")
+          return false
+        }
+        if($("#new_password").val() != $("#password_confirm").val()){
+          alert("새 비밀번호를 다시 확인해주세요")
+          return false
+        }
+      })
+    })
+    $(document).ready(function () {
+      var error = "{{error}}"
+      if(error){
+        alert(error)
+      }
+    })
   </script>
 </body>
 
