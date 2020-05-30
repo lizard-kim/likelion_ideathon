@@ -77,25 +77,40 @@
 </head>
 
 <body>
-  {% include 'bright_header.html' %}
-  {% block content %}
-    <div class="mypage">
-      <div class="mypage__top">
-        <img src="{{profile.user_profile}}" />
-        <!--<img src="{% static 'image/ironman.jpg' %}" />-->
-        <h3>{{profile.user_name}}</h3>
-        <h6 class="email">{{profile.email}}</h6>
-        <div class="icon">
-          <i class="far fa-comment-dots fa-2x" style="color: black;"></i>
-          <a href="{% url 'comments' %}">
-            <h5 class="comment_num">{{comment_all}}</h5>
-          </a>
-          <i class="fas fa-shopping-basket fa-2x"></i>
-          <h5 class="basket_num">{{cart_all}}</h5>
-          <p class="edit_button">
-            <i class="fas fa-cog fa-2x"></i>
-          </p>
-        </div>
+  <div class="header">
+    <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}" />&nbsp;<b>IDEATHON</b></a>
+    <span class="menu">
+      {% if request.user.is_active %}
+      <a href="{% url 'mypage' %}">
+        <span>{{user.user_name}}님</span>
+      </a>
+      <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
+      {% else %}
+      <a href="{% url 'login' %}" title="로그인">Sign in</a>
+      {% endif %}
+    </span>
+  </div>
+  <div class="mypage">
+    <div class="mypage__top">
+
+      {% if profile.user_image %}
+      <img src= "{{profile.user_image.url}}" />
+      {% else %}
+      <img src="{% static 'img/4.png' %}" alt="아이디어 사진" >
+      {% endif %}
+
+      <h3>{{profile.user_name}}</h3>
+      <h6 class="email">{{profile.email}}</h6>
+      <div class="icon">
+        <i class="far fa-comment-dots fa-2x" style="color: black;"></i>
+        <a href="{% url 'comments' %}">
+          <h5 class="comment_num">{{comment_all}}</h5>
+        </a>
+        <i class="fas fa-shopping-basket fa-2x"></i>
+        <h5 class="basket_num">{{cart_all}}</h5>
+        <p class="edit_button">
+          <i class="fas fa-cog fa-2x"></i>
+        </p>
       </div>
 
       <div class="mypage__bottom">
@@ -182,6 +197,7 @@
     </div>
     </div>
 
+<<<<<<< HEAD
     <div id="mypage_edit">
 
       <form class="form" action="{% url 'mypage_edit' %}" method="POST">
@@ -200,6 +216,23 @@
       </form>
     </div>
   {% endblock %}
+=======
+  <div id="mypage_edit">
+    <form class="form" action="{% url 'mypage_edit' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table class="edit">
+        <input name="name" type="text" placeholder="이름을 바꿔주세요" value="{{profile.user_name}}"/><br />
+        <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요" /><br />
+        <input id="new_password" name="new_password" type="password" value="" placeholder="새로운 비밀번호를 입력해주세요" /><br />
+        <input id="password_confirm" name="password_confirm" type="password" value="" placeholder="비밀번호를 한 번 더 입력 부탁드립니다." /><br />
+        <input name="user_info" type="textarea" placeholder="자기 소개 변경해주시면 됩니다" rows="1000" cols="100" value="{{profile.user_about}}"/>
+        <input type="file" name="image" accept="image/*" />
+      </table>
+      <br />
+      <input class="submit_btn" type="submit" />
+    </form>
+  </div>
+>>>>>>> 6c4474a42fa3a0d1536d98c6f87b1c0bcebc0018
   {% include 'footer.html' %}
 
   <script>
