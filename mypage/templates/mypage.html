@@ -134,29 +134,22 @@
         <!--내 아이디어 카드들-->
         <div class="myidea content">
           {% if myidea %}
-          {% for myidea in myidea %}
-          <a href="{% url 'detail' myidea.id %}">
-            <!--cardlist output-->
-            <div class="myidea_list">
+          {% for idea in myidea %}
+          <a href="{% url 'detail' idea.id %}" class="card_a">
+            <div class="card ideacard">
               <div class="cardImg_board">
-                {% if myidea.image_thumbnail %}
-                <img class="card_image" src="{{myidea.image_thumbnail.url}}" />
+                {% if idea.image_thumbnail %}
+                <img class="card_image" src="{{idea.image_thumbnail.url}}" />
                 {% else %}
                 <img class="card_image" src="{% static 'image/lion2.png' %}">
                 {% endif %}
               </div>
               <!--16:9-->
-              <div class = "idea_title">
-                {{myidea.idea_title}}
-              </div>
-              
-              <div class="idea_subtitle">
-                {{myidea.idea_subtitle}}
-              </div>
-              
+              <p class="idea_title">{{idea.idea_title}}</p>
+              <p class="idea_subtitle">{{idea.idea_subtitle}}</p>
               <div class="user_div">
                 <hr />
-                {{myidea.user}}<i class="far fa-comment">&nbsp;{{myidea.idea_likecount}}</i>
+                {{idea.user}}<i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
               </div>
             </div>
           </a>
