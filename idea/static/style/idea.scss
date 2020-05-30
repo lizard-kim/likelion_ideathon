@@ -164,18 +164,29 @@ a.top {
     margin-bottom: 10px;
     display :-webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
     overflow:hidden;    // 잘린거 안보이게 
-    text-overflow: ellipsis;    // 잘린 텍스트 ...표기
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break:break-all;
+    -webkit-line-clamp: 1; /* 라인수 */ 
+    -webkit-box-orient: vertical;
+
+    // 잘린 텍스트 ...표기
 }
 
 .idea_subtitle{
     display :-webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
     text-align: center;
     overflow:hidden;    // 잘린거 안보이게 
-    text-overflow: ellipsis;    // 잘린 텍스트 ...표기
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break:break-all;
+    -webkit-line-clamp: 1; /* 라인수 */ 
+    -webkit-box-orient: vertical;
+
+
+    // 잘린 텍스트 ...표기
 }
 
 .user_div {
@@ -239,3 +250,4 @@ hr {
         }
     }
 }
+
