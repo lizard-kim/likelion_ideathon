@@ -141,14 +141,19 @@
               <div class="cardImg_board">
                 {% if myidea.image_thumbnail %}
                 <img class="card_image" src="{{myidea.image_thumbnail.url}}" />
-
                 {% else %}
                 <img class="card_image" src="{% static 'image/lion2.png' %}">
                 {% endif %}
               </div>
               <!--16:9-->
-              <p class="idea_title">{{myidea.idea_title}}</p>
-              <p class="idea_subtitle">{{myidea.idea_subtitle}}</p>
+              <div class = "idea_title">
+                {{myidea.idea_title}}
+              </div>
+              
+              <div class="idea_subtitle">
+                {{myidea.idea_subtitle}}
+              </div>
+              
               <div class="user_div">
                 <hr />
                 {{myidea.user}}<i class="far fa-comment">&nbsp;{{myidea.idea_likecount}}</i>
@@ -177,7 +182,8 @@
               <img class="card_image" src="{{favorite.idea.image_thumbnail.url}}" />
               {% else %}
               <img class="card_image" src="{% static 'image/lion2.png' %}">
-              {% endif %} </div>
+              {% endif %}
+             </div>
             <!--16:9-->
             <div class="title">
               <p class="idea_title">{{favorite.idea.idea_title}}</p>
