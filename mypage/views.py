@@ -43,35 +43,57 @@ def mypage_edit(request):
         cart = Idea_Cart.objects.filter(user = request.user) #카트유저가 지금 로그인한 유저와 같아
         cart_all = Idea_Cart.objects.filter( user = request.user, add_cart = True ).count()
         #profile = Profile.objects.get(email = request.user.email)
-        profile.user_image = request.POST.get('profile_image')
-        name = request.POST['name']
-        password = request.POST['password']
-        new_password = request.POST['new_password']
-        password_confirm = request.POST['password_confirm']
-        user_info = request.POST['user_info']
-        user = request.user
 
-        if check_password(password,user.password) and new_password == password_confirm:
-            user.set_password(new_password)
-            user.user_name = name
-            user.user_about = user_info
-            user.save()     
-            auth.login(request, user)
-            return redirect('../')
-        else:
-            return render(request, 'mypage.html', {
-                'profile' : profile, 
-                'myidea' : myidea, 
-                'comment_all' : comment_all, 
-                'cart_all' : cart_all,
-                'cart' : cart,
-                'kk':kk,
-                'error' : "비밀번호가 틀렸습니다."
+        if request.method == 'POST':
+            name = request.POST['name']
+            password = request.POST['password']
+            new_password = request.POST['new_password']
+            password_confirm = request.POST['password_confirm']
+            user_info = request.POST['user_info']
+            user_image = request.FILES.get('image')
+            user = request.user
+
+            if check_password(password,user.password) and new_password == password_confirm:
+                user.set_password(new_password)
+                user.user_name = name
+                user.user_about = user_info
+                user.user_image = user_image
+                user.save()     
+                auth.login(request, user)
+
+                return redirect('../')
+            
+            else:
+                return render(request, 'mypage.html', {
+                    'profile' : profile, 
+                    'myidea' : myidea, 
+                    'comment_all' : comment_all, 
+                    'cart_all' : cart_all,
+                    'cart' : cart,
+                    'kk':kk,
+                    'error' : "비밀번호가 틀렸습니다."
                 }
+
             )            
 def comments(request):
-    comment = Idea_Comments.objects.all().filter(user = request.user) #내가 단 댓글 불러옴
-    add_comment = Idea_AddComments.objects.all().filter(user = request.user) #내가 단 대댓글 불러옴
+    comment = Idea_Comments.objects.all().filter(user = request.user)
+    add_comment = Idea_AddComments.objects.all().filter(user = request.user)
+    comments = comment.union(add_comment)
+    return render(request, 'comments.html', {'comments':comments})
 
+def image_edit(request):
 
-    return render(request, 'comments.html', {'comment':comment,'add_comment':add_comment})
+    user = request.user
+    profile = Profile.objects.get(email = user.email)
+
+    if request.method == 'POST':
+
+        profile.user_image = request.FILES['image']
+        profile.save()
+
+        return redirect('mypage')
+    else:
+        return render(request, 'mypage.html',{
+            'profile': profile,
+            'user' : user
+        })
