@@ -7,9 +7,18 @@ from django.core.paginator import Paginator
 from django.core.cache import cache
 
 def idea(request):
-    ideas = Idea.objects.all().order_by('-id')
-    count = ideas.count()
-    return render(request, 'idea.html', 
-        {'ideas':ideas, 
-        'count' : count,
-        })
+    if request.method == "POST":
+        ideas = Idea.objects.all().order_by('?')
+        count = ideas.count()
+        return render(request, 'idea.html', 
+            {'ideas':ideas, 
+            'count' : count,
+            })
+
+    else:
+        ideas = Idea.objects.all().order_by('-id')
+        count = ideas.count()
+        return render(request, 'idea.html', 
+            {'ideas':ideas, 
+            'count' : count,
+            })
