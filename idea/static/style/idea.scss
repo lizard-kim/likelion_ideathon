@@ -242,4 +242,52 @@ hr {
         }
     }
 }
+.idea_count{
+    margin-right: 100px;
+}
+.sorting{
+    float: right;
+    .sorting_btn{
+        background: rgb(243, 153, 38);
+        color: #fff;
+        border: none;
+        height: 40px;
+        width: 80px;
+        font-size: 20px;
+        //padding: 0 2em;
+        cursor: pointer;
+        transition: 800ms ease all;
+        outline: none;
+        border-radius: 10px;
+        margin-top: 10px;
+    
+    
+        &:hover {
+            background: #fff;
+            color: rgb(243, 153, 37);
+        }
+    
+        &:after{
+            right: inherit;
+            top: inherit;
+            left: 0;
+        }
+    
+        &:before, &:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            background: rgb(243, 153, 37);
+            transition: 400ms ease all;
+        }
+    
+        &:hover:before,&:hover:after{
+            width: 100%;
+            transition: 500ms ease all;
+        }
+    }
+}
+
 
