@@ -8,7 +8,7 @@
 
 <body>
   <header class="bright">
-    <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}" />&nbsp;<b>IDEATHON</b></a>
+    <a href="{% url 'idea' %}"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}" />&nbsp;<b>IDEATHON</b></a>
     <span class="menu">
       {% if request.user.is_active %}
       <a href="{% url 'mypage' %}">

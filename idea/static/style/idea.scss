@@ -246,7 +246,11 @@ hr {
     margin-right: 100px;
 }
 .sorting{
-    float: right;
+    //display: flex;
+    flex-direction: row;
+    //float: right;
+    display: inline-block;
+    
     .sorting_btn{
         background: rgb(243, 153, 38);
         color: #fff;
@@ -294,6 +298,11 @@ hr {
     display: flex;
     flex-direction: row;
     margin-left: 100px;
+    form{
+        margin:0;
+        padding:0;
+        display: inline;
+    }
 }
 
 .sorting_btn{
@@ -309,4 +318,5 @@ hr {
     outline: none;
     border-radius: 10px;
     margin-top: 10px;
+    margin-right: 10px;
 }
