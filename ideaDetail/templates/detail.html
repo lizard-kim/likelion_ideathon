@@ -14,7 +14,7 @@
 
     <div class="container">
         <div class="bright">
-            <a href="/"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
+            <a href="{% url 'idea' %}"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
             <span class="menu">
                 {% if request.user.is_active %}
                 <a href="{% url 'mypage' %}">
@@ -35,7 +35,7 @@
                             <p>{{detail.idea_title}}</p>
                         </div>
                         <div class="title_sub">
-                            <p>{{detail.idea_subtitle}}</p>
+                         <p>{{detail.idea_subtitle}}</p>
                         </div>
                     </div>
                     <div class="author_info">

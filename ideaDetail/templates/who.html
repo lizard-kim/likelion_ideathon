@@ -69,6 +69,34 @@
             </div>
         </div>
             
+        <!--프로필 아이디어도 불러와야 함-->
+        <!-- <div class="myidea content">
+            {% if myidea %}
+            {% for idea in myidea %}
+            <a href="{% url 'detail' idea.id %}" class="card_a">
+              <div class="card ideacard">
+                <div class="cardImg_board">
+                  {% if idea.image_thumbnail %}
+                  <img class="card_image" src="{{idea.image_thumbnail.url}}" />
+                  {% else %}
+                  <img class="card_image" src="{% static 'image/lion2.png' %}">
+                  {% endif %}
+                </div>
+                
+                <p class="idea_title">{{idea.idea_title}}</p>
+                <p class="idea_subtitle">{{idea.idea_subtitle}}</p>
+                <div class="user_div">
+                  <hr />
+                  {{idea.user}}<i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+          {% else %}
+          <h3>올린 아이디어가 없습니다.</h3>
+          {% endif %}
+        </div> -->
 
         {% include 'footer.html' %}
 

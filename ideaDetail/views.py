@@ -274,6 +274,7 @@ def addcomment_delete(request, addcomment_id, detail_id):
 def who(request, detail_id):
     idea_detail = Idea.objects.get(pk = detail_id)
     idea_user = idea_detail.user
+    
 
     if request.user.is_authenticated :
         current_user = request.user
