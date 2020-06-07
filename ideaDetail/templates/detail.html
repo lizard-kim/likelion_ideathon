@@ -293,6 +293,7 @@
                                                 <div class="add_comment">
 
                                                     {% for add_comment in add_comments %}
+                                                    <div class = "add_comment_con">
                                                     <div class="add_comment_author_info">
                                                         <div class="add_comment_author_info">
                                                             <p>{{add_comment.user.user_school}}
@@ -311,7 +312,7 @@
                                                     <div class="add_comment_content">
                                                         {{add_comment.text |linebreaksbr}}
                                                     </div>
-
+                                                </div>
                                                     {% endfor %}
 
                                                 </div>
