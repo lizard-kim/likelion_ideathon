@@ -295,10 +295,34 @@
                                                     {% for add_comment in add_comments %}
                                                     <div class = "add_comment_con">
                                                     <div class="add_comment_author_info">
-                                                        <div class="add_comment_author_info">
-                                                            <p>{{add_comment.user.user_school}}
-                                                                &ensp;{{add_comment.user.user_name}}</p>
+                                                        
+                                                        {% if add_comment.user.user_image%}
+                                                        <div class="add_comment_author_info_image">
+                                                            <img class="add_comment_author_info_image_real" 
+                                                                 src="{{add_comment.user.user_image.url}}"
+                                                                 width="25px"
+                                                                 height="25px" 
+                                                                alt="답글 유저사진">
                                                         </div>
+                                                        {% else %}
+                                                        <div class="add_comment_author_info_image">
+                                                        <img class="add_comment_author_info_image_real" 
+                                                             src="{% static 'img/4.png' %}"
+                                                             width="25px"
+                                                             height="25px" 
+                                                             alt="답글 유저사진">
+                                                        </div>
+                                                        </div>
+                                                        {% endif %}
+
+                                                        <div class="add_comment_author_info_school">
+                                                            <p>{{add_comment.user.user_school}}
+                                                        </div>
+
+                                                        <div class="add_comment_author_info_name">
+                                                            <p>{{add_comment.user.user_name}}</p>
+                                                        </div>
+                                                        
                                                         <!-- 답글 작성자 = 현재 로그인한 유저   -->
                                                         {% if add_comment.user == request.user %}
                                                         <div class="add_comment_author_info_delete">

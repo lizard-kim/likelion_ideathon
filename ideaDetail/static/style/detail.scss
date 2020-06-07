@@ -721,6 +721,10 @@ xf
             width : 25px;
             height : 25px;
             margin-right : 10px;
+
+            &_real{
+                border-radius: 10px;
+            }
         }
 
         &_name{
@@ -814,6 +818,10 @@ xf
             width : 25px;
             height : 25px;
             margin-right : 10px;
+
+            &_real{
+                border-radius: 10px;
+            }
         }
         
         &_name{
