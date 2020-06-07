@@ -112,7 +112,9 @@ a{
 }
 
 .container{
-    margin : 2% 7% 0 6%;
+    justify-content: space-between;
+    text-align: center;
+    margin : 2% 4%;
 }
 .ideacard {
     display: inline-block;
