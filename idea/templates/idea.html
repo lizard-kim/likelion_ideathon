@@ -1,4 +1,5 @@
-{% load sass_tags %} {% load static %}
+{% load sass_tags %} 
+{% load static %}
 <html>
 
 <head>
@@ -43,12 +44,6 @@
 </head>
 
 <body>
-  <script>
-    var submit_check = document.getElementsByClassName("submit_btn");
-        submit_check.onclick() = function () {
-          console.log(submit_check);
-        };
-  </script>
 
   {% include 'dark_header.html' %}
   {% block content %}
@@ -61,9 +56,6 @@
         </div>
       </div>
 
-      <!--@brief: idea thumbnail 가지고 오기-->
-
-      <!--@todo: thumbnail image 가지고오기-->
       <p class="idea_count">아이디어 <span class="idea_count__span">{{count}}</span>개
         <div class="sorting-wrap">
           <!--<span class = "sorting">-->
@@ -77,10 +69,13 @@
           <!--</span>-->
         </div>
       </p>
+
       <div class="ideacards">
+        <div class = "container">
+
         {% for idea in ideas %}
-        <a href="{% url 'detail' idea.id %}" class="card_a">
-          <div class="card ideacard">
+        <a href="{% url 'detail' idea.id %}">
+          <div class="ideacard">
             <div class="cardImg_board">
               {% if idea.image_thumbnail %}
               <img class="card_image" src="{{idea.image_thumbnail.url}}" />
@@ -89,18 +84,54 @@
               {% endif %}
             </div>
             <!--16:9-->
-            <p class="idea_title">{{idea.idea_title}}</p>
-            <p class="idea_subtitle">{{idea.idea_subtitle}}</p>
-            <div class="user_div">
-              <hr />
-              {{idea.user}}<i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
+            <div class="idea_title">
+              <div class = "idea_title_content">
+              <p>{{idea.idea_title}}</p>
+              </div>
             </div>
+
+            <div class="idea_subtitle">
+              <div class = "idea_subtitle_content">
+                <p>{{idea.idea_subtitle}}</p>
+              </div>
+            </div>
+            
+            <div class="user_div">
+
+              {% if user.user_image %}
+              <img class="user_div_image_real"
+                  src="{{user.user_image.url}}" width="25px" height="25px"
+                  alt="유저사진">
+              {% else %}
+              <img class="user_div_image_real" src="{% static 'img/4.png' %}"
+                  width="25px" height="25px" alt="유저사진">
+              {% endif %}
+
+              <div class = "user_div_school">
+                <p>{{idea.user.user_school}}</p>
+              </div>
+
+              <div class = "user_div_name">
+                <p>{{idea.user}}</p>
+              </div>
+
+              <div class = "user_div_comment">
+                <i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
+              </div>
+
+            </div>
+
           </div>
+
         </a>
+
         {% endfor %}
       </div>
-    </body>
-  {% endblock %}
+      </div>
+
+</body>
+
+{% endblock %}
 {% include 'footer.html' %}
 
 </html>
