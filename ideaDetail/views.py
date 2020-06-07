@@ -292,3 +292,15 @@ def who_comment(request, detail_id, comment_id):
         return render(request, "who_comment.html", {'comment_user':comment_user, 'current_user': current_user, 'comment_user_ideas':comment_user_ideas})
     else:
         return render(request,'signin.html')
+
+def who_addcomment(request, detail_id, add_comment_id):
+    add_comment = Idea_AddComments.objects.get(pk = add_comment_id)
+    add_comment_user = add_comment.user
+    add_comment_user_ideas = Idea.objects.filter(user = add_comment_user)
+
+    if request.user.is_authenticated :
+        current_user = request.user
+        return render(request, "who_addcomment.html", {'add_comment_user':add_comment_user, 'current_user': current_user, 'add_comment_user_ideas':add_comment_user_ideas})
+    else:
+        return render(request,'signin.html')
+    

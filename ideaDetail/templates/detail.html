@@ -304,8 +304,14 @@
                                                     {% for add_comment in add_comments %}
                                                     <div class="add_comment_author_info">
                                                         <div class="add_comment_author_info">
-                                                            <p>{{add_comment.user.user_school}}
-                                                                &ensp;{{add_comment.user.user_name}}</p>
+                                                            {% if add_comment.user == current_user %}
+                                                                <a href = "{% url 'mypage' %}">
+                                                            {% else %}
+                                                                <a href = "{% url 'who_addcomment' detail.id add_comment.id %}">
+                                                            {% endif %}
+                                                                    <p>{{add_comment.user.user_school}}
+                                                                        &ensp;{{add_comment.user.user_name}}</p>
+                                                                </a>
                                                         </div>
                                                         <!-- 답글 작성자 = 현재 로그인한 유저   -->
                                                         {% if add_comment.user == request.user %}

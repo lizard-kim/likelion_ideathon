@@ -1,0 +1,137 @@
+<!--@brief: js ready 함수 구현으로 인해 첫 페이지에 모든 text들이 다 rendering -->
+<!--@todo: js ready 함수에서 다른 함수로 변경-->
+
+<!DOCTYPE html>
+{% load sass_tags %} {% load static %}
+<html>
+
+<head>
+  <title>Like Lion Ideathon</title>
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/5220950911.js" crossorigin="anonymous"></script>
+  <!-- jquery -->
+
+  <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+    crossorigin="anonymous"></script>
+
+  <link href="{% sass_src 'style/mypage.scss' %}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="{% sass_src 'style/main.scss' %}" type="text/css" />
+  
+</head>
+
+<body>
+  {% include 'bright_header.html' %}
+  {% block content %}
+  <div class="mypage">
+    <div class="mypage__top">
+      <div class="profile_image_refer">
+        {% if add_comment_user.user_image %}
+        <img src="{{add_comment_user.user_image.url}}" class="mypage_profile_image" />
+        {% else %}
+        <img src="{% static 'img/4.png' %}" alt="아이디어 사진">
+        {% endif %}
+      </div>
+      <h3>{{add_comment_user.user_name}}</h3>
+      <h6 class="email">{{add_comment_user.email}}</h6>
+
+      <div class="mypage__bottom">
+        <div class="menu">
+          <h4 id="profile" class="menuelem menu__profile">프로필</h4>
+          <h4 id="myidea" class="menuelem menu__myidea">올린 아이디어</h4>
+        </div>
+        <!--자기 프로필들-->
+        <div class="content profile">
+          <h6 class="title">Department</h6>
+          <h6 class="description">{{add_comment_user.user_school}}</h6>
+          <h6 class="title">About</h6>
+          <h6 class="description">{{add_comment_user.user_about}}</h6>
+          <h6 class="title">Contact</h6>
+          <h6 class="description">{{add_comment_user.user_contact}}</h6>
+        </div>
+
+        <!--내 아이디어 카드들-->
+        <div class="myidea content">
+          {% if add_comment_user_ideas %}
+          {% for idea in add_comment_user_ideas %}
+          <a href="{% url 'detail' idea.id %}" class="card_a">
+            <div class="card ideacard">
+              <div class="cardImg_board">
+                {% if idea.image_thumbnail %}
+                <img class="card_image" src="{{idea.image_thumbnail.url}}" />
+                {% else %}
+                <img class="card_image" src="{% static 'image/lion2.png' %}">
+                {% endif %}
+              </div>
+              <!--16:9-->
+              <p class="idea_title">{{idea.idea_title}}</p>
+              <p class="idea_subtitle">{{idea.idea_subtitle}}</p>
+              <div class="user_div">
+                <hr />
+                {{idea.user}}<i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        {% else %}
+        <h3>올린 아이디어가 없습니다.</h3>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  
+  </div>
+  {% endblock %}
+  {% include 'footer.html' %}
+
+  <script>
+    $(document).ready(function () {
+      $(".menuelem").on("click", function (e) {
+        console.log(this.id);
+        var clickId = this.id;
+        $(".content").css({
+          display: "none",
+        });
+        $("." + clickId).css({
+          display: "block",
+        });
+        $("#mypage_edit").css({
+          display: "none",
+        });
+
+      });
+      $(".edit_button").on("click", function (e) {
+        var edit_info = document.getElementById("mypage_edit");
+        $(".content").css({
+          display: "none",
+        });
+        $("#mypage_edit").css({
+          display: "block",
+        });
+      });
+    });
+    $(document).ready(function () {
+      $(".submit_btn").on("click", function () {
+        var password = $("#password").val()
+        console.log(password)
+        if (!password) {
+          alert("비밀번호를 입력해주세요")
+          return false
+        }
+        if ($("#new_password").val() != $("#password_confirm").val()) {
+          alert("새 비밀번호를 다시 확인해주세요")
+          return false
+        }
+      })
+    })
+    $(document).ready(function () {
+      var error = "{{error}}"
+      if (error) {
+        alert(error)
+      }
+    })
+  </script>
+</body>
+
+</html>
