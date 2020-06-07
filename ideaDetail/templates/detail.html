@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="author_info">
-                        {% if user == current_user %}
+                        <!-- {% if user == current_user %}
                         <a href="{% url 'mypage' %}">
                             {% else %}
                             <a href="{% url 'who' idea_detail %}">
@@ -48,7 +48,7 @@
                                 <div class="author_info_school">
                                     <p>{{user.user_school}}</p>
                                 </div>
-                            </a>
+                            </a> -->
 
                             {% if user == current_user %}
                             <a href="{% url 'mypage' %}">
@@ -79,6 +79,7 @@
                                     <div class="author_info_time">
                                         <p>{{idea_detail.idea_create_data}}</p>
                                     </div>
+                                </a>
 
                     </div>
 
@@ -154,6 +155,7 @@
                 </div>
             </div>
         </div>
+
         <div class="comment">
             <div class="comments">
                 <div class="comments_container">
@@ -162,6 +164,7 @@
                         {% if request.user.is_authenticated %}
                         <div class="comments_box_input">
                             <div class="comments_box_input_start">
+
                                 <div class="comments_box_input_start_image">
                                     {% if current_user_profile.user_image %}
                                     <img class="comments_box_input_start_image_real"
@@ -172,10 +175,12 @@
                                         width="25px" height="25px" alt="유저사진">
                                     {% endif %}
                                 </div>
+
                                 <div class="comments_box_input_start_info">
                                     {{current_user_profile.user_school}} &ensp;
                                     {{current_user_profile.user_name}}
                                 </div>
+                                
                             </div>
 
                             <form action="" class="comments_box_input_form" method=POST>
@@ -216,21 +221,32 @@
                             <div class="comments_real">
 
                                 <div class="comments_author_info">
-                                    <!-- <div class="comments_author_info_image">
-                                            {% if comment.user.user_image %}
+                                    <a href = "{% url 'who_comment' detail.id comment.id %}">
+                                    <div class="comments_author_info_image">
+                                        {% if comment.user.user_image %}
+
                                             <img src="{{comment.user.user_image.url}}" class="comments_author_info_image_real"
                                                 width="25px" height="25px">
-                                            {% else %}
+                                        {% else %}
+
                                             <img src="{% static 'img/4.png' %}" class="comments_author_info_image_real"
                                                 width="25px" height="25px">
-                                            {% endif %}
-                                        </div> -->
 
-                                    <!-- 현재 로그인 한 유저-->
-                                    <div class="comments_author_info">
-                                        <p>{{comment.user.user_school}} &ensp; {{comment.user}}</p>
+                                        {% endif %}
                                     </div>
-                                    
+                                    </a>
+
+                                    <a href = "{% url 'who_comment' detail.id comment.id %}">
+                                    <div class="comments_author_info_school">
+                                        <p>{{comment.user.user_school}}</p>
+                                    </div>
+                                    </a>
+
+                                    <a href = "{% url 'who_comment' detail.id comment.id %}">
+                                        <div class="comments_author_info_name">
+                                            <p>{{comment.user}}</p>
+                                        </div>
+                                    </a>
 
                                     <!-- 로그인한 유저가 댓글 작성자 or 글 작성자라면 -->
                                     <div class="comments_delete ">
@@ -296,6 +312,7 @@
                                                     <div class = "add_comment_con">
                                                     <div class="add_comment_author_info">
                                                         
+                                                        <a href = "{% url 'who_addcomment' detail.id add_comment.id %}">
                                                         {% if add_comment.user.user_image%}
                                                         <div class="add_comment_author_info_image">
                                                             <img class="add_comment_author_info_image_real" 
@@ -312,16 +329,20 @@
                                                              height="25px" 
                                                              alt="답글 유저사진">
                                                         </div>
-                                                        </div>
                                                         {% endif %}
+                                                        </a>
 
+                                                        <a href = "{% url 'who_addcomment' detail.id add_comment.id %}">
                                                         <div class="add_comment_author_info_school">
                                                             <p>{{add_comment.user.user_school}}
                                                         </div>
+                                                        </a>
 
+                                                        <a href = "{% url 'who_addcomment' detail.id add_comment.id %}">
                                                         <div class="add_comment_author_info_name">
                                                             <p>{{add_comment.user.user_name}}</p>
                                                         </div>
+                                                        </a>
                                                         
                                                         <!-- 답글 작성자 = 현재 로그인한 유저   -->
                                                         {% if add_comment.user == request.user %}
@@ -353,10 +374,32 @@
                                         <div id="new_comment" class="new_comment" name="new_comment">
 
                                             <div class="new_comment_info">
-                                                <div class="new_comment_info">
-                                                    {% if current_user %}
-                                                    <p>{{current_user_profile.user_school}} &ensp; {{current_user_profile.user_name}}</p>
+                                                <div class="new_comment_info_image">
+                                                    {% if current_user.user_image%}
+                                                        <div class="new_comment_info_image">
+                                                            <img class="new_comment_info_image_real" 
+                                                                src="{{current_user.user_image.url}}"
+                                                                width="25px"
+                                                                height="25px" 
+                                                                alt="답글 유저사진">
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="new_comment_info_image">
+                                                            <img class="new_comment_info_image_real" 
+                                                                src="{% static 'img/4.png' %}"
+                                                                width="25px"
+                                                                height="25px" 
+                                                                alt="답글 유저사진">
+                                                        </div>
                                                     {% endif %}
+                                                </div>
+                                                
+                                                <div class="new_comment_info_school">
+                                                    <p>{{current_user_profile.user_school}}</p>
+                                                </div>
+                                                
+                                                <div class="new_comment_info_name">
+                                                    <p>{{current_user_profile.user_name}}</p>
                                                 </div>
                                             </div>
 

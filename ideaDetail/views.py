@@ -274,11 +274,33 @@ def addcomment_delete(request, addcomment_id, detail_id):
 def who(request, detail_id):
     idea_detail = Idea.objects.get(pk = detail_id)
     idea_user = idea_detail.user
-    
+    idea_user_ideas = Idea.objects.filter(user = idea_user)
 
     if request.user.is_authenticated :
         current_user = request.user
-        return render(request, "who.html", {'idea_user':idea_user ,'current_user':current_user})
+        return render(request, "who.html", {'idea_user':idea_user ,'current_user':current_user, 'idea_user_ideas' : idea_user_ideas})
     else:
         return render(request, 'signin.html')
 
+def who_comment(request, detail_id, comment_id):
+    comment = Idea_Comments.objects.get(pk = comment_id)
+    comment_user = comment.user
+    comment_user_ideas = Idea.objects.filter(user = comment_user)
+
+    if request.user.is_authenticated :
+        current_user = request.user
+        return render(request, "who_comment.html", {'comment_user':comment_user, 'current_user': current_user, 'comment_user_ideas':comment_user_ideas})
+    else:
+        return render(request,'signin.html')
+
+def who_addcomment(request, detail_id, add_comment_id):
+    add_comment = Idea_AddComments.objects.get(pk = add_comment_id)
+    add_comment_user = add_comment.user
+    add_comment_user_ideas = Idea.objects.filter(user = add_comment_user)
+
+    if request.user.is_authenticated :
+        current_user = request.user
+        return render(request, "who_addcomment.html", {'add_comment_user':add_comment_user, 'current_user': current_user, 'add_comment_user_ideas':add_comment_user_ideas})
+    else:
+        return render(request,'signin.html')
+    

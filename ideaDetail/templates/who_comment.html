@@ -25,14 +25,14 @@
   <div class="mypage">
     <div class="mypage__top">
       <div class="profile_image_refer">
-        {% if idea_user.user_image %}
-        <img src="{{idea_user.user_image.url}}" class="mypage_profile_image" />
+        {% if comment_user.user_image %}
+        <img src="{{comment_user.user_image.url}}" class="mypage_profile_image" />
         {% else %}
         <img src="{% static 'img/4.png' %}" alt="아이디어 사진">
         {% endif %}
       </div>
-      <h3>{{idea_user.user_name}}</h3>
-      <h6 class="email">{{idea_user.email}}</h6>
+      <h3>{{comment_user.user_name}}</h3>
+      <h6 class="email">{{comment_user.email}}</h6>
 
       <div class="mypage__bottom">
         <div class="menu">
@@ -42,17 +42,17 @@
         <!--자기 프로필들-->
         <div class="content profile">
           <h6 class="title">Department</h6>
-          <h6 class="description">{{idea_user.user_school}}</h6>
+          <h6 class="description">{{comment_user.user_school}}</h6>
           <h6 class="title">About</h6>
-          <h6 class="description">{{idea_user.user_about}}</h6>
+          <h6 class="description">{{comment_user.user_about}}</h6>
           <h6 class="title">Contact</h6>
-          <h6 class="description">{{idea_user.user_contact}}</h6>
+          <h6 class="description">{{comment_user.user_contact}}</h6>
         </div>
 
         <!--내 아이디어 카드들-->
         <div class="myidea content">
-          {% if idea_user_ideas %}
-          {% for idea in idea_user_ideas %}
+          {% if comment_user_ideas %}
+          {% for idea in comment_user_ideas %}
           <a href="{% url 'detail' idea.id %}" class="card_a">
             <div class="card ideacard">
               <div class="cardImg_board">
