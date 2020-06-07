@@ -203,10 +203,12 @@ a.top {
 
     &_school{
         margin-left: 3%;
+        max-width : 160px;
     }
 
     &_name{
-        margin-left: 3%;
+        margin-left: 1%;
+        max-width : 100px;
     }
 
     &_comment{
