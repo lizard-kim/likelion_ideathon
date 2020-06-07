@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="author_info">
-                        {% if user == current_user %}
+                        <!-- {% if user == current_user %}
                         <a href="{% url 'mypage' %}">
                             {% else %}
                             <a href="{% url 'who' idea_detail %}">
@@ -48,7 +48,7 @@
                                 <div class="author_info_school">
                                     <p>{{user.user_school}}</p>
                                 </div>
-                            </a>
+                            </a> -->
 
                             {% if user == current_user %}
                             <a href="{% url 'mypage' %}">
@@ -79,6 +79,7 @@
                                     <div class="author_info_time">
                                         <p>{{idea_detail.idea_create_data}}</p>
                                     </div>
+                                </a>
 
                     </div>
 
@@ -227,8 +228,16 @@
                                         </div> -->
 
                                     <!-- 현재 로그인 한 유저-->
+                                    
                                     <div class="comments_author_info">
-                                        <p>{{comment.user.user_school}} &ensp; {{comment.user}}</p>
+                                        {% if comment.user == current_user %}
+                                            <a href="{% url 'mypage' %}">
+                                        {% else %}
+                                            <a href = "{% url 'who_comment' detail.id comment.id %}">
+                                        {% endif %}
+                                                <p>{{comment.user.user_school}} &ensp; {{comment.user}}</p>
+                                            </a>
+                                        
                                     </div>
                                     
 

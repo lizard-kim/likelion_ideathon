@@ -282,3 +282,13 @@ def who(request, detail_id):
     else:
         return render(request, 'signin.html')
 
+def who_comment(request, detail_id, comment_id):
+    comment = Idea_Comments.objects.get(pk = comment_id)
+    comment_user = comment.user
+    comment_user_ideas = Idea.objects.filter(user = comment_user)
+
+    if request.user.is_authenticated :
+        current_user = request.user
+        return render(request, "who_comment.html", {'comment_user':comment_user, 'current_user': current_user, 'comment_user_ideas':comment_user_ideas})
+    else:
+        return render(request,'signin.html')
