@@ -98,9 +98,9 @@
             
             <div class="user_div">
 
-              {% if user.user_image %}
+              {% if idea.user.user_image %}
               <img class="user_div_image_real"
-                  src="{{user.user_image.url}}" width="25px" height="25px"
+                  src="{{idea.user.user_image.url}}" width="25px" height="25px"
                   alt="유저사진">
               {% else %}
               <img class="user_div_image_real" src="{% static 'img/4.png' %}"
