@@ -766,10 +766,11 @@ xf
 }
 
 .add_comment{
+    
     flex : none;
     max-height : auto;
     width : 640px;
-
+    
     &_con{
         border-left : 2px solid rgb(110, 110, 110);
         padding-left: 2%;
@@ -838,6 +839,7 @@ xf
                         }
         
         &_delete{
+            
             flex : none;
             width : 50px;
             margin-left : 2%;
