@@ -10,6 +10,6 @@ urlpatterns = [
     path('<int:detail_id>/delete', views.delete, name = "delete"),
     path('<int:detail_id>/edit', views.edit, name = "edit"),
     path('<int:detail_id>/who', views.who, name="who"),
-    path('<int:detail_id>/<int:comment_id>/who', views.who_comment, name="who_comment"),
-    path('<int:detail_id>/<int:addcomment_id>/who', views.who_addcomment, name="who_addcomment"),
+    path('<int:detail_id>/<int:comment_id>/whocomment', views.who_comment, name="who_comment"),
+    path('<int:detail_id>/<int:addcomment_id>/whoadd', views.who_addcomment, name="who_addcomment"),
 ]
