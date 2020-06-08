@@ -293,8 +293,8 @@ def who_comment(request, detail_id, comment_id):
     else:
         return render(request,'signin.html')
 
-def who_addcomment(request, detail_id, add_comment_id):
-    add_comment = Idea_AddComments.objects.get(pk = add_comment_id)
+def who_addcomment(request, detail_id, addcomment_id):
+    add_comment = Idea_AddComments.objects.get(pk = addcomment_id)
     add_comment_user = add_comment.user
     add_comment_user_ideas = Idea.objects.filter(user = add_comment_user)
 
