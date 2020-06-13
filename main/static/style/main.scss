@@ -1,86 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import './typography';
-
-html{
-    ::-webkit-scrollbar { display: none; }
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: auto;
-    font-family: 'Noto Sans', sans-serif;
-}
-body{
-    margin: 0;
-    padding: 0;
-}
-/* 앞으로의 모든 header들 */
-header{
-
-    width: 100%;
-    
-    flex-direction: row;
-    padding: 1% 0;
-    color: white;
-    align-items: center;
-
-    .logo{
-        width: 260px;
-        height: 31px;
-        left: 26px;
-        top: 30px;
-    }
-    a{  
-        color: white;
-        font-size: 20px;
-        margin: 10px;
-        text-decoration: none;
-    }
-    b{
-        color: white;
-    }
-    .menu{
-        float: right;
-    }
-}
-
-.dark{
-    @extend header;
-    
-    a{
-        color: white;
-    }
-    b{
-        color: white;
-    }
-    background-color:rgba(0, 0, 0, .4);
-    
-    z-index : 1;
-    position: fixed;
-    
-}
-
-.change {
-    background-color:rgba(0, 0, 0, .4);
-}
-
-.bright{
-    @extend header;
-    
-
-    a{
-        color: black;
-    }
-    b{
-        color: black;
-    }
-    border-bottom: 1px solid #B8B8B8;
-}
+@import './layout';
 
 /* Main Page */
-#main_body{
-    display: flex;
+.main_body{
     flex-direction: column;
     height: 100%;
     background-image: url(../img/hackerthon.png);
@@ -93,7 +16,6 @@ header{
 }
 
 .main_section{
-    display: flex;
     flex-direction: column;
     /*height: 100%;*/
     margin: auto;
