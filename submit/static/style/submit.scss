@@ -1,32 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-@import '../../../mypage/static/style/typography';
-
-html {
-    margin: 0;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Noto Sans', sans-serif;
-    ::-webkit-scrollbar { display: none; }
-}
-
-/* 앞으로의 모든 header들 */
-
-
-/* Main Page */
-#submit_body {
-    height: 100%;
-    //background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(img/hackerthon.jpg);
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    //background-color: black;
-    /*background-size: 100%;*/
-    background-repeat: no-repeat;
-}
+@import '../../../main/static/style/typography';
+@import '../../../main/static/style/layout';
 
 /* Submit Idea Page */
-
-
+div{
+    display: block;
+    flex-direction: row;
+}
 
 #submit_form {
     font-size: 20px;

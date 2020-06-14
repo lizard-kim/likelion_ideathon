@@ -1,10 +1,11 @@
-@import './layout';
 @import '../../../main/static/style/typography';
+@import '../../../main/static/style/layout';
 
-
-html{
-    ::-webkit-scrollbar { display: none; }
+@mixin w_h_size($w, $h) {
+    width: $w;
+    height: $h;
 }
+
 .mypage {
     align-items: center;
     width: 800px;
@@ -16,7 +17,12 @@ html{
         align-items: center;
         border-bottom: 1px solid #A0A0A0;
         padding-bottom: 30px;
-
+        a{
+            text-decoration: none;
+            all : unset;
+            cursor: pointer;
+        
+        }
         img {
             width: 250px;
         }
@@ -48,6 +54,7 @@ html{
         flex: 1;
         flex-direction: column;
 
+        //menu bar layout
         .menu {
             width: 800px;
             justify-content: center;
@@ -65,110 +72,282 @@ html{
             }
         }
 
-        .content {
-            margin: 40px 0;
-            min-height: 400px;
-
-            .title {
-                color: #6B6B6B;
-                margin-bottom: 4px;
-            }
-
-            .description {
-                margin-bottom: 16px;
-            }
+        .title {
+            color: #6B6B6B;
+            margin-bottom: 4px;
         }
 
-        .myidea {
-            flex: 1;
-            flex-direction: column;
+        .description {
+            margin-bottom: 16px;
         }
-
-        .myidea {
-            display: none;
-        }
-
-        
-
     }
 }
+
+.profile{
+    margin: 40px 0;
+    min-height: 400px;
+}
+
+.myidea {
+    display: none;
+    margin: 40px 0;
+    min-height: 400px;
+    text-align: center;
+    .ideacard {
+        display: inline-block;
+        width: 298px;
+        height:380px;
+        padding: 1% 0% 0% 0%;
+        margin: 0 1%;
+        margin-bottom:2%;
+        border: none;
+        background-color: #ffffff;
+        position: relative;
+        color: rgb(52, 52, 52);
+        box-shadow: 3px 3px 3px 3px rgba(209, 209, 209, 0.65);
+    
+        &:hover{
+            background-color: rgba(224, 224, 224, 0.281);
+        }
+    }
+    
+    .cardImg_board {
+        display: block;
+        background-position: center;
+        height: 200px;
+        text-align: center;
+    }
+    
+    
+    .card_image {
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+    }
+    
+    a.top {
+        margin-left: 50%;
+        display: none;
+    }
+    
+    .idea_title {
+        font-size: 20px;
+        text-align: center;
+        word-break: break-all;
+        word-wrap: normal;
+        margin-top: 10px;
+        height : 60px;
+        padding : 0 1% 0 1%;
+    
+        &_content{
+            display : flex;
+            align-items: center;
+            justify-content: center;
+            height : 60px;
+        }
+    }
+    
+    .idea_subtitle{
+        display : block;
+        text-align: center;
+        word-break: break-all;
+        word-wrap: normal;
+        height : 40px;
+        margin : 0px 0px 20px 0px;
+        color : rgb(94, 94, 94);
+        padding : 0 1% 0 1%;
+    
+        &_content{
+            display : flex;
+            align-items: center;
+            justify-content: center;
+            height : 40px;
+        }
+    }
+    
+    .user_div {
+        display : flex;
+        flex-direction: row;
+        position : relative;
+        padding: 10px;
+        height: 30px;
+        border-top:1px solid rgb(177, 177, 177);
+        p{
+            margin: 0;
+        }
+        &_image_real{
+            border-radius: 10px ;
+            width: 25px;
+            height: 25px;
+        }
+    
+        &_school{
+            margin-left: 3%;
+            max-width : 160px;
+            justify-content: center;
+        }
+    
+        &_name{
+            margin-left: 1%;
+            max-width : 100px;
+            justify-content: center;
+        }
+    
+        &_comment{
+            margin-left : auto;
+            justify-content: center;
+        }
+    }
+    
+    .cardprofile {
+        @include w_h_size(33px, 33px);
+        vertical-align: middle;
+        margin: 3px 5px 0px -1px;
+    }
+    
+    .fa-comment {
+        float: right;
+        margin : 4px 12px 0 0;
+    }
+    
+    .idea_count{
+        margin-right: 100px;
+    }
+
+}
+
 //@ brief: 내 아이디어 css 수정
-a{
-    text-decoration: none;
-    all : unset;
-    cursor: pointer;
-
-}
-.myidea content{
-    width: 100%;
-    margin: 0 10%;
-    padding-top: 4%;
-    display: grid;
-}
-
-.myidea_list{
-    display: inline-flex;
-    width: 266px;
-    height: 300px;
-    padding: 2px 2px 2px 2px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom:2px;
-    border: none;
-    background-color: #ffffff;
-    position: relative;
-    color: rgb(52, 52, 52);
-}
 
 .basket{
     display: none;
+    margin: 40px 0;
+    min-height: 400px;
+    text-align: center;
+    .ideacard {
+        display: inline-block;
+        width: 298px;
+        height:380px;
+        padding: 1% 0% 0% 0%;
+        margin: 0 1%;
+        margin-bottom:2%;
+        border: none;
+        background-color: #ffffff;
+        position: relative;
+        color: rgb(52, 52, 52);
+        box-shadow: 3px 3px 3px 3px rgba(209, 209, 209, 0.65);
+    
+        &:hover{
+            background-color: rgba(224, 224, 224, 0.281);
+        }
+    }
+    
+    .cardImg_board {
+        display: block;
+        background-position: center;
+        height: 200px;
+        text-align: center;
+    }
+    
+    
+    .card_image {
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+    }
+    
+    a.top {
+        margin-left: 50%;
+        display: none;
+    }
+    
+    .idea_title {
+        font-size: 20px;
+        text-align: center;
+        word-break: break-all;
+        word-wrap: normal;
+        margin-top: 10px;
+        height : 60px;
+        padding : 0 1% 0 1%;
+    
+        &_content{
+            display : flex;
+            align-items: center;
+            justify-content: center;
+            height : 60px;
+        }
+    }
+    
+    .idea_subtitle{
+        display : block;
+        text-align: center;
+        word-break: break-all;
+        word-wrap: normal;
+        height : 40px;
+        margin : 0px 0px 20px 0px;
+        color : rgb(94, 94, 94);
+        padding : 0 1% 0 1%;
+    
+        &_content{
+            display : flex;
+            align-items: center;
+            justify-content: center;
+            height : 40px;
+        }
+    }
+    
+    .user_div {
+        display : flex;
+        flex-direction: row;
+        position : relative;
+        padding: 10px;
+        height: 30px;
+        border-top:1px solid rgb(177, 177, 177);
+        p{
+            margin: 0;
+        }
+        &_image_real{
+            border-radius: 10px ;
+            width: 25px;
+            height: 25px;
+        }
+    
+        &_school{
+            margin-left: 3%;
+            max-width : 160px;
+            justify-content: center;
+        }
+    
+        &_name{
+            margin-left: 1%;
+            max-width : 100px;
+            justify-content: center;
+        }
+    
+        &_comment{
+            margin-left : auto;
+            justify-content: center;
+        }
+    }
+    
+    .cardprofile {
+        @include w_h_size(33px, 33px);
+        vertical-align: middle;
+        margin: 3px 5px 0px -1px;
+    }
+    
+    .fa-comment {
+        float: right;
+        margin : 4px 12px 0 0;
+    }
+    
+    .idea_count{
+        margin-right: 100px;
+    }
 }
-
-.basket content{
-    width: 100%;
-    margin: 0 10%;
-    padding-top: 4%;
-    display: grid;
-}
-
-.basket_list{
-    margin-top:5%;
-    display: inline-flex;
-    width:266px;
-    height: 390px;
-    padding: 2px 2px 2px 2px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 2px;
-    border: none;
-    background-color: #ffffff;
-    position: relative;
-    color: rgb(52, 52, 52);
-}
-
-.title{
-    display:inline-block;
-}
-
-.cardprofile{
-    margin-right: 5px;
-}
-
-.profile_image_refer{
-    width:400px;
-    height:auto;
-    margin-top:30px;
-    margin-bottom:20px;
-    display: flex;
-    align-items: center;
-}
-
-
-
 
 ////////////@extend
 
-
+/*
 .ideacard {
     display: inline-block;
     width:350px;
@@ -231,3 +410,4 @@ hr {
     color: darkgrey;
     opacity: 0.8;
 }
+*/

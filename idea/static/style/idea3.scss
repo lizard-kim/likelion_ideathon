@@ -1,7 +1,5 @@
-$lioncolor : rgb(243, 153, 37);
-
 @import '../../../main/static/style/typography';
-//@import '../../../main/static/style/layout';
+@import '../../../main/static/style/layout';
 
 @mixin w_h_size($w, $h) {
     width: $w;
@@ -10,10 +8,6 @@ $lioncolor : rgb(243, 153, 37);
 
 p{
     all: unset;
-}
-
-body {
-    background-color: #fafafa;
 }
 
 
@@ -101,6 +95,7 @@ a{
 }
 
 .container{
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     text-align: center;

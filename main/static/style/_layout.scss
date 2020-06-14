@@ -1,9 +1,15 @@
+// ==================== color =========================
+
+$lioncolor : rgb(243, 153, 37);
+
+// ====================================================
 div{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    flex-direction: column;
 }
 div::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
@@ -22,6 +28,7 @@ html, body{
 
 }
 
+// header
 header{
     width: 100%;
     flex-direction: row;
@@ -80,6 +87,8 @@ header{
     border-bottom: 1px solid #B8B8B8;
 }
 
+
+// footer
 .footer{
     position: relative;
     z-index: 0;
@@ -96,28 +105,21 @@ header{
         color: #929292;
         margin-bottom: 30px;
     }
-    .right{
-        color: #929292;
-    }
-    .dev_info{
-        display: none;
-        position: absolute;
-        background-color: black;
-        left: 200px;
-        bottom: 220px;
-        z-index: 10;
-        width: 300px;
-        height: 200px;
+
+    hr{
+        margin: 0;
     }
     &__bottom{
-        flex-direction: row;
-        justify-content: space-between;
+        color: #929292;
+        margin-top: 20px;
         .link{
             flex-direction: row;
         }
     }
 }
 
+
+// button
 @mixin clearbtn ($wid : 120px, $hig : 40px) {
     width: $wid;
     height: $hig;

@@ -72,57 +72,55 @@
       <div class="ideacards">
         <div class = "container">
         {% for idea in ideas %}
-        <a href="{% url 'detail' idea.id %}">
-          <div class="ideacard">
-            <div class="cardImg_board">
-              {% if idea.image_thumbnail %}
-              <img class="card_image" src="{{idea.image_thumbnail.url}}" />
-              {% else %}
-              <img class="card_image" src="{% static 'image/lion2.png' %}">
-              {% endif %}
+          <a href="{% url 'detail' idea.id %}">
+            <div class="ideacard">
+              <div class="cardImg_board">
+                {% if idea.image_thumbnail %}
+                <img class="card_image" src="{{idea.image_thumbnail.url}}" />
+                {% else %}
+                <img class="card_image" src="{% static 'image/lion2.png' %}">
+                {% endif %}
+              </div>
+              <!--16:9-->
+              <div class="idea_title">
+                <div class = "idea_title_content">
+                <p>{{idea.idea_title}}</p>
+                </div>
+              </div>
+
+              <div class="idea_subtitle">
+                <div class = "idea_subtitle_content">
+                  <p>{{idea.idea_subtitle}}</p>
+                </div>
+              </div>
+              
+              <div class="user_div">
+
+                {% if idea.user.user_image %}
+                <img class="user_div_image_real"
+                    src="{{idea.user.user_image.url}}" width="25px" height="25px"
+                    alt="유저사진">
+                {% else %}
+                <img class="user_div_image_real" src="{% static 'img/4.png' %}"
+                    width="25px" height="25px" alt="유저사진">
+                {% endif %}
+
+                <div class = "user_div_school">
+                  <p>{{idea.user.user_school}}</p>
+                </div>
+
+                <div class = "user_div_name">
+                  <p>{{idea.user}}</p>
+                </div>
+
+                <div class = "user_div_comment">
+                  <i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
+                </div>
+
+              </div>
+
             </div>
-            <!--16:9-->
-            <div class="idea_title">
-              <div class = "idea_title_content">
-              <p>{{idea.idea_title}}</p>
-              </div>
-            </div>
-
-            <div class="idea_subtitle">
-              <div class = "idea_subtitle_content">
-                <p>{{idea.idea_subtitle}}</p>
-              </div>
-            </div>
-            
-            <div class="user_div">
-
-              {% if idea.user.user_image %}
-              <img class="user_div_image_real"
-                  src="{{idea.user.user_image.url}}" width="25px" height="25px"
-                  alt="유저사진">
-              {% else %}
-              <img class="user_div_image_real" src="{% static 'img/4.png' %}"
-                  width="25px" height="25px" alt="유저사진">
-              {% endif %}
-
-              <div class = "user_div_school">
-                <p>{{idea.user.user_school}}</p>
-              </div>
-
-              <div class = "user_div_name">
-                <p>{{idea.user}}</p>
-              </div>
-
-              <div class = "user_div_comment">
-                <i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
-              </div>
-
-            </div>
-
-          </div>
-
-        </a>
-
+          </a>
         {% endfor %}
         </div>
       </div>
