@@ -90,7 +90,6 @@
 
 <body>
   {% include 'bright_header.html' %}
-  {% block content %}
   <div class="mypage">
     <div class="mypage__top">
       <div class="profile_image_refer">
@@ -260,56 +259,54 @@
     </form>
   </div>
   </div>
-  {% endblock %}
   {% include 'footer.html' %}
-
-  <script>
-    $(document).ready(function () {
-      $(".menuelem").on("click", function (e) {
-        console.log(this.id);
-        var clickId = this.id;
-        $(".content").css({
-          display: "none",
-        });
-        $("." + clickId).css({
-          display: "block",
-        });
-        $("#mypage_edit").css({
-          display: "none",
-        });
-
+</body>
+<script>
+  $(document).ready(function () {
+    $(".menuelem").on("click", function (e) {
+      console.log(this.id);
+      var clickId = this.id;
+      $(".content").css({
+        display: "none",
       });
-      $(".edit_button").on("click", function (e) {
-        var edit_info = document.getElementById("mypage_edit");
-        $(".content").css({
-          display: "none",
-        });
-        $("#mypage_edit").css({
-          display: "block",
-        });
+      $("." + clickId).css({
+        display: "block",
+      });
+      $("#mypage_edit").css({
+        display: "none",
+      });
+
+    });
+    $(".edit_button").on("click", function (e) {
+      var edit_info = document.getElementById("mypage_edit");
+      $(".content").css({
+        display: "none",
+      });
+      $("#mypage_edit").css({
+        display: "block",
       });
     });
-    $(document).ready(function () {
-      $(".submit_btn").on("click", function () {
-        var password = $("#password").val()
-        console.log(password)
-        if (!password) {
-          alert("비밀번호를 입력해주세요")
-          return false
-        }
-        if ($("#new_password").val() != $("#password_confirm").val()) {
-          alert("새 비밀번호를 다시 확인해주세요")
-          return false
-        }
-      })
-    })
-    $(document).ready(function () {
-      var error = "{{error}}"
-      if (error) {
-        alert(error)
+  });
+  $(document).ready(function () {
+    $(".submit_btn").on("click", function () {
+      var password = $("#password").val()
+      console.log(password)
+      if (!password) {
+        alert("비밀번호를 입력해주세요")
+        return false
+      }
+      if ($("#new_password").val() != $("#password_confirm").val()) {
+        alert("새 비밀번호를 다시 확인해주세요")
+        return false
       }
     })
-  </script>
-</body>
+  })
+  $(document).ready(function () {
+    var error = "{{error}}"
+    if (error) {
+      alert(error)
+    }
+  })
+</script>
 
 </html>

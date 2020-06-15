@@ -141,7 +141,7 @@ p{
             justify-content: center;
             margin-bottom : 30px;
             max-width : 800px;
-            //max-height: 800px;
+            height: auto;
         }
     }
 
@@ -876,3 +876,5 @@ input[type=text]{
     display: flex;
     align-items: center;
 }
+
+@import "./detail_mobile"
