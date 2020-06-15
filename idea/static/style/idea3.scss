@@ -1,6 +1,5 @@
-$lioncolor : rgb(243, 153, 37);
-
-@import "./typography";
+@import '../../../main/static/style/typography';
+@import '../../../main/static/style/layout';
 
 @mixin w_h_size($w, $h) {
     width: $w;
@@ -11,29 +10,12 @@ p{
     all: unset;
 }
 
-body {
-    background-color: #fafafa;
-    overflow-x: hidden;
-}
-
-body,
-html {
-    margin: 0;
-    padding: 0;
-    @include w_h_size(100%, auto);
-    color: white;
-    ::-webkit-scrollbar { display: none; }
-}
-
-
-
-
 
 .randImg {
     position: relative;
     display: flex;
     flex-direction: row;
-    height: 90%;
+    min-height: 90%;
     width : 100%;
     background-image: url("../image/background.png");
     background-position: center left;
@@ -108,10 +90,13 @@ a{
 }
 
 .ideacards {
+    flex-wrap: wrap;
     width: 100%;
 }
 
 .container{
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     text-align: center;
     margin : 2% 4%;
@@ -135,7 +120,7 @@ a{
 }
 
 .cardImg_board {
-    text-align: center;
+    display: block;
     background-position: center;
     height: 200px;
     text-align: center;
@@ -227,43 +212,6 @@ a.top {
     margin : 4px 12px 0 0;
 }
 
-.footer{
-    position: relative;
-    z-index: 0;
-    padding: 60px 160px;
-    margin-top: auto;
-    background-color: #302C28;
-    color: white;
-    text-align: left;
-    height: 200px;
-    .slogan{
-        margin-bottom: 30px;
-    }
-    .developer{
-        color: #929292;
-        margin-bottom: 30px;
-    }
-    .right{
-        color: #929292;
-    }
-    .dev_info{
-        display: none;
-        position: absolute;
-        background-color: black;
-        left: 200px;
-        bottom: 220px;
-        z-index: 10;
-        width: 300px;
-        height: 200px;
-    }
-    &__bottom{
-        flex-direction: row;
-        justify-content: space-between;
-        .link{
-            flex-direction: row;
-        }
-    }
-}
 .idea_count{
     margin-right: 100px;
 }

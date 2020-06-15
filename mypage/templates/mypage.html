@@ -15,7 +15,6 @@
     crossorigin="anonymous"></script>
 
   <link href="{% sass_src 'style/mypage.scss' %}" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="{% sass_src 'style/main.scss' %}" type="text/css" />
   <style>
     #mypage_edit {
       display: none;
@@ -122,7 +121,7 @@
           <h4 id="basket" class="menuelem menu__basket">장바구니</h4>
         </div>
         <!--자기 프로필들-->
-        <div class="content profile">
+        <div class="profile content">
           <h6 class="title">Department</h6>
           <h6 class="description">{{profile.user_school}}</h6>
           <h6 class="title">About</h6>
@@ -135,8 +134,8 @@
         <div class="myidea content">
           {% if myidea %}
           {% for idea in myidea %}
-          <a href="{% url 'detail' idea.id %}" class="card_a">
-            <div class="card ideacard">
+          <a href="{% url 'detail' idea.id %}">
+            <div class="ideacard">
               <div class="cardImg_board">
                 {% if idea.image_thumbnail %}
                 <img class="card_image" src="{{idea.image_thumbnail.url}}" />
@@ -145,11 +144,32 @@
                 {% endif %}
               </div>
               <!--16:9-->
-              <p class="idea_title">{{idea.idea_title}}</p>
-              <p class="idea_subtitle">{{idea.idea_subtitle}}</p>
+              <div class="idea_title">
+                <div class = "idea_title_content">
+                  <p>{{idea.idea_title}}</p>
+                </div>
+              </div>
+              <div class="idea_subtitle">
+                <div class = "idea_subtitle_content">
+                  <p>{{idea.idea_subtitle}}</p>
+                </div>
+              </div>
               <div class="user_div">
-                <hr />
-                {{idea.user}}<i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
+                {% if idea.user.user_image %}
+                <img class="user_div_image_real"
+                    src="{{idea.user.user_image.url}}" alt="유저사진">
+                {% else %}
+                <img class="user_div_image_real" src="{% static 'img/4.png' %}" alt="유저사진">
+                {% endif %}
+                <div class = "user_div_school">
+                  <p>{{idea.user.user_school}}</p>
+                </div>
+                <div class = "user_div_name">
+                  <p>{{idea.user}}</p>
+                </div>
+                <div class = "user_div_comment">
+                  <i class="far fa-comment">&nbsp;{{idea.comments.count}}</i>
+                </div>
               </div>
             </div>
           </a>
@@ -169,23 +189,41 @@
         {% for favorite in cart %}
         {% if favorite.add_cart == True %}
         <a href="{% url 'detail' favorite.idea.id %}">
-          <div class="basket_list">
+          <div class="ideacard">
             <div class="cardImg_board">
-              {% if favorite.idea.idea_image %}
+              {% if favorite.idea.image_thumbnail %}
               <img class="card_image" src="{{favorite.idea.image_thumbnail.url}}" />
               {% else %}
               <img class="card_image" src="{% static 'image/lion2.png' %}">
               {% endif %}
-             </div>
+            </div>
             <!--16:9-->
-            <div class="title">
-              <p class="idea_title">{{favorite.idea.idea_title}}</p>
-              <p class="idea_subtitle">{{favorite.idea.idea_subtitle}}</p>
+            <div class="idea_title">
+              <div class = "idea_title_content">
+                <p>{{favorite.idea.idea_title}}</p>
+              </div>
+            </div>
+            <div class="idea_subtitle">
+              <div class = "idea_subtitle_content">
+                <p>{{favorite.idea.idea_subtitle}}</p>
+              </div>
             </div>
             <div class="user_div">
-              <hr />
-              <img class="cardprofile" src="{{favorite.idea.user_image}}" />{{favorite.idea.user}}
-              <i class="far fa-comment">&nbsp;{{favorite.idea.idea_likecount}}</i>
+              {% if favorite.idea.user.user_image %}
+              <img class="user_div_image_real"
+                  src="{{favorite.idea.user.user_image.url}}" alt="유저사진">
+              {% else %}
+              <img class="user_div_image_real" src="{% static 'img/4.png' %}" alt="유저사진">
+              {% endif %}
+              <div class = "user_div_school">
+                <p>{{favorite.idea.user.user_school}}</p>
+              </div>
+              <div class = "user_div_name">
+                <p>{{favorite.idea.user}}</p>
+              </div>
+              <div class = "user_div_comment">
+                <i class="far fa-comment">&nbsp;{{favorite.idea.comments.count}}</i>
+              </div>
             </div>
           </div>
         </a>
