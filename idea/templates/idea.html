@@ -54,20 +54,21 @@
           </a>
         </div>
       </div>
-
-      <p class="idea_count">아이디어 <span class="idea_count__span">{{count}}</span>개
-        <div class="sorting-wrap">
-          <!--<span class = "sorting">-->
-            <form action="{% url 'idea'%}" method="GET">
-            <button class="sorting_btn">최신순</button>
-            </form>
-            <form action="{% url 'idea'%}" method="POST">
-            {% csrf_token %}
-            <button class="sorting_btn">랜덤순</button>
-            </form>
-          <!--</span>-->
-        </div>
-      </p>
+      <div class="container_title">
+        <p class="idea_count">아이디어 <span class="idea_count__span">{{count}}</span>개
+          <div class="sorting-wrap">
+            <!--<span class = "sorting">-->
+              <form action="{% url 'idea'%}" method="GET">
+              <button class="sorting_btn">최신순</button>
+              </form>
+              <form action="{% url 'idea'%}" method="POST">
+              {% csrf_token %}
+              <button class="sorting_btn">랜덤순</button>
+              </form>
+            <!--</span>-->
+          </div>
+        </p>
+      </div>
 
       <div class="ideacards">
         <div class = "container">
