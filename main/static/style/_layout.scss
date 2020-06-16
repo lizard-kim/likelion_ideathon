@@ -20,12 +20,11 @@ html, body{
     display: -ms-flexbox;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: auto;
     margin: 0;
     height: 100%;
     background-color: rgba($color: #f5f6f8, $alpha: 1.0);
     font-family: 'Noto Sans', sans-serif;
-
 }
 
 // header
