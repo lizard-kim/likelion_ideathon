@@ -35,6 +35,10 @@ header{
     color: white;
     align-items: center;
 
+    .dropdown{
+        display: none;
+    }
+
     .logo{
         width: 260px;
         height: 31px;
