@@ -10,7 +10,6 @@ p{
     all: unset;
 }
 
-
 .randImg {
     position: relative;
     display: flex;
@@ -29,6 +28,7 @@ p{
     width: 100%;
     top:80%;
     text-align: center;
+    flex-direction: column;
 }
 .submit_btn{
     background: rgb(243, 153, 38);
@@ -76,12 +76,16 @@ a{
     cursor: pointer;
 }
 
+.container_title{
+    margin: 0 auto;
+    flex-direction: column;
+}
+
 .idea_count {
     color: rgb(75, 73, 73);
     font-size: 30px;
-    margin-bottom: 0px;
-    margin-left: 100px;
-
+    margin-left: 10px;
+    margin-right: 100px;
     &__span {
         color: $lioncolor;
         font-weight: bold;
@@ -92,28 +96,28 @@ a{
 .ideacards {
     flex-wrap: wrap;
     width: 100%;
+    margin: 20px 0;
 }
 
 .container{
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    text-align: center;
-    margin : 2% 4%;
+    margin: 0 auto;
+    //margin : 2% 4%;
 }
 .ideacard {
     display: inline-block;
-    width: 298px;
+    width: 300px;
     height:380px;
-    padding: 1% 0% 0% 0%;
-    margin: 0 1%;
+    padding-top: 16px;
+    margin: 10px;
     margin-bottom:2%;
     border: none;
     background-color: #ffffff;
     position: relative;
     color: rgb(52, 52, 52);
     box-shadow: 3px 3px 3px 3px rgba(209, 209, 209, 0.65);
-
+    flex-direction: column;
     &:hover{
         background-color: rgba(224, 224, 224, 0.281);
     }
@@ -146,6 +150,7 @@ a.top {
     margin-top: 10px;
     height : 60px;
     padding : 0 1% 0 1%;
+    flex-direction: column;
 
     &_content{
         display : flex;
@@ -212,9 +217,6 @@ a.top {
     margin : 4px 12px 0 0;
 }
 
-.idea_count{
-    margin-right: 100px;
-}
 .sorting{
     //display: flex;
     flex-direction: row;
@@ -267,7 +269,7 @@ a.top {
 .sorting-wrap{
     display: flex;
     flex-direction: row;
-    margin-left: 100px;
+    margin-left: 10px;
     form{
         margin:0;
         padding:0;
@@ -277,7 +279,7 @@ a.top {
 
 .sorting_btn{
     background: rgb(243, 153, 38);
-    color: #fff;
+    color: #f5f6f8;
     border: none;
     height: 40px;
     width: 80px;
@@ -289,4 +291,34 @@ a.top {
     border-radius: 10px;
     margin-top: 10px;
     margin-right: 10px;
+
+    &:hover {
+        background: #f5f6f8;
+        color: rgb(243, 153, 37);
+        border: 1px solid $lioncolor;
+    }
+
+    &:after{
+        right: inherit;
+        top: inherit;
+        left: 0;
+    }
+
+    &:before, &:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        background: rgb(243, 153, 37);
+        transition: 400ms ease all;
+    }
+
+    &:hover:before,&:hover:after{
+        width: 100%;
+        transition: 500ms ease all;
+    }
+
 }
+
+@import "./idea_mobile.scss"

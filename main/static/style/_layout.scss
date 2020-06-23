@@ -9,7 +9,7 @@ div{
     display: flex;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
-    flex-direction: column;
+    //flex-direction: column;
 }
 div::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
@@ -20,12 +20,11 @@ html, body{
     display: -ms-flexbox;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: auto;
     margin: 0;
     height: 100%;
     background-color: rgba($color: #f5f6f8, $alpha: 1.0);
     font-family: 'Noto Sans', sans-serif;
-
 }
 
 // header
@@ -98,6 +97,7 @@ header{
     color: white;
     text-align: left;
     height: 200px;
+    flex-direction: column;
     .slogan{
         margin-bottom: 30px;
     }
@@ -133,3 +133,4 @@ header{
     font-size: 20px;
 }
 
+@import "./layout_mobile"

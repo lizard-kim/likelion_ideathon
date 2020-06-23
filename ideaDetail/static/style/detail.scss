@@ -1,52 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import '../../../main/static/style/typography';
-
-html,body{
-    ::-webkit-scrollbar { display: none; }
-    margin :0;
-}
-
-header{
-
-    width: 100%;
-    
-    flex-direction: row;
-    padding: 1% 0;
-    color: white;
-    align-items: center;
-
-    .logo{
-        width: 260px;
-        height: 31px;
-        left: 26px;
-        top: 30px;
-    }
-    a{  
-        color: white;
-        font-size: 20px;
-        margin: 10px;
-        text-decoration: none;
-    }
-    b{
-        color: white;
-    }
-    .menu{
-        float: right;
-    }
-}
-
-.bright{
-    @extend header;
-    
-
-    a{
-        color: black;
-    }
-    b{
-        color: black;
-    }
-    border-bottom: 1px solid #B8B8B8;
-}
+@import '../../../main/static/style/layout';
 
 input, button, textarea, menu {
     -webkit-appearance: none;
@@ -63,7 +17,6 @@ p{
     display: flex;
     flex-direction: column;
     flex: 1;
-    height: 100%;
 }
 
 
@@ -71,20 +24,19 @@ p{
 .content{
     display: flex;
     flex-direction: column;
-    flex: 1;
 }
 
 .idea{
     background-color: white;
     display : flex;
     justify-content: center;
-    flex: 1;
     
     &_container{
-        margin-top : 20px;  
+        margin: 0 auto; 
+        margin-top : 20px; 
         display : flex;
         flex-direction: column;
-        width : 800px;
+        max-width : 800px;
     }
 }
 
@@ -175,18 +127,15 @@ p{
     justify-content: center;
 
     &_box{
-        flex:none;
-        width : 800px;
         display: flex;
         flex-direction: column;
-        max-height: auto;
 
         &_real{
             display : flex;
             justify-content: center;
             margin-bottom : 30px;
-            max-width : 800px;
-            //max-height: 800px;
+            width : 100%;
+            height: auto;
         }
     }
 
@@ -195,21 +144,19 @@ p{
 // 아이디어 요약
 .description{
     display : flex;
-    justify-content: center;
+    //justify-content: center;
     flex: 1;
 
     &_box{
         height: 100%;
         &_real{
-            width : 800px;
             font-size : 10px;
             margin-bottom : 2%;
             //overflow:hidden;    // 잘린거 안보이게 
             text-overflow: ellipsis;    // 잘린 텍스트 ...표기
             word-break: break-all;
             white-space: pre-wrap;
-
-            
+ 
             &_show{
                 display : block;
                 font-size : 10px;
@@ -227,7 +174,7 @@ p{
 .bot {
     display : flex;
     justify-content: center;
-
+    margin-top: 20px;
     &_box{
         width : 800px;
         &_hashbox{
@@ -373,7 +320,7 @@ p{
 .comment{
     display: flex;
     flex-direction: column;
-    margin-bottom : 3%;    
+    margin-bottom : 30px;    
 }
 
 .comments{
@@ -384,14 +331,14 @@ p{
         flex: none;
         border-top : solid 1px rgb(221, 221, 221);
         display : flex;
-        width : 800px;
+        margin: 0 auto;
+        max-width : 800px;
         flex-direction: column;
     }
 
     &_box{
         display : flex;
         justify-content: center;
-        width : 800px;
         margin-top : 1%;
 
         &_input_none{
@@ -444,7 +391,6 @@ p{
             display : flex;
             flex-direction: column;
             height : 140px;
-            width : 800px;
             margin-top : 2%;
 
             &_start{
@@ -513,7 +459,6 @@ p{
             width : 800px;
             display : flex;
             flex-direction: row;
-xf
             &_item1{
                 max-width : 300px;
                 display : inline-block;
@@ -550,7 +495,6 @@ xf
     &_list{
         display : flex;
         justify-content: center;
-        max-height: auto;
     }
 
     &_box{   
@@ -561,8 +505,8 @@ xf
     &_real{
         flex : none;
         width : 800px;
-        max-height: auto;
-        display : inline-block;
+        display : flex;
+        flex-direction: column;
         margin-top : 2%;
         border-bottom: 1px solid rgb(182, 182, 182);
     }
@@ -624,6 +568,7 @@ xf
 
     &_content_box{
         max-height : auto;
+        flex-direction: column;
     }
 
     &_content{
@@ -631,7 +576,6 @@ xf
         flex-direction: row;
         max-height : auto;
         margin-bottom : 10px;
-        
 
         &_left{
             flex : none;
@@ -639,6 +583,7 @@ xf
             white-space: normal;
             overflow: hidden;
             max-width : 700px;
+            flex-direction: column;
         }
 
         &_right{
@@ -646,6 +591,8 @@ xf
             margin-left : auto;
             margin-top : auto;
             width : 71px;
+            flex-direction: column;
+
             
             &_button{
                 display :block;
@@ -669,9 +616,9 @@ xf
 
 .new_comment{
     display : block;
-        width : 800px;
-        max-height : auto;
-        margin-top : 2%;
+    width : 800px;
+    margin-top : 2%;
+    flex-direction: column;
 
     &_input[type=text]{
             width : 620px;
@@ -768,10 +715,12 @@ xf
 .add_comment{
     
     flex : none;
+    flex-direction: column;
     max-height : auto;
     width : 640px;
     
     &_con{
+        flex-direction: column;
         border-left : 2px solid rgb(110, 110, 110);
         padding-left: 2%;
         margin-top : 2%;
@@ -878,12 +827,6 @@ xf
 }
 
 
-// 여기부터 footer
-.footer{
-    background-color: rgb(56, 56, 56);
-    height : 100px;
-}
-
 input[type=text]{
     width : 680px;
     height : 80px;
@@ -914,49 +857,6 @@ input[type=text]{
     border : 1px solid rgb(180, 180, 180);
 }
 
-.footer{
-    position: relative;
-    z-index: 0;
-    padding: 60px 160px;
-    margin-top: auto;
-    background-color: #302C28;
-    color: white;
-    text-align: left;
-    height: 200px;
-    .slogan{
-        margin-bottom: 30px;
-    }
-    .developer{
-        color: #929292;
-        margin-bottom: 30px;
-    }
-    hr{
-        width: 100%;
-        border-color: #929292;
-        margin-bottom: 30px;
-    }
-    .right{
-        color: #929292;
-    }
-    .dev_info{
-        display: none;
-        position: absolute;
-        background-color: black;
-        left: 200px;
-        bottom: 220px;
-        z-index: 10;
-        width: 300px;
-        height: 200px;
-    }
-    &__bottom{
-        flex-direction: row;
-        justify-content: space-between;
-        .link{
-            flex-direction: row;
-        }
-    }
-}
-
 .comments_box_input_start_info{
     width:auto;
 }
@@ -969,3 +869,5 @@ input[type=text]{
     display: flex;
     align-items: center;
 }
+
+@import "./detail_mobile"

@@ -6,27 +6,13 @@
 
 <head>
     <title>Like Lion Ideathon</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% sass_src 'style/detail.scss' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'style/detail.scss' %}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-
+    {% include 'bright_header.html' %}
     <div class="container">
-        <div class="bright">
-            <a href="{% url 'idea' %}"><img class="logo" src="{% static 'img/basiclogo_E_H.png' %}">&nbsp;<b>IDEATHON</b></a>
-            <span class="menu">
-                {% if request.user.is_active %}
-                <a href="{% url 'mypage' %}">
-                    <span>{{current_user}}님</span>
-                </a>
-                <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
-                {% else %}
-                <a href="{% url 'login' %}" title="로그인">Sign in</a>
-                {% endif %}
-            </span>
-        </div>
-
         <div class="content">
             <div class="idea">
                 <div class='idea_container'>
@@ -39,63 +25,46 @@
                         </div>
                     </div>
                     <div class="author_info">
-                        <!-- {% if user == current_user %}
-                        <a href="{% url 'mypage' %}">
-                            {% else %}
-                            <a href="{% url 'who' idea_detail %}">
-                                {% endif %}
+											{% if user == current_user %}
+											<a href="{% url 'mypage' %}">
+											{% else %}
+											<a href="{% url 'who' idea_detail %}">
+													{% endif %}
+													<div class="author_info_image">
+															{% if user.user_image %}
+															<img class="author_info_image_real" src="{{user.user_image.url}}" width="25px"
+																	height="25px" alt="유저사진">
+															{% else %}
+															<img class="author_info_image_real" src="{% static 'img/4.png' %}" width="25px"
+																	height="25px" alt="사자사진">
+															{% endif %}
+													</div>
+											</a>
 
-                                <div class="author_info_school">
-                                    <p>{{user.user_school}}</p>
-                                </div>
-                            </a> -->
+											{% if user == current_user %}
+											<a href="{% url 'mypage' %}">
+													{% else %}
+													<a href="{% url 'who' idea_detail %}">
+															{% endif %}
+															<div class="author_info_name">
+																	<p>{{user.user_name}}</p>
+															</div>
+													</a>
 
-                            {% if user == current_user %}
-                            <a href="{% url 'mypage' %}">
-                                {% else %}
-                                <a href="{% url 'who' idea_detail %}">
-                                    {% endif %}
-                                    <div class="author_info_image">
-                                        {% if user.user_image %}
-                                        <img class="author_info_image_real" src="{{user.user_image.url}}" width="25px"
-                                            height="25px" alt="유저사진">
-                                        {% else %}
-                                        <img class="author_info_image_real" src="{% static 'img/4.png' %}" width="25px"
-                                            height="25px" alt="사자사진">
-                                        {% endif %}
-                                    </div>
-                                </a>
-
-                                {% if user == current_user %}
-                                <a href="{% url 'mypage' %}">
-                                    {% else %}
-                                    <a href="{% url 'who' idea_detail %}">
-                                        {% endif %}
-                                        <div class="author_info_name">
-                                            <p>{{user.user_name}}</p>
-                                        </div>
-                                    </a>
-
-                                    <div class="author_info_time">
-                                        <p>{{idea_detail.idea_create_data}}</p>
-                                    </div>
-                                </a>
+													<div class="author_info_time">
+															<p>{{idea_detail.idea_create_data}}</p>
+													</div>
+											</a>
 
                     </div>
-
-
-
-
                     <div class="image">
                         <div class="image_box">
-
                             {% if idea_images %}
                             {% for image in idea_images %}
                             <div class="image_box_real">
                                 <img class="image_box_real" src="{{image.image.url}}" alt="아이디어 사진">
                             </div>
                             {% endfor %}
-
                             {% else %}
                             <div class="image_box_real">
                                 <img src="{% static 'img/4.png' %}" alt="아이디어 사진">
@@ -403,35 +372,26 @@
                                                 <button type="submit" class="new_comment_button">제출</button>
                                             </form>
                                             {% endif %}
-
                                         </div>
                                         {% endif %}
-
                                     </div>
-
-                                </div>
-
+                                </div
                             </div>
-
                             {% endfor %}
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
+	</div>
+    </div>
+				{% include 'footer.html' %}
 </body>
 
 <script type="text/javascript">
     // getElementById는 Id에 해당하는 객체(?)를 하나만 가져온다
     // 따라서 여러개를 배열 형태로 가져오기 위해 getElementsByName을 사용
     const add_comment_list = document.getElementsByName("add_comment_list"); // 대댓글 
-    console.log(add_comment_list);
-    console.log(add_comment_list[0]); // 배열이니까 index 값으로 해당 value에 접근할 수 있다
 
     // 답글 버튼도 여러개를 배열 형태로 가져오기 위해 getElementsByName을 사용
     let btn_comment = document.getElementsByName('btn-comment');
@@ -472,6 +432,6 @@
     
 
 </script>
-{% include 'footer.html' %}
+
 
 </html>
