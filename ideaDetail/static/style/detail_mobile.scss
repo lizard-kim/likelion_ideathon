@@ -7,7 +7,20 @@
             max-width : 500px;
         }
     }
+    // 아이디어 타이틀 부분
+    .title{
+        &_name{
+            font-size : 32px;
+            text-align : center;
+            max-width : 500px;
+        }
 
+        &_sub{
+            margin-top : 10px;
+            font-size : 16px;
+            max-width : 500px;
+        }
+    }
     .author_info{
         height : 30px;
         justify-content : center;
@@ -95,6 +108,21 @@
             margin: 0 auto; 
             margin-top : 10px; 
             max-width : 90%;
+        }
+    }
+
+    // 아이디어 타이틀 부분
+    .title{
+        &_name{
+            font-size : 32px;
+            text-align : center;
+            max-width : 100%;
+        }
+
+        &_sub{
+            margin-top : 10px;
+            font-size : 16px;
+            max-width : 100%;
         }
     }
 

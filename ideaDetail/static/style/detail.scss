@@ -715,10 +715,12 @@ p{
 .add_comment{
     
     flex : none;
+    flex-direction: column;
     max-height : auto;
     width : 640px;
     
     &_con{
+        flex-direction: column;
         border-left : 2px solid rgb(110, 110, 110);
         padding-left: 2%;
         margin-top : 2%;
