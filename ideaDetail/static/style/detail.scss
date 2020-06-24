@@ -585,6 +585,9 @@ p{
             max-width : 700px;
             flex-direction: column;
         }
+        .comments_edit{
+            display: none;
+        }
 
         &_right{
             flex : none;

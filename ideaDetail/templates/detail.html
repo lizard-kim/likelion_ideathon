@@ -241,12 +241,24 @@
                                     <!-- 로그인한 유저가 댓글 작성자 or 글 작성자라면 -->
                                     <div class="comments_delete ">
                                         {% if request.user == comment.user %}
+                                        <button class="comments_edit"> 수정 </button>
+                                        <script>
+                                            $(document).ready(function() {
+                                                $(".comments_edit").on("click", function(){
+                                                    var text = $(this).parent().parent().next().find(".comments_content_left")
+                                                    text.css({
+                                                        "display" : "none",
+                                                    })
+                                                    text.next().css({
+                                                        "display" : "block",
+                                                    })
+                                                })
+                                            })
+                                        </script>
                                         <form action="{% url 'comment_delete' detail.id comment.id %}" method=POST
                                             class="comments_delete_button" onsubmit="return comment_delete()">
-
                                             {% csrf_token %}
                                             <input type="submit" value="삭제">
-
                                         </form>
                                         {% endif %}
                                     </div>
@@ -260,6 +272,11 @@
                                         <div class="comments_content_left">
                                             {{comment.text |linebreaksbr}} <br>
                                         </div>
+                                        <form action="#" class="comments_edit" method="POST">
+                                            {% csrf_token %}
+                                            <input name="comment" type="text" value="{{comment.text |linebreaksbr}}"/>
+                                            <input type="submit" value="수정하기">
+                                        </form>
                                         <div class="comments_content_right">
                                             {% for check in comment_check %}
                                             {% if comment.id == check %}
