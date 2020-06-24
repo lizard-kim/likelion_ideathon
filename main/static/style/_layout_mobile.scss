@@ -2,6 +2,10 @@
 @media (min-width: 500px) and ( max-width: 810px ){
     header{
         text-align: center;
+        .dropdown{
+            display: flex;
+            margin-left: auto;
+        }
         .logo{
             width: 280px;
             height: auto;
@@ -36,7 +40,45 @@
 //mobile
 @media ( max-width: 499px ){
     header{
+        display: flex;
+        flex-direction: row;
         text-align: center;
+
+        .dropdown{
+            display: block;
+            position: fixed;
+            right: 12px;
+            box-sizing: border-box;
+            &-menu{
+                display: none;
+            }
+            .show{
+                display: flex;
+                flex-direction: column;
+                width: 100px;
+                button{
+                    border: 0;
+                    outline: 0;
+                    background-color: white !important;
+                }
+            }
+            &-item{
+                height: 28px;
+            }
+            .link{
+                margin: 0;
+                color: black;
+                font-size: 12px;
+            }
+        }
+
+        .white {
+            .fa-bars{ color: black; }
+        }
+
+        .logo_link{
+            margin: auto;
+        }
         .logo{
             width: 160px;
             height: auto;

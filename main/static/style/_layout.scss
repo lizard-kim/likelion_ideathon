@@ -35,6 +35,10 @@ header{
     color: white;
     align-items: center;
 
+    .dropdown{
+        display: none;
+    }
+
     .logo{
         width: 260px;
         height: 31px;
@@ -84,6 +88,7 @@ header{
         color: black;
     }
     border-bottom: 1px solid #B8B8B8;
+    z-index : 1;
 }
 
 
