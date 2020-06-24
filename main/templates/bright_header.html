@@ -11,25 +11,24 @@
     {% else %}
     <a href="{% url 'login' %}" title="로그인">Sign in</a>
     {% endif %}
-  </span>
-
-  <span class="dropdown">
-      <i class="fas fa-bars" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          {% if request.user.is_active %}
-          <button href="{% url 'mypage' %}" class="dropdown-item">
-              <a href="{% url 'mypage' %}" class="item">
-                  <span>{{user.user_name}}님</span>
-              </a>
-          </button>
-          <button class="dropdown-item" type="button">
-              <a href="{% url 'logout' %}" title="로그아웃" class="item">Logout</a>
-          </button>
-          {% else %}
-          <button class="dropdown-item" type="button">
-              <a href="{% url 'login' %}" title="로그인" class="item">Sign in</a>
-          </button>
-          {% endif %}
-      </div>
-  </span>
+    </span>
+    <span class="dropdown white">
+        <i class="fas fa-bars" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            {% if request.user.is_active %}
+            <button href="{% url 'mypage' %}" class="dropdown-item">
+                <a href="{% url 'mypage' %}" class="link">
+                    <span>{{user.user_name}}님</span>
+                </a>
+            </button>
+            <button class="dropdown-item" type="button">
+                <a href="{% url 'logout' %}" title="로그아웃" class="link">Logout</a>
+            </button>
+            {% else %}
+            <button class="dropdown-item" type="button">
+                <a href="{% url 'login' %}" title="로그인" class="link">Sign in</a>
+            </button>
+            {% endif %}
+        </div>
+    </span>
 </header>

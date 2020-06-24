@@ -17,16 +17,16 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
             {% if request.user.is_active %}
             <button href="{% url 'mypage' %}" class="dropdown-item">
-                <a href="{% url 'mypage' %}" class="item">
+                <a href="{% url 'mypage' %}" class="link">
                     <span>{{user.user_name}}님</span>
                 </a>
             </button>
             <button class="dropdown-item" type="button">
-                <a href="{% url 'logout' %}" title="로그아웃" class="item">Logout</a>
+                <a href="{% url 'logout' %}" title="로그아웃" class="link">Logout</a>
             </button>
             {% else %}
             <button class="dropdown-item" type="button">
-                <a href="{% url 'login' %}" title="로그인" class="item">Sign in</a>
+                <a href="{% url 'login' %}" title="로그인" class="link">Sign in</a>
             </button>
             {% endif %}
         </div>
