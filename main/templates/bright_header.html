@@ -5,7 +5,7 @@
   <span class="menu">
     {% if request.user.is_active %}
     <a href="{% url 'mypage' %}">
-      <span>{{user.user_name}}님</span>
+      <span>{{request.user.user_name}}님</span>
     </a>
     <a href="{% url 'logout' %}" title="로그아웃">Logout</a>
     {% else %}
@@ -18,7 +18,7 @@
             {% if request.user.is_active %}
             <button href="{% url 'mypage' %}" class="dropdown-item">
                 <a href="{% url 'mypage' %}" class="link">
-                    <span>{{user.user_name}}님</span>
+                    <span>{{request.user.user_name}}님</span>
                 </a>
             </button>
             <button class="dropdown-item" type="button">
