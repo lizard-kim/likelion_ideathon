@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import '../../../main/static/style/typography';
-@import '../../../main/static/style/layout';
+@import '../../../main/static/style/layout25';
 
 input, button, textarea, menu {
     -webkit-appearance: none;
@@ -870,4 +870,4 @@ input[type=text]{
     align-items: center;
 }
 
-@import "./detail_mobile"
+@import "./detail_mobile25"
