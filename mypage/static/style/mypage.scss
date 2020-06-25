@@ -1,5 +1,5 @@
 @import '../../../main/static/style/typography';
-@import '../../../main/static/style/layout';
+@import '../../../main/static/style/layout25';
 
 @mixin w_h_size($w, $h) {
     width: $w;
@@ -7,6 +7,7 @@
 }
 
 .mypage {
+    flex-direction: column;
     align-items: center;
     width: 800px;
     margin: 0 auto;
