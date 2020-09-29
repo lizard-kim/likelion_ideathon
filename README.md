@@ -42,7 +42,7 @@ Link: [workflow_manual](./Workflow.md)
 ## Contributors
 
 - 김태영
-- 박종현 ~~(제일 잘생김)~~
+- 박종현 
 - 박지형
 - 신효경
 - 최광일
